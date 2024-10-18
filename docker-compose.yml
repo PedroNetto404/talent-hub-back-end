@@ -3,7 +3,7 @@ version: '3.8'
 services:
   database:
     image: postgres:latest
-    container_name: database
+    container_name: talent-hub_pgdatabase
     environment:
       POSTGRES_USER: talent-hub_admin
       POSTGRES_PASSWORD: talent-hub_admin_11231233
