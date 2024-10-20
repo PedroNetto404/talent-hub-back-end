@@ -1,4 +1,3 @@
-using System;
 using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Skills;
