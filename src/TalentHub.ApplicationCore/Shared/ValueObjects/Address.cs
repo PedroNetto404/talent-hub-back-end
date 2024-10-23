@@ -1,4 +1,4 @@
-namespace TalentHub.ApplicationCore.Shared;
+namespace TalentHub.ApplicationCore.Shared.ValueObjects;
 
 public record Address(
     string Street,

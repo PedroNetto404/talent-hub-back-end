@@ -24,7 +24,7 @@ public abstract class Experience : Entity
         return Result.Ok();
     }
 
-      public Result AddActivity(string activity)
+    public Result AddActivity(string activity)
     {
         if (_activities.Contains(activity))
         {
@@ -35,14 +35,6 @@ public abstract class Experience : Entity
         return Result.Ok();
     }
 
-    public Result RemoveActivity(string activity)
-    {
-        if (!_activities.Contains(activity))
-        {
-            return Error.Displayable("experience", $"Activity '{activity}' not found.");
-        }
-
-        _activities.Remove(activity);
-        return Result.Ok();
-    }
+    public void ClearActivities() =>
+        _activities.Clear();
 }

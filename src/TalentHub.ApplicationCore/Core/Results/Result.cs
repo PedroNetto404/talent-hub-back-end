@@ -30,6 +30,11 @@ public class Result<T> : Result where T : notnull
     protected internal Result(T value) => _value = value;
     protected internal Result(Error error) : base(error) { }
 
+    public T Value =>
+        IsOk 
+        ? _value!
+        : throw new InvalidOperationException("Cannot get value from fail result.");
+
     public new bool IsOk => base.IsOk && _value is not null; 
 
     public static implicit operator Result<T>(T value) => new(value);

@@ -1,0 +1,11 @@
+﻿<Solution>
+  <Folder Name="/SolutionItems/" />
+  <Folder Name="/SolutionItems/docs/">
+    <File Path="SolutionItems\docs\candidate-contract.api.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src\TalentHub.ApplicationCore\TalentHub.ApplicationCore.csproj" Type="Classic C#" />
+    <Project Path="src\TalentHub.Infra\TalentHub.Infra.csproj" Type="Classic C#" />
+    <Project Path="src\TalentHub.Presentation.Web\TalentHub.Presentation.Web.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>

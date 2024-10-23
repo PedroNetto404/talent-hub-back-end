@@ -1,31 +1,69 @@
 using TalentHub.ApplicationCore.Candidates.Entities;
 using TalentHub.ApplicationCore.Candidates.Enums;
+using TalentHub.ApplicationCore.Candidates.Events;
 using TalentHub.ApplicationCore.Candidates.ValueObjects;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Jobs.Enums;
-using TalentHub.ApplicationCore.Shared;
 using TalentHub.ApplicationCore.Shared.Enums;
+using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Candidates;
 
 public sealed class Candidate : AggregateRoot
 {
+    public Candidate(
+        string name,
+        string email,
+        string phone,
+        DateOnly birthDate,
+        Address address, 
+        JobType desiredJobType,
+        WorkplaceType desiredWorkplaceType, 
+        string? instagramUrl,
+        string? linkedinUrl,
+        string? githubUrl,
+        decimal? expectedRemuneration,
+        string? summary
+    )
+    {
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+        Email = email ?? throw new ArgumentNullException(nameof(email));
+        Phone = phone ?? throw new ArgumentNullException(nameof(phone));
+        BirthDate = birthDate;
+        Address = address ?? throw new ArgumentNullException(nameof(address));
+        DesiredJobType = desiredJobType;
+        DesiredWorkPlaceType = desiredWorkplaceType;
+        InstagramUrl = instagramUrl;
+        LinkedinUrl = linkedinUrl;
+        GithubUrl = githubUrl;
+        ExpectedRemuneration = expectedRemuneration;
+        Summary = summary;
+
+        RaiseEvent(new CandidateCreatedEvent(Id));
+    }
+
+#pragma warning disable CS0628 // Novo membro protegido declarado no tipo selado
+#pragma warning disable CS8618 // O campo não anulável precisa conter um valor não nulo ao sair do construtor. Considere adicionar o modificador "obrigatório" ou declarar como anulável.
+    protected Candidate() { }
+#pragma warning restore CS8618 // O campo não anulável precisa conter um valor não nulo ao sair do construtor. Considere adicionar o modificador "obrigatório" ou declarar como anulável.
+#pragma warning restore CS0628 // Novo membro protegido declarado no tipo selado
+
     private readonly List<CandidateSkill> _skills = [];
     private readonly List<string> _hobbies = [];
     private readonly List<Certificate> _certificates = [];
     private readonly List<Experience> _experiences = [];
 
     public string Name { get; private set; }
-    public string ProfilePictureUrl { get; private set; }
-    public string Summary { get; private set; }
-    public string ResumeUrl { get; private set; }
+    public string? Summary { get; private set; }
+    public string? ResumeUrl { get; private set; }
     public string? InstagramUrl { get; private set; }
     public string? LinkedinUrl { get; private set; }
+    public string? GithubUrl { get; private set; }
     public DateOnly BirthDate { get; private set; }
     public string Email { get; private set; }
     public string Phone { get; private set; }
-    public decimal ExpectedRemuneration { get; private set; }
+    public decimal? ExpectedRemuneration { get; private set; }
     public Address Address { get; private set; }
     public JobType DesiredJobType { get; private set; }
     public WorkplaceType DesiredWorkPlaceType { get; private set; }
@@ -43,6 +81,16 @@ public sealed class Candidate : AggregateRoot
 
             return (int)Math.Floor(diff.TotalDays / 365);
         }
+    }
+
+    public Result SetResumeUrl(string resumeUrl)
+    {
+        if (string.IsNullOrWhiteSpace(resumeUrl))
+            return Error.Displayable("candidate", "invalid resume url");
+
+        ResumeUrl = resumeUrl;
+
+        return Result.Ok();
     }
 
     public Result AddCertificate(Certificate certificate)
@@ -121,7 +169,7 @@ public sealed class Candidate : AggregateRoot
         LanguageSkillType languageSkillType,
         Proficiency proficiency)
     {
-        if (_skills.FirstOrDefault(s => s.Id == candidateLanguageSkillId) is not CandidateLanguagueSkill skill)
+        if (_skills.FirstOrDefault(s => s.Id == candidateLanguageSkillId) is not CandidateLanguageSkill skill)
         {
             return Error.Displayable("candidate_skill", "Language not added");
         }

@@ -4,5 +4,5 @@ public record Certificate(
     string Name,
     string Institution,
     double Workload,
-    string Url
+    string? Url
 );
