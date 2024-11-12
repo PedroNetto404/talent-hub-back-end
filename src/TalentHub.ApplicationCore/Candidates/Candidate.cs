@@ -17,9 +17,7 @@ public sealed class Candidate : AggregateRoot
         string email,
         string phone,
         DateOnly birthDate,
-        Address address, 
-        JobType desiredJobType,
-        WorkplaceType desiredWorkplaceType, 
+        Address address,
         string? instagramUrl,
         string? linkedinUrl,
         string? githubUrl,
@@ -32,8 +30,6 @@ public sealed class Candidate : AggregateRoot
         Phone = phone ?? throw new ArgumentNullException(nameof(phone));
         BirthDate = birthDate;
         Address = address ?? throw new ArgumentNullException(nameof(address));
-        DesiredJobType = desiredJobType;
-        DesiredWorkPlaceType = desiredWorkplaceType;
         InstagramUrl = instagramUrl;
         LinkedinUrl = linkedinUrl;
         GithubUrl = githubUrl;
@@ -53,10 +49,15 @@ public sealed class Candidate : AggregateRoot
     private readonly List<string> _hobbies = [];
     private readonly List<Certificate> _certificates = [];
     private readonly List<Experience> _experiences = [];
+    private readonly List<WorkplaceType> _desiredWorkplaceTypes = [];
+    private readonly List<JobType> _desiredJobTypes = [];
 
     public string Name { get; private set; }
     public string? Summary { get; private set; }
+    public string? ProfilePictureUrl { get; private set; }
+    public string ProfilePictureFileName => $"candidate_profile_picture-{Id}";
     public string? ResumeUrl { get; private set; }
+    public string ResumeFileName => $"candidate_resume-{Id}";
     public string? InstagramUrl { get; private set; }
     public string? LinkedinUrl { get; private set; }
     public string? GithubUrl { get; private set; }
@@ -65,12 +66,12 @@ public sealed class Candidate : AggregateRoot
     public string Phone { get; private set; }
     public decimal? ExpectedRemuneration { get; private set; }
     public Address Address { get; private set; }
-    public JobType DesiredJobType { get; private set; }
-    public WorkplaceType DesiredWorkPlaceType { get; private set; }
     public IReadOnlyCollection<CandidateSkill> Skills => _skills.AsReadOnly();
     public IReadOnlyCollection<string> Hobbies => _hobbies.AsReadOnly();
     public IReadOnlyCollection<Certificate> Certificates => _certificates.AsReadOnly();
     public IReadOnlyCollection<Experience> Experiences => _experiences.AsReadOnly();
+    public IReadOnlyCollection<WorkplaceType> DesiredWorkplaceTypes => _desiredWorkplaceTypes.AsReadOnly();
+    public IReadOnlyCollection<JobType> DesiredJobTypes => _desiredJobTypes.AsReadOnly();
 
     public int Age
     {
@@ -128,16 +129,7 @@ public sealed class Candidate : AggregateRoot
         return Result.Ok();
     }
 
-    public Result RemoveHobbie(string hobbie)
-    {
-        if (!_hobbies.Contains(hobbie))
-        {
-            return Error.Displayable("candidate_hobbie", $"Hobbie '{hobbie}' not found.");
-        }
-
-        _hobbies.Remove(hobbie);
-        return Result.Ok();
-    }
+    public void ClearHobbies() => _hobbies.Clear();
 
     public Result AddSkill(CandidateSkill skill)
     {
@@ -250,7 +242,7 @@ public sealed class Candidate : AggregateRoot
         return Result.Ok();
     }
 
-     public Result ChangeProfessionalExperienceDescription(Guid professionalExperienceId, string newDescription)
+    public Result ChangeProfessionalExperienceDescription(Guid professionalExperienceId, string newDescription)
     {
         var professionalExperience = _experiences.OfType<ProfessionalExperience>().FirstOrDefault(pe => pe.Id == professionalExperienceId);
 
@@ -260,5 +252,110 @@ public sealed class Candidate : AggregateRoot
         }
 
         return professionalExperience.ChangeDescription(newDescription);
+    }
+
+    public Result AddDesiredJobType(JobType jobType)
+    {
+        if (_desiredJobTypes.Contains(jobType))
+            return Error.Displayable("candidate_desired_job_type", "job type already added");
+
+        _desiredJobTypes.Add(jobType);
+
+        return Result.Ok();
+    }
+
+    public void ClearDesiredJobTypes() => _desiredJobTypes.Clear();
+
+    public Result AddDesiredWorkplaceType(WorkplaceType workplaceType)
+    {
+        if (_desiredWorkplaceTypes.Contains(workplaceType))
+            return Error.Displayable("candidate_desired_workplace_type", "workplace type already added");
+
+        _desiredWorkplaceTypes.Add(workplaceType);
+        return Result.Ok();
+    }
+
+    public void ClearDesiredWorkplaceTypes() => _desiredWorkplaceTypes.Clear();
+
+    public Result UpdateProfilePicture(string profilePictureUrl)
+    {
+        if (!Uri.IsWellFormedUriString(profilePictureUrl, UriKind.Absolute))
+            return Error.Displayable("candidate_profile_picture", "invalid profile picture url");
+
+        ProfilePictureUrl = profilePictureUrl;
+        return Result.Ok();
+    }
+
+    public Result UpdateName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return Error.Displayable("candidate_name", "invalid name");
+
+        Name = name;
+        return Result.Ok();
+    }
+
+    public Result UpdatePhone(string phone)
+    {
+        if (string.IsNullOrWhiteSpace(phone) || phone.Length != 11)
+            return Error.Displayable("candidate_phone", "invalid candidate phone");
+
+        Phone = phone;
+        RaiseEvent(new CandidatePhoneUpdatedEvent(Id));
+
+        return Result.Ok();
+    }
+
+    public Result UpdateAddress(Address address)
+    {
+        if (
+            typeof(Address)
+            .GetType()
+            .GetProperties()
+            .Any(p => string.IsNullOrWhiteSpace((string)p.GetValue(address)!))
+        ) return Error.Displayable("candidate_address", "invalid address");
+
+        Address = address;
+        return Result.Ok();
+    }
+
+    public Result UpdateInstagramUrl(string instagramUrl)
+    {
+        if (!Uri.IsWellFormedUriString(instagramUrl, UriKind.Absolute))
+            return Error.Displayable("candidate_instagram_url", "invalid url");
+
+        InstagramUrl = instagramUrl;
+        return Result.Ok();
+    }
+
+    public Result UpdateLinkedinUrl(string linkedinUrl)
+    {
+        if (!Uri.IsWellFormedUriString(linkedinUrl, UriKind.Absolute))
+            return Error.Displayable("candidate_linkedin_url", "invalid url");
+
+        InstagramUrl = linkedinUrl;
+        return Result.Ok();
+    }
+
+    public Result UpdateGithubUrl(string githubUrl)
+    {
+        if (!Uri.IsWellFormedUriString(githubUrl, UriKind.Absolute))
+            return Error.Displayable("candidate_Github_url", "invalid url");
+
+        InstagramUrl = githubUrl;
+        return Result.Ok();
+    }
+
+    public Result UpdateSummary(string summary)
+    {
+        if(string.IsNullOrWhiteSpace(summary))
+            return Error.Displayable("candidate_summary", "invalid summary");
+
+        if(summary.Length is < 10 or > 500)
+            return Error.Displayable("candidate_summary", "candidate summary length must be between 10 and 500");
+    
+        Summary = summary;
+
+        return Result.Ok();
     }
 }

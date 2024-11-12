@@ -13,5 +13,27 @@ services:
     volumes:
       - postgres_data:/var/lib/postgressql/data
 
+  minio:
+    image: minio/minio
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: talent-hub_admin
+      MINIO_ROOT_PASSWORD: talent-hub_admin_11231233
+    volumes:
+      - minio-data:/data
+    ports:
+      - "9000:9000"  
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    networks:
+      - minio_network
+
 volumes:
+  minio-data:
+    driver: local
   postgres_data:
+    driver: local
+
+networks:
+  minio_network:
+    driver: bridge

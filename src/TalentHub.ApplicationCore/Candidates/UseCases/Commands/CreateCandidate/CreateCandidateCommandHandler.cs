@@ -29,8 +29,6 @@ public sealed class CreateCandidateCommandHandler(
             input.Phone,
             input.BirthDate,
             input.Address,
-            input.DesiredJobType,
-            input.DesiredWorkplaceType,
             input.InstagramUrl,
             input.LinkedinUrl,
             input.GithubUrl,
@@ -42,7 +40,7 @@ public sealed class CreateCandidateCommandHandler(
         {
             var resumeUrl = await fileStorage.SaveAsync(
                 input.ResumeFile,
-                $"candidate_resume-{candidate.Id}",
+                candidate.ResumeFileName,
                 "application/pdf",
                 cancellationToken);
 
@@ -50,13 +48,27 @@ public sealed class CreateCandidateCommandHandler(
         }
 
         foreach (var hobbie in input.Hobbies)
-        {
-            var hobbieResult = candidate.AddHobbie(hobbie);
-            if (hobbieResult.IsFail) return hobbieResult.Error;
-        }
+            if(candidate.AddHobbie(hobbie) is 
+            {
+                IsFail: true,
+                Error: var error
+            }) return error;
+
+        foreach(var desiredWorkplaceType in input.DesiredWorkplaceTypes)
+            if(candidate.AddDesiredWorkplaceType(desiredWorkplaceType) is 
+            {
+                IsFail: true,
+                Error: var error
+            }) return error;
+
+        foreach(var desiredJobType in input.DesiredJobTypes)
+            if(candidate.AddDesiredJobType(desiredJobType) is 
+            {
+                IsFail: true,
+                Error: var error
+            }) return error;
 
         _ = await repository.AddAsync(candidate, cancellationToken);
         return CandidateDto.FromEntity(candidate);
     }
-
 }

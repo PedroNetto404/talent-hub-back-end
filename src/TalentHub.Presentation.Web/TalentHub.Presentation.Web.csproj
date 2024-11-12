@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TalentHub.ApplicationCore\TalentHub.ApplicationCore.csproj" />
+    <ProjectReference Include="..\TalentHub.Infra\TalentHub.Infra.csproj" />
   </ItemGroup>
 
 </Project>

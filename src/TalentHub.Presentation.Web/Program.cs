@@ -1,17 +1,13 @@
-using System.Text.Json.Serialization;
-using TalentHub.Presentation.Web.Binders;
+using TalentHub.ApplicationCore;
+using TalentHub.Infra;
+using TalentHub.Presentation.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddControllers(options => 
-{
-    options.ModelBinderProviders.Insert(0, new DateOnlyMoedlBinderProvider());
-}).AddJsonOptions(options => 
-{
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});
+builder.Services
+       .AddPresentation()
+       .AddApplicationCore()
+       .AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
@@ -22,6 +18,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseRouting();
 
 app.MapControllers();
 

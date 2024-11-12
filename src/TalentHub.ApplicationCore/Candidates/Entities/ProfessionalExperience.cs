@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Results;
 
@@ -8,7 +7,7 @@ public sealed class ProfessionalExperience : Experience
 {
     public string Position { get; private set; }
     public string Description { get; private set; }
-    public string CompanyName { get; private set; }
+    public string Company { get; private set; }
     public ProfessionalLevel Level { get; private set; }
 
     public Result ChangeDescription(string newDescription)

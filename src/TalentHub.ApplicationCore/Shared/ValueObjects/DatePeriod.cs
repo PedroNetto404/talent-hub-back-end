@@ -1,24 +1,20 @@
+using TalentHub.ApplicationCore.Core.Results;
+
 namespace TalentHub.ApplicationCore.Shared.ValueObjects;
 
-public readonly struct DatePeriod : IComparable<DatePeriod>
+public record DatePeriod : IComparable<DatePeriod>
 {
     public int Year { get; }
     public int Month { get; }
 
-    public DatePeriod(int year, int month)
+    private DatePeriod(int year, int month) => (Year, Month) = (year, month);
+
+    private static Result<DatePeriod> Create(int year, int month) 
     {
-        if (year is < 0)
-        {
-            throw new ArgumentException("Out of range", nameof(year));
-        }
+        if(year <= 1900) return Error.Displayable("date_period", "invalid year");
+        if(month is < 1 or > 12) return Error.Displayable("date_period", "invalid month");
 
-        if (month is < 1 or > 12)
-        {
-            throw new ArgumentException("Month out of range", nameof(month));
-        }
-
-        Year = year;
-        Month = month;
+        return new DatePeriod(year, month);
     }
 
     public static implicit operator DatePeriod(DateOnly date) =>

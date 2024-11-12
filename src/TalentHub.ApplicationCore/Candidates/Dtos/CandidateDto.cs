@@ -18,10 +18,7 @@ public sealed record CandidateDto(
     string? InstagramUrl,
     string? LinkedinUrl,
     string? GithubUrl,
-    decimal? ExpectedRemuneration,
-    IEnumerable<CandidateSkillDto> Skills,
-    IEnumerable<ExperienceDto> Experiences,
-    IEnumerable<CertificateDto> Certificates
+    decimal? ExpectedRemuneration
 )
 {
     public static CandidateDto FromEntity(Candidate candidate) =>
@@ -40,9 +37,6 @@ public sealed record CandidateDto(
             candidate.InstagramUrl,
             candidate.LinkedinUrl,
             candidate.GithubUrl,
-            candidate.ExpectedRemuneration,
-            candidate.Skills.Select(CandidateSkillDto.FromEntity),
-            candidate.Experiences.Select(ExperienceDto.FromEntity),
-            candidate.Certificates.Select(CertificateDto.FromEntity)
+            candidate.ExpectedRemuneration
         );
 }

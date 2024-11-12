@@ -3,7 +3,7 @@ using TalentHub.ApplicationCore.Skills;
 
 namespace TalentHub.ApplicationCore.Candidates.Entities;
 
-public sealed class CandidateLanguageSkill(Skill skill, Proficiency proficiency) : CandidateSkill(skill, proficiency)
+public sealed class CandidateLanguageSkill(Guid skillId, Proficiency proficiency) : CandidateSkill(skillId, proficiency)
 {
     private readonly Dictionary<LanguageSkillType, Proficiency> _specialProficiency = new()
     {

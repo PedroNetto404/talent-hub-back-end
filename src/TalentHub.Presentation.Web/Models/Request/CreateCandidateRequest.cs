@@ -6,55 +6,49 @@ using TalentHub.Presentation.Web.Attributes;
 
 namespace TalentHub.Presentation.Web.Models.Request;
 
-public sealed record CreateCandidateRequest
+public sealed record CreateCandidateRequest(
+    [property: Required][property: StringLength(100, MinimumLength = 4)]
+    string Name,
+
+    [property: Required][property: EmailAddress]
+    string Email,
+
+    [property: Required][property: StringLength(11, MinimumLength = 11)]
+    string Phone,
+
+    [property: Required][property: NotInFuture]
+    DateOnly BirthDate,
+
+    [property: Required][property: Address]
+    Address Address,
+
+    [property: EnumDataType(typeof(WorkplaceType))]
+    WorkplaceType[] DesiredWorkplaceTypes,
+
+    [property: EnumDataType(typeof(JobType))]
+    JobType[] DesiredJobTypes,
+
+    [property: Range(1, double.MaxValue)]
+    decimal? ExpectedRemuneration,
+
+    [property: Url]
+    string? InstagramUrl,
+
+    [property: Url]
+    string? LinkedinUrl,
+
+    [property: Url]
+    string? GithubUrl,
+
+    [property: FileExtensions(Extensions = "pdf")]
+    IFormFile? ResumeFile,
+
+    [property: StringLength(500, MinimumLength = 10)]
+    string? Summary,
+
+    string[] Hobbies
+)
 {
-    [Required]
-    [StringLength(100, MinimumLength = 4)]
-    public required string Name { get; init; }
-
-    [Required]
-    [EmailAddress]
-    public required string Email { get; init; }
-
-    [Required]
-    [StringLength(11, MinimumLength = 11)]
-    public required string Phone { get; init; }
-
-    [Required]
-    [NotInFuture]
-    public required DateOnly BirthDate { get; init; }
-
-    [Required]
-    [Address]
-    public required Address Address { get; init; }
-
-    [Required]
-    [EnumDataType(typeof(WorkplaceType))]
-    public required WorkplaceType DesiredWorkplaceType { get; init; }
-
-    [Required]
-    [EnumDataType(typeof(JobType))]
-    public required JobType DesiredJobType { get; init; }
-
-    [Range(1, double.MaxValue)]
-    public decimal? ExpectedRemuneration { get; init; }
-
-    [Url]
-    public string? InstagramUrl { get; init; }
-
-    [Url]
-    public string? LinkedinUrl { get; init; }
-
-    [Url]
-    public string? GithubUrl { get; init; }
-
-    public IFormFile? ResumeFile { get; init; }
-
-    [StringLength(10, MinimumLength = 500)]
-    public string? Summary { get; init; }
-
-    public string[] Hobbies { get; init; } = [];
-
     public CreateCandidateCommand ToCommand() =>
         new(
             Name,
@@ -62,8 +56,8 @@ public sealed record CreateCandidateRequest
             Phone,
             BirthDate,
             Address,
-            DesiredJobType,
-            DesiredWorkplaceType,
+            DesiredJobTypes,
+            DesiredWorkplaceTypes,
             Summary,
             GithubUrl,
             ResumeFile?.OpenReadStream(),

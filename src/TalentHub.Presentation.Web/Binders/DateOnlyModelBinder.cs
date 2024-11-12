@@ -20,7 +20,7 @@ public sealed class DateOnlyModelBinder : IModelBinder
     }
 }
 
-public sealed class DateOnlyMoedlBinderProvider : IModelBinderProvider
+public sealed class DateOnlyModelBinderProvider : IModelBinderProvider
 {
     public IModelBinder? GetBinder(ModelBinderProviderContext context) =>
         context.Metadata.ModelType == typeof(DateOnly) 

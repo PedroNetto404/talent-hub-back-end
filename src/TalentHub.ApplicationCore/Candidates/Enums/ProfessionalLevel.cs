@@ -7,6 +7,7 @@ public enum ProfessionalLevel
     Junior,      // Junior
     MidLevel,    // Pleno
     Senior,      // Senior
-    Analyst      // Analista
+    Analyst,      // Analista
+    Other
 }
 
