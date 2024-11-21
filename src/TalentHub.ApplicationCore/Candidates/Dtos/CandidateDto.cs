@@ -1,5 +1,7 @@
+using TalentHub.ApplicationCore.Candidates.Entities;
 using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
+using TalentHub.ApplicationCore.Skills;
 
 namespace TalentHub.ApplicationCore.Candidates.Dtos;
 
@@ -11,17 +13,22 @@ public sealed record CandidateDto(
     string Email,
     string Phone,
     Address Address,
-    JobType DesiredJobType,
-    WorkplaceType DesiredWorkplaceType,
+    IEnumerable<string> Hobbies,
+    IEnumerable<JobType> DesiredJobTypes,
+    IEnumerable<WorkplaceType> DesiredWorkplaceTypes,
+    IEnumerable<ExperienceDto> Experiences,
+    IEnumerable<CandidateSkillDto> Skills,
+    IEnumerable<CertificateDto> Certificates,
     string? Summary,
     string? ResumeUrl,
+    string? ProfilePictureUrl,
     string? InstagramUrl,
     string? LinkedinUrl,
     string? GithubUrl,
     decimal? ExpectedRemuneration
 )
 {
-    public static CandidateDto FromEntity(Candidate candidate) =>
+    public static CandidateDto FromEntity(Candidate candidate, IEnumerable<Skill> skills) =>
         new(
             candidate.Id,
             candidate.Name,
@@ -30,10 +37,19 @@ public sealed record CandidateDto(
             candidate.Email,
             candidate.Phone,
             candidate.Address,
-            candidate.DesiredJobType,
-            candidate.DesiredWorkPlaceType,
+            candidate.Hobbies,
+            candidate.DesiredJobTypes,
+            candidate.DesiredWorkplaceTypes,
+            candidate.Experiences.Select(ExperienceDto.FromEntity),
+            candidate.Skills.Select((candidateSkill) =>
+            {
+                var skill = skills.First(s => s.Id == candidateSkill.SkillId);
+                return CandidateSkillDto.FromEntity(candidateSkill, skill);
+            }),
+            candidate.Certificates.Select(CertificateDto.FromEntity),
             candidate.Summary,
             candidate.ResumeUrl,
+            candidate.ProfilePictureUrl,
             candidate.InstagramUrl,
             candidate.LinkedinUrl,
             candidate.GithubUrl,

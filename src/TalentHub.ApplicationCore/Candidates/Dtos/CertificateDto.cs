@@ -1,4 +1,4 @@
-using TalentHub.ApplicationCore.Candidates.ValueObjects;
+using TalentHub.ApplicationCore.Candidates.Entities;
 
 namespace TalentHub.ApplicationCore.Candidates.Dtos;
 

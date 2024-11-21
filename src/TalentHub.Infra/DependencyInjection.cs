@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.Infra.Data;
 using TalentHub.Infra.File;
@@ -13,9 +14,15 @@ public static class DependencyInjection
     {
         services.AddDbContext<TalentHubContext>(config =>
         {
-            config.UseNpgsql(configuration.GetConnectionString("DefaultConnection")); 
+            config
+                .UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                .UseSnakeCaseNamingConvention();
+
+            config.EnableSensitiveDataLogging();
+            config.EnableDetailedErrors();
         });
 
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IFileStorage, MinIOFileStorage>();
         return services;
     }

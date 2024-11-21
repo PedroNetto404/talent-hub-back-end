@@ -13,12 +13,23 @@ public sealed class SkillMapping : IEntityTypeConfiguration<Skill>
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id);
 
-        builder.Property(p => p.Type).IsRequired();
-        builder.Property(p => p.Name).IsRequired();
+        builder
+            .Property(p => p.Type)
+            .IsRequired();
 
-        builder.Property("_tags").HasColumnType("text[]");
+        builder
+            .Property(p => p.Name)
+            .IsRequired();
 
-        builder.Property(p => p.Approved).IsRequired();
+        builder
+            .Property("_tags")
+            .HasColumnType("text[]")
+            .HasColumnName("tags");
+
+        builder
+            .Property(p => p.Approved)
+            .IsRequired();
+            
         builder.Ignore(p => p.IsSuggestion);
     }
 }

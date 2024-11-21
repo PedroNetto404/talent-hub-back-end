@@ -1,4 +1,4 @@
-using Ardalis.Specification;
+using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Shared.Specs;
 
 namespace TalentHub.ApplicationCore.Candidates.Specs;
@@ -9,15 +9,9 @@ public sealed class GetAllCandidatesSpec : PagedSpec<Candidate>
         int limit,
         int offset,
         string? sortBy,
-        bool? ascending
+        bool ascending = true
     ) : base(limit, offset)
     {
-        if(sortBy is null) return;
-
-        var prop = typeof(Candidate).GetProperty(sortBy)
-        ?? throw new InvalidOperationException($"property {sortBy} not found in candidate");
-
-        if (ascending!.Value) Query.OrderBy(c => prop.GetValue(c));
-        else Query.OrderByDescending(c => prop.GetValue(c));
+        if (sortBy is not null) Query.Sort(sortBy, ascending);
     }
 }

@@ -1,45 +1,40 @@
 using System.ComponentModel.DataAnnotations;
-using MediatR;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidate;
 using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.Presentation.Web.Models.Request;
 
-public sealed record UpdateCandidateRequest(
-    [property: Required][property: StringLength(100, MinimumLength = 4)]
-    string Name,
+public sealed record UpdateCandidateRequest
+{
+    [Required]
+    [StringLength(100, MinimumLength = 4)]
+    public required string Name { get; init; }
 
-    [property: Required][property: StringLength(11, MinimumLength = 11)]
-    string Phone,
+    [Required]
+    [StringLength(11, MinimumLength = 11)]
+    public required string Phone { get; init; }
 
-    [property: Required]
-    Address Address,
+    [Required]
+    public required Address Address { get; init; }
 
-    [property: Required]
-    WorkplaceType[] DesiredWorkplaceTypes,
+    public IEnumerable<WorkplaceType> DesiredWorkplaceTypes { get; init; } = [];
 
-    [property: Required]
-    JobType[] DesiredJobTypes,
+    public IEnumerable<JobType> DesiredJobTypes { get; init; } = [];
 
-    [property: Range(1, double.MaxValue)]
-    decimal? ExpectedRemuneration,
+    [Range(1, double.MaxValue)]
+    public decimal? ExpectedRemuneration { get; init; }
 
-    [property: Url]
-    string? InstagramUrl,
+    [Url]
+    public string? InstagramUrl { get; init; }
 
-    [property: Url]
-    string? LinkedinUrl,
+    [Url]
+    public string? LinkedinUrl { get; init; }
 
-    [property: Url]
-    string? GithubUrl,
+    [Url]
+    public string? GithubUrl { get; init; }
 
-    [FileExtensions(Extensions = "pdf")]
-    IFormFile? ResumeFile,
+    [StringLength(500, MinimumLength = 10)]
+    public string? Summary { get; init; }
 
-    [property: StringLength(500, MinimumLength = 10)]
-    string? Summary,
-
-    [property: Required]
-    string[] Hobbies
-);
+    public IEnumerable<string> Hobbies { get; init; } = [];
+}

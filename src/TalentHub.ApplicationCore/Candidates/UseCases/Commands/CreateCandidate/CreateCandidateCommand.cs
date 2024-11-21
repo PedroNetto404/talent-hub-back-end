@@ -1,5 +1,7 @@
+using System.Windows.Input;
 using MediatR;
 using TalentHub.ApplicationCore.Candidates.Dtos;
+using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
@@ -16,9 +18,8 @@ public sealed record CreateCandidateCommand(
     WorkplaceType[] DesiredWorkplaceTypes,
     string? Summary,
     string? GithubUrl,
-    Stream? ResumeFile,
     string? InstagramUrl,
     string? LinkedinUrl,
     decimal? ExpectedRemuneration,
     string[] Hobbies
-) : IRequest<Result<CandidateDto>>;
+) : ICommand<CandidateDto>;

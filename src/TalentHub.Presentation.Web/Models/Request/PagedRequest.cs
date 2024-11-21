@@ -9,16 +9,18 @@ public record PagedRequest
     [FromQuery(Name = "_limit")]
     [DefaultValue(10)]
     [Range(1, int.MaxValue)]
-    public int Limit { get; init; }
+    public int Limit { get; init; } = 10;
 
     [FromQuery(Name = "_offset")]
     [DefaultValue(0)]
     [Range(0, int.MaxValue)]
-    public int Offset { get; init; }
+    public int Offset { get; init; } = 0;
 
     [FromQuery(Name = "_sort_by")]
-    public string? SortBy { get; init; }
+    [DefaultValue("id")]
+    public string SortBy { get; init; } = "id";
 
     [FromQuery(Name = "_sort_ascending")]
-    public bool? SortAscending { get; init; }
+    [DefaultValue(true)]
+    public bool SortAscending { get; init; } = true;
 }

@@ -6,11 +6,9 @@ namespace TalentHub.ApplicationCore.Shared.Specs;
 public abstract class PagedSpec<T> : Specification<T>
     where T : AggregateRoot
 {
-    protected PagedSpec(
-        int limit,
-        int offset
-    ) => 
-        Query
-        .Skip(offset)
-        .Take(limit);
+    protected PagedSpec(int limit, int offset) 
+    {
+        Query.Skip(offset);
+        Query.Take(limit);
+    }
 }

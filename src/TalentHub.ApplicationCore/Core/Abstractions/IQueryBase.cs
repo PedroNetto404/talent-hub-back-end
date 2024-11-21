@@ -1,4 +1,4 @@
 namespace TalentHub.ApplicationCore.Core.Abstractions;
 
-public interface IQueryBase;
+public interface IQueryBase : IUseCaseInput;
 

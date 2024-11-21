@@ -112,7 +112,7 @@ namespace TalentHub.ApplicationCore.Candidates.Enums
         public static readonly Nationality Islandes = new Nationality("Islandês(esa)", 106);
         public static readonly Nationality Israelense = new Nationality("Israelense", 107);
         public static readonly Nationality Italiano = new Nationality("Italiano(a)", 108);
-        public static readonly Nationality Jamaicano = new Nationality("Jamaicano(a)", 109);
+        public static readonly Nationality JJamaicano = new Nationality("Jamaicano(a)", 109);
         public static readonly Nationality Japones = new Nationality("Japonês(esa)", 110);
         public static readonly Nationality Jibutiano = new Nationality("Jibutiano(a)", 56);
         public static readonly Nationality Jordano = new Nationality("Jordano(a)", 111);

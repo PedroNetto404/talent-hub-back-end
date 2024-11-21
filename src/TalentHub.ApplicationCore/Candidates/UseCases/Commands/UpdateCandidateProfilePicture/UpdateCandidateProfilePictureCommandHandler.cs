@@ -1,40 +1,54 @@
 using TalentHub.ApplicationCore.Candidates.Dtos;
+using TalentHub.ApplicationCore.Constants;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
+using TalentHub.ApplicationCore.Skills;
+using TalentHub.ApplicationCore.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateProfilePicture;
 
 public sealed class UpdateCandidateProfilePictureCommandHandler(
-    IRepository<Candidate> repository,
+    IRepository<Candidate> candidateRepository,
+    IRepository<Skill> skillRepository,
     IFileStorage fileStorage
 ) : ICommandHandler<UpdateCandidateProfilePictureCommand, CandidateDto>
 {
     public async Task<Result<CandidateDto>> Handle(
-        UpdateCandidateProfilePictureCommand request, 
+        UpdateCandidateProfilePictureCommand request,
         CancellationToken cancellationToken)
     {
-        var candidate = await repository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if(candidate is null) return Error.Displayable("not_found", "candidate not found");
+        var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null) return NotFoundError.Value;
 
         var fileName = candidate.ProfilePictureFileName;
 
-        await fileStorage.DeleteAsync(fileName, cancellationToken);
+        await fileStorage.DeleteAsync(FileBucketNames.CandidateProfilePicture, fileName, cancellationToken);
 
         var fileUrl = await fileStorage.SaveAsync(
+            FileBucketNames.CandidateProfilePicture,
             request.File,
-            fileName,
+            $"{fileName}.{request.ContentType.Split("/").Last()}",
             request.ContentType,
             cancellationToken
         );
 
-        if(candidate.UpdateProfilePicture(fileUrl) is 
-        {
-            IsFail: true,
-            Error: var error
-        }) return error;
+        if (candidate.UpdateProfilePicture(fileUrl) is
+            {
+                IsFail: true,
+                Error: var error
+            }) return error;
 
-        await repository.UpdateAsync(candidate, cancellationToken);
-        return CandidateDto.FromEntity(candidate);
+        await candidateRepository.UpdateAsync(candidate, cancellationToken);
+
+        return CandidateDto.FromEntity(
+            candidate, 
+            await skillRepository.ListAsync(
+                new GetSkillsByIdsSpec(
+                    candidate.Skills.Select(p => p.SkillId).ToArray()
+                ),
+                cancellationToken
+            )
+        );
     }
 }

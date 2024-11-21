@@ -1,15 +1,17 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Candidates.Dtos;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 using TalentHub.ApplicationCore.Jobs.Enums;
+using TalentHub.ApplicationCore.Skills;
+using Ardalis.Specification;
+using TalentHub.ApplicationCore.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidate;
 
 public sealed class UpdateCandidateCommandHandler(
-    IRepository<Candidate> repository,
-    IFileStorage fileStorage
+    IRepository<Candidate> candidateRepository,
+    IRepository<Skill> skillRepository
 ) : ICommandHandler<UpdateCandidateCommand, CandidateDto>
 {
     private static readonly Dictionary<string, Func<Candidate, object, Result>> UpdateFunctions = new()
@@ -24,50 +26,50 @@ public sealed class UpdateCandidateCommandHandler(
         [nameof(UpdateCandidateCommand.DesiredJobTypes)] = (candidate, value) =>
         {
             candidate.ClearDesiredJobTypes();
-            foreach(var desiredJobType in (JobType[])value)
-                if(candidate.AddDesiredJobType(desiredJobType) is 
-                {
-                    IsFail: true,
-                    Error: var error
-                }) return error;
+            foreach (var desiredJobType in (JobType[])value)
+                if (candidate.AddDesiredJobType(desiredJobType) is
+                    {
+                        IsFail: true,
+                        Error: var error
+                    }) return error;
 
             return Result.Ok();
         },
         [nameof(UpdateCandidateCommand.DesiredJobTypes)] = (candidate, value) =>
         {
             candidate.ClearDesiredWorkplaceTypes();
-            foreach(var desiredWorkplaceType in (WorkplaceType[])value)
-                if(candidate.AddDesiredWorkplaceType(desiredWorkplaceType) is 
-                {
-                    IsFail: true,
-                    Error: var error
-                }) return error;
+            foreach (var desiredWorkplaceType in (WorkplaceType[])value)
+                if (candidate.AddDesiredWorkplaceType(desiredWorkplaceType) is
+                    {
+                        IsFail: true,
+                        Error: var error
+                    }) return error;
 
             return Result.Ok();
         },
-      [nameof(UpdateCandidateCommand.Hobbies)] = (candidate, value) =>
-        {
-            candidate.ClearHobbies();
-            foreach(var hobbie in (string[])value)
-                if(candidate.AddHobbie(hobbie) is 
-                {
-                    IsFail: true,
-                    Error: var error
-                }) return error;
+        [nameof(UpdateCandidateCommand.Hobbies)] = (candidate, value) =>
+          {
+              candidate.ClearHobbies();
+              foreach (var hobbie in (string[])value)
+                  if (candidate.AddHobbie(hobbie) is
+                      {
+                          IsFail: true,
+                          Error: var error
+                      }) return error;
 
-            return Result.Ok();
-        },
+              return Result.Ok();
+          },
     };
 
     public async Task<Result<CandidateDto>> Handle(UpdateCandidateCommand request, CancellationToken cancellationToken)
     {
-        var candidate = await repository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candidate is null) return Error.Displayable("not_found", "candidate not found");
+        var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null) return NotFoundError.Value;
 
         var result = UpdateFunctions.Select(entry =>
         {
             var (prop, func) = entry;
-            
+
             var value = typeof(UpdateCandidateCommand)
                 .GetProperty(prop)!
                 .GetValue(request)!;
@@ -76,26 +78,11 @@ public sealed class UpdateCandidateCommandHandler(
         }).FirstOrDefault(r => r.IsFail, Result.Ok());
         if (result.IsFail) return result.Error;
 
-        if(request.ResumeFile is not null)
-        {
-            var resumeFileName = candidate.ResumeFileName;
-            await fileStorage.DeleteAsync(resumeFileName, cancellationToken);
+        var skills = await skillRepository.ListAsync(
+            new GetSkillsByIdsSpec(candidate.Skills.Select(p => p.SkillId).ToArray()), 
+            cancellationToken);
 
-            var resumeUrl = await fileStorage.SaveAsync(
-                request.ResumeFile!,
-                resumeFileName,
-                "application/pdf",
-                cancellationToken
-            );
-
-            if(candidate.SetResumeUrl(resumeUrl) is 
-            {
-                IsFail: true,
-                Error: var err
-            }) return err;
-        }
-
-        await repository.UpdateAsync(candidate, cancellationToken);
-        return CandidateDto.FromEntity(candidate);
+        await candidateRepository.UpdateAsync(candidate, cancellationToken);
+        return CandidateDto.FromEntity(candidate, skills);
     }
 }

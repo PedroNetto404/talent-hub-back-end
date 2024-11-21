@@ -11,19 +11,5 @@ builder.Services
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseRouting();
-
-app.MapControllers();
-
-app.Run();
+app.UsePipeline();
+app.Run(); 

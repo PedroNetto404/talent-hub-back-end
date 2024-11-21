@@ -6,6 +6,22 @@ namespace TalentHub.ApplicationCore.Candidates.Entities;
 
 public abstract class Experience : Entity
 {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    protected Experience()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    {
+    }
+
+    protected Experience(
+        DatePeriod start,
+        DatePeriod? end,
+        bool isCurrent)
+    {
+        Start = start;
+        End = end;
+        IsCurrent = isCurrent;
+    }
+
     private readonly List<string> _activities = [];
 
     public DatePeriod Start { get; private set; }
@@ -18,7 +34,7 @@ public abstract class Experience : Entity
     public Result SetEndDate(DatePeriod endDate)
     {
         if (endDate < Start)
-            return Error.Displayable("experience", $"{endDate} must be greater than {Start}");
+            return new Error("experience", $"{endDate} must be greater than {Start}");
 
         End = endDate;
         return Result.Ok();
@@ -28,7 +44,7 @@ public abstract class Experience : Entity
     {
         if (_activities.Contains(activity))
         {
-            return Error.Displayable("experience", $"Activity '{activity}' already exists.");
+            return new Error("experience", $"Activity '{activity}' already exists.");
         }
 
         _activities.Add(activity);

@@ -1,16 +1,10 @@
-using MediatR;
-using TalentHub.ApplicationCore.Core.Results;
-
 namespace TalentHub.ApplicationCore.Core.Abstractions;
 
-public interface ICommand : 
-    ICommandBase, 
-    IRequest<Result>;
+public interface ICommand :
+    ICommandBase,
+    IUseCaseInput;
 
-public interface ICommandHandler<TCommand> : IRequestHandler<TCommand, Result>
-    where TCommand : ICommand;
-
-public interface ICommandHandler<TCommand, TResult> : 
-    IRequestHandler<TCommand, Result<TResult>>
-    where TCommand : ICommand<TResult>
+public interface ICommand<TResult> :
+    ICommandBase,
+    IUseCaseInput<TResult>
     where TResult : notnull;
