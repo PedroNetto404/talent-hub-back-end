@@ -5,11 +5,10 @@ using TalentHub.ApplicationCore.Core.Results;
 
 namespace TalentHub.Presentation.Web.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
 public class ApiController(ISender sender) : ControllerBase
 {
-    public async Task<IActionResult> HandleAsync<TResult>(
+    protected async Task<IActionResult> HandleAsync<TResult>(
         IUseCaseInput<TResult> input,
         Func<TResult, IActionResult>? onSuccess = null,
         CancellationToken cancellationToken = default) where TResult : notnull
@@ -25,7 +24,7 @@ public class ApiController(ISender sender) : ControllerBase
         return onSuccess(result.Value);
     }
 
-    public async Task<IActionResult> HandleAsync(
+    protected async Task<IActionResult> HandleAsync(
         IUseCaseInput input,
         Func<IActionResult>? onSuccess = null,
         CancellationToken cancellationToken = default

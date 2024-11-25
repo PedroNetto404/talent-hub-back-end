@@ -6,6 +6,5 @@ namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidate
 public sealed record UpdateCandidateSkillCommand(
     Guid CandidateId,
     Guid CandidateSkillId,
-    Proficiency? Proficiency,
-    Dictionary<LanguageSkillType, Proficiency> SpecialProficientes
+    Proficiency? Proficiency
 ) : ICommand;

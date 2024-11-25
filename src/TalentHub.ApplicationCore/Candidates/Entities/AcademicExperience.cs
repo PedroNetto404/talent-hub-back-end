@@ -22,19 +22,23 @@ public sealed class AcademicExperience : Experience
         InstitutionId = institutionId;
     }
 
-    // public static Result<AcademicExperience> Create(
-    //     DatePeriod start,
-    //     DatePeriod? end,
-    //     bool isCurrent,
-    //     EducationLevel level,
-    //     ProgressStatus status,
-    //     Guid courseId,
-    //     Guid institutionId
-    // )
-    // {
-    //     if(courseId == Guid.Empty) return new Error("candidate", $"cannot create academic experience with courseId {courseId}");
-    //     if(institutionId == Guid.Empty) return new Error()
-    // }
+    public static Result<AcademicExperience> Create(
+        DatePeriod start,
+        DatePeriod? end,
+        bool isCurrent,
+        EducationLevel level,
+        ProgressStatus status,
+        Guid courseId,
+        Guid institutionId)
+    {
+
+        if (end != null && start > end) return new Error("experience", "Start date must be less than end date.");
+        if (Guid.Empty == courseId) return new Error("experience", "CourseId must be provided.");
+        if (Guid.Empty == institutionId) return new Error("experience", "InstitutionId must be provided.");
+
+        return Result.Ok(new AcademicExperience(start, end, isCurrent, level, status, courseId, institutionId));
+    }
+
 
 #pragma warning disable CS0628 // New protected member declared in sealed type
     protected AcademicExperience() { }

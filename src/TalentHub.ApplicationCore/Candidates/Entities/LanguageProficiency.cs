@@ -16,18 +16,26 @@ public sealed class LanguageProficiency : Entity
     {
     }
 
-    private readonly Dictionary<LanguageSkillType, Proficiency> _specialProficiency = new()
-    {
-        [LanguageSkillType.Writing] = Proficiency.Beginner,
-        [LanguageSkillType.Listening] = Proficiency.Beginner,
-        [LanguageSkillType.Speaking] = Proficiency.Beginner
-    };
-
+    public Proficiency WritingLevel { get; private set; }
+    public Proficiency ListeningLevel { get; private set; }
+    public Proficiency SpeakingLevel { get; private set; }
     public Language Language { get; private set; }
 
-    public IReadOnlyDictionary<LanguageSkillType, Proficiency> SpecialProficiences =>
-        _specialProficiency.AsReadOnly();
-
-    public void UpdateProficiency(LanguageSkillType type, Proficiency proficiency) =>
-        _specialProficiency[type] = proficiency;
+    public void UpdateProficiency(LanguageSkillType type, Proficiency proficiency)
+    {
+        switch (type)
+        {
+            case LanguageSkillType.Writing:
+                WritingLevel = proficiency;
+                break;
+            case LanguageSkillType.Listening:
+                ListeningLevel = proficiency;
+                break;
+            case LanguageSkillType.Speaking:
+                SpeakingLevel = proficiency;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+    }
 }

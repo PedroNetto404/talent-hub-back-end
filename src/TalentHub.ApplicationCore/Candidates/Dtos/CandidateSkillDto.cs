@@ -10,8 +10,7 @@ public sealed record CandidateSkillDto(
     Guid SkillId,
     string SkillName,
     SkillType SkillType,
-    Proficiency Proficiency,
-    IReadOnlyDictionary<LanguageSkillType, Proficiency>? LanguageSpecialProficiences
+    Proficiency Proficiency
 )
 {
     public static CandidateSkillDto FromEntity(CandidateSkill candidateSkill, Skill skill) =>
@@ -20,8 +19,7 @@ public sealed record CandidateSkillDto(
             skill.Id,
             skill.Name,
             skill.Type,
-            candidateSkill.Proficiency,
-            (candidateSkill as LanguageProficiency)?.SpecialProficiences
+            candidateSkill.Proficiency
         );
 }
 

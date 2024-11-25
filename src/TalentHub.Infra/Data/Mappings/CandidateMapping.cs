@@ -84,11 +84,6 @@ public sealed class CandidateMapping : IEntityTypeConfiguration<Candidate>
             .HasPrecision(12, 2);
 
         builder
-            .Property("_hobbies")
-            .HasColumnName("hobbies")
-            .HasColumnType("text[]");
-
-        builder
             .Metadata
             .FindNavigation(nameof(Candidate.Skills))!
             .SetPropertyAccessMode(PropertyAccessMode.Field);
@@ -97,6 +92,16 @@ public sealed class CandidateMapping : IEntityTypeConfiguration<Candidate>
             .Metadata
             .FindNavigation(nameof(Candidate.Experiences))!
             .SetPropertyAccessMode(PropertyAccessMode.Field);
+
+        builder
+            .Metadata
+            .FindNavigation(nameof(Candidate.LanguageProficiencies))!
+            .SetPropertyAccessMode(PropertyAccessMode.Field);
+
+        builder
+            .Property("_hobbies")
+            .HasColumnName("hobbies")
+            .HasColumnType("text[]");
 
         builder
             .Property("_desiredJobTypes")

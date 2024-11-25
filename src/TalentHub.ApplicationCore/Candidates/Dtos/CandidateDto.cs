@@ -1,9 +1,26 @@
+using Humanizer;
 using TalentHub.ApplicationCore.Candidates.Entities;
 using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 using TalentHub.ApplicationCore.Skills;
 
 namespace TalentHub.ApplicationCore.Candidates.Dtos;
+
+public sealed record LanguageProficiencyDto(
+    string Language,
+    string WritingLevel,
+    string SpeakingLevel,
+    string ListeningLevel
+)
+{
+    public static LanguageProficiencyDto FromEntity(LanguageProficiency languageProficiency) =>
+        new(
+            languageProficiency.Language.Name,
+            languageProficiency.WritingLevel.ToString().Underscore(),
+            languageProficiency.SpeakingLevel.ToString().Underscore(),
+            languageProficiency.ListeningLevel.ToString().Underscore()
+        );
+}
 
 public sealed record CandidateDto(
     Guid Id,
@@ -19,6 +36,7 @@ public sealed record CandidateDto(
     IEnumerable<ExperienceDto> Experiences,
     IEnumerable<CandidateSkillDto> Skills,
     IEnumerable<CertificateDto> Certificates,
+    IEnumerable<LanguageProficiencyDto> LanguageProficiencies,
     string? Summary,
     string? ResumeUrl,
     string? ProfilePictureUrl,
@@ -47,6 +65,7 @@ public sealed record CandidateDto(
                 return CandidateSkillDto.FromEntity(candidateSkill, skill);
             }),
             candidate.Certificates.Select(CertificateDto.FromEntity),
+            candidate.LanguageProficiencies.Select(LanguageProficiencyDto.FromEntity),
             candidate.Summary,
             candidate.ResumeUrl,
             candidate.ProfilePictureUrl,

@@ -1,7 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Skills;
-using TalentHub.ApplicationCore.Skills.Enums;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateSkill;
 
@@ -21,21 +20,7 @@ public sealed class UpdateCandidateSkillCommandHandler(
         var skill = await skillRepository.GetByIdAsync(request.CandidateSkillId, cancellationToken);
         if (skill is null) return new Error("not_found", "candidate skill not found");
 
-        if (skill.Type != SkillType.Language)
-        {
-            candidate.UpdateSkillProficiency(skill.Id, request.Proficiency!.Value);
-        }
-        else
-        {
-            foreach (var specialLanguageSkill in request.SpecialProficientes)
-            {
-                candidate.UpdateLanguageSkillSpecialProficiency(
-                    skill.Id,
-                    specialLanguageSkill.Key,
-                    specialLanguageSkill.Value
-                );
-            }
-        }
+        candidate.UpdateSkillProficiency(skill.Id, request.Proficiency!.Value);
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);
         return Result.Ok();

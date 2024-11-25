@@ -8,5 +8,8 @@ public sealed class TalentHubContext(DbContextOptions<TalentHubContext> options)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TalentHubContext).Assembly);
         base.OnModelCreating(modelBuilder);
+
+        var relations = modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()); 
+        foreach (var relationship in  relations) relationship.DeleteBehavior = DeleteBehavior.Cascade;
     }
 }

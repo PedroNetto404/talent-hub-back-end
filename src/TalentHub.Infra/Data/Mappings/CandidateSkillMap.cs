@@ -19,10 +19,6 @@ public sealed class CandidateSkillMap :
                .HasConversion<EnumToStringConverter<Proficiency>>()
                .IsRequired();
 
-        builder.HasDiscriminator<string>("skill_type")
-               .HasValue<CandidateSkill>("common")
-               .HasValue<LanguageProficiency>("language");
-
         builder
             .HasOne<Skill>()
             .WithMany()

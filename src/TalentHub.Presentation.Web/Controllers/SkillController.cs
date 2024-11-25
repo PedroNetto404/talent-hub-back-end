@@ -2,6 +2,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TalentHub.ApplicationCore.Shared.Dtos;
 using TalentHub.ApplicationCore.Skills.UseCases.Commands.CreateSkill;
+using TalentHub.ApplicationCore.Skills.UseCases.Commands.DeleteSkill;
+using TalentHub.ApplicationCore.Skills.UseCases.Commands.UpdateSkill;
 using TalentHub.ApplicationCore.Skills.UseCases.Dtos;
 using TalentHub.ApplicationCore.Skills.UseCases.Queries.GetAllSkills;
 using TalentHub.ApplicationCore.Skills.UseCases.Queries.GetSkillById;
@@ -47,5 +49,30 @@ public sealed class SkillController(ISender sender) : ApiController(sender)
             cancellationToken: cancellationToken
         );
 
-    [HttpPost]
+    [HttpPut("{id:guid}")]
+    public Task<IActionResult> UpdateAsync(
+        Guid id,
+        UpdateSkillRequest request,
+        CancellationToken cancellationToken
+    ) =>
+        HandleAsync(
+            new UpdateSkillCommand(
+                id,
+                request.Name,
+                request.Tags
+            ),
+            onSuccess: NoContent,
+            cancellationToken: cancellationToken
+        );
+
+    [HttpDelete("{id:guid}")]
+    public Task<IActionResult> DeleteAsync(
+        Guid id,
+        CancellationToken cancellationToken
+    ) =>
+        HandleAsync(
+            new DeleteSkillCommand(id),
+            onSuccess: NoContent,
+            cancellationToken: cancellationToken
+        );
 }

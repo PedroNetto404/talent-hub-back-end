@@ -131,12 +131,6 @@ namespace TalentHub.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("skill_id");
 
-                    b.Property<string>("skill_type")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("character varying(8)")
-                        .HasColumnName("skill_type");
-
                     b.HasKey("Id")
                         .HasName("pk_candidate_skills");
 
@@ -147,10 +141,6 @@ namespace TalentHub.Infra.Migrations
                         .HasDatabaseName("ix_candidate_skills_skill_id");
 
                     b.ToTable("candidate_skills", (string)null);
-
-                    b.HasDiscriminator<string>("skill_type").HasValue("common");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("TalentHub.ApplicationCore.Candidates.Entities.Certificate", b =>
@@ -232,6 +222,52 @@ namespace TalentHub.Infra.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("TalentHub.ApplicationCore.Candidates.Entities.LanguageProficiency", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("CandidateId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("candidate_id");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("language");
+
+                    b.Property<string>("ListeningLevel")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("Beginner")
+                        .HasColumnName("listening_level");
+
+                    b.Property<string>("SpeakingLevel")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("Beginner")
+                        .HasColumnName("speaking_level");
+
+                    b.Property<string>("WritingLevel")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("Beginner")
+                        .HasColumnName("writing_level");
+
+                    b.HasKey("Id")
+                        .HasName("pk_language_proficiencies");
+
+                    b.HasIndex("CandidateId")
+                        .HasDatabaseName("ix_language_proficiencies_candidate_id");
+
+                    b.ToTable("language_proficiencies", (string)null);
+                });
+
             modelBuilder.Entity("TalentHub.ApplicationCore.Courses.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -287,20 +323,6 @@ namespace TalentHub.Infra.Migrations
                         .HasName("pk_skills");
 
                     b.ToTable("skills", (string)null);
-                });
-
-            modelBuilder.Entity("TalentHub.ApplicationCore.Candidates.Entities.CandidateLanguageSkill", b =>
-                {
-                    b.HasBaseType("TalentHub.ApplicationCore.Candidates.Entities.CandidateSkill");
-
-                    b.Property<string>("SpecialProficiences")
-                        .IsRequired()
-                        .HasColumnType("jsonb")
-                        .HasColumnName("special_proficiences");
-
-                    b.ToTable("candidate_skills", (string)null);
-
-                    b.HasDiscriminator().HasValue("language");
                 });
 
             modelBuilder.Entity("TalentHub.ApplicationCore.Candidates.Entities.AcademicExperience", b =>
@@ -434,6 +456,7 @@ namespace TalentHub.Infra.Migrations
                     b.HasOne("TalentHub.ApplicationCore.Candidates.Candidate", null)
                         .WithMany("Skills")
                         .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_candidate_skills_candidates_candidate_id");
 
                     b.HasOne("TalentHub.ApplicationCore.Skills.Skill", null)
@@ -449,6 +472,7 @@ namespace TalentHub.Infra.Migrations
                     b.HasOne("TalentHub.ApplicationCore.Candidates.Candidate", null)
                         .WithMany("Certificates")
                         .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_certificates_candidates_candidate_id");
                 });
 
@@ -457,6 +481,7 @@ namespace TalentHub.Infra.Migrations
                     b.HasOne("TalentHub.ApplicationCore.Candidates.Candidate", null)
                         .WithMany("Experiences")
                         .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_experiences_candidates_candidate_id");
 
                     b.OwnsOne("TalentHub.ApplicationCore.Shared.ValueObjects.DatePeriod", "End", b1 =>
@@ -511,6 +536,15 @@ namespace TalentHub.Infra.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TalentHub.ApplicationCore.Candidates.Entities.LanguageProficiency", b =>
+                {
+                    b.HasOne("TalentHub.ApplicationCore.Candidates.Candidate", null)
+                        .WithMany("LanguageProficiencies")
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("fk_language_proficiencies_candidate_candidate_id");
+                });
+
             modelBuilder.Entity("TalentHub.ApplicationCore.Candidates.Entities.AcademicExperience", b =>
                 {
                     b.HasOne("TalentHub.ApplicationCore.Courses.Course", null)
@@ -533,6 +567,8 @@ namespace TalentHub.Infra.Migrations
                     b.Navigation("Certificates");
 
                     b.Navigation("Experiences");
+
+                    b.Navigation("LanguageProficiencies");
 
                     b.Navigation("Skills");
                 });

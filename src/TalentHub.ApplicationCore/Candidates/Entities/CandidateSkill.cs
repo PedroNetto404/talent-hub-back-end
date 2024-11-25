@@ -4,9 +4,9 @@ using TalentHub.ApplicationCore.Core.Results;
 
 namespace TalentHub.ApplicationCore.Candidates.Entities;
 
-public class CandidateSkill : Entity
+public sealed class CandidateSkill : Entity
 {
-    protected CandidateSkill(Guid skillId, Proficiency proficiency)
+    private CandidateSkill(Guid skillId, Proficiency proficiency)
     {
         SkillId = skillId;
         Proficiency = proficiency;
@@ -17,9 +17,11 @@ public class CandidateSkill : Entity
         if(Guid.Empty == skillId) return new Error("candidate_skill", "candidate skill identifier is empty");
         return new CandidateSkill(skillId, proficiency);
     }
-    
+
+#pragma warning disable CS0628 // New protected member declared in sealed type
     protected CandidateSkill() { }
-    
+#pragma warning restore CS0628 // New protected member declared in sealed type
+
     public Guid SkillId { get; private set; }
     public Proficiency Proficiency { get; private set; }
 

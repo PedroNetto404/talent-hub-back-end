@@ -12,7 +12,7 @@ namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidate
 public sealed class UpdateCandidateCommandHandler(
     IRepository<Candidate> candidateRepository,
     IRepository<Skill> skillRepository
-) : ICommandHandler<UpdateCandidateCommand, CandidateDto>
+) : ICommandHandler<UpdateCandidateCommand>
 {
     private static readonly Dictionary<string, Func<Candidate, object, Result>> UpdateFunctions = new()
     {
@@ -61,7 +61,7 @@ public sealed class UpdateCandidateCommandHandler(
           },
     };
 
-    public async Task<Result<CandidateDto>> Handle(UpdateCandidateCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateCandidateCommand request, CancellationToken cancellationToken)
     {
         var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
         if (candidate is null) return NotFoundError.Value;
@@ -83,6 +83,6 @@ public sealed class UpdateCandidateCommandHandler(
             cancellationToken);
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);
-        return CandidateDto.FromEntity(candidate, skills);
+        return Result.Ok();
     }
 }

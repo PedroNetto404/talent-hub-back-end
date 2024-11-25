@@ -12,6 +12,7 @@ IEntityTypeConfiguration<Certificate>
     {
         builder.ToTable("certificates");
         builder.HasKey(p => p.Id);
+        builder.Property(P => P.Id);
 
         builder
             .Property(p => p.Name)

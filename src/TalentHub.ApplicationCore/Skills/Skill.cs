@@ -51,16 +51,13 @@ public sealed class Skill : AggregateRoot
         return Result.Ok();
     }
 
-    public Result RemoveTag(string tag)
+    public void ClearTags() => _tags.Clear();
+
+    public Result UpdateName(string name)
     {
-        tag = tag.Trim();
+        if(string.IsNullOrWhiteSpace(name)) return new Error("skill", "skill name cannot be blank"); 
 
-        if (!tag.Contains(tag))
-        {
-            return new Error("skill", $"{tag} not exists");
-        }
-
-        _tags.Remove(tag);
+        Name = name;
 
         return Result.Ok();
     }

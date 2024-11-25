@@ -111,7 +111,11 @@ public sealed class Candidate : AggregateRoot
         LanguageSkillType type, 
         Proficiency proficiency)
     {
-        var language = 
+        var languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
+        if(languageProficiency is null) return new Error("candidate", "language proficiency not added");
+
+        languageProficiency.UpdateProficiency(type, proficiency);
+        return Result.Ok();
     }
 
     public Result RemoveLanguage(Language language)
