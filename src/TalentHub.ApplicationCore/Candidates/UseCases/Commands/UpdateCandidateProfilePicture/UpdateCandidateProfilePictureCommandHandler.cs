@@ -3,14 +3,11 @@ using TalentHub.ApplicationCore.Constants;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Skills;
-using TalentHub.ApplicationCore.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateProfilePicture;
 
 public sealed class UpdateCandidateProfilePictureCommandHandler(
     IRepository<Candidate> candidateRepository,
-    IRepository<Skill> skillRepository,
     IFileStorage fileStorage
 ) : ICommandHandler<UpdateCandidateProfilePictureCommand, CandidateDto>
 {
@@ -40,15 +37,6 @@ public sealed class UpdateCandidateProfilePictureCommandHandler(
             }) return error;
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);
-
-        return CandidateDto.FromEntity(
-            candidate, 
-            await skillRepository.ListAsync(
-                new GetSkillsByIdsSpec(
-                    candidate.Skills.Select(p => p.SkillId).ToArray()
-                ),
-                cancellationToken
-            )
-        );
+        return CandidateDto.FromEntity(candidate);
     }
 }

@@ -16,20 +16,26 @@ namespace TalentHub.Presentation.Web.Controllers;
 public sealed class SkillController(ISender sender) : ApiController(sender)
 {
     [HttpGet("{skillId:guid}")]
-    public Task<IActionResult> GetByIdAsync(Guid skillId, CancellationToken cancellationToken = default) =>
+    public Task<IActionResult> GetByIdAsync(
+        Guid skillId, 
+        CancellationToken cancellationToken = default
+    ) =>
         HandleAsync<SkillDto>(
             new GetSkillByIdQuery(skillId),
             cancellationToken: cancellationToken
         );
 
     [HttpGet]
-    public Task<IActionResult> GetAllAsync(PagedRequest request, CancellationToken cancellationToken) =>
+    public Task<IActionResult> GetAllAsync(
+        PagedRequest request,
+        CancellationToken cancellationToken
+    ) =>
        HandleAsync<PagedResponse<SkillDto>>(
             new GetAllSkillsQuery(
                 request.Limit,
                 request.Offset,
                 request.SortBy,
-                request.SortAscending
+                request.Ascending
             ),
             cancellationToken: cancellationToken
        );
@@ -43,8 +49,7 @@ public sealed class SkillController(ISender sender) : ApiController(sender)
             new CreateSkillCommand(
                 request.Name,
                 request.Type,
-                [.. request.Tags],
-                false
+                [.. request.Tags]
             ),
             cancellationToken: cancellationToken
         );

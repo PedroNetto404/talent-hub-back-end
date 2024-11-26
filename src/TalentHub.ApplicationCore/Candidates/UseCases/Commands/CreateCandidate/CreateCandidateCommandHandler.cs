@@ -56,6 +56,6 @@ public sealed class CreateCandidateCommandHandler(
                 }) return error;
 
         _ = await repository.AddAsync(candidate, cancellationToken);
-        return CandidateDto.FromEntity(candidate, []);
+        return CandidateDto.FromEntity(candidate);
     }
 }

@@ -23,14 +23,9 @@ public sealed class Skill : AggregateRoot
     }
 
     private readonly List<string> _tags = [];
-
     public string Name { get; private set; } 
     public SkillType Type { get; private set; } 
     public IReadOnlyCollection<string> Tags => _tags.AsReadOnly();
-    public bool Approved { get; private set; } = false;
-    public bool IsSuggestion => !Approved;
-
-    public void Approve() => Approved = true;
 
     public Result AddTag(string tag)
     {

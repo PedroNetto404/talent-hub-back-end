@@ -22,5 +22,5 @@ public record PagedRequest
 
     [FromQuery(Name = "_sort_ascending")]
     [DefaultValue(true)]
-    public bool SortAscending { get; init; } = true;
+    public bool Ascending { get; init; } = true;
 }

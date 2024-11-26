@@ -1,5 +1,4 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Candidates.Dtos;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 using TalentHub.ApplicationCore.Jobs.Enums;
@@ -79,7 +78,7 @@ public sealed class UpdateCandidateCommandHandler(
         if (result.IsFail) return result.Error;
 
         var skills = await skillRepository.ListAsync(
-            new GetSkillsByIdsSpec(candidate.Skills.Select(p => p.SkillId).ToArray()), 
+            new GetSkillsByIdsSpec([.. candidate.Skills.Select(p => p.SkillId)]), 
             cancellationToken);
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);

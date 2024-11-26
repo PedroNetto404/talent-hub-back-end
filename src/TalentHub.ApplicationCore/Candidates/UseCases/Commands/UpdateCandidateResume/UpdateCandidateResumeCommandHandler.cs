@@ -3,15 +3,13 @@ using TalentHub.ApplicationCore.Constants;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Skills;
-using TalentHub.ApplicationCore.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateResume;
 
 public sealed class UpdateCandidateResumeCommandHandler(
     IRepository<Candidate> candidateRepository,
-    IRepository<Skill> skillRepository,
-    IFileStorage fileStorage) : ICommandHandler<UpdateCandidateResumeCommand, CandidateDto>
+    IFileStorage fileStorage
+) : ICommandHandler<UpdateCandidateResumeCommand, CandidateDto>
 {
     public async Task<Result<CandidateDto>> Handle(
         UpdateCandidateResumeCommand request,
@@ -33,20 +31,11 @@ public sealed class UpdateCandidateResumeCommandHandler(
             candidate.ResumeFileName,
             "application/pdf",
             cancellationToken);
-        
+
         var result = candidate.SetResumeUrl(url);
         if (result.IsFail) return result.Error;
-        
-        await candidateRepository.UpdateAsync(candidate, cancellationToken);
 
-        return CandidateDto.FromEntity(
-            candidate,
-            await skillRepository.ListAsync(
-                new GetSkillsByIdsSpec(
-                    candidate.Skills.Select(p => p.SkillId).ToArray()
-                ),
-                cancellationToken
-            )
-        );
+        await candidateRepository.UpdateAsync(candidate, cancellationToken);
+        return CandidateDto.FromEntity(candidate);
     }
 }

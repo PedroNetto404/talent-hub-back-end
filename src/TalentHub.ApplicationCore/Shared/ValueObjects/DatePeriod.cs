@@ -9,7 +9,7 @@ public record DatePeriod
 
     private DatePeriod(int year, int month) => (Year, Month) = (year, month);
 
-    private static Result<DatePeriod> Create(int year, int month)
+    public static Result<DatePeriod> Create(int year, int month)
     {
         if (year <= 1900) return new Error("date_period", "invalid year");
         if (month is < 1 or > 12) return new Error("date_period", "invalid month");

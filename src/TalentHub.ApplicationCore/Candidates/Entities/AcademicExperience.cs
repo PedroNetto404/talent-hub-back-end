@@ -44,11 +44,26 @@ public sealed class AcademicExperience : Experience
     protected AcademicExperience() { }
 #pragma warning restore CS0628 // New protected member declared in sealed type
 
+    private readonly List<AcademicEntity> _academicEntities = [];
+
     public EducationLevel Level { get; private set; }
     public ProgressStatus Status { get; private set; }
+    public StudyPeriod Period { get; private set; }
     public Guid CourseId { get; private set; }
     public Guid InstitutionId { get; private set; }
+    public IReadOnlyList<AcademicEntity> AcademicEntities => _academicEntities.AsReadOnly();
 
     public void UpdateStatus(ProgressStatus status) =>
         Status = status;
+
+    public Result AddAcademicEntity(AcademicEntity academicEntity)
+    {
+        if(_academicEntities.Contains(academicEntity))
+            return new Error("academic_experience", "academic entity already added");
+
+        _academicEntities.Add(academicEntity);
+        return Result.Ok();
+    }
+
+    public void ClearAcademicEntity() => _academicEntities.Clear();
 }

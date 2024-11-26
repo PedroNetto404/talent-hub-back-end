@@ -1,0 +1,8586 @@
+[
+    {
+        "value": 2669,
+        "label": "ABI - CONSTRUÇÃO CIVIL"
+    },
+    {
+        "value": 2670,
+        "label": "ABI - TECNOLOGIA AMBIENTAL"
+    },
+    {
+        "value": 2611,
+        "label": "Acompanhamento do Transtorno do Espectro Autista"
+    },
+    {
+        "value": 943,
+        "label": "Administração"
+    },
+    {
+        "value": 979,
+        "label": "Administração com ênfase em marketing "
+    },
+    {
+        "value": 23,
+        "label": "Administração de Empresas"
+    },
+    {
+        "value": 59,
+        "label": "Administração de Empresas (ênfase em Comércio Exterior)"
+    },
+    {
+        "value": 939,
+        "label": "Administração de Negócios "
+    },
+    {
+        "value": 2390,
+        "label": "Administração de Pessoas"
+    },
+    {
+        "value": 2391,
+        "label": "Administração de Recursos e Vantagem Competitiva"
+    },
+    {
+        "value": 1865,
+        "label": "Administração Digital"
+    },
+    {
+        "value": 2361,
+        "label": "Administração EAD"
+    },
+    {
+        "value": 1741,
+        "label": "Administração  EAD"
+    },
+    {
+        "value": 2392,
+        "label": "Administração em Ambientes Dinâmicos "
+    },
+    {
+        "value": 287,
+        "label": "Administração (Ênfase em T.I.)"
+    },
+    {
+        "value": 1543,
+        "label": "Administração - ênfase Negócios Globais"
+    },
+    {
+        "value": 2393,
+        "label": "Administração Escolar e Secretariado"
+    },
+    {
+        "value": 2394,
+        "label": "Administração Escolar, Supervisão e Orientação "
+    },
+    {
+        "value": 2395,
+        "label": "Administração Estatégica"
+    },
+    {
+        "value": 60,
+        "label": "Administração Financeira"
+    },
+    {
+        "value": 2362,
+        "label": "Administração FLEX"
+    },
+    {
+        "value": 43,
+        "label": "Administração (Gestão De Comércio Exterior)"
+    },
+    {
+        "value": 468,
+        "label": "Administração Hospitalar"
+    },
+    {
+        "value": 2396,
+        "label": "Administração Mercadológica"
+    },
+    {
+        "value": 2397,
+        "label": "Administração Organizacional e Inovação"
+    },
+    {
+        "value": 165,
+        "label": "Administração pública"
+    },
+    {
+        "value": 1914,
+        "label": "Administração Pública EAD"
+    },
+    {
+        "value": 1592,
+        "label": "Adobe After Effects - Online"
+    },
+    {
+        "value": 1591,
+        "label": "Adobe Audition - Online"
+    },
+    {
+        "value": 903,
+        "label": "Aeroespacial"
+    },
+    {
+        "value": 2198,
+        "label": "Agrimensura"
+    },
+    {
+        "value": 2610,
+        "label": "Agrocomputação"
+    },
+    {
+        "value": 130,
+        "label": "Agroecologia"
+    },
+    {
+        "value": 663,
+        "label": "Agroindústria"
+    },
+    {
+        "value": 1522,
+        "label": "Agronegócio"
+    },
+    {
+        "value": 1996,
+        "label": "Agronegócio EAD"
+    },
+    {
+        "value": 178,
+        "label": "Agronegócios"
+    },
+    {
+        "value": 175,
+        "label": "Agronomia"
+    },
+    {
+        "value": 2048,
+        "label": "Agronomia EAD"
+    },
+    {
+        "value": 762,
+        "label": "Agropecuária"
+    },
+    {
+        "value": 2612,
+        "label": "Agrotecnologia"
+    },
+    {
+        "value": 893,
+        "label": "Alfabetização e Letramento"
+    },
+    {
+        "value": 428,
+        "label": "Alimentos (Industrializados)"
+    },
+    {
+        "value": 2278,
+        "label": "Análise de Dados"
+    },
+    {
+        "value": 894,
+        "label": "Análise de Desempenho no Futebol"
+    },
+    {
+        "value": 2108,
+        "label": "Análise de sistemas"
+    },
+    {
+        "value": 226,
+        "label": "Análise e Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 1191,
+        "label": "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS "
+    },
+    {
+        "value": 1866,
+        "label": "Análise e Desenvolvimento de Sistemas (Digital)"
+    },
+    {
+        "value": 1981,
+        "label": "Análise e Desenvolvimento de Sistemas EAD"
+    },
+    {
+        "value": 2613,
+        "label": "Andragogia"
+    },
+    {
+        "value": 2091,
+        "label": "Animação"
+    },
+    {
+        "value": 515,
+        "label": "Antropologia"
+    },
+    {
+        "value": 1834,
+        "label": "ANTROPOLOGIA"
+    },
+    {
+        "value": 1557,
+        "label": "Apresentador"
+    },
+    {
+        "value": 1472,
+        "label": "Aquacultura"
+    },
+    {
+        "value": 768,
+        "label": "Aquicultura"
+    },
+    {
+        "value": 743,
+        "label": "Arqueologia"
+    },
+    {
+        "value": 937,
+        "label": "Arqueologia Bíblica "
+    },
+    {
+        "value": 1523,
+        "label": "Arquitetura"
+    },
+    {
+        "value": 1778,
+        "label": "Arquitetura de Dados"
+    },
+    {
+        "value": 2151,
+        "label": "Arquitetura de Dados EAD"
+    },
+    {
+        "value": 556,
+        "label": "Arquitetura e Urbanismo"
+    },
+    {
+        "value": 1997,
+        "label": "Arquitetura e Urbanismo EAD"
+    },
+    {
+        "value": 486,
+        "label": "Arquivologia"
+    },
+    {
+        "value": 2398,
+        "label": "Arte e Educação"
+    },
+    {
+        "value": 317,
+        "label": "Artes"
+    },
+    {
+        "value": 342,
+        "label": "Artes Cênicas"
+    },
+    {
+        "value": 557,
+        "label": "Artes do Corpo"
+    },
+    {
+        "value": 1833,
+        "label": "ARTES DO CORPO EM CENA"
+    },
+    {
+        "value": 497,
+        "label": "Artes Plásticas"
+    },
+    {
+        "value": 21,
+        "label": "Artes Visuais"
+    },
+    {
+        "value": 2699,
+        "label": "Artes Visuais 2.0"
+    },
+    {
+        "value": 2271,
+        "label": "Artes Visuais \u0026 Design Digital"
+    },
+    {
+        "value": 1915,
+        "label": "Artes Visuais EAD"
+    },
+    {
+        "value": 840,
+        "label": "Arteterapia Analítica"
+    },
+    {
+        "value": 2399,
+        "label": "Arteterapia na Educação"
+    },
+    {
+        "value": 1559,
+        "label": "Assistência de Direção"
+    },
+    {
+        "value": 1565,
+        "label": "Assistência de Direção - Intensivo de Férias"
+    },
+    {
+        "value": 1590,
+        "label": "Assistência de Direção - Online"
+    },
+    {
+        "value": 575,
+        "label": "Astronomia"
+    },
+    {
+        "value": 87,
+        "label": "Audiovisual"
+    },
+    {
+        "value": 2404,
+        "label": "Auditoria"
+    },
+    {
+        "value": 2400,
+        "label": "Auditoria Contábil e Controladora"
+    },
+    {
+        "value": 2401,
+        "label": "Auditoria, Contabilidade e Perícia Contábil"
+    },
+    {
+        "value": 2402,
+        "label": "Auditoria em Enfermagem"
+    },
+    {
+        "value": 2403,
+        "label": "Auditoria em Serviços de Saúde "
+    },
+    {
+        "value": 2038,
+        "label": "Automação de Escritórios e Secretariado"
+    },
+    {
+        "value": 653,
+        "label": "Automação e Manufatura Digital "
+    },
+    {
+        "value": 323,
+        "label": "Automação Industrial"
+    },
+    {
+        "value": 1916,
+        "label": "Automação Industrial EAD"
+    },
+    {
+        "value": 624,
+        "label": "Auxiliar e Técnico em Enfermagem"
+    },
+    {
+        "value": 854,
+        "label": "Auxiliar veterinário "
+    },
+    {
+        "value": 245,
+        "label": "Aviação Civil"
+    },
+    {
+        "value": 1103,
+        "label": "Bacharelado de Ciência de Dados"
+    },
+    {
+        "value": 1730,
+        "label": "Bacharelado em Administração"
+    },
+    {
+        "value": 2166,
+        "label": "Bacharelado em Administração EAD"
+    },
+    {
+        "value": 1642,
+        "label": "BACHARELADO EM ADMINISTRAÇÃO PÚBLICA"
+    },
+    {
+        "value": 2072,
+        "label": "Bacharelado em Agronomia"
+    },
+    {
+        "value": 1639,
+        "label": "BACHARELADO EM ARQUITETURA E URBANISMO"
+    },
+    {
+        "value": 2167,
+        "label": "Bacharelado em Arquitetura e Urbanismo Ead"
+    },
+    {
+        "value": 2083,
+        "label": "Bacharelado em Artes e Design"
+    },
+    {
+        "value": 1647,
+        "label": "BACHARELADO EM ARTES VISUAIS"
+    },
+    {
+        "value": 2786,
+        "label": "Bacharelado em Audiovisual"
+    },
+    {
+        "value": 1458,
+        "label": " Bacharelado em Biologia"
+    },
+    {
+        "value": 924,
+        "label": "Bacharelado em Ciência da Computação "
+    },
+    {
+        "value": 2176,
+        "label": "Bacharelado em Ciência da Computação EAD"
+    },
+    {
+        "value": 2708,
+        "label": "Bacharelado em Ciência de Dados"
+    },
+    {
+        "value": 295,
+        "label": "Bacharelado em Ciência e Tecnologia"
+    },
+    {
+        "value": 2069,
+        "label": "Bacharelado em Ciência e tecnologia de Alimentos"
+    },
+    {
+        "value": 1643,
+        "label": "BACHARELADO EM CIÊNCIA POLÍTICA"
+    },
+    {
+        "value": 923,
+        "label": "Bacharelado em Ciências Biológicas"
+    },
+    {
+        "value": 1917,
+        "label": "Bacharelado em Ciências Biológicas EAD"
+    },
+    {
+        "value": 1677,
+        "label": "BACHARELADO EM CIÊNCIAS CONTÁBEIS"
+    },
+    {
+        "value": 1481,
+        "label": "Bacharelado em Ciências da Computação"
+    },
+    {
+        "value": 917,
+        "label": "Bacharelado em Ciências Econômicas"
+    },
+    {
+        "value": 294,
+        "label": "Bacharelado em Ciências e Humanidades"
+    },
+    {
+        "value": 1596,
+        "label": "Bacharelado em Ciências e Tecnologia "
+    },
+    {
+        "value": 955,
+        "label": "Bacharelado em Ciências Moleculares"
+    },
+    {
+        "value": 1640,
+        "label": "BACHARELADO EM COMUNICAÇÃO: PUBLICIDADE E PROPAGANDA"
+    },
+    {
+        "value": 2803,
+        "label": " BACHARELADO EM COMUNICAÇÃO SOCIAL - PUBLICIDADE E PROPAGANDA"
+    },
+    {
+        "value": 1613,
+        "label": "Bacharelado em Design"
+    },
+    {
+        "value": 2787,
+        "label": "Bacharelado em Design de Moda"
+    },
+    {
+        "value": 347,
+        "label": "Bacharelado em Design de Moda - Estilismo"
+    },
+    {
+        "value": 348,
+        "label": "Bacharelado em Design de Moda - Modelagem"
+    },
+    {
+        "value": 2175,
+        "label": "Bacharelado em Direito"
+    },
+    {
+        "value": 1421,
+        "label": "Bacharelado em Educação Física"
+    },
+    {
+        "value": 1923,
+        "label": "Bacharelado em Educação Física EAD"
+    },
+    {
+        "value": 1635,
+        "label": "BACHARELADO EM ENGENHARIA AGRONÔMICA"
+    },
+    {
+        "value": 1636,
+        "label": "BACHARELADO EM ENGENHARIA AMBIENTAL"
+    },
+    {
+        "value": 1665,
+        "label": "BACHARELADO EM ENGENHARIA BIOMÉDICA"
+    },
+    {
+        "value": 1666,
+        "label": "BACHARELADO EM ENGENHARIA CIVIL"
+    },
+    {
+        "value": 2168,
+        "label": "Bacharelado em Engenharia Civil EAD"
+    },
+    {
+        "value": 1667,
+        "label": "BACHARELADO EM ENGENHARIA DA COMPUTAÇÃO"
+    },
+    {
+        "value": 942,
+        "label": "Bacharelado em Engenharia de Computação"
+    },
+    {
+        "value": 1668,
+        "label": "BACHARELADO EM ENGENHARIA DE PRODUÇÃO"
+    },
+    {
+        "value": 2169,
+        "label": "Bacharelado em Engenharia de Produção EAD"
+    },
+    {
+        "value": 1471,
+        "label": "Bacharelado em Engenharia de Software"
+    },
+    {
+        "value": 1669,
+        "label": "BACHARELADO EM ENGENHARIA ELÉTRICA"
+    },
+    {
+        "value": 2170,
+        "label": "Bacharelado em Engenharia Elétrica EAD"
+    },
+    {
+        "value": 1733,
+        "label": "Bacharelado em Engenharia Ferroviária e Metroviária"
+    },
+    {
+        "value": 1451,
+        "label": "Bacharelado em Engenharia Mecânica"
+    },
+    {
+        "value": 2171,
+        "label": "Bacharelado em Engenharia Mecânica EAD"
+    },
+    {
+        "value": 2788,
+        "label": "Bacharelado em Estética e Cosmética"
+    },
+    {
+        "value": 918,
+        "label": "Bacharelado em Filosofia"
+    },
+    {
+        "value": 925,
+        "label": "Bacharelado em Física"
+    },
+    {
+        "value": 449,
+        "label": "Bacharelado em fotografia"
+    },
+    {
+        "value": 1423,
+        "label": "Bacharelado em Geografia"
+    },
+    {
+        "value": 1929,
+        "label": "Bacharelado em Geografia EAD"
+    },
+    {
+        "value": 1688,
+        "label": "BACHARELADO EM GERONTOLOGIA"
+    },
+    {
+        "value": 1430,
+        "label": "Bacharelado em História"
+    },
+    {
+        "value": 1942,
+        "label": "Bacharelado em História EAD"
+    },
+    {
+        "value": 2789,
+        "label": "Bacharelado em Jogos Digitais"
+    },
+    {
+        "value": 1641,
+        "label": "BACHARELADO EM JORNALISMO"
+    },
+    {
+        "value": 2662,
+        "label": "Bacharelado em Letras - Libras"
+    },
+    {
+        "value": 1437,
+        "label": "Bacharelado em Letras- Língua Portuguesa"
+    },
+    {
+        "value": 1955,
+        "label": "Bacharelado em Letras Língua Portuguesa EAD"
+    },
+    {
+        "value": 926,
+        "label": "Bacharelado em Matemática"
+    },
+    {
+        "value": 1958,
+        "label": "Bacharelado em Matemática EAD"
+    },
+    {
+        "value": 1532,
+        "label": "Bacharelado em Música"
+    },
+    {
+        "value": 2790,
+        "label": "Bacharelado em Nutrição"
+    },
+    {
+        "value": 920,
+        "label": "Bacharelado em Políticas Públicas "
+    },
+    {
+        "value": 1689,
+        "label": "BACHARELADO EM PSICANÁLISE"
+    },
+    {
+        "value": 1648,
+        "label": "BACHARELADO EM PSICOPEDAGOGIA"
+    },
+    {
+        "value": 2785,
+        "label": "Bacharelado em Publicidade e Propaganda"
+    },
+    {
+        "value": 927,
+        "label": "Bacharelado em Química"
+    },
+    {
+        "value": 1061,
+        "label": "Bacharelado em Química com Ênfase em Biotecnologia"
+    },
+    {
+        "value": 1310,
+        "label": "Bacharelado em química com ênfase em química ambiental"
+    },
+    {
+        "value": 1346,
+        "label": "Bacharelado em Química Tecnológica"
+    },
+    {
+        "value": 921,
+        "label": "Bacharelado em Relações Internacionais"
+    },
+    {
+        "value": 1260,
+        "label": " Bacharelado em Secretariado Executivo"
+    },
+    {
+        "value": 1702,
+        "label": "BACHARELADO EM SERVIÇO SOCIAL"
+    },
+    {
+        "value": 1309,
+        "label": "Bacharelado em Sistema de Informação"
+    },
+    {
+        "value": 2078,
+        "label": "Bacharelado em Sistemas De Informação"
+    },
+    {
+        "value": 1649,
+        "label": "BACHARELADO EM SOCIOLOGIA"
+    },
+    {
+        "value": 954,
+        "label": " Bacharelado em Tecnologia da Informação "
+    },
+    {
+        "value": 916,
+        "label": "Bacharelado em Teologia"
+    },
+    {
+        "value": 1650,
+        "label": "BACHARELADO EM TEOLOGIA BÍBLICA INTERCONFESSIONAL"
+    },
+    {
+        "value": 1651,
+        "label": "BACHARELADO EM TEOLOGIA DOUTRINA CATÓLICA"
+    },
+    {
+        "value": 1979,
+        "label": "Bacharelado em Teologia EAD"
+    },
+    {
+        "value": 2081,
+        "label": "Bacharelado em Turismo"
+    },
+    {
+        "value": 2070,
+        "label": "Bacharelado em Zootecnia"
+    },
+    {
+        "value": 2076,
+        "label": "Bacharelado Engenharia Industrial Elétrica"
+    },
+    {
+        "value": 2077,
+        "label": "Bacharelado Engenharia Industrial Mecânica"
+    },
+    {
+        "value": 2270,
+        "label": "Bacharelado Interdisciplinar em Ciência e Economia"
+    },
+    {
+        "value": 1308,
+        "label": "Bacharelado Interdisciplinar em Ciência e Tecnologia"
+    },
+    {
+        "value": 1403,
+        "label": "Bacharelado Interdisciplinar em Ciência e Tecnologia do Mar"
+    },
+    {
+        "value": 1690,
+        "label": "BACHARELADO INTERDISCIPLINAR EM SAÚDE"
+    },
+    {
+        "value": 2296,
+        "label": "Bacharel em Administração"
+    },
+    {
+        "value": 1349,
+        "label": "Bacharel em Jornalismo"
+    },
+    {
+        "value": 1306,
+        "label": "Bacharel em Sistemas de Informação"
+    },
+    {
+        "value": 872,
+        "label": "Bacharel em Sistemas de Informações"
+    },
+    {
+        "value": 1190,
+        "label": "Bachelor of Commerce"
+    },
+    {
+        "value": 974,
+        "label": "Bachelor of Science em Marketing"
+    },
+    {
+        "value": 206,
+        "label": "Banco de Dados"
+    },
+    {
+        "value": 1598,
+        "label": "Banco de Dados – Big Data Analytics"
+    },
+    {
+        "value": 1867,
+        "label": "Banco de Dados – Big Data Analytics (Digital)"
+    },
+    {
+        "value": 1902,
+        "label": "Banco de Dados EAD"
+    },
+    {
+        "value": 1303,
+        "label": "BANCO DE DADOS E BUSINES INTELLIGENCE"
+    },
+    {
+        "value": 1856,
+        "label": "Bancos de Dados:Data Science, Big Data \u0026 BI"
+    },
+    {
+        "value": 2405,
+        "label": "Base Nacional Comum Curricular"
+    },
+    {
+        "value": 88,
+        "label": "Biblioteconomia"
+    },
+    {
+        "value": 2036,
+        "label": "Biblioteconomia EAD"
+    },
+    {
+        "value": 146,
+        "label": "Biblioteconomia e Ciência da Informação"
+    },
+    {
+        "value": 516,
+        "label": "Biblioteconomia e Documentação "
+    },
+    {
+        "value": 1151,
+        "label": "Big Data e Inteligência Analítica"
+    },
+    {
+        "value": 1185,
+        "label": "Big Data e Inteligência - Tecnólogo"
+    },
+    {
+        "value": 1886,
+        "label": "Big Data Inteligência Analítica EAD"
+    },
+    {
+        "value": 1148,
+        "label": "big data no agronegócio"
+    },
+    {
+        "value": 665,
+        "label": "Big Data no Agronegócio "
+    },
+    {
+        "value": 2024,
+        "label": "Big Data para Negócios"
+    },
+    {
+        "value": 561,
+        "label": "Biociências"
+    },
+    {
+        "value": 667,
+        "label": "Biocombustíveis "
+    },
+    {
+        "value": 879,
+        "label": "Bioética "
+    },
+    {
+        "value": 1857,
+        "label": "Bioinformática"
+    },
+    {
+        "value": 275,
+        "label": "Biologia"
+    },
+    {
+        "value": 562,
+        "label": "Biologia Aplicada"
+    },
+    {
+        "value": 563,
+        "label": "Biologia Celular e Molecular"
+    },
+    {
+        "value": 564,
+        "label": "Biologia e Geologia"
+    },
+    {
+        "value": 565,
+        "label": "Biologia Marinha"
+    },
+    {
+        "value": 904,
+        "label": "Biomédica "
+    },
+    {
+        "value": 244,
+        "label": "Biomedicina"
+    },
+    {
+        "value": 1810,
+        "label": "Biomedicina EAD"
+    },
+    {
+        "value": 1868,
+        "label": "Biomedicina – (Flex)"
+    },
+    {
+        "value": 566,
+        "label": "Bioquímica"
+    },
+    {
+        "value": 132,
+        "label": "Biotecnologia"
+    },
+    {
+        "value": 2342,
+        "label": "Blockchain e Criptografia Digital EAD"
+    },
+    {
+        "value": 1537,
+        "label": "Bs Business Management with Digital Innovation and Entrepreneurship"
+    },
+    {
+        "value": 862,
+        "label": "Business"
+    },
+    {
+        "value": 948,
+        "label": "Business Administration"
+    },
+    {
+        "value": 1097,
+        "label": "Business Administration: Finance and Management"
+    },
+    {
+        "value": 1062,
+        "label": "Business Management \u0026 Finance"
+    },
+    {
+        "value": 945,
+        "label": "Business Manangement"
+    },
+    {
+        "value": 976,
+        "label": "Cafeicultura"
+    },
+    {
+        "value": 396,
+        "label": "Canto"
+    },
+    {
+        "value": 2422,
+        "label": "Capelania"
+    },
+    {
+        "value": 935,
+        "label": "Capelão Cristão "
+    },
+    {
+        "value": 816,
+        "label": "Cenografia"
+    },
+    {
+        "value": 1779,
+        "label": "cibersegurança "
+    },
+    {
+        "value": 2049,
+        "label": "Cibersegurança EAD"
+    },
+    {
+        "value": 2614,
+        "label": "Cibersegurança (Tecnologia em Cibersegurança)"
+    },
+    {
+        "value": 2665,
+        "label": "Ciclo Básico de Engenharias "
+    },
+    {
+        "value": 2111,
+        "label": "CIDADES INTELIGENTES E SUSTENTÁVEIS"
+    },
+    {
+        "value": 33,
+        "label": "Ciência da computação"
+    },
+    {
+        "value": 1986,
+        "label": "Ciência da Computação EAD"
+    },
+    {
+        "value": 1984,
+        "label": "Ciência da Computação  EAD"
+    },
+    {
+        "value": 2615,
+        "label": "Ciência da Criatividade"
+    },
+    {
+        "value": 1418,
+        "label": "Ciência de Dados"
+    },
+    {
+        "value": 1887,
+        "label": "Ciência de Dados EAD"
+    },
+    {
+        "value": 1499,
+        "label": "Ciência de Dados e Big Data"
+    },
+    {
+        "value": 898,
+        "label": "Ciência de dados e Inteligência artificial "
+    },
+    {
+        "value": 1616,
+        "label": "Ciência de Dados e Inteligência Artificial"
+    },
+    {
+        "value": 2314,
+        "label": "Ciência de Dados para Negócios"
+    },
+    {
+        "value": 1404,
+        "label": "Ciência de Dados - Tecnologia da Informação"
+    },
+    {
+        "value": 2029,
+        "label": "Ciência Econômica"
+    },
+    {
+        "value": 1719,
+        "label": "Ciência e Tecnologia "
+    },
+    {
+        "value": 2089,
+        "label": "Ciência e Tecnologia de Alimentos"
+    },
+    {
+        "value": 818,
+        "label": "Ciência e Tecnologia de Laticínios"
+    },
+    {
+        "value": 642,
+        "label": "Ciência e Tecnologia do Mar"
+    },
+    {
+        "value": 1729,
+        "label": "Ciência e Tecnologia / Prograd / BI"
+    },
+    {
+        "value": 741,
+        "label": "Ciência - Matemática e Física"
+    },
+    {
+        "value": 703,
+        "label": "Ciência Política"
+    },
+    {
+        "value": 1835,
+        "label": "CIÊNCIA POLÍTICA/IPOL - BACHAREL - DIURNO"
+    },
+    {
+        "value": 851,
+        "label": "Ciências "
+    },
+    {
+        "value": 478,
+        "label": "Ciências Administrativas"
+    },
+    {
+        "value": 576,
+        "label": "Ciências Aeronáuticas"
+    },
+    {
+        "value": 739,
+        "label": "Ciências Agrárias e do Ambiente"
+    },
+    {
+        "value": 186,
+        "label": "Ciências Ambientais"
+    },
+    {
+        "value": 2095,
+        "label": "Ciências Atmosféricas"
+    },
+    {
+        "value": 156,
+        "label": " Ciências Atuariais"
+    },
+    {
+        "value": 740,
+        "label": "Ciências - Biologia e Química"
+    },
+    {
+        "value": 185,
+        "label": "Ciências Biológicas"
+    },
+    {
+        "value": 1869,
+        "label": "Ciências Biológicas – Licenciatura (Flex)"
+    },
+    {
+        "value": 1903,
+        "label": "Ciências Biológicas Modalidade EAD"
+    },
+    {
+        "value": 631,
+        "label": "Ciências Biológicas Modalidade Médica"
+    },
+    {
+        "value": 567,
+        "label": "Ciências Biomédicas"
+    },
+    {
+        "value": 45,
+        "label": "Ciências Contábeis"
+    },
+    {
+        "value": 629,
+        "label": "Ciências Contábeis com ênfase em Análise de Sistemas"
+    },
+    {
+        "value": 1870,
+        "label": "Ciências Contábeis (Digital)"
+    },
+    {
+        "value": 1791,
+        "label": "Ciências Contábeis EAD"
+    },
+    {
+        "value": 2363,
+        "label": "Ciências Contábeis FLEX"
+    },
+    {
+        "value": 1501,
+        "label": "Ciências Contábeis - Presencial"
+    },
+    {
+        "value": 577,
+        "label": "Ciências da Atividade Física"
+    },
+    {
+        "value": 1443,
+        "label": "Ciências da Computação"
+    },
+    {
+        "value": 1918,
+        "label": "Ciências da Computação EAD"
+    },
+    {
+        "value": 633,
+        "label": "Ciências da Natureza"
+    },
+    {
+        "value": 1906,
+        "label": "Ciências da Natureza EAD"
+    },
+    {
+        "value": 614,
+        "label": "Ciências da religião"
+    },
+    {
+        "value": 2203,
+        "label": "Ciências da Religião Licenciatura"
+    },
+    {
+        "value": 2201,
+        "label": "Ciências da Religião Licenciatura - EAD"
+    },
+    {
+        "value": 1405,
+        "label": "Ciências de Dados"
+    },
+    {
+        "value": 1985,
+        "label": "Ciências de Dados EAD"
+    },
+    {
+        "value": 2000,
+        "label": "Ciências de dados e análise de comportamento"
+    },
+    {
+        "value": 1858,
+        "label": "Ciências de Dados e Análise de Comportamento"
+    },
+    {
+        "value": 2050,
+        "label": "Ciências de Dados e Análise de Comportamento EAD"
+    },
+    {
+        "value": 1106,
+        "label": "Ciências do Esporte"
+    },
+    {
+        "value": 833,
+        "label": "Ciências do Estado"
+    },
+    {
+        "value": 568,
+        "label": "Ciências do Mar"
+    },
+    {
+        "value": 616,
+        "label": "Ciências dos alimentos"
+    },
+    {
+        "value": 46,
+        "label": "Ciências Econômicas"
+    },
+    {
+        "value": 1805,
+        "label": "Ciências Econômicas EAD"
+    },
+    {
+        "value": 541,
+        "label": "Ciências e Tecnologia "
+    },
+    {
+        "value": 591,
+        "label": "Ciências Exatas"
+    },
+    {
+        "value": 1905,
+        "label": "Ciências Exatas EAD"
+    },
+    {
+        "value": 467,
+        "label": "Ciências Farmacêuticas"
+    },
+    {
+        "value": 578,
+        "label": "Ciências Físicas e Biomoleculares"
+    },
+    {
+        "value": 40,
+        "label": "Ciências Fundamentais"
+    },
+    {
+        "value": 593,
+        "label": "Ciências Humanas "
+    },
+    {
+        "value": 1919,
+        "label": "Ciências Humanas EAD"
+    },
+    {
+        "value": 597,
+        "label": "Ciências Imobiliárias"
+    },
+    {
+        "value": 2087,
+        "label": "Ciências (Licenciaturas)"
+    },
+    {
+        "value": 1104,
+        "label": "Ciências Matemáticas e da Terra"
+    },
+    {
+        "value": 517,
+        "label": "Ciências Naturais"
+    },
+    {
+        "value": 599,
+        "label": "Ciências Náuticas"
+    },
+    {
+        "value": 805,
+        "label": "Ciências Políticas"
+    },
+    {
+        "value": 1920,
+        "label": "Ciências Políticas EAD"
+    },
+    {
+        "value": 71,
+        "label": "Ciências Sociais"
+    },
+    {
+        "value": 2700,
+        "label": "Ciências Sociais 2.0"
+    },
+    {
+        "value": 2310,
+        "label": "Ciências sociais Aplicadas e comunicação"
+    },
+    {
+        "value": 1921,
+        "label": "Ciências Sociais EAD"
+    },
+    {
+        "value": 1144,
+        "label": "Ciências Sociais e do Consumo"
+    },
+    {
+        "value": 2329,
+        "label": "Ciências Sociais (Licenciatura)"
+    },
+    {
+        "value": 2330,
+        "label": "Ciências Sociais (Licenciatura) EAD"
+    },
+    {
+        "value": 834,
+        "label": "Ciências Socioambientais"
+    },
+    {
+        "value": 20,
+        "label": "Cinema"
+    },
+    {
+        "value": 1705,
+        "label": "Cinema de Animação "
+    },
+    {
+        "value": 1473,
+        "label": "Cinema de Animação e Artes Digitais"
+    },
+    {
+        "value": 1401,
+        "label": "CINEMA e ANIMAÇÃO"
+    },
+    {
+        "value": 224,
+        "label": "Cinema e Audiovisual"
+    },
+    {
+        "value": 1606,
+        "label": "Cinema e Mídias Digitais"
+    },
+    {
+        "value": 899,
+        "label": "Cinema e Mídias Sociais "
+    },
+    {
+        "value": 558,
+        "label": "Cinema e Vídeo"
+    },
+    {
+        "value": 1570,
+        "label": "Cinema - Online"
+    },
+    {
+        "value": 680,
+        "label": "Cinematic Arts"
+    },
+    {
+        "value": 2112,
+        "label": "COACHING E DESENVOLVIMENTO HUMANO"
+    },
+    {
+        "value": 2202,
+        "label": "Coaching e Desenvolvimento Humano Tecnólogo"
+    },
+    {
+        "value": 2200,
+        "label": "Coaching e Desenvolvimento Humano Tecnólogo - EAD"
+    },
+    {
+        "value": 2406,
+        "label": "Coaching Educacional "
+    },
+    {
+        "value": 1397,
+        "label": "Comercial"
+    },
+    {
+        "value": 134,
+        "label": "Comércio Exterior"
+    },
+    {
+        "value": 1888,
+        "label": "Comércio Exterior EAD"
+    },
+    {
+        "value": 2407,
+        "label": "Comércio Exterior e Negócios Internacionais "
+    },
+    {
+        "value": 225,
+        "label": "Comércio Internacional"
+    },
+    {
+        "value": 1385,
+        "label": "Commerce"
+    },
+    {
+        "value": 681,
+        "label": "Communication - Entertainment Track"
+    },
+    {
+        "value": 2408,
+        "label": "Compliance"
+    },
+    {
+        "value": 807,
+        "label": "Composição de Interior"
+    },
+    {
+        "value": 808,
+        "label": "Composição Paisagista"
+    },
+    {
+        "value": 276,
+        "label": "Computação"
+    },
+    {
+        "value": 579,
+        "label": "Computação Científica"
+    },
+    {
+        "value": 1615,
+        "label": "Computação em Nuvem"
+    },
+    {
+        "value": 1614,
+        "label": "Computação em Nuvem (Cloud Computação)"
+    },
+    {
+        "value": 475,
+        "label": "Computação Gráfica"
+    },
+    {
+        "value": 1455,
+        "label": "Comunicação"
+    },
+    {
+        "value": 1507,
+        "label": "Comunicação das Artes do Corpo"
+    },
+    {
+        "value": 1846,
+        "label": "Comunicação Data Driven"
+    },
+    {
+        "value": 900,
+        "label": "Comunicação Digital"
+    },
+    {
+        "value": 345,
+        "label": "Comunicação e Artes"
+    },
+    {
+        "value": 1847,
+        "label": "Comunicação e Inteligência de Mercado"
+    },
+    {
+        "value": 470,
+        "label": "Comunicação e lenguajes audiovisuais"
+    },
+    {
+        "value": 1100,
+        "label": "Comunicação e Marketing"
+    },
+    {
+        "value": 2316,
+        "label": "Comunicação e Marketing EAD"
+    },
+    {
+        "value": 534,
+        "label": "Comunicação em Mídias Digitais "
+    },
+    {
+        "value": 2409,
+        "label": "Comunicação Empresarial"
+    },
+    {
+        "value": 1508,
+        "label": "Comunicação e Multimeios"
+    },
+    {
+        "value": 1406,
+        "label": "Comunicação Institucional"
+    },
+    {
+        "value": 1922,
+        "label": "Comunicação Institucional EAD"
+    },
+    {
+        "value": 1051,
+        "label": "Comunicação Organizacional"
+    },
+    {
+        "value": 902,
+        "label": "Comunicação Social "
+    },
+    {
+        "value": 1395,
+        "label": "Comunicação Social com Habilitação em Cinema"
+    },
+    {
+        "value": 824,
+        "label": "Comunicação Social- Comunicação Digital"
+    },
+    {
+        "value": 2281,
+        "label": "Comunicação Social - Educomunicação"
+    },
+    {
+        "value": 2148,
+        "label": "Comunicação Social - Habilitação em Publicidade e Propaganda"
+    },
+    {
+        "value": 1266,
+        "label": "Comunicação Social - Habilitação em Radialismo (Rádio e TV)"
+    },
+    {
+        "value": 951,
+        "label": "Comunicação Social - Jornalismo "
+    },
+    {
+        "value": 1108,
+        "label": "Comunicação Social - Midialogia"
+    },
+    {
+        "value": 1475,
+        "label": "Comunicação Social - Publicidade "
+    },
+    {
+        "value": 1524,
+        "label": "Comunicação Social - Publicidade e Propaganda"
+    },
+    {
+        "value": 409,
+        "label": "Comunicação Social: Publicidade e Propaganda"
+    },
+    {
+        "value": 2754,
+        "label": " Comunicação Social – Publicidade e Propaganda e Mídias Digitais"
+    },
+    {
+        "value": 2753,
+        "label": " Comunicação Social – Publicidade e Propaganda e Mídias Digitais EAD"
+    },
+    {
+        "value": 2319,
+        "label": "Comunicação Social - Rádio e TV"
+    },
+    {
+        "value": 1265,
+        "label": "Comunicação Social, Rádio e TV "
+    },
+    {
+        "value": 2320,
+        "label": "Comunicação Social - Rádio e TV EAD"
+    },
+    {
+        "value": 871,
+        "label": "Comunicação Social Rádio, TV e Internet."
+    },
+    {
+        "value": 1474,
+        "label": "Comunicação Social - Relações Públicas"
+    },
+    {
+        "value": 708,
+        "label": "Comunicação Visual"
+    },
+    {
+        "value": 2272,
+        "label": "Comunicação Visual \u0026 Design Gráfico"
+    },
+    {
+        "value": 1626,
+        "label": "Conciliação, Mediação e Arbitragem"
+    },
+    {
+        "value": 1528,
+        "label": "Confeitaria"
+    },
+    {
+        "value": 1476,
+        "label": "Conservação e Restauração de Bens Culturais Móveis"
+    },
+    {
+        "value": 2671,
+        "label": "CONSTRUÇÃO CIVIL"
+    },
+    {
+        "value": 190,
+        "label": "Construção Civil - Edifícios"
+    },
+    {
+        "value": 191,
+        "label": "Construção Civil - Movimento de Terra e Pavimentação"
+    },
+    {
+        "value": 324,
+        "label": "Construção de Edifícios"
+    },
+    {
+        "value": 670,
+        "label": "Construção Naval "
+    },
+    {
+        "value": 901,
+        "label": "Contabilidade"
+    },
+    {
+        "value": 2410,
+        "label": "Contabilidade e Gestão de Pessoas"
+    },
+    {
+        "value": 128,
+        "label": "Contabilidade para Graduados"
+    },
+    {
+        "value": 2411,
+        "label": "Contabilidade Pública"
+    },
+    {
+        "value": 2412,
+        "label": "Contabilidade Rural e Agronegócio "
+    },
+    {
+        "value": 2413,
+        "label": "Controladoria"
+    },
+    {
+        "value": 906,
+        "label": "Controladoria de Empresas e Bancos"
+    },
+    {
+        "value": 641,
+        "label": "Controladoria e Finanças"
+    },
+    {
+        "value": 2675,
+        "label": "controle ambiental "
+    },
+    {
+        "value": 2298,
+        "label": "Controle de Obras"
+    },
+    {
+        "value": 817,
+        "label": "Cooperativismo"
+    },
+    {
+        "value": 2414,
+        "label": "Coordenação Pedagógica"
+    },
+    {
+        "value": 2415,
+        "label": "Coordenação Pedagógica com Ênfase em Gestão de Pessoas"
+    },
+    {
+        "value": 1505,
+        "label": "Corretor de Seguros"
+    },
+    {
+        "value": 1407,
+        "label": "Cozinha Contemporânea"
+    },
+    {
+        "value": 1908,
+        "label": "Cozinha Contemporânea EAD"
+    },
+    {
+        "value": 1780,
+        "label": "criminologia"
+    },
+    {
+        "value": 2051,
+        "label": "Criminologia EAD"
+    },
+    {
+        "value": 2616,
+        "label": "Criminologia (Tecnologia em Criminologia)"
+    },
+    {
+        "value": 1506,
+        "label": "Crítica e Curadoria"
+    },
+    {
+        "value": 2682,
+        "label": "CST Análise e Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 2186,
+        "label": "CST - Artes e Mídias Digitais"
+    },
+    {
+        "value": 2088,
+        "label": "CST EM CIÊNCIA DE DADOS (EAD)"
+    },
+    {
+        "value": 2689,
+        "label": "CST EM COMÉRCIO EXTERIOR"
+    },
+    {
+        "value": 2694,
+        "label": "CST em Estética e Cosmética EAD"
+    },
+    {
+        "value": 2188,
+        "label": "CST em Gastronomia"
+    },
+    {
+        "value": 2185,
+        "label": "CST EM GESTÃO AMBIENTAL EAD"
+    },
+    {
+        "value": 2687,
+        "label": "CST EM GESTÃO COMERCIAL"
+    },
+    {
+        "value": 2684,
+        "label": "CST EM GESTÃO DA PRODUÇÃO INDUSTRIAL"
+    },
+    {
+        "value": 2683,
+        "label": "CST EM GESTÃO DA QUALIDADE"
+    },
+    {
+        "value": 1742,
+        "label": "CST EM GESTÃO DA TECNOLOGIA DA INFORMAÇÃO"
+    },
+    {
+        "value": 2695,
+        "label": "CST EM GESTÃO DE RECURSOS HUMANOS"
+    },
+    {
+        "value": 2179,
+        "label": "CST EM GESTÃO DE RECURSOS HUMANOS EAD"
+    },
+    {
+        "value": 2693,
+        "label": "CST em Gestão de Tecnologia da Informação"
+    },
+    {
+        "value": 2288,
+        "label": "CST em Gestão Financeira"
+    },
+    {
+        "value": 2180,
+        "label": "CST EM GESTÃO FINANCEIRA EAD"
+    },
+    {
+        "value": 2686,
+        "label": "CST EM GESTÃO HOSPITALAR"
+    },
+    {
+        "value": 2685,
+        "label": "CST EM GESTÃO PÚBLICA"
+    },
+    {
+        "value": 2184,
+        "label": "CST EM GESTÃO PUBLICA EAD"
+    },
+    {
+        "value": 2690,
+        "label": "CST EM LOGÍSTICA"
+    },
+    {
+        "value": 2181,
+        "label": "CST EM LOGÍSTICA EAD"
+    },
+    {
+        "value": 2688,
+        "label": "CST EM MARKETING"
+    },
+    {
+        "value": 2183,
+        "label": "CST EM MARKETING EAD"
+    },
+    {
+        "value": 2691,
+        "label": "CST EM PROCESSOS GERENCIAIS"
+    },
+    {
+        "value": 2182,
+        "label": "CST EM PROCESSOS GERENCIAIS EAD"
+    },
+    {
+        "value": 2692,
+        "label": "CST em Redes de Computadores"
+    },
+    {
+        "value": 2190,
+        "label": "CST - Eventos"
+    },
+    {
+        "value": 2193,
+        "label": "CST - Gestão de Recursos Humanos"
+    },
+    {
+        "value": 2192,
+        "label": "CST - Logística"
+    },
+    {
+        "value": 2194,
+        "label": "CST - Marketing"
+    },
+    {
+        "value": 2189,
+        "label": "CST - Produção Audiovisual"
+    },
+    {
+        "value": 2191,
+        "label": "CST - Produção Multimídia"
+    },
+    {
+        "value": 1515,
+        "label": "Curso de Aprimoramento em Coleta de Sangue e Venopunção"
+    },
+    {
+        "value": 1514,
+        "label": "Curso de Aprimoramento em Primeiros Socorros"
+    },
+    {
+        "value": 1513,
+        "label": "Curso de Capacitação em Cuidador de Idosos"
+    },
+    {
+        "value": 936,
+        "label": "Curso de Pastor "
+    },
+    {
+        "value": 867,
+        "label": "Curso de Pesquisa de Mercado Online"
+    },
+    {
+        "value": 2802,
+        "label": "Curso Fundamental "
+    },
+    {
+        "value": 1619,
+        "label": "Curso Superior de Tecnologia em Ciência de Dados"
+    },
+    {
+        "value": 2678,
+        "label": "CURSO SUPERIOR DE TECNOLOGIA EM DESENVOLVIMENTO DE SOFTWARE MULTIPLATAFORMA"
+    },
+    {
+        "value": 228,
+        "label": "Curso Superior de Tecnologia em Design de Interiores"
+    },
+    {
+        "value": 229,
+        "label": "Curso Superior de Tecnologia em Estética e Cosmética com ênfase em Maquiagem Profissional"
+    },
+    {
+        "value": 231,
+        "label": "Curso Superior de Tecnologia em Fotografia"
+    },
+    {
+        "value": 1745,
+        "label": "Curso Superior de Tecnologia em Gestão da Tecnologia da Informação"
+    },
+    {
+        "value": 237,
+        "label": "Curso Superior de Tecnologia em Gestão de Turismo"
+    },
+    {
+        "value": 2757,
+        "label": "Curso Superior de Tecnologia em Marketing Digital"
+    },
+    {
+        "value": 241,
+        "label": "Curso Superior de Tecnologia em Produção Fonográfica"
+    },
+    {
+        "value": 242,
+        "label": "Curso Superior de Tecnologia em Produção Multimídia"
+    },
+    {
+        "value": 243,
+        "label": "Curso Superior de Tecnologia em Produção Publicitária"
+    },
+    {
+        "value": 223,
+        "label": "Dança"
+    },
+    {
+        "value": 2052,
+        "label": "Dança EAD"
+    },
+    {
+        "value": 895,
+        "label": "Dano Extrapatrimonial do Trabalho"
+    },
+    {
+        "value": 2302,
+        "label": "Data Science"
+    },
+    {
+        "value": 2284,
+        "label": "Data Science-Big Data \u0026 Data Engineering"
+    },
+    {
+        "value": 1149,
+        "label": "Data Science e Analytics"
+    },
+    {
+        "value": 2084,
+        "label": "Data Science e Big Data"
+    },
+    {
+        "value": 559,
+        "label": "Decoração"
+    },
+    {
+        "value": 1056,
+        "label": "Defesa Cibernética"
+    },
+    {
+        "value": 1889,
+        "label": "Defesa Cibernética EAD"
+    },
+    {
+        "value": 359,
+        "label": "Defesa cibernética - Tecnólogo"
+    },
+    {
+        "value": 1263,
+        "label": "Defesa e Gestão Estratégica Internacional"
+    },
+    {
+        "value": 2617,
+        "label": "Defesa Médica Hospitalar"
+    },
+    {
+        "value": 498,
+        "label": "Desenho Industrial"
+    },
+    {
+        "value": 1781,
+        "label": "Desenvolvimento back-end"
+    },
+    {
+        "value": 2053,
+        "label": "Desenvolvimento de Aplicativos Moveis EAD"
+    },
+    {
+        "value": 2618,
+        "label": "Desenvolvimento de Aplicativos Móveis (Tecnologia em Desenvolvimento de Aplicativos Móveis)"
+    },
+    {
+        "value": 2677,
+        "label": "Desenvolvimento de Sistemas "
+    },
+    {
+        "value": 2416,
+        "label": "Desenvolvimento de Sistemas com JAVA"
+    },
+    {
+        "value": 2417,
+        "label": "Desenvolvimento de Sistemas com Python"
+    },
+    {
+        "value": 1393,
+        "label": "Desenvolvimento de Software e Multiplataforma"
+    },
+    {
+        "value": 1305,
+        "label": "Desenvolvimento de Software Multiplataforma"
+    },
+    {
+        "value": 2023,
+        "label": "Desenvolvimento Full Stack"
+    },
+    {
+        "value": 2025,
+        "label": "Desenvolvimento Full Stack EAD"
+    },
+    {
+        "value": 1994,
+        "label": "Desenvolvimento Full Stock EAD"
+    },
+    {
+        "value": 1782,
+        "label": "Desenvolvimento mobile"
+    },
+    {
+        "value": 2301,
+        "label": "Desenvolvimento para Internet"
+    },
+    {
+        "value": 2418,
+        "label": "Desenvolvimento Profissional"
+    },
+    {
+        "value": 1720,
+        "label": "Desenvolvimento Rural - Bacharelado"
+    },
+    {
+        "value": 1383,
+        "label": "Desenvolvimento Web"
+    },
+    {
+        "value": 617,
+        "label": "Design"
+    },
+    {
+        "value": 1444,
+        "label": "Design Comercial"
+    },
+    {
+        "value": 1145,
+        "label": "Design de Animação"
+    },
+    {
+        "value": 2056,
+        "label": "Design de Animação EAD"
+    },
+    {
+        "value": 2230,
+        "label": "Design de Calçados"
+    },
+    {
+        "value": 2668,
+        "label": "Design de Experiência"
+    },
+    {
+        "value": 222,
+        "label": "Design de Games"
+    },
+    {
+        "value": 2384,
+        "label": "Design de Games EAD"
+    },
+    {
+        "value": 314,
+        "label": "Design de Interiores"
+    },
+    {
+        "value": 2003,
+        "label": "Design de Interiores EAD"
+    },
+    {
+        "value": 1706,
+        "label": "Design de Jogos "
+    },
+    {
+        "value": 1740,
+        "label": "Design de Mídias Digitais"
+    },
+    {
+        "value": 332,
+        "label": "Design de moda"
+    },
+    {
+        "value": 2002,
+        "label": "Design de Moda EAD"
+    },
+    {
+        "value": 1841,
+        "label": "Design de Móveis"
+    },
+    {
+        "value": 9,
+        "label": "Design De Produto"
+    },
+    {
+        "value": 2001,
+        "label": "Design de Produto EAD"
+    },
+    {
+        "value": 2086,
+        "label": "Design de Produto e Serviço"
+    },
+    {
+        "value": 2273,
+        "label": "Design de Produtos Digitais"
+    },
+    {
+        "value": 172,
+        "label": "Design - Design de Produto"
+    },
+    {
+        "value": 143,
+        "label": "Design Digital"
+    },
+    {
+        "value": 2619,
+        "label": "Design Digital e User Experience"
+    },
+    {
+        "value": 2383,
+        "label": "Design EAD"
+    },
+    {
+        "value": 2092,
+        "label": "Design Experience"
+    },
+    {
+        "value": 18,
+        "label": "Design Gráfico"
+    },
+    {
+        "value": 221,
+        "label": "Design Gráfico com ênfase em Tipografia"
+    },
+    {
+        "value": 2054,
+        "label": "Design Gráfico EAD"
+    },
+    {
+        "value": 1445,
+        "label": "Design Gráfico e Digital"
+    },
+    {
+        "value": 650,
+        "label": " Design Industrial"
+    },
+    {
+        "value": 2055,
+        "label": "Design Musical EAD"
+    },
+    {
+        "value": 2030,
+        "label": "Design Visual"
+    },
+    {
+        "value": 372,
+        "label": "Desing de Interiores"
+    },
+    {
+        "value": 2621,
+        "label": "Despachante Documentarista"
+    },
+    {
+        "value": 1783,
+        "label": "DevOps"
+    },
+    {
+        "value": 1572,
+        "label": "Direção Cinematográfica - Online"
+    },
+    {
+        "value": 1551,
+        "label": "Direção de Arte"
+    },
+    {
+        "value": 1564,
+        "label": "Direção de Arte - Intensivo de Férias"
+    },
+    {
+        "value": 1053,
+        "label": "Direção de Artes"
+    },
+    {
+        "value": 1552,
+        "label": "Direção de Fotografia"
+    },
+    {
+        "value": 1567,
+        "label": "Direção de Fotografia - Intensivo de Férias"
+    },
+    {
+        "value": 1568,
+        "label": "Direção de Fotografia - Online"
+    },
+    {
+        "value": 809,
+        "label": "Direção Teatral"
+    },
+    {
+        "value": 24,
+        "label": "Direito"
+    },
+    {
+        "value": 2419,
+        "label": "Direito Civil"
+    },
+    {
+        "value": 2303,
+        "label": "Direito EAD"
+    },
+    {
+        "value": 2420,
+        "label": "Direito Penal "
+    },
+    {
+        "value": 2421,
+        "label": "Direito Trabalhista"
+    },
+    {
+        "value": 2423,
+        "label": "Docência e Mediação"
+    },
+    {
+        "value": 2424,
+        "label": "Docência em Serviço Social"
+    },
+    {
+        "value": 2425,
+        "label": "Docência na Educação Infantil"
+    },
+    {
+        "value": 2426,
+        "label": "Docência no Ensino Superior "
+    },
+    {
+        "value": 1555,
+        "label": "Documentário"
+    },
+    {
+        "value": 1553,
+        "label": "Documentário Musical e Biográfico"
+    },
+    {
+        "value": 1586,
+        "label": "Documentário - Online"
+    },
+    {
+        "value": 2779,
+        "label": "Doutorado"
+    },
+    {
+        "value": 1554,
+        "label": "Dublagem"
+    },
+    {
+        "value": 552,
+        "label": "Ecologia "
+    },
+    {
+        "value": 22,
+        "label": "Economia"
+    },
+    {
+        "value": 819,
+        "label": "Economia Doméstica"
+    },
+    {
+        "value": 950,
+        "label": " Economia Empresarial e Controladoria "
+    },
+    {
+        "value": 2276,
+        "label": "Edição e Composição de Vídeos"
+    },
+    {
+        "value": 1589,
+        "label": "Edição - Online"
+    },
+    {
+        "value": 2350,
+        "label": "Edificações"
+    },
+    {
+        "value": 322,
+        "label": "Editoração"
+    },
+    {
+        "value": 2427,
+        "label": "Educação a Distância: Gestão e Tutoria"
+    },
+    {
+        "value": 2428,
+        "label": "Educação Alimentar e Nutricional na Educação Básica "
+    },
+    {
+        "value": 2429,
+        "label": "Educação Ambiental"
+    },
+    {
+        "value": 2430,
+        "label": "Educação Ambiental e Sustentabilidade "
+    },
+    {
+        "value": 744,
+        "label": "Educação Básica Intercultural"
+    },
+    {
+        "value": 2431,
+        "label": "Educação, Cultura e Diversidade"
+    },
+    {
+        "value": 2432,
+        "label": "Educação de Jovens e Adultos "
+    },
+    {
+        "value": 746,
+        "label": "Educação do Campo"
+    },
+    {
+        "value": 488,
+        "label": "Educação Especial"
+    },
+    {
+        "value": 2433,
+        "label": "Educação Especial | Deficiência Auditiva "
+    },
+    {
+        "value": 2434,
+        "label": "Educação Especial | Deficiência Física "
+    },
+    {
+        "value": 2435,
+        "label": "Educação Especial | Deficiência Intelectual "
+    },
+    {
+        "value": 2436,
+        "label": "Educação Especial | Deficiência  Visual"
+    },
+    {
+        "value": 2060,
+        "label": "Educação Especial EAD"
+    },
+    {
+        "value": 2437,
+        "label": "Educação Especial Inclusiva "
+    },
+    {
+        "value": 2438,
+        "label": "Educação Especial | Transtorno Do Espectro Autista "
+    },
+    {
+        "value": 2439,
+        "label": "Educação Financeira e Ensino de Matemática"
+    },
+    {
+        "value": 2440,
+        "label": "Educação Financeira no Ensino Escolar "
+    },
+    {
+        "value": 135,
+        "label": "Educação Física"
+    },
+    {
+        "value": 2701,
+        "label": "Educação Fisica 2.0"
+    },
+    {
+        "value": 1871,
+        "label": "Educação Física – Bacharelado (Flex)"
+    },
+    {
+        "value": 632,
+        "label": "Educação Física e Saúde"
+    },
+    {
+        "value": 2441,
+        "label": "Educação Física Escolar "
+    },
+    {
+        "value": 2442,
+        "label": "Educação Física Escolar e Inclusão "
+    },
+    {
+        "value": 982,
+        "label": "Educação Física - Licenciatura"
+    },
+    {
+        "value": 1872,
+        "label": "Educação Física – Licenciatura (Flex)"
+    },
+    {
+        "value": 1812,
+        "label": "Educação Física Modalidade EAD"
+    },
+    {
+        "value": 735,
+        "label": "Educação Física - Promoção em Saúde e Lazer"
+    },
+    {
+        "value": 734,
+        "label": "Educação Física - Treinamento Esportivo"
+    },
+    {
+        "value": 2444,
+        "label": "Educação Infanti e anos iniciais do fundamental"
+    },
+    {
+        "value": 820,
+        "label": "Educação Infantil"
+    },
+    {
+        "value": 2443,
+        "label": "educação infantil e anos iniciais "
+    },
+    {
+        "value": 2445,
+        "label": "Educação Integral e Integrada"
+    },
+    {
+        "value": 2446,
+        "label": "Educação Matemática"
+    },
+    {
+        "value": 2447,
+        "label": "Educação matemática na Educação Básica "
+    },
+    {
+        "value": 849,
+        "label": "Educação na música"
+    },
+    {
+        "value": 2622,
+        "label": "Educador Social"
+    },
+    {
+        "value": 91,
+        "label": "Educomunicação"
+    },
+    {
+        "value": 1150,
+        "label": "Eixo da Computação"
+    },
+    {
+        "value": 656,
+        "label": "Eletrônica Automotiva "
+    },
+    {
+        "value": 192,
+        "label": "Eletrônica Industrial"
+    },
+    {
+        "value": 868,
+        "label": " Eletrotécnica "
+    },
+    {
+        "value": 325,
+        "label": "Eletrotécnica Digital"
+    },
+    {
+        "value": 875,
+        "label": "Empreendedorismo "
+    },
+    {
+        "value": 1924,
+        "label": "Empreendedorismo EAD"
+    },
+    {
+        "value": 907,
+        "label": "Empreendedorismo e Gestão"
+    },
+    {
+        "value": 2448,
+        "label": "Empreendedorismo e Inovação"
+    },
+    {
+        "value": 2449,
+        "label": "Empreendedorismo  Social e Educação Empreendedora "
+    },
+    {
+        "value": 888,
+        "label": "Endocomunicação"
+    },
+    {
+        "value": 1849,
+        "label": "Energias Renováveis"
+    },
+    {
+        "value": 2059,
+        "label": "Energias Renováveis EAD"
+    },
+    {
+        "value": 148,
+        "label": "Enfermagem"
+    },
+    {
+        "value": 2058,
+        "label": "Enfermagem EAD"
+    },
+    {
+        "value": 2451,
+        "label": "Enfermagem: Geriatria e Gerontologia "
+    },
+    {
+        "value": 2450,
+        "label": "Enfermagem no Trabalho"
+    },
+    {
+        "value": 37,
+        "label": "Engenharia"
+    },
+    {
+        "value": 489,
+        "label": "Engenharia Acústica"
+    },
+    {
+        "value": 39,
+        "label": "Engenharia Aeroespacial"
+    },
+    {
+        "value": 38,
+        "label": "Engenharia Aeronáutica"
+    },
+    {
+        "value": 2187,
+        "label": "Engenharia Aeronáutica e Espaço"
+    },
+    {
+        "value": 80,
+        "label": "Engenharia Agrícola"
+    },
+    {
+        "value": 518,
+        "label": "Engenharia Agrícola e Ambiental"
+    },
+    {
+        "value": 1829,
+        "label": "ENGENHARIA AGRÍCOLA E AMBIENTAL"
+    },
+    {
+        "value": 92,
+        "label": "Engenharia Agronômica"
+    },
+    {
+        "value": 2037,
+        "label": "Engenharia Agronômica EAD"
+    },
+    {
+        "value": 618,
+        "label": "Engenharia Ambiental"
+    },
+    {
+        "value": 2035,
+        "label": "Engenharia Ambiental EAD"
+    },
+    {
+        "value": 1828,
+        "label": "ENGENHARIA AMBIENTAL E DA SUSTENTABILIDADE"
+    },
+    {
+        "value": 732,
+        "label": "Engenharia Ambiental e Sanitária"
+    },
+    {
+        "value": 1873,
+        "label": " Engenharia Ambiental e Sanitária (Digital)"
+    },
+    {
+        "value": 2057,
+        "label": "Engenharia Ambiental e Sanitária EAD"
+    },
+    {
+        "value": 962,
+        "label": "Engenharia Ambiental e Urbana"
+    },
+    {
+        "value": 544,
+        "label": "Engenharia Automotiva"
+    },
+    {
+        "value": 978,
+        "label": "Engenharia Básico"
+    },
+    {
+        "value": 318,
+        "label": "Engenharia Biomédica"
+    },
+    {
+        "value": 93,
+        "label": "Engenharia Bioquímica"
+    },
+    {
+        "value": 889,
+        "label": "Engenharia biotecnológica "
+    },
+    {
+        "value": 176,
+        "label": "Engenharia Cartográfica"
+    },
+    {
+        "value": 1624,
+        "label": "Engenharia Cartográfica e de Agrimensura"
+    },
+    {
+        "value": 56,
+        "label": "Engenharia   Ciclo Básico"
+    },
+    {
+        "value": 2154,
+        "label": "ENGENHARIA CICLO BÁSICO"
+    },
+    {
+        "value": 30,
+        "label": "Engenharia Civil"
+    },
+    {
+        "value": 1874,
+        "label": "Engenharia Civil (Digital)"
+    },
+    {
+        "value": 1993,
+        "label": "Engenharia Civil EAD"
+    },
+    {
+        "value": 1743,
+        "label": "ENGENHARIA CIVIL E PRODUÇÃO"
+    },
+    {
+        "value": 2343,
+        "label": "Engenharia Civil FLEX"
+    },
+    {
+        "value": 1188,
+        "label": "Engenharia Computacional"
+    },
+    {
+        "value": 2791,
+        "label": "ENGENHARIA DA COMPLEXIDADE"
+    },
+    {
+        "value": 65,
+        "label": "Engenharia Da Computação"
+    },
+    {
+        "value": 1875,
+        "label": "Engenharia da Computação (Digital)"
+    },
+    {
+        "value": 2344,
+        "label": "Engenharia da Computação EAD"
+    },
+    {
+        "value": 897,
+        "label": "Engenharia da Mobilidade "
+    },
+    {
+        "value": 1441,
+        "label": "Engenharia da Pesca"
+    },
+    {
+        "value": 745,
+        "label": "Engenharia da Pesca e Aquicultura"
+    },
+    {
+        "value": 1525,
+        "label": "Engenharia da Produção"
+    },
+    {
+        "value": 2345,
+        "label": "Engenharia da Produção EAD"
+    },
+    {
+        "value": 2346,
+        "label": "Engenharia da Produção FLEX"
+    },
+    {
+        "value": 620,
+        "label": "Engenharia de Agrimensura"
+    },
+    {
+        "value": 831,
+        "label": "Engenharia de Agrimensura e Cartográfica"
+    },
+    {
+        "value": 519,
+        "label": "Engenharia de Agronegócio"
+    },
+    {
+        "value": 157,
+        "label": "Engenharia de Alimentos"
+    },
+    {
+        "value": 1827,
+        "label": "ENGENHARIA DE AQUICULTURA E RECURSOS HÍDRICOS"
+    },
+    {
+        "value": 164,
+        "label": "Engenharia de Bioprocessos"
+    },
+    {
+        "value": 1391,
+        "label": "Engenharia de B|ioprocessos e Biotecnologia"
+    },
+    {
+        "value": 1060,
+        "label": "Engenharia de Bioprocessos e Biotecnologia"
+    },
+    {
+        "value": 94,
+        "label": "Engenharia De Biossistemas"
+    },
+    {
+        "value": 1520,
+        "label": "Engenharia de Computação"
+    },
+    {
+        "value": 2172,
+        "label": "Engenharia de Computação EAD"
+    },
+    {
+        "value": 810,
+        "label": "Engenharia de Computação e Informação "
+    },
+    {
+        "value": 825,
+        "label": "Engenharia de Comunicações"
+    },
+    {
+        "value": 34,
+        "label": "Engenharia de Controle e Automação"
+    },
+    {
+        "value": 2347,
+        "label": "Engenharia de Controle e Automação EAD"
+    },
+    {
+        "value": 346,
+        "label": "Engenharia de Energia"
+    },
+    {
+        "value": 731,
+        "label": "Engenharia de Energias Renováveis"
+    },
+    {
+        "value": 704,
+        "label": "Engenharia de Exploração e Produção de Petróleo"
+    },
+    {
+        "value": 826,
+        "label": "Engenharia de Fortificação "
+    },
+    {
+        "value": 627,
+        "label": "Engenharia de Gestão"
+    },
+    {
+        "value": 112,
+        "label": "Engenharia de Gestão "
+    },
+    {
+        "value": 858,
+        "label": "Engenharia de Inovação"
+    },
+    {
+        "value": 83,
+        "label": "Engenharia De Manufatura"
+    },
+    {
+        "value": 141,
+        "label": "Engenharia de Materiais"
+    },
+    {
+        "value": 35,
+        "label": "Engenharia De Materiais"
+    },
+    {
+        "value": 95,
+        "label": "Engenharia De Materiais E Manufatura"
+    },
+    {
+        "value": 1099,
+        "label": " Engenharia de Materiais e Nanotecnologia"
+    },
+    {
+        "value": 821,
+        "label": "Engenharia de metais e nanotecnologia "
+    },
+    {
+        "value": 96,
+        "label": "Engenharia De Minas"
+    },
+    {
+        "value": 1146,
+        "label": "Engenharia de Óleo e de Gás"
+    },
+    {
+        "value": 692,
+        "label": "Engenharia de Pesca"
+    },
+    {
+        "value": 333,
+        "label": "Engenharia de Petróleo"
+    },
+    {
+        "value": 676,
+        "label": "Engenharia de Petróleo e Gás"
+    },
+    {
+        "value": 142,
+        "label": "Engenharia de Produção"
+    },
+    {
+        "value": 941,
+        "label": "Engenharia de Produção Agroindustrial"
+    },
+    {
+        "value": 887,
+        "label": "Engenharia de Produção Civil"
+    },
+    {
+        "value": 2800,
+        "label": "Engenharia de Produção com ênfase em Agronegócios"
+    },
+    {
+        "value": 1876,
+        "label": "Engenharia de Produção (Digital)"
+    },
+    {
+        "value": 1808,
+        "label": "Engenharia de Produção EAD"
+    },
+    {
+        "value": 1143,
+        "label": "Engenharia de Produção Elétrica"
+    },
+    {
+        "value": 626,
+        "label": "Engenharia de Produção Mecânica"
+    },
+    {
+        "value": 520,
+        "label": "Engenharia de Recursos Hídricos e do Meio Ambiente"
+    },
+    {
+        "value": 1983,
+        "label": "Engenharia de Robôs"
+    },
+    {
+        "value": 2096,
+        "label": "Engenharia de Saúde e Segurança"
+    },
+    {
+        "value": 1101,
+        "label": "Engenharia de Segurança do Trabalho"
+    },
+    {
+        "value": 640,
+        "label": "Engenharia de Sistemas"
+    },
+    {
+        "value": 1511,
+        "label": "Engenharia de Sistemas Ciber Físicos"
+    },
+    {
+        "value": 2798,
+        "label": "Engenharia de Sistemas Ciber-Físicos"
+    },
+    {
+        "value": 388,
+        "label": "Engenharia de Software"
+    },
+    {
+        "value": 1925,
+        "label": "Engenharia de Software EAD"
+    },
+    {
+        "value": 2672,
+        "label": "engenharia de telecomunicações"
+    },
+    {
+        "value": 150,
+        "label": "Engenharia de Telecomunicações"
+    },
+    {
+        "value": 1386,
+        "label": "Engenharia de Telecomunicações e Eletrônica"
+    },
+    {
+        "value": 537,
+        "label": "Engenharia de Transportes"
+    },
+    {
+        "value": 1826,
+        "label": "ENGENHARIA DE TRANSPORTES E LOGÍSTICA"
+    },
+    {
+        "value": 2366,
+        "label": "Engenharia DEVOPS"
+    },
+    {
+        "value": 1608,
+        "label": "Engenharia do Agronegócio"
+    },
+    {
+        "value": 32,
+        "label": "Engenharia Elétrica"
+    },
+    {
+        "value": 1610,
+        "label": "Engenharia Elétrica com ênfase em Automação"
+    },
+    {
+        "value": 1311,
+        "label": "Engenharia Elétrica com ênfase em sistemas e computação"
+    },
+    {
+        "value": 1187,
+        "label": "Engenharia Elétrica com ênfase em Sistemas Eletrônicos"
+    },
+    {
+        "value": 1910,
+        "label": "Engenharia Elétrica EAD"
+    },
+    {
+        "value": 612,
+        "label": "Engenharia Elétrica e Eletrônica"
+    },
+    {
+        "value": 736,
+        "label": "Engenharia Elétrica - Eletrotécnica"
+    },
+    {
+        "value": 737,
+        "label": "Engenharia Elétrica - Telecomunicações"
+    },
+    {
+        "value": 41,
+        "label": "Engenharia Eletrônica"
+    },
+    {
+        "value": 2205,
+        "label": "Engenharia Eletrônica EAD"
+    },
+    {
+        "value": 2837,
+        "label": "Engenharia Eletrônica e de Computação"
+    },
+    {
+        "value": 1192,
+        "label": "Engenharia Eletrônica e de Telecomunicações"
+    },
+    {
+        "value": 961,
+        "label": "Engenharia Ferroviária e Logística"
+    },
+    {
+        "value": 964,
+        "label": "Engenharia Financeira "
+    },
+    {
+        "value": 85,
+        "label": "Engenharia Física"
+    },
+    {
+        "value": 98,
+        "label": "Engenharia Florestal"
+    },
+    {
+        "value": 1825,
+        "label": "ENGENHARIA FLORESTAL"
+    },
+    {
+        "value": 814,
+        "label": "Engenharia Geológica"
+    },
+    {
+        "value": 590,
+        "label": "Engenharia Hídrica"
+    },
+    {
+        "value": 494,
+        "label": "Engenharia Industrial "
+    },
+    {
+        "value": 1440,
+        "label": "Engenharia Industrial - Madeira "
+    },
+    {
+        "value": 1625,
+        "label": "Engenharia Industrial Madereira "
+    },
+    {
+        "value": 2297,
+        "label": "Engenharia Industrial Mecânica"
+    },
+    {
+        "value": 115,
+        "label": "Engenharia Informação "
+    },
+    {
+        "value": 116,
+        "label": "Engenharia Instrumentação, Automação e Robótica "
+    },
+    {
+        "value": 113,
+        "label": "Engenharia Materiais "
+    },
+    {
+        "value": 27,
+        "label": "Engenharia Mecânica"
+    },
+    {
+        "value": 682,
+        "label": "Engenharia Mecânica-Aeronáutica"
+    },
+    {
+        "value": 1807,
+        "label": "Engenharia Mecânica - Automação e Sistemas"
+    },
+    {
+        "value": 1926,
+        "label": "Engenharia Mecânica EAD"
+    },
+    {
+        "value": 684,
+        "label": "Engenharia Mecânica e de Automóveis"
+    },
+    {
+        "value": 1744,
+        "label": "ENGENHARIA MECÂNICA E ELÉTRICA"
+    },
+    {
+        "value": 99,
+        "label": "Engenharia Mecatrônica"
+    },
+    {
+        "value": 1489,
+        "label": "Engenharia Mecatrônica - Área Elétrica"
+    },
+    {
+        "value": 1490,
+        "label": "Engenharia Mecatrônica - Área Mecânica"
+    },
+    {
+        "value": 2004,
+        "label": "Engenharia Mecatrônica EAD"
+    },
+    {
+        "value": 100,
+        "label": "Engenharia Metalúrgica"
+    },
+    {
+        "value": 101,
+        "label": "Engenharia Naval"
+    },
+    {
+        "value": 2282,
+        "label": "Engenharia Nuclear"
+    },
+    {
+        "value": 117,
+        "label": "Engenharia Planejamento Territorial "
+    },
+    {
+        "value": 182,
+        "label": "Engenharia Química"
+    },
+    {
+        "value": 553,
+        "label": "Engenharias"
+    },
+    {
+        "value": 742,
+        "label": "Engenharia Sanitária"
+    },
+    {
+        "value": 1057,
+        "label": "Engenharia Sanitária e Ambiental"
+    },
+    {
+        "value": 36,
+        "label": "Engenharia Têxtil"
+    },
+    {
+        "value": 815,
+        "label": "Engenharia Urbana"
+    },
+    {
+        "value": 2452,
+        "label": "Ensino de ARtes na Educação Infantil"
+    },
+    {
+        "value": 2453,
+        "label": "Ensino e Interdisciplinaridade "
+    },
+    {
+        "value": 693,
+        "label": "Ensino Medio"
+    },
+    {
+        "value": 628,
+        "label": "Ensino Médio"
+    },
+    {
+        "value": 827,
+        "label": "Ensino Militar"
+    },
+    {
+        "value": 1911,
+        "label": "Ensino Religioso EAD"
+    },
+    {
+        "value": 1402,
+        "label": "entre em contato com suporte@walljobs.com.br"
+    },
+    {
+        "value": 932,
+        "label": "Escatologia "
+    },
+    {
+        "value": 2623,
+        "label": "Escrita Criativa"
+    },
+    {
+        "value": 549,
+        "label": "Escrita Fiscal"
+    },
+    {
+        "value": 811,
+        "label": "Escultura"
+    },
+    {
+        "value": 2279,
+        "label": "Especialização em Tecnologia Java"
+    },
+    {
+        "value": 1839,
+        "label": " Especialização Técnica em Segurança do Trabalho em Meio Ambiente"
+    },
+    {
+        "value": 512,
+        "label": "Esporte"
+    },
+    {
+        "value": 569,
+        "label": "Esporte e Lazer"
+    },
+    {
+        "value": 2455,
+        "label": "Estatégia e Inovação "
+    },
+    {
+        "value": 73,
+        "label": "Estatística"
+    },
+    {
+        "value": 2348,
+        "label": "Estatística EAD"
+    },
+    {
+        "value": 220,
+        "label": "Estética"
+    },
+    {
+        "value": 804,
+        "label": "Estética e Cosmética"
+    },
+    {
+        "value": 1912,
+        "label": "Estética e Cosmética EAD"
+    },
+    {
+        "value": 2624,
+        "label": "Estética e Imagem Pessoal"
+    },
+    {
+        "value": 2039,
+        "label": "Estradas"
+    },
+    {
+        "value": 2454,
+        "label": "Estratégia de Saúde da Família "
+    },
+    {
+        "value": 2460,
+        "label": "estratégia e inovação"
+    },
+    {
+        "value": 908,
+        "label": "Estratégia Empresarial"
+    },
+    {
+        "value": 2456,
+        "label": "Estrutura Organizacional, avaliação, controle e regulação do sus"
+    },
+    {
+        "value": 596,
+        "label": "Estudos Africanos e Afro-brasileiros"
+    },
+    {
+        "value": 521,
+        "label": "Estudos de Mídia"
+    },
+    {
+        "value": 845,
+        "label": "Eventos"
+    },
+    {
+        "value": 972,
+        "label": "Exchange Programs"
+    },
+    {
+        "value": 856,
+        "label": "Executivo em Gestão Empresarial "
+    },
+    {
+        "value": 792,
+        "label": "expressão gráfica"
+    },
+    {
+        "value": 490,
+        "label": "Fabricação Mecânica"
+    },
+    {
+        "value": 399,
+        "label": "Faculdade Especial de Formação Pedagógica em Teatro"
+    },
+    {
+        "value": 151,
+        "label": "Farmácia"
+    },
+    {
+        "value": 639,
+        "label": "Farmácia - Bioquímica"
+    },
+    {
+        "value": 1809,
+        "label": "Farmácia EAD"
+    },
+    {
+        "value": 181,
+        "label": "Farmácia e Bioquímica"
+    },
+    {
+        "value": 683,
+        "label": "Film and Broadcast Production"
+    },
+    {
+        "value": 1550,
+        "label": "Filmmaking: Formação Livre em Cinema"
+    },
+    {
+        "value": 1544,
+        "label": "Filmworks"
+    },
+    {
+        "value": 47,
+        "label": "Filosofia"
+    },
+    {
+        "value": 2702,
+        "label": "Filosofia 2.0"
+    },
+    {
+        "value": 2061,
+        "label": "Filosofia EAD"
+    },
+    {
+        "value": 1798,
+        "label": "Filosofia - Licenciatura EAD"
+    },
+    {
+        "value": 385,
+        "label": "Finanças"
+    },
+    {
+        "value": 2608,
+        "label": "Finanças e Negócios"
+    },
+    {
+        "value": 970,
+        "label": "Finance"
+    },
+    {
+        "value": 1063,
+        "label": "Finance e Business Analytics \u0026 Information Systems"
+    },
+    {
+        "value": 48,
+        "label": "Física"
+    },
+    {
+        "value": 691,
+        "label": "Física Biológica"
+    },
+    {
+        "value": 522,
+        "label": "Física com Ênfase em Física Computacional"
+    },
+    {
+        "value": 102,
+        "label": "Física Computacional"
+    },
+    {
+        "value": 2064,
+        "label": "Física EAD"
+    },
+    {
+        "value": 688,
+        "label": "Física Médica"
+    },
+    {
+        "value": 689,
+        "label": "Física Teórica"
+    },
+    {
+        "value": 2457,
+        "label": "Fisiologia do exercício "
+    },
+    {
+        "value": 152,
+        "label": "Fisioterapia "
+    },
+    {
+        "value": 1928,
+        "label": "Fisioterapia EAD"
+    },
+    {
+        "value": 2312,
+        "label": "Fisioterapia Flex"
+    },
+    {
+        "value": 153,
+        "label": "Fonoaudiologia"
+    },
+    {
+        "value": 842,
+        "label": "Fonoaudiologia Hospitalar "
+    },
+    {
+        "value": 2145,
+        "label": "Fordoc EAD"
+    },
+    {
+        "value": 1477,
+        "label": "Formação Cultural para educadores indígenas"
+    },
+    {
+        "value": 259,
+        "label": "Formação Específica em Administração de RH"
+    },
+    {
+        "value": 1546,
+        "label": "Formação Livre em Direção de Fotografia"
+    },
+    {
+        "value": 1549,
+        "label": "Formação Livre em Edição"
+    },
+    {
+        "value": 1547,
+        "label": "Formação Livre em Interpretação pra Cinema e TV"
+    },
+    {
+        "value": 1548,
+        "label": "Formação Livre em Roteiro"
+    },
+    {
+        "value": 538,
+        "label": "Formação Pedagógica"
+    },
+    {
+        "value": 2625,
+        "label": "Formação Pedagógica em Artes Visuais"
+    },
+    {
+        "value": 2703,
+        "label": "Formação Pedagógica em Biologia"
+    },
+    {
+        "value": 2626,
+        "label": "Formação Pedagógica em  Ciências Biológicas"
+    },
+    {
+        "value": 2627,
+        "label": "Formação Pedagógica em Educação Especial"
+    },
+    {
+        "value": 2628,
+        "label": "Formação Pedagógica em Educação Física"
+    },
+    {
+        "value": 1670,
+        "label": "FORMAÇÃO PEDAGÓGICA EM FILOSOFIA"
+    },
+    {
+        "value": 2629,
+        "label": "Formação Pedagógica em Física"
+    },
+    {
+        "value": 1671,
+        "label": "FORMAÇÃO PEDAGÓGICA EM GEOGRAFIA"
+    },
+    {
+        "value": 1672,
+        "label": "FORMAÇÃO PEDAGÓGICA EM HISTÓRIA"
+    },
+    {
+        "value": 1943,
+        "label": "Formação Pedagógica em História EAD"
+    },
+    {
+        "value": 2630,
+        "label": "Formação Pedagógica em Informática"
+    },
+    {
+        "value": 1673,
+        "label": "FORMAÇÃO PEDAGÓGICA EM LETRAS"
+    },
+    {
+        "value": 2017,
+        "label": "Formação Pedagógica em Letras - Espanhol"
+    },
+    {
+        "value": 1949,
+        "label": "Formação Pedagógica em Letras - Espanhol EAD"
+    },
+    {
+        "value": 2018,
+        "label": "Formação Pedagógica em Letras - Inglês"
+    },
+    {
+        "value": 1951,
+        "label": "Formação Pedagógica em Letras - Inglês EAD"
+    },
+    {
+        "value": 2631,
+        "label": "Formação Pedagógica em Letras - Libras"
+    },
+    {
+        "value": 2021,
+        "label": "Formação Pedagógica em Letras - Língua Portuguesa"
+    },
+    {
+        "value": 2632,
+        "label": "Formação Pedagógica em Matemática"
+    },
+    {
+        "value": 1674,
+        "label": "FORMAÇÃO PEDAGÓGICA EM MATEMÁTICA"
+    },
+    {
+        "value": 1959,
+        "label": "Formação Pedagógica em Matemática EAD"
+    },
+    {
+        "value": 1675,
+        "label": "FORMAÇÃO PEDAGÓGICA EM PEDAGOGIA"
+    },
+    {
+        "value": 1962,
+        "label": "Formação Pedagógica em Pedagogia EAD"
+    },
+    {
+        "value": 2633,
+        "label": "Formação Pedagógica em Química"
+    },
+    {
+        "value": 2634,
+        "label": "Formação Pedagógica em Sociologia"
+    },
+    {
+        "value": 1676,
+        "label": "FORMAÇÃO PEDAGÓGICA EM SOCIOLOGIA"
+    },
+    {
+        "value": 1954,
+        "label": "Formação Pedagógica Letras - Língua Portuguesa EAD"
+    },
+    {
+        "value": 1018,
+        "label": "Formação Profissional de Ator"
+    },
+    {
+        "value": 7,
+        "label": "Fotografia"
+    },
+    {
+        "value": 2063,
+        "label": "Fotografia EAD"
+    },
+    {
+        "value": 2458,
+        "label": "Fundamentos e orgnanização curricular "
+    },
+    {
+        "value": 376,
+        "label": "Futebol"
+    },
+    {
+        "value": 2274,
+        "label": "Game Art \u0026 Design"
+    },
+    {
+        "value": 2285,
+        "label": "Game Development"
+    },
+    {
+        "value": 2461,
+        "label": "Gamificação na educação"
+    },
+    {
+        "value": 321,
+        "label": "Gastronomia"
+    },
+    {
+        "value": 1804,
+        "label": "Gastronomia Modalidade EAD"
+    },
+    {
+        "value": 499,
+        "label": "Gemologia"
+    },
+    {
+        "value": 847,
+        "label": "Geociência"
+    },
+    {
+        "value": 103,
+        "label": "Geofísica"
+    },
+    {
+        "value": 74,
+        "label": "Geografia"
+    },
+    {
+        "value": 2704,
+        "label": "Geografia 2.0"
+    },
+    {
+        "value": 2065,
+        "label": "Geografia EAD"
+    },
+    {
+        "value": 2462,
+        "label": "Geografia Populacional"
+    },
+    {
+        "value": 495,
+        "label": "Geologia"
+    },
+    {
+        "value": 491,
+        "label": "Geoprocessamento "
+    },
+    {
+        "value": 882,
+        "label": "Gerenciamento de projetos "
+    },
+    {
+        "value": 570,
+        "label": "Gerontologia"
+    },
+    {
+        "value": 1408,
+        "label": "Gerontologia - Bem Estar E Educação"
+    },
+    {
+        "value": 1932,
+        "label": "Gerontologia - Bem Estar e Educação EAD"
+    },
+    {
+        "value": 571,
+        "label": "Gerontologia e Obstetrícia"
+    },
+    {
+        "value": 2463,
+        "label": "Gerontologia Social"
+    },
+    {
+        "value": 905,
+        "label": "Gestão "
+    },
+    {
+        "value": 2464,
+        "label": "Gestão Administrativa e Marketing"
+    },
+    {
+        "value": 104,
+        "label": "Gestão Ambiental"
+    },
+    {
+        "value": 1890,
+        "label": "Gestão Ambiental EAD"
+    },
+    {
+        "value": 2465,
+        "label": "Gestão Ambiental na Indústria"
+    },
+    {
+        "value": 846,
+        "label": "Gestão Comercial"
+    },
+    {
+        "value": 1859,
+        "label": "Gestão Comercial EAD"
+    },
+    {
+        "value": 873,
+        "label": "Gestão com Pessoas "
+    },
+    {
+        "value": 2466,
+        "label": "Gestão Corporativa e Inovação "
+    },
+    {
+        "value": 2067,
+        "label": "Gestão da Comunicação Organizacional EAD"
+    },
+    {
+        "value": 2467,
+        "label": "Gestão da Indústria 4.0"
+    },
+    {
+        "value": 797,
+        "label": "Gestão da informação"
+    },
+    {
+        "value": 2635,
+        "label": "Gestão da Inovação"
+    },
+    {
+        "value": 1852,
+        "label": "Gestão da Inovação e Empreendedorismo Digital"
+    },
+    {
+        "value": 2156,
+        "label": "Gestão da Produção"
+    },
+    {
+        "value": 2155,
+        "label": "Gestão da Produção EAD"
+    },
+    {
+        "value": 326,
+        "label": "Gestão da Produção Industrial "
+    },
+    {
+        "value": 1933,
+        "label": "Gestão da Produção Industrial EAD"
+    },
+    {
+        "value": 327,
+        "label": "Gestão da Qualidade"
+    },
+    {
+        "value": 1934,
+        "label": "Gestão da Qualidade EAD"
+    },
+    {
+        "value": 2468,
+        "label": "Gestão da Qualidade e Segurança dos Alimentos"
+    },
+    {
+        "value": 2066,
+        "label": "Gestão da Saúde Pública EAD"
+    },
+    {
+        "value": 2015,
+        "label": "Gestão das organizações do terceiro setor EAD"
+    },
+    {
+        "value": 2636,
+        "label": "gestão das Relações Eletrônicas"
+    },
+    {
+        "value": 2750,
+        "label": "Gestão da Tecnologia da Informação "
+    },
+    {
+        "value": 66,
+        "label": "Gestão Da Tecnologia Da Informação"
+    },
+    {
+        "value": 1877,
+        "label": "Gestão da Tecnologia da Informação EAD"
+    },
+    {
+        "value": 2637,
+        "label": "Gestão da Tecnologia Educacional"
+    },
+    {
+        "value": 2469,
+        "label": "Gestão da Vigilância em Saúde"
+    },
+    {
+        "value": 2459,
+        "label": "Gestão de Agronegócio EAD"
+    },
+    {
+        "value": 2158,
+        "label": "Gestão de Agronegócios "
+    },
+    {
+        "value": 2157,
+        "label": "Gestão de Agronegócios EAD"
+    },
+    {
+        "value": 2470,
+        "label": "Gestão de Bibliotecas Escolares e Salas de Leitura"
+    },
+    {
+        "value": 2638,
+        "label": "Gestão de Cidades Inteligentes e Sustentáveis"
+    },
+    {
+        "value": 1529,
+        "label": "Gestão de Condomínios"
+    },
+    {
+        "value": 2486,
+        "label": "Gestão de Conhecimento Escolar"
+    },
+    {
+        "value": 2471,
+        "label": "Gestão de Cooperativa de Crédito"
+    },
+    {
+        "value": 1860,
+        "label": "Gestão de Cooperativa modalidade Ead"
+    },
+    {
+        "value": 492,
+        "label": "Gestão de Cooperativas "
+    },
+    {
+        "value": 2005,
+        "label": "Gestão de Cooperativas EAD"
+    },
+    {
+        "value": 2639,
+        "label": "Gestão de Cooperativas (Tecnologia em gestão de Cooperativas)"
+    },
+    {
+        "value": 2472,
+        "label": "Gestão de E-commerce"
+    },
+    {
+        "value": 1427,
+        "label": "Gestão de E-Commerce"
+    },
+    {
+        "value": 1935,
+        "label": "Gestão de E-Commerce EAD"
+    },
+    {
+        "value": 2040,
+        "label": "Gestão de Empreendimentos Gastronômicos"
+    },
+    {
+        "value": 967,
+        "label": "Gestão de Energia"
+    },
+    {
+        "value": 1617,
+        "label": "Gestão de Equinocultura"
+    },
+    {
+        "value": 2160,
+        "label": "Gestão de Eventos"
+    },
+    {
+        "value": 2159,
+        "label": "Gestão de Eventos EAD"
+    },
+    {
+        "value": 2068,
+        "label": "Gestão de Farmácia EAD"
+    },
+    {
+        "value": 2640,
+        "label": "Gestão de Inventário Extrajudicial"
+    },
+    {
+        "value": 2641,
+        "label": "Gestão de investimentos e Mercado Financeiro"
+    },
+    {
+        "value": 2742,
+        "label": "Gestão de Logiística Integrada"
+    },
+    {
+        "value": 2007,
+        "label": "Gestão de lojas PDV EAD"
+    },
+    {
+        "value": 381,
+        "label": "Gestão de Marcas e Branding"
+    },
+    {
+        "value": 1526,
+        "label": "Gestão de Marketing"
+    },
+    {
+        "value": 1793,
+        "label": "Gestão de Marketing e Mídias Digitais"
+    },
+    {
+        "value": 1428,
+        "label": "Gestão de Mídias Digitais"
+    },
+    {
+        "value": 1936,
+        "label": "Gestão de Mídias Digitais EAD"
+    },
+    {
+        "value": 1429,
+        "label": "Gestão de Mídias Sociais"
+    },
+    {
+        "value": 1937,
+        "label": "Gestão de Mídias Sociais EAD"
+    },
+    {
+        "value": 2473,
+        "label": "Gestão de Negociação e Relacionamento "
+    },
+    {
+        "value": 1609,
+        "label": "Gestão de Negócios"
+    },
+    {
+        "value": 2372,
+        "label": "Gestão de Negócios Digitais EAD"
+    },
+    {
+        "value": 619,
+        "label": "Gestão de Negócios e Inovação"
+    },
+    {
+        "value": 2474,
+        "label": "Gestão de Negócios e Marketing"
+    },
+    {
+        "value": 1389,
+        "label": "Gestão de negócios em sistema de energia"
+    },
+    {
+        "value": 472,
+        "label": "Gestão de Negocios Imobiliarios"
+    },
+    {
+        "value": 382,
+        "label": " Gestão de Negócios Internacionais"
+    },
+    {
+        "value": 366,
+        "label": "Gestão de Negócios na Internet"
+    },
+    {
+        "value": 2475,
+        "label": "Gestão de Operações e Logística "
+    },
+    {
+        "value": 2476,
+        "label": "Gestão de Operações, Produtos e Serviços"
+    },
+    {
+        "value": 367,
+        "label": "Gestão de Pequenas e Médias Empresas"
+    },
+    {
+        "value": 2477,
+        "label": "Gestão de Pequenas Empresas "
+    },
+    {
+        "value": 2146,
+        "label": "Gestão de Pessoas"
+    },
+    {
+        "value": 2478,
+        "label": "Gestão de Pessoas e o Direito Administrativo no Setor Público "
+    },
+    {
+        "value": 2479,
+        "label": "Gestão de Pessoas: Treinamento e Desenvolvimento "
+    },
+    {
+        "value": 1539,
+        "label": "Gestão de Planejamento"
+    },
+    {
+        "value": 105,
+        "label": "Gestão De Políticas Públicas"
+    },
+    {
+        "value": 2666,
+        "label": "Gestão de Postos de Combustíveis "
+    },
+    {
+        "value": 2645,
+        "label": "Gestão de Prcessos educacionais"
+    },
+    {
+        "value": 1853,
+        "label": "Gestão de Processos e Projetos Ágeis "
+    },
+    {
+        "value": 855,
+        "label": "Gestão de Produção Industrial"
+    },
+    {
+        "value": 1990,
+        "label": "Gestão de Produção Industrial EAD "
+    },
+    {
+        "value": 1784,
+        "label": "Gestão de produtos"
+    },
+    {
+        "value": 2480,
+        "label": "Gestão de projetos"
+    },
+    {
+        "value": 383,
+        "label": "Gestão de Projetos"
+    },
+    {
+        "value": 1519,
+        "label": "Gestão de Projetos em Inovação e Sustentabilidade"
+    },
+    {
+        "value": 2481,
+        "label": "Gestão de Propriedade em Condomínio "
+    },
+    {
+        "value": 508,
+        "label": "Gestão de Qualidade"
+    },
+    {
+        "value": 1991,
+        "label": "Gestão de Qualidade EAD"
+    },
+    {
+        "value": 832,
+        "label": "Gestão de Recursos Humanos"
+    },
+    {
+        "value": 1878,
+        "label": "Gestão de Recursos Humanos (Digital)"
+    },
+    {
+        "value": 1861,
+        "label": "Gestão de Recursos Humanos -EAD"
+    },
+    {
+        "value": 2644,
+        "label": "Gestão de Resíduos de Saúde"
+    },
+    {
+        "value": 909,
+        "label": "Gestão de Risco"
+    },
+    {
+        "value": 1785,
+        "label": "Gestão de Saúde Pública"
+    },
+    {
+        "value": 713,
+        "label": " Gestão de Segurança Privada"
+    },
+    {
+        "value": 1938,
+        "label": "Gestão de Segurança Privada EAD"
+    },
+    {
+        "value": 2643,
+        "label": "Gestão de Serviços Jurídicos "
+    },
+    {
+        "value": 2028,
+        "label": "Gestão de Serviços Jurídicos e Notariais"
+    },
+    {
+        "value": 2195,
+        "label": "Gestão de Serviços Jurídicos e Notoriais EAD"
+    },
+    {
+        "value": 1530,
+        "label": "Gestão de Serviços Jurídicos, Notariais e de Registro"
+    },
+    {
+        "value": 2482,
+        "label": "Gestão de Serviços Sociais e Projetos Sociais "
+    },
+    {
+        "value": 2483,
+        "label": "Gestão de Sistemas Municipais de Saúde "
+    },
+    {
+        "value": 329,
+        "label": "Gestão Desportiva"
+    },
+    {
+        "value": 1940,
+        "label": "Gestão Desportiva EAD"
+    },
+    {
+        "value": 2289,
+        "label": "Gestão Desportiva e de Lazer"
+    },
+    {
+        "value": 2291,
+        "label": "Gestão Desportiva e de Lazer (Digital)"
+    },
+    {
+        "value": 2680,
+        "label": "Gestão Desportiva e de Lazer EAD"
+    },
+    {
+        "value": 2642,
+        "label": "Gestão de Startups"
+    },
+    {
+        "value": 1992,
+        "label": "Gestão de Tecnologia da Educação EAD"
+    },
+    {
+        "value": 362,
+        "label": "Gestão de Tecnologia da informação"
+    },
+    {
+        "value": 2161,
+        "label": "Gestão de Tecnologia da informação EAD"
+    },
+    {
+        "value": 1739,
+        "label": "Gestão de TI"
+    },
+    {
+        "value": 2484,
+        "label": "Gestão de Trânsito"
+    },
+    {
+        "value": 193,
+        "label": "Gestão de Turismo"
+    },
+    {
+        "value": 860,
+        "label": "Gestão de Turismo "
+    },
+    {
+        "value": 1939,
+        "label": "Gestão de Turismo EAD"
+    },
+    {
+        "value": 2485,
+        "label": "Gestão de Unidade Básica de Saúde "
+    },
+    {
+        "value": 2163,
+        "label": "Gestão de Vendas"
+    },
+    {
+        "value": 2162,
+        "label": "Gestão de Vendas EAD"
+    },
+    {
+        "value": 1442,
+        "label": "Gestão do Agronegócio"
+    },
+    {
+        "value": 2085,
+        "label": "Gestão do Agronegócio EAD"
+    },
+    {
+        "value": 2487,
+        "label": "Gestão do Sistema Único de Assistência Social (SUAS)"
+    },
+    {
+        "value": 2705,
+        "label": "Gestão do Terceiro Setor"
+    },
+    {
+        "value": 2374,
+        "label": "Gestão do Turismo EAD"
+    },
+    {
+        "value": 138,
+        "label": "Gestão e Análise Ambiental"
+    },
+    {
+        "value": 2488,
+        "label": "Gestão Educacional "
+    },
+    {
+        "value": 2489,
+        "label": "Gestão e Educação Ambiental "
+    },
+    {
+        "value": 1409,
+        "label": "Gestão E Empreendedorismo"
+    },
+    {
+        "value": 1941,
+        "label": "Gestão e Empreendedorismo EAD"
+    },
+    {
+        "value": 2290,
+        "label": "Gestão em e-commerce"
+    },
+    {
+        "value": 2679,
+        "label": "Gestão em E-commerce EAD"
+    },
+    {
+        "value": 2743,
+        "label": "Gestão em Logística"
+    },
+    {
+        "value": 194,
+        "label": "Gestão Empresarial"
+    },
+    {
+        "value": 2041,
+        "label": "Gestão Empresarial EAD"
+    },
+    {
+        "value": 377,
+        "label": "Gestão Empresarial e Estratégia"
+    },
+    {
+        "value": 378,
+        "label": " Gestão Empresarial e Finanças"
+    },
+    {
+        "value": 379,
+        "label": "Gestão Empresarial e Liderança"
+    },
+    {
+        "value": 380,
+        "label": "Gestão Empresarial e Marketing"
+    },
+    {
+        "value": 2490,
+        "label": "Gestão Empresarial e Responsabilidade Social"
+    },
+    {
+        "value": 2491,
+        "label": "Gestão em Processos Gerenciais "
+    },
+    {
+        "value": 2492,
+        "label": "Gestão em Segurança Pública "
+    },
+    {
+        "value": 1446,
+        "label": "Gestão em Tecnologia da Informação"
+    },
+    {
+        "value": 2493,
+        "label": "Gestão em Tecnologias "
+    },
+    {
+        "value": 2494,
+        "label": "Gestão em Vendas"
+    },
+    {
+        "value": 2495,
+        "label": "Gestão e Organização Esportiva"
+    },
+    {
+        "value": 2496,
+        "label": "Gestão Escolar "
+    },
+    {
+        "value": 2497,
+        "label": "Gestão e Sistemas Avaliativos da Educação Pública"
+    },
+    {
+        "value": 2498,
+        "label": "Gestão Estratégica da Cadeia Logística "
+    },
+    {
+        "value": 2499,
+        "label": "Gestão Estratégica de Cooperativas"
+    },
+    {
+        "value": 2500,
+        "label": "Gestão Estratégica de Negócios "
+    },
+    {
+        "value": 1731,
+        "label": "GESTÃO ESTRATÉGICA DE NEGÓCIOS VAREJISTA"
+    },
+    {
+        "value": 2501,
+        "label": "Gestão e Técnicas de Vendas no Comércio Digital "
+    },
+    {
+        "value": 844,
+        "label": "Gestão Financeira"
+    },
+    {
+        "value": 1862,
+        "label": "Gestão Financeira EAD"
+    },
+    {
+        "value": 2502,
+        "label": "Gestão Financeira em Gestão Escolar"
+    },
+    {
+        "value": 340,
+        "label": "Gestão Fiscal e Tributária"
+    },
+    {
+        "value": 335,
+        "label": "Gestão Hospitalar"
+    },
+    {
+        "value": 1891,
+        "label": "Gestão Hospitalar EAD"
+    },
+    {
+        "value": 884,
+        "label": "Gestão lógica"
+    },
+    {
+        "value": 2503,
+        "label": "Gestão Orçamentária, Financeira e o Direito Administrativo no Setor Público "
+    },
+    {
+        "value": 2504,
+        "label": "Gestão para o Microempresário"
+    },
+    {
+        "value": 2031,
+        "label": "Gestão Paroquial e de Projetos Sociais"
+    },
+    {
+        "value": 2505,
+        "label": "Gestão por Competências "
+    },
+    {
+        "value": 661,
+        "label": "Gestão Portuária "
+    },
+    {
+        "value": 2164,
+        "label": "Gestão Portuária EAD"
+    },
+    {
+        "value": 336,
+        "label": "Gestão Pública"
+    },
+    {
+        "value": 861,
+        "label": "Gestão Pública "
+    },
+    {
+        "value": 1879,
+        "label": "Gestão Pública EAD"
+    },
+    {
+        "value": 1832,
+        "label": "GESTÃO PÚBLICA E SOCIAL"
+    },
+    {
+        "value": 2506,
+        "label": "Governança Corporativa "
+    },
+    {
+        "value": 1854,
+        "label": "Governança Corporativa e Gestão de Negócios"
+    },
+    {
+        "value": 2507,
+        "label": "Governança de TI"
+    },
+    {
+        "value": 2300,
+        "label": "Graduação em Gestão Financeira"
+    },
+    {
+        "value": 812,
+        "label": "Gravura "
+    },
+    {
+        "value": 195,
+        "label": "Hidráulica e Saneamento Ambiental"
+    },
+    {
+        "value": 75,
+        "label": "História"
+    },
+    {
+        "value": 2706,
+        "label": "História 2.0"
+    },
+    {
+        "value": 644,
+        "label": "História da Arte"
+    },
+    {
+        "value": 2144,
+        "label": "Historia EAD"
+    },
+    {
+        "value": 2332,
+        "label": "História EAD"
+    },
+    {
+        "value": 1800,
+        "label": "História  EAD"
+    },
+    {
+        "value": 2508,
+        "label": "História e Cultura Afro-Brasileira "
+    },
+    {
+        "value": 2509,
+        "label": "História e Ensino da Língua Inglesa "
+    },
+    {
+        "value": 2510,
+        "label": "História e Ensino da Língua Portuguesa "
+    },
+    {
+        "value": 2331,
+        "label": "História Flex"
+    },
+    {
+        "value": 1842,
+        "label": "Horticultura"
+    },
+    {
+        "value": 219,
+        "label": "Hotelaria"
+    },
+    {
+        "value": 2360,
+        "label": "Hotelaria EAD"
+    },
+    {
+        "value": 360,
+        "label": "Hotelaria Hospitalar"
+    },
+    {
+        "value": 863,
+        "label": "Hystory and Contempoary Society "
+    },
+    {
+        "value": 611,
+        "label": "Imagem e som"
+    },
+    {
+        "value": 2511,
+        "label": "Inbound Marketing"
+    },
+    {
+        "value": 2512,
+        "label": "Inclusão e Diversidade na Educação"
+    },
+    {
+        "value": 2513,
+        "label": "Inclusão e Diversidade na Sociedade e Organizações"
+    },
+    {
+        "value": 1531,
+        "label": "Influenciador Digital"
+    },
+    {
+        "value": 476,
+        "label": "Informática"
+    },
+    {
+        "value": 853,
+        "label": "Informática "
+    },
+    {
+        "value": 580,
+        "label": "Informática Biomédica"
+    },
+    {
+        "value": 477,
+        "label": "Informática para Internet"
+    },
+    {
+        "value": 946,
+        "label": "Information Systems"
+    },
+    {
+        "value": 2514,
+        "label": "Inovação e Gestão de Conteúdo para Economia Criativa"
+    },
+    {
+        "value": 2515,
+        "label": "Inovações no Ensino de Matemática "
+    },
+    {
+        "value": 196,
+        "label": "Instalações Eletricas"
+    },
+    {
+        "value": 2351,
+        "label": "Instrumentação Cirúrgica"
+    },
+    {
+        "value": 2286,
+        "label": "Inteligência Artificial"
+    },
+    {
+        "value": 1892,
+        "label": "Inteligência Artificial EAD"
+    },
+    {
+        "value": 957,
+        "label": "Inteligência artificial e machine learning"
+    },
+    {
+        "value": 510,
+        "label": "Inteligência de Mercado"
+    },
+    {
+        "value": 1786,
+        "label": "Inteligência de mercado e análise de dados"
+    },
+    {
+        "value": 1823,
+        "label": "INTERDISCIPLINAR EM ARTES"
+    },
+    {
+        "value": 1824,
+        "label": "INTERDISCIPLINAR EM ARTES E SUAS TECNOLOGIAS"
+    },
+    {
+        "value": 1822,
+        "label": "INTERDISCIPLINAR EM CIÊNCIAS"
+    },
+    {
+        "value": 1836,
+        "label": "INTERDISCIPLINAR EM CIÊNCIAS DA NATUREZA E SUAS TECNOLOGIAS"
+    },
+    {
+        "value": 1821,
+        "label": "INTERDISCIPLINAR EM CIÊNCIAS HUMANAS E SOCIAIS E SUAS TECNOLOGIAS"
+    },
+    {
+        "value": 523,
+        "label": "Interdisciplinar em Educação do Campo "
+    },
+    {
+        "value": 1820,
+        "label": "INTERDISCIPLINAR EM HUMANIDADES"
+    },
+    {
+        "value": 1819,
+        "label": "INTERDISCIPLINAR EM LINGUAGENS E SUAS TECNOLOGIAS"
+    },
+    {
+        "value": 1818,
+        "label": "INTERDISCIPLINAR EM MATEMÁTICA E COMPUTAÇÃO E SUAS TECNOLOGIAS"
+    },
+    {
+        "value": 1817,
+        "label": "INTERDISCIPLINAR EM SAÚDE"
+    },
+    {
+        "value": 1622,
+        "label": "Internacional Business"
+    },
+    {
+        "value": 956,
+        "label": "International Economics and Finance"
+    },
+    {
+        "value": 2299,
+        "label": "Internet das Coisas"
+    },
+    {
+        "value": 1893,
+        "label": "Internet das Coisas EAD"
+    },
+    {
+        "value": 2349,
+        "label": "Internet das Coisas e Computação em Nuvem EAD"
+    },
+    {
+        "value": 610,
+        "label": "interpretação"
+    },
+    {
+        "value": 1566,
+        "label": "Interpretação para Cinema e TV - Intensivo de Férias"
+    },
+    {
+        "value": 1787,
+        "label": "Investigação e perícia criminal"
+    },
+    {
+        "value": 697,
+        "label": "Investigação Forense e Perícia Criminal"
+    },
+    {
+        "value": 2516,
+        "label": "Investigação Forense e Perícia Criminal "
+    },
+    {
+        "value": 1945,
+        "label": "Investigação Forense e Perícia Criminal EAD"
+    },
+    {
+        "value": 2206,
+        "label": "Investigação Perícia Criminal EAD"
+    },
+    {
+        "value": 1855,
+        "label": "Investimento e formação de Traders"
+    },
+    {
+        "value": 205,
+        "label": "Jogos Digitais"
+    },
+    {
+        "value": 1946,
+        "label": "Jogos Digitais EAD"
+    },
+    {
+        "value": 6,
+        "label": "Jornalismo"
+    },
+    {
+        "value": 2033,
+        "label": "Jornalismo Digital"
+    },
+    {
+        "value": 1947,
+        "label": "Jornalismo EAD"
+    },
+    {
+        "value": 969,
+        "label": "Journalism \u0026 International Relations"
+    },
+    {
+        "value": 938,
+        "label": "Juíz de paz Eclesiástico "
+    },
+    {
+        "value": 864,
+        "label": "Kinesiology"
+    },
+    {
+        "value": 730,
+        "label": "Laticínios"
+    },
+    {
+        "value": 635,
+        "label": "Lazer e Turismo"
+    },
+    {
+        "value": 49,
+        "label": "Letras"
+    },
+    {
+        "value": 524,
+        "label": "Letras Alemão "
+    },
+    {
+        "value": 1055,
+        "label": "Letras - Artes e Mediação Cultural"
+    },
+    {
+        "value": 525,
+        "label": "Letras Curso A Distância"
+    },
+    {
+        "value": 2177,
+        "label": "Letras EAD"
+    },
+    {
+        "value": 479,
+        "label": "Letras Espanhol"
+    },
+    {
+        "value": 1948,
+        "label": "Letras - Espanhol EAD"
+    },
+    {
+        "value": 1987,
+        "label": "Letras Espanhol EAD"
+    },
+    {
+        "value": 502,
+        "label": "Letras Francês"
+    },
+    {
+        "value": 526,
+        "label": "Letras Grego"
+    },
+    {
+        "value": 249,
+        "label": "Letras Inglês"
+    },
+    {
+        "value": 1894,
+        "label": "Letras - Inglês EAD"
+    },
+    {
+        "value": 2333,
+        "label": "Letras Inglês EAD"
+    },
+    {
+        "value": 501,
+        "label": "Letras Italiano"
+    },
+    {
+        "value": 738,
+        "label": "Letras Japonês"
+    },
+    {
+        "value": 527,
+        "label": "Letras Latim"
+    },
+    {
+        "value": 500,
+        "label": "Letras Libras"
+    },
+    {
+        "value": 1721,
+        "label": " Letras - Libras e Língua Portuguesa"
+    },
+    {
+        "value": 1953,
+        "label": "Letras - Libras - Língua Portuguesa EAD"
+    },
+    {
+        "value": 2746,
+        "label": "Letras Língua Inglesa e Literaturas"
+    },
+    {
+        "value": 1509,
+        "label": "Letras: Língua Inglesa-Tradução Inglês/Português"
+    },
+    {
+        "value": 1432,
+        "label": "Letras Língua Portuguesa"
+    },
+    {
+        "value": 2745,
+        "label": "Letras Língua Portuguesa e Literaturas de Língua Portuguesa"
+    },
+    {
+        "value": 514,
+        "label": "Letras Línguas Estrangeiras "
+    },
+    {
+        "value": 1801,
+        "label": "Letras Modalidade EAD"
+    },
+    {
+        "value": 250,
+        "label": "Letras Português"
+    },
+    {
+        "value": 1895,
+        "label": "Letras - Português EAD"
+    },
+    {
+        "value": 2334,
+        "label": "Letras Português EAD"
+    },
+    {
+        "value": 1510,
+        "label": "Letras: Português e Inglês - Licenciatura"
+    },
+    {
+        "value": 2756,
+        "label": "Letras Português e Respectivas Literaturas"
+    },
+    {
+        "value": 480,
+        "label": "Letras Português - Espanhol"
+    },
+    {
+        "value": 2335,
+        "label": "Letras Português Flex"
+    },
+    {
+        "value": 1618,
+        "label": "Letras - Português/Inglês"
+    },
+    {
+        "value": 535,
+        "label": "Letras Português-Inglês"
+    },
+    {
+        "value": 1880,
+        "label": "Letras – Português/Inglês (Digital)"
+    },
+    {
+        "value": 1599,
+        "label": "Letras – Português/Literatura"
+    },
+    {
+        "value": 1707,
+        "label": "Letras - Redação  e Revisão de Textos"
+    },
+    {
+        "value": 1708,
+        "label": "Letras Tradução Espanhol - Português"
+    },
+    {
+        "value": 1709,
+        "label": "Letras Tradução Inglês - Português"
+    },
+    {
+        "value": 694,
+        "label": "Letras – Tradutor e Intérprete"
+    },
+    {
+        "value": 440,
+        "label": "Libras"
+    },
+    {
+        "value": 401,
+        "label": "Licenciatura - Artes Visuais"
+    },
+    {
+        "value": 2744,
+        "label": "Licenciatura da Computação"
+    },
+    {
+        "value": 402,
+        "label": "Licenciatura - Dança"
+    },
+    {
+        "value": 1456,
+        "label": "Licenciatura em Artes"
+    },
+    {
+        "value": 1728,
+        "label": "Licenciatura em Artes Cênicas"
+    },
+    {
+        "value": 407,
+        "label": "Licenciatura em Artes Visuais"
+    },
+    {
+        "value": 2382,
+        "label": "Licenciatura em Artes Visuais EAD"
+    },
+    {
+        "value": 1657,
+        "label": "LICENCIATURA EM ARTES VISUAIS (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 1459,
+        "label": "Licenciatura em Biologia"
+    },
+    {
+        "value": 2073,
+        "label": "Licenciatura em Ciências Agrárias"
+    },
+    {
+        "value": 928,
+        "label": "Licenciatura em Ciências Biológicas"
+    },
+    {
+        "value": 1904,
+        "label": "Licenciatura em Ciências Biológicas EAD"
+    },
+    {
+        "value": 2658,
+        "label": "Licenciatura em Ciências Biológicas (Segunda Licenciatura)"
+    },
+    {
+        "value": 2093,
+        "label": "Licenciatura em Ciências da Natureza"
+    },
+    {
+        "value": 1652,
+        "label": "LICENCIATURA EM CIÊNCIAS DA RELIGIÃO"
+    },
+    {
+        "value": 1419,
+        "label": "Licenciatura em Ciências Exatas"
+    },
+    {
+        "value": 1466,
+        "label": "Licenciatura em Ciências Naturais e Exatas"
+    },
+    {
+        "value": 2094,
+        "label": "Licenciatura em Ciências Socais"
+    },
+    {
+        "value": 1184,
+        "label": " Licenciatura em Computação"
+    },
+    {
+        "value": 1480,
+        "label": "Licenciatura em Computação"
+    },
+    {
+        "value": 1907,
+        "label": "Licenciatura em Computação EAD"
+    },
+    {
+        "value": 2751,
+        "label": "Licenciatura em Educação do Campo"
+    },
+    {
+        "value": 1653,
+        "label": "LICENCIATURA EM EDUCAÇÃO ESPECIAL"
+    },
+    {
+        "value": 2657,
+        "label": "Licenciatura em Educação Especial (Segunda Licenciatura)"
+    },
+    {
+        "value": 1422,
+        "label": "Licenciatura em Educação Física"
+    },
+    {
+        "value": 1909,
+        "label": "Licenciatura em Educação Física EAD"
+    },
+    {
+        "value": 2656,
+        "label": "Licenciatura em Educação Física (Segunda Licenciatura)"
+    },
+    {
+        "value": 848,
+        "label": "Licenciatura em Educação Profissional"
+    },
+    {
+        "value": 922,
+        "label": "Licenciatura em Filosofia "
+    },
+    {
+        "value": 1927,
+        "label": "Licenciatura em Filosofia EAD"
+    },
+    {
+        "value": 2062,
+        "label": "Licenciatura em Filosofia EAD (segunda licenciatura)"
+    },
+    {
+        "value": 1658,
+        "label": "LICENCIATURA EM FILOSOFIA (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 929,
+        "label": "Licenciatura em Física"
+    },
+    {
+        "value": 1913,
+        "label": "Licenciatura em Física EAD"
+    },
+    {
+        "value": 2655,
+        "label": "Licenciatura em Física (Segunda Licenciatura)"
+    },
+    {
+        "value": 2071,
+        "label": "Licenciatura em Formação Pedagógica EAD"
+    },
+    {
+        "value": 1424,
+        "label": "Licenciatura em Geografia"
+    },
+    {
+        "value": 1930,
+        "label": "Licenciatura em Geografia EAD"
+    },
+    {
+        "value": 2016,
+        "label": "Licenciatura em Geografia (segunda Licenciatura)"
+    },
+    {
+        "value": 1931,
+        "label": "Licenciatura em Geografia (segunda Licenciatura) EAD"
+    },
+    {
+        "value": 1431,
+        "label": "Licenciatura em História"
+    },
+    {
+        "value": 1944,
+        "label": "Licenciatura em História EAD"
+    },
+    {
+        "value": 1901,
+        "label": "Licenciatura em História EAD (segunda licenciatura)"
+    },
+    {
+        "value": 1659,
+        "label": "LICENCIATURA EM HISTORIA (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 474,
+        "label": "Licenciatura em Informática"
+    },
+    {
+        "value": 2654,
+        "label": "LICENCIATURA EM INFORMÁTICA (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 963,
+        "label": "Licenciatura em Inglês"
+    },
+    {
+        "value": 1450,
+        "label": "Licenciatura em Letras"
+    },
+    {
+        "value": 2006,
+        "label": "Licenciatura em Letras EAD"
+    },
+    {
+        "value": 1900,
+        "label": "Licenciatura em Letras EAD (segunda licenciatura)"
+    },
+    {
+        "value": 2019,
+        "label": "Licenciatura em Letras - Espanhol (Segunda Licenciatura)"
+    },
+    {
+        "value": 1950,
+        "label": "Licenciatura em Letras - Espanhol (Segunda Licenciatura) EAD"
+    },
+    {
+        "value": 1654,
+        "label": "LICENCIATURA EM LETRAS - INGLÊS"
+    },
+    {
+        "value": 2026,
+        "label": "Licenciatura em Letras - Inglês EAD"
+    },
+    {
+        "value": 2759,
+        "label": "Licenciatura em Letras Inglês e Literaturas"
+    },
+    {
+        "value": 2755,
+        "label": " Licenciatura em Letras Inglês e Respectivas Literaturas"
+    },
+    {
+        "value": 2020,
+        "label": "Licenciatura em Letras - Inglês (Segunda Licenciatura)"
+    },
+    {
+        "value": 1952,
+        "label": "Licenciatura em Letras - Inglês (Segunda Licenciatura) EAD"
+    },
+    {
+        "value": 1655,
+        "label": "LICENCIATURA EM LETRAS LIBRAS"
+    },
+    {
+        "value": 2207,
+        "label": "Licenciatura em Letras -Libras EAD"
+    },
+    {
+        "value": 2653,
+        "label": "Licenciatura em Letras - Libras (Segunda Licenciatura)"
+    },
+    {
+        "value": 1438,
+        "label": "Licenciatura em Letras - Língua Portuguesa"
+    },
+    {
+        "value": 1956,
+        "label": "Licenciatura em Letras Língua Portuguesa EAD"
+    },
+    {
+        "value": 2022,
+        "label": "Licenciatura em Letras - Língua Portuguesa (Segunda Licenciatura)"
+    },
+    {
+        "value": 1957,
+        "label": "Licenciatura em Letras Língua Portuguesa (Segunda Licenciatura) EAD"
+    },
+    {
+        "value": 2760,
+        "label": "Licenciatura em Letras Português e Literaturas"
+    },
+    {
+        "value": 1790,
+        "label": "Licenciatura em letras Português/Espanhol"
+    },
+    {
+        "value": 1527,
+        "label": "Licenciatura em Letras - Português/Inglês"
+    },
+    {
+        "value": 1660,
+        "label": "LICENCIATURA EM LETRAS (SEGUNDA LICENCIATURA"
+    },
+    {
+        "value": 1433,
+        "label": "Licenciatura em Língua Portuguesa"
+    },
+    {
+        "value": 960,
+        "label": "Licenciatura em Matemática"
+    },
+    {
+        "value": 2009,
+        "label": "Licenciatura em Matemática EAD"
+    },
+    {
+        "value": 1898,
+        "label": "Licenciatura em Matemática EAD (segunda licenciatura)"
+    },
+    {
+        "value": 1661,
+        "label": "LICENCIATURA EM MATEMÁTICA (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 408,
+        "label": "Licenciatura em Música"
+    },
+    {
+        "value": 1468,
+        "label": "Licenciatura em Pedagogia"
+    },
+    {
+        "value": 1963,
+        "label": "Licenciatura em Pedagogia EAD"
+    },
+    {
+        "value": 1899,
+        "label": "Licenciatura em Pedagogia EAD (segunda licenciatura)"
+    },
+    {
+        "value": 1662,
+        "label": "LICENCIATURA EM PEDAGOGIA (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 1611,
+        "label": "Licenciatura em Português"
+    },
+    {
+        "value": 2752,
+        "label": "Licenciatura em Psicologia"
+    },
+    {
+        "value": 1656,
+        "label": "LICENCIATURA EM PSICOPEDAGOGIA"
+    },
+    {
+        "value": 2208,
+        "label": "Licenciatura em Psicopedagogia EAD"
+    },
+    {
+        "value": 930,
+        "label": "Licenciatura em Química"
+    },
+    {
+        "value": 1969,
+        "label": "Licenciatura em Química EAD"
+    },
+    {
+        "value": 2652,
+        "label": "Licenciatura em Química (Segunda Licenciatura)"
+    },
+    {
+        "value": 1436,
+        "label": "Licenciatura em Sociologia"
+    },
+    {
+        "value": 1977,
+        "label": "Licenciatura em Sociologia EAD"
+    },
+    {
+        "value": 1663,
+        "label": "LICENCIATURA EM SOCIOLOGIA (SEGUNDA LICENCIATURA"
+    },
+    {
+        "value": 1439,
+        "label": "Licenciatura em Turismo"
+    },
+    {
+        "value": 1980,
+        "label": "Licenciatura em Turismo EAD"
+    },
+    {
+        "value": 1664,
+        "label": "LICENCIATURA GEOGRAFIA (SEGUNDA LICENCIATURA)"
+    },
+    {
+        "value": 2082,
+        "label": "Licenciatura Indígena "
+    },
+    {
+        "value": 1722,
+        "label": "Licenciatura Integrada em Educação em Ciências, Matemática e Linguagem"
+    },
+    {
+        "value": 403,
+        "label": "Licenciatura - Música"
+    },
+    {
+        "value": 643,
+        "label": " Licenciatura Plena em Ciências"
+    },
+    {
+        "value": 187,
+        "label": "Licenciatura Plena em Ciencias (matemática, química, física e biologia)"
+    },
+    {
+        "value": 503,
+        "label": "Licenciatura Português/Espanhol"
+    },
+    {
+        "value": 2013,
+        "label": "Licenciatura Sociologia EAD"
+    },
+    {
+        "value": 404,
+        "label": "Licenciatura - Teatro"
+    },
+    {
+        "value": 2517,
+        "label": "Liderança e Gestão de Equipes"
+    },
+    {
+        "value": 594,
+        "label": "Linguagens e Códigos"
+    },
+    {
+        "value": 595,
+        "label": "Língua Portuguesa"
+    },
+    {
+        "value": 2518,
+        "label": "Língua Portuguesa e Literatura no Contexto Educacional"
+    },
+    {
+        "value": 2839,
+        "label": "Línguas estrangeiras aplicadas ao multilinguismo e a sociedade da informação "
+    },
+    {
+        "value": 2667,
+        "label": "Línguas Estrangeiras Aplicadas às Negociações Internacionais"
+    },
+    {
+        "value": 1225,
+        "label": "LÍNGUAS ESTRANGEIRAS APLICADAS ÀS NEGOCIAÇÕES INTERNACIONAIS"
+    },
+    {
+        "value": 718,
+        "label": "Linguística"
+    },
+    {
+        "value": 886,
+        "label": "Lógica de programação "
+    },
+    {
+        "value": 837,
+        "label": "Logística"
+    },
+    {
+        "value": 651,
+        "label": "Logística Aeroportuária "
+    },
+    {
+        "value": 1881,
+        "label": "Logística (Digital)"
+    },
+    {
+        "value": 1863,
+        "label": "Logística EAD "
+    },
+    {
+        "value": 136,
+        "label": "Logística e Serviços"
+    },
+    {
+        "value": 2519,
+        "label": "Ludopedagogia"
+    },
+    {
+        "value": 654,
+        "label": "Manutenção de Aeronaves "
+    },
+    {
+        "value": 1734,
+        "label": "Manutenção de Sistemas Metroferroviários"
+    },
+    {
+        "value": 765,
+        "label": "Manutenção e Suporte em Informática"
+    },
+    {
+        "value": 415,
+        "label": "Manutenção Industrial "
+    },
+    {
+        "value": 1815,
+        "label": "Manutenção Mecânica Industrial"
+    },
+    {
+        "value": 25,
+        "label": "Marketing"
+    },
+    {
+        "value": 1882,
+        "label": " Marketing (Digital)"
+    },
+    {
+        "value": 910,
+        "label": "Marketing Digital"
+    },
+    {
+        "value": 1312,
+        "label": "Marketing - Digital \u0026 Data Science"
+    },
+    {
+        "value": 1885,
+        "label": "Marketing Digital EAD"
+    },
+    {
+        "value": 1447,
+        "label": "Marketing Digital e Data Science "
+    },
+    {
+        "value": 2838,
+        "label": "Marketing Digital e Mídias Sociais"
+    },
+    {
+        "value": 2008,
+        "label": "Marketing EAD"
+    },
+    {
+        "value": 1457,
+        "label": "Marketing - EAD"
+    },
+    {
+        "value": 912,
+        "label": "Marketing e Gestão de Vendas"
+    },
+    {
+        "value": 2520,
+        "label": "Marketing Estratégico e de Varejo"
+    },
+    {
+        "value": 876,
+        "label": "Marketing e Varejo "
+    },
+    {
+        "value": 2783,
+        "label": "MARKETING - INFLUÊNCIA E MÍDIAS DIGITAIS"
+    },
+    {
+        "value": 1102,
+        "label": "Mass Communications com concentração em Advertising"
+    },
+    {
+        "value": 50,
+        "label": "Matemática"
+    },
+    {
+        "value": 636,
+        "label": "Matemática Aplicada"
+    },
+    {
+        "value": 1064,
+        "label": "Matemática aplicada a negócios"
+    },
+    {
+        "value": 86,
+        "label": "Matemática aplicada e Computacional"
+    },
+    {
+        "value": 1259,
+        "label": "Matemática Aplicada e Computacional"
+    },
+    {
+        "value": 1262,
+        "label": "Matemática Computacional"
+    },
+    {
+        "value": 1896,
+        "label": "Matemática EAD"
+    },
+    {
+        "value": 496,
+        "label": "Matemática Industrial"
+    },
+    {
+        "value": 197,
+        "label": "Materiais (Poliméricos, Cerâmicos ou Metálicos)"
+    },
+    {
+        "value": 198,
+        "label": "Materiais, Processos e Componentes Eletrônicos"
+    },
+    {
+        "value": 2763,
+        "label": "MBA em Agronegócios"
+    },
+    {
+        "value": 2521,
+        "label": "MBA em Business Intelligence"
+    },
+    {
+        "value": 2522,
+        "label": "MBA em coaching"
+    },
+    {
+        "value": 2523,
+        "label": "MBA em Coaching com Ênfase em Mentoring em gestão de Pessoas"
+    },
+    {
+        "value": 2764,
+        "label": "MBA em Compliance \u0026 ESG"
+    },
+    {
+        "value": 2524,
+        "label": "MBA emcontabilidade empresarial"
+    },
+    {
+        "value": 2525,
+        "label": "MBA em Controladoria e Finanças Corporativas "
+    },
+    {
+        "value": 2765,
+        "label": "MBA em Data Science e Analytics"
+    },
+    {
+        "value": 2526,
+        "label": "MBA em Design Thinking"
+    },
+    {
+        "value": 2766,
+        "label": "MBA em Digital Business"
+    },
+    {
+        "value": 2527,
+        "label": "MBA em Economia Financeira "
+    },
+    {
+        "value": 2767,
+        "label": "MBA em Economia, Investimentos e Banking"
+    },
+    {
+        "value": 2528,
+        "label": "MBA em Empreendedorismo, Marketing e Finanças"
+    },
+    {
+        "value": 2768,
+        "label": "MBA em Engenharia de Software"
+    },
+    {
+        "value": 944,
+        "label": "MBA em Finanças"
+    },
+    {
+        "value": 2769,
+        "label": "MBA em Finanças e Controladoria"
+    },
+    {
+        "value": 2529,
+        "label": "MBA em finanças e investimentos na era digital"
+    },
+    {
+        "value": 2530,
+        "label": "MBA em finanças e Política Fiscal"
+    },
+    {
+        "value": 2531,
+        "label": "MBA em Gestão Comercial e Inteligência de Mercado"
+    },
+    {
+        "value": 2532,
+        "label": "MBA em Gestão da inovação"
+    },
+    {
+        "value": 2533,
+        "label": "MBA em Gestão de Bares e Restaurantes"
+    },
+    {
+        "value": 2534,
+        "label": "MBA em Gestão de Franquias "
+    },
+    {
+        "value": 2770,
+        "label": "MBA em Gestão de Negócios"
+    },
+    {
+        "value": 2535,
+        "label": "MBA em gestão de Negócios Imobiliários "
+    },
+    {
+        "value": 2771,
+        "label": "MBA em Gestão de Pessoas"
+    },
+    {
+        "value": 2536,
+        "label": "MBA em Gestão de Processos "
+    },
+    {
+        "value": 2772,
+        "label": "MBA em Gestão de Projetos"
+    },
+    {
+        "value": 2773,
+        "label": "MBA em Gestão de Vendas"
+    },
+    {
+        "value": 2537,
+        "label": "MBA em gestão do Agronegócio"
+    },
+    {
+        "value": 2538,
+        "label": "MBA em gestão empresarial"
+    },
+    {
+        "value": 2539,
+        "label": "MBA em Gestão e Politicas Publicas Municipais "
+    },
+    {
+        "value": 2774,
+        "label": "MBA em Gestão Escolar"
+    },
+    {
+        "value": 2540,
+        "label": "MBA em Gestão Publica"
+    },
+    {
+        "value": 2775,
+        "label": "MBA em Gestão Tributária"
+    },
+    {
+        "value": 2777,
+        "label": "MBA em Marketing"
+    },
+    {
+        "value": 2541,
+        "label": "MBA em Marketing, Criatividade e Inovação "
+    },
+    {
+        "value": 2542,
+        "label": "MBA em Recursos Humanos "
+    },
+    {
+        "value": 2196,
+        "label": "MBA Executivo em Administração: Gestão da Tecnologia da Informação"
+    },
+    {
+        "value": 2776,
+        "label": "MBA Executivo em Liderança e Gestão"
+    },
+    {
+        "value": 542,
+        "label": "MBA - Gestão de Serviços de TI"
+    },
+    {
+        "value": 977,
+        "label": "MBA Gestão Internacional"
+    },
+    {
+        "value": 1400,
+        "label": "Mecânica"
+    },
+    {
+        "value": 2042,
+        "label": "Mecânica de Precisão"
+    },
+    {
+        "value": 199,
+        "label": "Mecânica - Processos de Produção"
+    },
+    {
+        "value": 658,
+        "label": "Mecânica - Processos de Soldagem "
+    },
+    {
+        "value": 200,
+        "label": "Mecânica - Projetos"
+    },
+    {
+        "value": 547,
+        "label": "Mecatrônica Industrial"
+    },
+    {
+        "value": 698,
+        "label": "Mediação"
+    },
+    {
+        "value": 1960,
+        "label": "Mediação EAD"
+    },
+    {
+        "value": 158,
+        "label": "Medicina"
+    },
+    {
+        "value": 218,
+        "label": "Medicina Veterinária"
+    },
+    {
+        "value": 2304,
+        "label": "Medicina Veterinária EAD"
+    },
+    {
+        "value": 2545,
+        "label": "Meio Ambiente e Sustentabilidade"
+    },
+    {
+        "value": 911,
+        "label": "Mercado Financeiro"
+    },
+    {
+        "value": 2546,
+        "label": "Mercado Financeiro e Banking"
+    },
+    {
+        "value": 2781,
+        "label": "Mestrado"
+    },
+    {
+        "value": 493,
+        "label": "Meteorologia"
+    },
+    {
+        "value": 2547,
+        "label": "Metodologia de Ensino de Ciências Biologicas "
+    },
+    {
+        "value": 2548,
+        "label": "Metodologia de Ensino de Filosofia e Sociologia"
+    },
+    {
+        "value": 2549,
+        "label": "Metodologia de Ensino de Geografia"
+    },
+    {
+        "value": 2550,
+        "label": "Metodologia de Ensino de História"
+    },
+    {
+        "value": 2551,
+        "label": "Metodologia de Ensino de Língua portuguesa e Literatura "
+    },
+    {
+        "value": 2552,
+        "label": "Metodologia de Ensino de Matemática"
+    },
+    {
+        "value": 2553,
+        "label": "Metodologia do Ensino de Artes"
+    },
+    {
+        "value": 2554,
+        "label": "Metodologia do Ensino de física"
+    },
+    {
+        "value": 2555,
+        "label": "Metodologia do Ensino de Língua Espanhola"
+    },
+    {
+        "value": 2556,
+        "label": "Metodologia do Ensino de  Língua Inglesa"
+    },
+    {
+        "value": 2557,
+        "label": "Metodologia do Ensino de Química"
+    },
+    {
+        "value": 2558,
+        "label": "Metodologia do Ensino em Educação Especial"
+    },
+    {
+        "value": 2559,
+        "label": "Metodologia do Ensino Religioso"
+    },
+    {
+        "value": 2560,
+        "label": "Metodologias Ativas em Ensino Hibrido"
+    },
+    {
+        "value": 2561,
+        "label": "Metodologias Ativas para a Educação"
+    },
+    {
+        "value": 2562,
+        "label": "Metodologias de Ensino na educação básica"
+    },
+    {
+        "value": 2563,
+        "label": "Metodologias para a EAD"
+    },
+    {
+        "value": 806,
+        "label": "Microbiologia "
+    },
+    {
+        "value": 885,
+        "label": "Microbiologia em alimentos "
+    },
+    {
+        "value": 2043,
+        "label": "Microeletrônica"
+    },
+    {
+        "value": 1425,
+        "label": "Microeletrônica/MPCE"
+    },
+    {
+        "value": 1837,
+        "label": "MÍDIA E TECNOLOGIA"
+    },
+    {
+        "value": 968,
+        "label": "Midialogia"
+    },
+    {
+        "value": 2661,
+        "label": "Mídias Digitais"
+    },
+    {
+        "value": 5,
+        "label": "Mídias Sociais  Digitais"
+    },
+    {
+        "value": 1794,
+        "label": "Mineração"
+    },
+    {
+        "value": 933,
+        "label": "Missiologia "
+    },
+    {
+        "value": 2564,
+        "label": "Mobile Marketing"
+    },
+    {
+        "value": 28,
+        "label": "Moda"
+    },
+    {
+        "value": 2386,
+        "label": "Moda EAD"
+    },
+    {
+        "value": 216,
+        "label": "Moda - Negócios"
+    },
+    {
+        "value": 2277,
+        "label": "Modelagem e Animação 3D"
+    },
+    {
+        "value": 2275,
+        "label": "Motion Design e Animação"
+    },
+    {
+        "value": 543,
+        "label": "Motion Graphics"
+    },
+    {
+        "value": 841,
+        "label": "Motricidade Orofacil "
+    },
+    {
+        "value": 1498,
+        "label": "Multimeios Didáticos"
+    },
+    {
+        "value": 406,
+        "label": "Multimídia"
+    },
+    {
+        "value": 2565,
+        "label": "Musculação e Condicionamento Físico"
+    },
+    {
+        "value": 444,
+        "label": "Museologia"
+    },
+    {
+        "value": 311,
+        "label": "Música"
+    },
+    {
+        "value": 1712,
+        "label": "Música - Ciências Musicais "
+    },
+    {
+        "value": 859,
+        "label": "Música com especialização em Contrabaixo"
+    },
+    {
+        "value": 1713,
+        "label": "Música - Composição"
+    },
+    {
+        "value": 1563,
+        "label": "Música e Produção de Beats - Intensivo de Férias"
+    },
+    {
+        "value": 1714,
+        "label": "Música - Flauta Transversal "
+    },
+    {
+        "value": 1715,
+        "label": "Música - Música Popular "
+    },
+    {
+        "value": 1716,
+        "label": "Música - Piano"
+    },
+    {
+        "value": 1718,
+        "label": "Música - Violão "
+    },
+    {
+        "value": 1717,
+        "label": "Música - Violino "
+    },
+    {
+        "value": 572,
+        "label": "Musicoterapia"
+    },
+    {
+        "value": 843,
+        "label": "Musicoterapia Preventiva e Social"
+    },
+    {
+        "value": 613,
+        "label": "N/A"
+    },
+    {
+        "value": 1307,
+        "label": "Nanotecnologia"
+    },
+    {
+        "value": 215,
+        "label": "Naturologia"
+    },
+    {
+        "value": 582,
+        "label": "Navegação"
+    },
+    {
+        "value": 877,
+        "label": "Negociação"
+    },
+    {
+        "value": 1453,
+        "label": "Negócios"
+    },
+    {
+        "value": 1737,
+        "label": "Negócios Digitais"
+    },
+    {
+        "value": 337,
+        "label": "Negócios Imobiliários"
+    },
+    {
+        "value": 1961,
+        "label": "Negócios Imobiliários EAD"
+    },
+    {
+        "value": 465,
+        "label": "Negócios Internacionais"
+    },
+    {
+        "value": 2566,
+        "label": "Neuroaprendizagem"
+    },
+    {
+        "value": 125,
+        "label": "Neurociência "
+    },
+    {
+        "value": 2567,
+        "label": "Neurociências Aplicada à Educação e Aprendizagem "
+    },
+    {
+        "value": 2568,
+        "label": "Neuropsicologia"
+    },
+    {
+        "value": 2609,
+        "label": "Neuropsicopedagogia "
+    },
+    {
+        "value": 159,
+        "label": "Nutrição"
+    },
+    {
+        "value": 1811,
+        "label": "Nutrição EAD"
+    },
+    {
+        "value": 2569,
+        "label": "Nutrição Esportiva"
+    },
+    {
+        "value": 2313,
+        "label": "Nutrição Flex"
+    },
+    {
+        "value": 2570,
+        "label": "Nutrição Hospitalar"
+    },
+    {
+        "value": 573,
+        "label": "Obstetrícia"
+    },
+    {
+        "value": 504,
+        "label": "Oceanografia"
+    },
+    {
+        "value": 1830,
+        "label": "OCEANOLOGIA"
+    },
+    {
+        "value": 160,
+        "label": "Odontologia"
+    },
+    {
+        "value": 2305,
+        "label": "Odontologia EAD"
+    },
+    {
+        "value": 615,
+        "label": "Operação de empilhadeira"
+    },
+    {
+        "value": 892,
+        "label": "Óptica e Optometria "
+    },
+    {
+        "value": 1516,
+        "label": "Optometria"
+    },
+    {
+        "value": 2571,
+        "label": "Orientação educacional"
+    },
+    {
+        "value": 2572,
+        "label": "Orientação Educacional | Teoria e prática"
+    },
+    {
+        "value": 1533,
+        "label": "Panificação"
+    },
+    {
+        "value": 51,
+        "label": "Pedagogia"
+    },
+    {
+        "value": 1883,
+        "label": "Pedagogia (Digital)"
+    },
+    {
+        "value": 1792,
+        "label": "Pedagogia EAD"
+    },
+    {
+        "value": 2573,
+        "label": "Pedagogia Empresarial"
+    },
+    {
+        "value": 2336,
+        "label": "Pedagogia FLEX"
+    },
+    {
+        "value": 1504,
+        "label": "Pedagogia Intercultural"
+    },
+    {
+        "value": 1448,
+        "label": "Pedagogia para Licenciados"
+    },
+    {
+        "value": 1982,
+        "label": "Pedagogia para licenciados (6 ou 12 meses)"
+    },
+    {
+        "value": 2574,
+        "label": "Pericia Contabil "
+    },
+    {
+        "value": 2575,
+        "label": "Personal Trainer"
+    },
+    {
+        "value": 695,
+        "label": "Petróleo e Gás\t"
+    },
+    {
+        "value": 2761,
+        "label": "Petroquímica"
+    },
+    {
+        "value": 1850,
+        "label": "Pilotagem Profissional de Aeronaves"
+    },
+    {
+        "value": 813,
+        "label": "Pintura "
+    },
+    {
+        "value": 2576,
+        "label": "Planejamento Empresarial e Gestão da Produção"
+    },
+    {
+        "value": 883,
+        "label": "Planejamento estratégico"
+    },
+    {
+        "value": 2577,
+        "label": "Planejamento estratégico e Gestão"
+    },
+    {
+        "value": 2578,
+        "label": "PLanejamento pedagógico "
+    },
+    {
+        "value": 931,
+        "label": "Planejamento Territorial"
+    },
+    {
+        "value": 919,
+        "label": "Planejamento Territorial "
+    },
+    {
+        "value": 214,
+        "label": "Podologia"
+    },
+    {
+        "value": 2010,
+        "label": "Podologia EAD"
+    },
+    {
+        "value": 426,
+        "label": " Polímeros (Tecnologia em Plásticos)"
+    },
+    {
+        "value": 2579,
+        "label": "Políticas e Gestão de Serviço Social "
+    },
+    {
+        "value": 119,
+        "label": "Políticas Públicas "
+    },
+    {
+        "value": 2780,
+        "label": "Pós-Doc"
+    },
+    {
+        "value": 2778,
+        "label": "Pós-Graduação"
+    },
+    {
+        "value": 1264,
+        "label": "Pós-Graduação de Psicologia Organizacional"
+    },
+    {
+        "value": 2150,
+        "label": "Pós-Graduação em Gestão Estratégica de Negócios (EAD)"
+    },
+    {
+        "value": 1300,
+        "label": "Pós-Graduação em Marketing Digital"
+    },
+    {
+        "value": 2149,
+        "label": "Pós-Graduação em Marketing Estratégico (EAD)"
+    },
+    {
+        "value": 1556,
+        "label": "Pós-produção"
+    },
+    {
+        "value": 2580,
+        "label": "Práticas Inovadoras em Educação"
+    },
+    {
+        "value": 2581,
+        "label": "Prática Trabalhista Avançada "
+    },
+    {
+        "value": 1594,
+        "label": "Premiere Avançado - Online"
+    },
+    {
+        "value": 1593,
+        "label": "Premiere - Online"
+    },
+    {
+        "value": 878,
+        "label": "Princípios da mineração"
+    },
+    {
+        "value": 583,
+        "label": "Processamento de Dados"
+    },
+    {
+        "value": 1410,
+        "label": "Processos Escolares"
+    },
+    {
+        "value": 1964,
+        "label": "Processos Escolares EAD"
+    },
+    {
+        "value": 1411,
+        "label": "Processos Gerenciais"
+    },
+    {
+        "value": 1390,
+        "label": "Processos Gerenciais com ênfase em Empreendedorismo"
+    },
+    {
+        "value": 1864,
+        "label": "Processos Gerenciais modalidade EAD"
+    },
+    {
+        "value": 836,
+        "label": "Processos Gerencias"
+    },
+    {
+        "value": 668,
+        "label": "Processos Metalúrgicos "
+    },
+    {
+        "value": 484,
+        "label": "Processos Químicos"
+    },
+    {
+        "value": 973,
+        "label": "Produção Agrícola"
+    },
+    {
+        "value": 2306,
+        "label": "Produção Agrícola EAD"
+    },
+    {
+        "value": 312,
+        "label": "Produção Audiovisual"
+    },
+    {
+        "value": 1574,
+        "label": "Produção Audiovisual - Online"
+    },
+    {
+        "value": 1788,
+        "label": "Produção cervejeira"
+    },
+    {
+        "value": 2011,
+        "label": "Produção Cervejeira EAD"
+    },
+    {
+        "value": 1105,
+        "label": "Produção Cultural"
+    },
+    {
+        "value": 2660,
+        "label": "Produção de Cerveja"
+    },
+    {
+        "value": 1434,
+        "label": "Produção de Conteúdo Digital"
+    },
+    {
+        "value": 1965,
+        "label": "Produção de Conteúdo Digital EAD"
+    },
+    {
+        "value": 1571,
+        "label": "Produção de Conteúdo para Internet - Online"
+    },
+    {
+        "value": 487,
+        "label": "Produção Editorial"
+    },
+    {
+        "value": 213,
+        "label": "Produção Editorial com ênfase em Multimeios"
+    },
+    {
+        "value": 1558,
+        "label": "Produção Executiva para Cinema e TV"
+    },
+    {
+        "value": 540,
+        "label": "Produção Fonográfica"
+    },
+    {
+        "value": 657,
+        "label": "Produção Industrial "
+    },
+    {
+        "value": 69,
+        "label": "Produção Multimídia"
+    },
+    {
+        "value": 2323,
+        "label": "Produção Multimídia em Realidade Virtual Aumentada EAD"
+    },
+    {
+        "value": 288,
+        "label": "Produção Multimídia (Ênfase em Design de Mídia Digital)"
+    },
+    {
+        "value": 313,
+        "label": "Produção Publicitária"
+    },
+    {
+        "value": 454,
+        "label": "Produção Publicitária "
+    },
+    {
+        "value": 822,
+        "label": "Produção Textual "
+    },
+    {
+        "value": 417,
+        "label": "Programação Visual"
+    },
+    {
+        "value": 397,
+        "label": "Programa Especial de Formação Pedagógica em Artes Visuais"
+    },
+    {
+        "value": 398,
+        "label": "Programa Especial de Formação Pedagógica em Música"
+    },
+    {
+        "value": 405,
+        "label": "Programa Futuro Executivo"
+    },
+    {
+        "value": 418,
+        "label": "Projeto do Produto"
+    },
+    {
+        "value": 655,
+        "label": "Projetos de Estruturas Aeronáuticas "
+    },
+    {
+        "value": 2582,
+        "label": "Projetos e Práticas Educativas  "
+    },
+    {
+        "value": 2583,
+        "label": "Projetos e práticas sustentáveis em educação ambiental "
+    },
+    {
+        "value": 416,
+        "label": "Projetos Mecânicos"
+    },
+    {
+        "value": 677,
+        "label": "Propaganda e Marketing"
+    },
+    {
+        "value": 1398,
+        "label": "Propaganda e Publicidade"
+    },
+    {
+        "value": 52,
+        "label": "Psicologia"
+    },
+    {
+        "value": 934,
+        "label": "Psicologia Cristã"
+    },
+    {
+        "value": 874,
+        "label": "Psicologia da Educação"
+    },
+    {
+        "value": 2584,
+        "label": "Psicologia do Desenvolvimento e Aprendizagem "
+    },
+    {
+        "value": 2307,
+        "label": "Psicologia EAD"
+    },
+    {
+        "value": 2585,
+        "label": "Psicologia Educacional"
+    },
+    {
+        "value": 1503,
+        "label": "Psicologia Organizacional "
+    },
+    {
+        "value": 958,
+        "label": "Psicologia Organizacional e do Trabalho"
+    },
+    {
+        "value": 2586,
+        "label": "Psicologia positiva e Coaching"
+    },
+    {
+        "value": 2588,
+        "label": "Psicomotricidade e o Processo de ensino e aprendizagem "
+    },
+    {
+        "value": 2587,
+        "label": "Psicomotricidde"
+    },
+    {
+        "value": 2646,
+        "label": "Psicomotricidde (tecnologia em psicomotricidade)"
+    },
+    {
+        "value": 485,
+        "label": "Psicopedagogia"
+    },
+    {
+        "value": 2589,
+        "label": "Psicopedagogia Clínica e Institucional "
+    },
+    {
+        "value": 1966,
+        "label": "Psicopedagogia EAD"
+    },
+    {
+        "value": 638,
+        "label": "Publicidade e Propaganda"
+    },
+    {
+        "value": 685,
+        "label": "Publicidade e Propaganda com ênfase em Marketing"
+    },
+    {
+        "value": 1967,
+        "label": "Publicidade e Propaganda EAD"
+    },
+    {
+        "value": 2590,
+        "label": "Publicidade, Propaganda e Mídias Sociais "
+    },
+    {
+        "value": 2591,
+        "label": "Qualidade de Vida e Saúde"
+    },
+    {
+        "value": 2659,
+        "label": "Qualidade de Vida Na Contemporaneidade"
+    },
+    {
+        "value": 183,
+        "label": "Química"
+    },
+    {
+        "value": 690,
+        "label": "Química Ambiental"
+    },
+    {
+        "value": 1710,
+        "label": "Química de Alimentos "
+    },
+    {
+        "value": 1711,
+        "label": "Química Forense "
+    },
+    {
+        "value": 184,
+        "label": "Química Industrial"
+    },
+    {
+        "value": 539,
+        "label": "Química Tecnológica"
+    },
+    {
+        "value": 733,
+        "label": "Química Tecnológica e Industrial"
+    },
+    {
+        "value": 212,
+        "label": "Quiropraxia"
+    },
+    {
+        "value": 168,
+        "label": "Radialismo"
+    },
+    {
+        "value": 3,
+        "label": "Rádio E Tv"
+    },
+    {
+        "value": 349,
+        "label": "Radiologia"
+    },
+    {
+        "value": 1968,
+        "label": "Radiologia EAD"
+    },
+    {
+        "value": 869,
+        "label": "Rádio, TV e Internet"
+    },
+    {
+        "value": 949,
+        "label": "Recreation Administration"
+    },
+    {
+        "value": 881,
+        "label": "Recursos ambientais "
+    },
+    {
+        "value": 1054,
+        "label": "Recursos Humanos"
+    },
+    {
+        "value": 2178,
+        "label": "Recursos Humanos EAD"
+    },
+    {
+        "value": 462,
+        "label": "Redes de computadores"
+    },
+    {
+        "value": 1897,
+        "label": "Redes de Computadores EAD"
+    },
+    {
+        "value": 446,
+        "label": "Redes de Telecomunicações"
+    },
+    {
+        "value": 660,
+        "label": "Refrigeração, Ventilação e Ar Condicionado "
+    },
+    {
+        "value": 1478,
+        "label": "Relações Econômicas Internacionais"
+    },
+    {
+        "value": 2,
+        "label": "Relações Internacionais"
+    },
+    {
+        "value": 1970,
+        "label": "Relações Internacionais EAD"
+    },
+    {
+        "value": 1,
+        "label": "Relações Públicas"
+    },
+    {
+        "value": 2321,
+        "label": "Relações Públicas EAD"
+    },
+    {
+        "value": 865,
+        "label": "Religion and Philosophy"
+    },
+    {
+        "value": 1560,
+        "label": "Roteiro"
+    },
+    {
+        "value": 1562,
+        "label": "Roteiro - Intensivo de Férias"
+    },
+    {
+        "value": 1588,
+        "label": "Roteiro - Online"
+    },
+    {
+        "value": 1587,
+        "label": "Roteiro para Série de TV - Online"
+    },
+    {
+        "value": 2197,
+        "label": "Saneamento"
+    },
+    {
+        "value": 375,
+        "label": "Saneamento Ambiental"
+    },
+    {
+        "value": 1464,
+        "label": "Saúde"
+    },
+    {
+        "value": 2090,
+        "label": "Saúde Coletiva"
+    },
+    {
+        "value": 2592,
+        "label": "Saúde do Trabalhador"
+    },
+    {
+        "value": 1844,
+        "label": "Saúde Integral"
+    },
+    {
+        "value": 2593,
+        "label": "Saúde Publica"
+    },
+    {
+        "value": 687,
+        "label": "Saúde Pública"
+    },
+    {
+        "value": 1449,
+        "label": "Secretariado"
+    },
+    {
+        "value": 1426,
+        "label": "Secretariado e Assessoria Internacional"
+    },
+    {
+        "value": 1107,
+        "label": "Secretariado Executivo"
+    },
+    {
+        "value": 2594,
+        "label": "Secretariado Executivo "
+    },
+    {
+        "value": 1621,
+        "label": "Secretariado Executivo Bilíngue"
+    },
+    {
+        "value": 1971,
+        "label": "Secretariado Executivo EAD "
+    },
+    {
+        "value": 637,
+        "label": "Secretariado Executivo Trilingue"
+    },
+    {
+        "value": 2595,
+        "label": "Secretaria Escolar"
+    },
+    {
+        "value": 2012,
+        "label": "Segurança Alimentar EAD"
+    },
+    {
+        "value": 1414,
+        "label": "Segurança Cibernética"
+    },
+    {
+        "value": 414,
+        "label": "Segurança da Informação"
+    },
+    {
+        "value": 2355,
+        "label": "Segurança da Informação EAD"
+    },
+    {
+        "value": 443,
+        "label": "Segurança do Trabalho"
+    },
+    {
+        "value": 1989,
+        "label": "Segurança do Trabalho EAD"
+    },
+    {
+        "value": 341,
+        "label": "Segurança no Trabalho"
+    },
+    {
+        "value": 1972,
+        "label": "Segurança no Trabalho EAD"
+    },
+    {
+        "value": 914,
+        "label": "Segurança no Trânsito "
+    },
+    {
+        "value": 2325,
+        "label": "Segurança Privada EAD"
+    },
+    {
+        "value": 469,
+        "label": "Segurança Pública"
+    },
+    {
+        "value": 1973,
+        "label": "Segurança Pública EAD "
+    },
+    {
+        "value": 1416,
+        "label": "Serviços Judiciais"
+    },
+    {
+        "value": 2326,
+        "label": "Serviços Judiciais EAD"
+    },
+    {
+        "value": 2034,
+        "label": "Serviços Jurídicos"
+    },
+    {
+        "value": 2204,
+        "label": "Serviços Jurídicos, Cartorários e Notariais"
+    },
+    {
+        "value": 2199,
+        "label": "Serviços Jurídicos, Cartorários e Notariais Tecnólogo - EAD"
+    },
+    {
+        "value": 1435,
+        "label": "SERVIÇOS JURÍDICOS E NOTARIAIS"
+    },
+    {
+        "value": 1974,
+        "label": "Serviços Jurídicos e Notariais EAD"
+    },
+    {
+        "value": 77,
+        "label": "Serviço Social"
+    },
+    {
+        "value": 2315,
+        "label": "Serviço Social Flex"
+    },
+    {
+        "value": 1802,
+        "label": "Serviço Social Modalidade EAD"
+    },
+    {
+        "value": 1417,
+        "label": "Serviços Penais"
+    },
+    {
+        "value": 835,
+        "label": "SERVIÇOS PENAIS "
+    },
+    {
+        "value": 2328,
+        "label": "Serviços Penais EAD"
+    },
+    {
+        "value": 2327,
+        "label": "Serviços Registrais e Notariais EAD"
+    },
+    {
+        "value": 1845,
+        "label": "Serviços Registrais e Notórias"
+    },
+    {
+        "value": 866,
+        "label": "Sign Language Interpreting"
+    },
+    {
+        "value": 662,
+        "label": "Silvicultura"
+    },
+    {
+        "value": 2596,
+        "label": "Síndrome Metabólica e Promoção de saúde "
+    },
+    {
+        "value": 896,
+        "label": "Sistema de Informação "
+    },
+    {
+        "value": 2027,
+        "label": "Sistema de Informação EAD"
+    },
+    {
+        "value": 1301,
+        "label": "Sistema de Informações"
+    },
+    {
+        "value": 2681,
+        "label": "Sistema de Telecomunicações"
+    },
+    {
+        "value": 1851,
+        "label": "Sistemas Automotivos"
+    },
+    {
+        "value": 652,
+        "label": "Sistemas Biomédicos "
+    },
+    {
+        "value": 2651,
+        "label": "Sistemas Construtivos Sustentáveis"
+    },
+    {
+        "value": 584,
+        "label": "Sistemas da informação"
+    },
+    {
+        "value": 1975,
+        "label": "Sistemas da Informação EAD"
+    },
+    {
+        "value": 1226,
+        "label": " Sistemas de Informação"
+    },
+    {
+        "value": 1623,
+        "label": "Sistemas de Informação - Bacharelado"
+    },
+    {
+        "value": 1620,
+        "label": "Sistemas de Informação - Bacharelado (EAD)"
+    },
+    {
+        "value": 2292,
+        "label": "Sistemas de Informação (Digital)"
+    },
+    {
+        "value": 368,
+        "label": "Sistemas de Informações Gerenciais"
+    },
+    {
+        "value": 1098,
+        "label": "Sistemas de internet"
+    },
+    {
+        "value": 2674,
+        "label": "sistemas de telecomunicações "
+    },
+    {
+        "value": 473,
+        "label": "Sistemas Elétricos"
+    },
+    {
+        "value": 2045,
+        "label": "Sistemas e Mídias Digitais"
+    },
+    {
+        "value": 671,
+        "label": "Sistemas Navais "
+    },
+    {
+        "value": 207,
+        "label": "Sistemas para a Internet"
+    },
+    {
+        "value": 1396,
+        "label": "Sistemas para internet"
+    },
+    {
+        "value": 2356,
+        "label": "Sistemas para Internet (Desenvolvimento Mobile) EAD"
+    },
+    {
+        "value": 1976,
+        "label": "Sistemas para Internet EAD"
+    },
+    {
+        "value": 1597,
+        "label": "Sistemas para Internet – UX Design"
+    },
+    {
+        "value": 1884,
+        "label": "Sistemas para Internet – UX Design (Digital)"
+    },
+    {
+        "value": 1848,
+        "label": "Social Media"
+    },
+    {
+        "value": 280,
+        "label": "Sociologia"
+    },
+    {
+        "value": 2293,
+        "label": "Sociologia (Digital)"
+    },
+    {
+        "value": 202,
+        "label": "Soldagem"
+    },
+    {
+        "value": 1831,
+        "label": "SOM, IMAGEM E MOVIMENTO"
+    },
+    {
+        "value": 1561,
+        "label": "Som para Cinema e TV"
+    },
+    {
+        "value": 705,
+        "label": "Superior de Tecnologia em Análise e Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 2283,
+        "label": "Superior de Tecnologia em Banco de Dados"
+    },
+    {
+        "value": 2799,
+        "label": "Superior de Tecnologia em Big Data Analytic"
+    },
+    {
+        "value": 2308,
+        "label": "Superior de Tecnologia em Cibersegurança"
+    },
+    {
+        "value": 2758,
+        "label": "Superior De Tecnologia Em Computação Em Nuvem"
+    },
+    {
+        "value": 1462,
+        "label": "Superior de Tecnologia em Desenvolvimento de Software Multiplataforma"
+    },
+    {
+        "value": 1302,
+        "label": "Superior de Tecnologia em Desenvolvimento Mobile"
+    },
+    {
+        "value": 2389,
+        "label": "Superior de Tecnologia em Desesenvolvimento Web"
+    },
+    {
+        "value": 2801,
+        "label": "SUPERIOR DE TECNOLOGIA EM DESIGN GRÁFICO"
+    },
+    {
+        "value": 2152,
+        "label": "SUPERIOR DE TECNOLOGIA EM GESTÃO COMERCIAL"
+    },
+    {
+        "value": 1541,
+        "label": "Superior de Tecnologia em Gestão da Qualidade "
+    },
+    {
+        "value": 2153,
+        "label": "SUPERIOR DE TECNOLOGIA EM GESTÃO FINANCEIRA"
+    },
+    {
+        "value": 2295,
+        "label": "Superior de Tecnologia em Logística"
+    },
+    {
+        "value": 2782,
+        "label": "Superior de Tecnologia em Marketing"
+    },
+    {
+        "value": 1463,
+        "label": " SUPERIOR  DE  TECNOLOGIA  EM  MARKETING "
+    },
+    {
+        "value": 2797,
+        "label": "Superior de Tecnologia em Segurança da Informação"
+    },
+    {
+        "value": 2267,
+        "label": "Superior Tecnólogo em Fabricação Mecânica"
+    },
+    {
+        "value": 2268,
+        "label": "Superior Tecnólogo em Mecatrônica Industrial"
+    },
+    {
+        "value": 2597,
+        "label": "Supervisão Educacional"
+    },
+    {
+        "value": 387,
+        "label": "Supply Chain Management"
+    },
+    {
+        "value": 209,
+        "label": "Teatro"
+    },
+    {
+        "value": 1735,
+        "label": "Tec. Mecânica"
+    },
+    {
+        "value": 2650,
+        "label": "Técnicas de Acompanhamento Terapêutico"
+    },
+    {
+        "value": 2649,
+        "label": "Técnicas para Telemedicina"
+    },
+    {
+        "value": 2106,
+        "label": "Técnico Biotecnologia"
+    },
+    {
+        "value": 1595,
+        "label": "Técnico de Edificações"
+    },
+    {
+        "value": 2165,
+        "label": "Técnico de Nível Médio em Segurança do Trabalho"
+    },
+    {
+        "value": 1141,
+        "label": "Técnico de Qualidade"
+    },
+    {
+        "value": 1384,
+        "label": "Técnico Desenvolvedor Web FullStack"
+    },
+    {
+        "value": 1483,
+        "label": "Técnico Design de Móveis"
+    },
+    {
+        "value": 679,
+        "label": "Técnico Eletrônico"
+    },
+    {
+        "value": 1413,
+        "label": "Técnico em administração  "
+    },
+    {
+        "value": 2080,
+        "label": "Técnico em Agricultura"
+    },
+    {
+        "value": 1727,
+        "label": "TÉCNICO EM AGRIMENSURA"
+    },
+    {
+        "value": 1725,
+        "label": "TECNICO EM AGROECOLOGIA"
+    },
+    {
+        "value": 1726,
+        "label": "TECNICO EM AGROINDUSTRIA"
+    },
+    {
+        "value": 1795,
+        "label": "Técnico em Agronegócio"
+    },
+    {
+        "value": 2046,
+        "label": "Técnico em Agropecuária"
+    },
+    {
+        "value": 2840,
+        "label": "Técnico em Alimento"
+    },
+    {
+        "value": 753,
+        "label": "Técnico em Alimentos"
+    },
+    {
+        "value": 604,
+        "label": "Técnico em Analises clinicas"
+    },
+    {
+        "value": 717,
+        "label": "Técnico em Análises Clínicas"
+    },
+    {
+        "value": 2047,
+        "label": "Técnico em Análises Químicas"
+    },
+    {
+        "value": 2079,
+        "label": "Técnico em Aquicultura"
+    },
+    {
+        "value": 754,
+        "label": "Técnico em Arquivo"
+    },
+    {
+        "value": 2102,
+        "label": "Técnico em Artesanato"
+    },
+    {
+        "value": 1545,
+        "label": "Técnico em Atuação para Cinema e TV"
+    },
+    {
+        "value": 2698,
+        "label": "Técnico em Automação"
+    },
+    {
+        "value": 723,
+        "label": "Técnico em Automação Industrial"
+    },
+    {
+        "value": 2219,
+        "label": "Técnico em  Celulose e Papel"
+    },
+    {
+        "value": 2266,
+        "label": "Técnico em Cerâmica"
+    },
+    {
+        "value": 2216,
+        "label": "Técnico em  Cibersistemas para Automação"
+    },
+    {
+        "value": 2212,
+        "label": "Técnico em Climatização"
+    },
+    {
+        "value": 757,
+        "label": "Técnico em Comércio"
+    },
+    {
+        "value": 1796,
+        "label": "Técnico em Comércio Exterior"
+    },
+    {
+        "value": 2220,
+        "label": "Técnico em Comunicação Visual"
+    },
+    {
+        "value": 2109,
+        "label": "Técnico em construção de edifícios"
+    },
+    {
+        "value": 1534,
+        "label": "Técnico em Contabilidade"
+    },
+    {
+        "value": 2103,
+        "label": "Técnico em Controle Ambiental"
+    },
+    {
+        "value": 2747,
+        "label": "Técnico em Desenho de Construção Civil"
+    },
+    {
+        "value": 747,
+        "label": "Técnico em Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 2269,
+        "label": "Técnico em Desenvolvimento de Sistemas (AMS)"
+    },
+    {
+        "value": 722,
+        "label": "Técnico em Design de Interiores"
+    },
+    {
+        "value": 2221,
+        "label": "Técnico em Design Gráfico"
+    },
+    {
+        "value": 1484,
+        "label": "Técnico em Edificações"
+    },
+    {
+        "value": 1738,
+        "label": "TÉCNICO EM ELETROELETRÔNICA"
+    },
+    {
+        "value": 719,
+        "label": "Técnico em Eletromecânica"
+    },
+    {
+        "value": 1491,
+        "label": "Técnico em Eletromecânica - (Área Elétrica)"
+    },
+    {
+        "value": 1492,
+        "label": "Técnico em Eletromecânica - (Área Mecânica)"
+    },
+    {
+        "value": 1493,
+        "label": "Técnico em Eletrônica"
+    },
+    {
+        "value": 1394,
+        "label": " Técnico em Eletrotécnica"
+    },
+    {
+        "value": 686,
+        "label": "Técnico em Enfermagem"
+    },
+    {
+        "value": 1512,
+        "label": "Técnico em Enfermagem Intensivo"
+    },
+    {
+        "value": 2210,
+        "label": "Técnico em Equipamentos Biomédicos"
+    },
+    {
+        "value": 759,
+        "label": "Técnico em Estética"
+    },
+    {
+        "value": 769,
+        "label": "Técnico em Eventos"
+    },
+    {
+        "value": 2215,
+        "label": "Técnico em Fabricação Mecânica"
+    },
+    {
+        "value": 608,
+        "label": "Técnico em Farmácia"
+    },
+    {
+        "value": 1497,
+        "label": "Técnico em Finanças"
+    },
+    {
+        "value": 1540,
+        "label": "Técnico em Gestão Ambiental"
+    },
+    {
+        "value": 793,
+        "label": "Técnico em Guia de Turismo"
+    },
+    {
+        "value": 678,
+        "label": "Técnico em Hospedagem"
+    },
+    {
+        "value": 802,
+        "label": "Técnico em Informática"
+    },
+    {
+        "value": 1502,
+        "label": "Técnico em Informática para Internet"
+    },
+    {
+        "value": 2232,
+        "label": "Técnico em Instrumentação Industrial "
+    },
+    {
+        "value": 607,
+        "label": "Técnico em Lógistica"
+    },
+    {
+        "value": 720,
+        "label": "Técnico em Logística"
+    },
+    {
+        "value": 2217,
+        "label": "Técnico em Manutenção Automotiva"
+    },
+    {
+        "value": 2224,
+        "label": "Técnico em Manutenção de Máquinas Industriais"
+    },
+    {
+        "value": 2110,
+        "label": "Técnico em manutenção em sistema de informática"
+    },
+    {
+        "value": 1605,
+        "label": "Técnico em Manutenção e Suporte em Informática "
+    },
+    {
+        "value": 1814,
+        "label": "Técnico em Manutenção Mecânica Industrial"
+    },
+    {
+        "value": 790,
+        "label": "Técnico em Marketing"
+    },
+    {
+        "value": 2105,
+        "label": "TÉCNICO EM MASSOTERAPIA"
+    },
+    {
+        "value": 1059,
+        "label": "Técnico em Mecânica"
+    },
+    {
+        "value": 1348,
+        "label": "Técnico em Mecânica- Controle e Processos Industriais"
+    },
+    {
+        "value": 2229,
+        "label": "Técnico em Mecânica de Precisão"
+    },
+    {
+        "value": 1603,
+        "label": "Técnico em Mecânica Industrial"
+    },
+    {
+        "value": 1189,
+        "label": "Técnico em Mecatrônica"
+    },
+    {
+        "value": 2218,
+        "label": "Técnico em Mecatrônica Automotiva"
+    },
+    {
+        "value": 1485,
+        "label": "Técnico em Meio ambiente"
+    },
+    {
+        "value": 1486,
+        "label": "Técnico em Metalurgia"
+    },
+    {
+        "value": 2784,
+        "label": "Técnico em Mídias Digitais"
+    },
+    {
+        "value": 2227,
+        "label": "Técnico em Móveis"
+    },
+    {
+        "value": 2226,
+        "label": "Técnico em Multimídia"
+    },
+    {
+        "value": 1601,
+        "label": "Técnico em Nutrição e dietética"
+    },
+    {
+        "value": 1840,
+        "label": " Técnico em Óptica"
+    },
+    {
+        "value": 2104,
+        "label": "Técnico em Paisagismo"
+    },
+    {
+        "value": 1604,
+        "label": "Técnico em Petróleo e Gás"
+    },
+    {
+        "value": 1399,
+        "label": "Técnico em Petroquímica"
+    },
+    {
+        "value": 2225,
+        "label": "Técnico em Plásticos"
+    },
+    {
+        "value": 2233,
+        "label": "Técnico em Porto"
+    },
+    {
+        "value": 2222,
+        "label": "Técnico em Processos Gráficos"
+    },
+    {
+        "value": 2101,
+        "label": "Técnico em Produção de Moda"
+    },
+    {
+        "value": 779,
+        "label": "Técnico em Programação de Jogos Digitais"
+    },
+    {
+        "value": 2294,
+        "label": "Técnico em Publicidade"
+    },
+    {
+        "value": 1350,
+        "label": "Técnico em Publicidade "
+    },
+    {
+        "value": 1838,
+        "label": "Técnico em Qualidade "
+    },
+    {
+        "value": 1345,
+        "label": "Técnico em Química"
+    },
+    {
+        "value": 2707,
+        "label": "Técnico em Química e Meio Ambiente"
+    },
+    {
+        "value": 1500,
+        "label": "Técnico em Química Industrial"
+    },
+    {
+        "value": 1600,
+        "label": "Técnico em Radiologia"
+    },
+    {
+        "value": 602,
+        "label": "Técnico em Rádiologia"
+    },
+    {
+        "value": 1496,
+        "label": "Técnico em Reciclagem"
+    },
+    {
+        "value": 601,
+        "label": "Técnico em Recursos Humanos"
+    },
+    {
+        "value": 777,
+        "label": "Técnico em Redes de Computadores"
+    },
+    {
+        "value": 2211,
+        "label": "Técnico em Refrigeração"
+    },
+    {
+        "value": 1602,
+        "label": "Técnico em Saúde Bucal"
+    },
+    {
+        "value": 721,
+        "label": "Técnico em Secretariado"
+    },
+    {
+        "value": 989,
+        "label": "Técnico em Segurança"
+    },
+    {
+        "value": 1347,
+        "label": "Técnico em Segurança do Trabalho"
+    },
+    {
+        "value": 1535,
+        "label": "Técnico em Serviços Jurídicos"
+    },
+    {
+        "value": 1494,
+        "label": "Técnico em Serviços Públicos"
+    },
+    {
+        "value": 2231,
+        "label": "Técnico em Sistemas de Energia Renovável"
+    },
+    {
+        "value": 1607,
+        "label": "Técnico em Sistemas para Internet"
+    },
+    {
+        "value": 2228,
+        "label": "Técnico em Soldagem"
+    },
+    {
+        "value": 1538,
+        "label": "Técnico em Telecomunicações"
+    },
+    {
+        "value": 2213,
+        "label": "Técnico em Têxtil"
+    },
+    {
+        "value": 1487,
+        "label": "Técnico em Transações Imobiliárias"
+    },
+    {
+        "value": 1495,
+        "label": "Técnico em Transações Imobiliárias - EAD"
+    },
+    {
+        "value": 1488,
+        "label": "Técnico em Transporte Rodoviário"
+    },
+    {
+        "value": 2697,
+        "label": "Técnico em Vendas"
+    },
+    {
+        "value": 2214,
+        "label": "Técnico em Vestuário"
+    },
+    {
+        "value": 609,
+        "label": "Técnico em Veterinaria"
+    },
+    {
+        "value": 1536,
+        "label": "Técnico em Vigilância em Saúde"
+    },
+    {
+        "value": 481,
+        "label": "Técnico Estética"
+    },
+    {
+        "value": 2107,
+        "label": "Técnico Metrologia"
+    },
+    {
+        "value": 482,
+        "label": "Técnico Petróleo e Gás"
+    },
+    {
+        "value": 483,
+        "label": "Técnico Segurança do  Trabalho "
+    },
+    {
+        "value": 1460,
+        "label": "Tecnologia Análise e Desenvolvimento  de Sistemas "
+    },
+    {
+        "value": 1142,
+        "label": "Tecnologia da Construção de Edifícios"
+    },
+    {
+        "value": 1454,
+        "label": "Tecnologia da Informação"
+    },
+    {
+        "value": 953,
+        "label": "Tecnologia da Informação "
+    },
+    {
+        "value": 959,
+        "label": "Tecnologia da Informação e da Comunicação"
+    },
+    {
+        "value": 2147,
+        "label": "Tecnologia de Empreendedorismo"
+    },
+    {
+        "value": 1723,
+        "label": "Tecnologia de Geoprocessamento"
+    },
+    {
+        "value": 1843,
+        "label": "Tecnologia de laticínios"
+    },
+    {
+        "value": 554,
+        "label": "Tecnologia de Madeira"
+    },
+    {
+        "value": 1724,
+        "label": "Tecnologia de Produção Multimídia"
+    },
+    {
+        "value": 1465,
+        "label": "Tecnologia e Análise de Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 606,
+        "label": "Tecnologia em Administração"
+    },
+    {
+        "value": 1631,
+        "label": "TECNOLOGIA EM ADMINISTRAÇÃO RURAL"
+    },
+    {
+        "value": 749,
+        "label": "Tecnologia em Agenciamento de Viagem"
+    },
+    {
+        "value": 750,
+        "label": "Tecnologia em Agente Comunitário de Saúde"
+    },
+    {
+        "value": 1691,
+        "label": "TECNOLOGIA EM AGENTE COMUNITÁRIO DE SAÚDE E ENDEMIAS"
+    },
+    {
+        "value": 748,
+        "label": "Tecnologia em agricultura"
+    },
+    {
+        "value": 751,
+        "label": "Tecnologia em Agrimensura"
+    },
+    {
+        "value": 752,
+        "label": "Tecnologia em Agroindústria "
+    },
+    {
+        "value": 429,
+        "label": "Tecnologia em Agronegócio"
+    },
+    {
+        "value": 1637,
+        "label": "TECNOLOGIA EM AGRONOMIA"
+    },
+    {
+        "value": 800,
+        "label": "Tecnologia em Agropecuária"
+    },
+    {
+        "value": 430,
+        "label": "Tecnologia em Alimentos"
+    },
+    {
+        "value": 985,
+        "label": "Tecnologia em Ambiente e Saúde"
+    },
+    {
+        "value": 2338,
+        "label": "Tecnologia em Análise e Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 891,
+        "label": "Tecnologia em Análise e Desenvolvimento de Sistemas "
+    },
+    {
+        "value": 2173,
+        "label": "Tecnologia em Análise e Desenvolvimento de Sistemas EAD"
+    },
+    {
+        "value": 2339,
+        "label": "Tecnologia em Análise e Desenvolvimento de Sistemas FLEX"
+    },
+    {
+        "value": 1267,
+        "label": " Tecnologia em Análise em Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 623,
+        "label": "Tecnologia em análises clínicas"
+    },
+    {
+        "value": 2075,
+        "label": "Tecnologia em Aquicultura"
+    },
+    {
+        "value": 1684,
+        "label": "TECNOLOGIA EM ASSESSORIA EXECUTIVA DIGITAL"
+    },
+    {
+        "value": 1692,
+        "label": "TECNOLOGIA EM AUDITORIA EM SAÚDE"
+    },
+    {
+        "value": 189,
+        "label": "Tecnologia em Automação de Escritórios e Secretariado"
+    },
+    {
+        "value": 390,
+        "label": "Tecnologia em Automação Industrial"
+    },
+    {
+        "value": 265,
+        "label": "Tecnologia em Banco de Dados"
+    },
+    {
+        "value": 755,
+        "label": "Tecnologia em Biblioteconomia"
+    },
+    {
+        "value": 2340,
+        "label": "Tecnologia em Big Data e Inteligência Analítica"
+    },
+    {
+        "value": 2341,
+        "label": "Tecnologia em Big Data e Inteligência Analítica EAD"
+    },
+    {
+        "value": 431,
+        "label": "Tecnologia em Biocombustível"
+    },
+    {
+        "value": 466,
+        "label": "Tecnologia em Biotecnologia"
+    },
+    {
+        "value": 1685,
+        "label": "TECNOLOGIA EM BLOCKCHAIN, CRIPTOMOEDAS E FINANÇAS NA ERA DIGITAL"
+    },
+    {
+        "value": 756,
+        "label": "Tecnologia em Canto"
+    },
+    {
+        "value": 1813,
+        "label": "Tecnologia em Ciência"
+    },
+    {
+        "value": 981,
+        "label": "Tecnologia em Ciência de Dados"
+    },
+    {
+        "value": 2795,
+        "label": "Tecnologia em Ciência de Dados e Big Data"
+    },
+    {
+        "value": 2793,
+        "label": "Tecnologia em Ciências Contábeis"
+    },
+    {
+        "value": 1732,
+        "label": "Tecnologia em Ciências de Dados"
+    },
+    {
+        "value": 2696,
+        "label": "Tecnologia em Ciências de Dados -EAD"
+    },
+    {
+        "value": 1678,
+        "label": "TECNOLOGIA EM COACHING E DESENVOLVIMENTO HUMANO"
+    },
+    {
+        "value": 227,
+        "label": "Tecnologia em Comércio Exterior"
+    },
+    {
+        "value": 2364,
+        "label": "Tecnologia em Comércio Exterior EAD"
+    },
+    {
+        "value": 2365,
+        "label": "Tecnologia em Comércio Exterior FLEX"
+    },
+    {
+        "value": 803,
+        "label": "Tecnologia em Computação"
+    },
+    {
+        "value": 673,
+        "label": "Tecnologia em Comunicação em Computação Gráfica"
+    },
+    {
+        "value": 72,
+        "label": "Tecnologia em Comunicação e Multimeios"
+    },
+    {
+        "value": 701,
+        "label": "Tecnologia em Comunicação Institucional"
+    },
+    {
+        "value": 758,
+        "label": "Tecnologia em Comunicação Visual"
+    },
+    {
+        "value": 319,
+        "label": "Tecnologia em Conservação e Restauro"
+    },
+    {
+        "value": 761,
+        "label": "Tecnologia em Construção Civil"
+    },
+    {
+        "value": 441,
+        "label": "Tecnologia em Construção: Estruturas Metálicas"
+    },
+    {
+        "value": 830,
+        "label": "Tecnologia em Construção Naval"
+    },
+    {
+        "value": 760,
+        "label": "Tecnologia em Contabilidade"
+    },
+    {
+        "value": 2673,
+        "label": "tecnologia em controle ambiental "
+    },
+    {
+        "value": 422,
+        "label": "Tecnologia em Controle de Obras"
+    },
+    {
+        "value": 986,
+        "label": "Tecnologia em Controle e Processos Industriais"
+    },
+    {
+        "value": 622,
+        "label": "Tecnologia em cosméticos"
+    },
+    {
+        "value": 726,
+        "label": "Tecnologia em Cozinha"
+    },
+    {
+        "value": 839,
+        "label": "Tecnologia em Cozinha Brasileira "
+    },
+    {
+        "value": 857,
+        "label": "Tecnologia em Cozinha com ênfase em Gastronomia"
+    },
+    {
+        "value": 838,
+        "label": "Tecnologia em Cozinha Internacional"
+    },
+    {
+        "value": 763,
+        "label": "Tecnologia em Dança"
+    },
+    {
+        "value": 1420,
+        "label": "Tecnologia em Data Science"
+    },
+    {
+        "value": 12,
+        "label": "Tecnologia em Desenho De Animação"
+    },
+    {
+        "value": 724,
+        "label": "Tecnologia em Desenho de Construção Civil"
+    },
+    {
+        "value": 1461,
+        "label": " Tecnologia em Desenvolvimento de Software Multiplataforma"
+    },
+    {
+        "value": 648,
+        "label": "Tecnologia em Design de Animação"
+    },
+    {
+        "value": 1627,
+        "label": "TECNOLOGIA EM DESIGN DE ANIMAÇÃO"
+    },
+    {
+        "value": 1628,
+        "label": "TECNOLOGIA EM DESIGN DE GAMES"
+    },
+    {
+        "value": 706,
+        "label": "Tecnologia em Design de Interiores"
+    },
+    {
+        "value": 2174,
+        "label": "Tecnologia em Design  de  Interiores EAD"
+    },
+    {
+        "value": 2357,
+        "label": "Tecnologia em Design de Interiores EAD"
+    },
+    {
+        "value": 966,
+        "label": "Tecnologia em Design de Mídias Digitais"
+    },
+    {
+        "value": 391,
+        "label": "Tecnologia em Design de Moda"
+    },
+    {
+        "value": 252,
+        "label": "Tecnologia em Design de Produto"
+    },
+    {
+        "value": 1629,
+        "label": "TECNOLOGIA EM DESIGN EDITORIAL"
+    },
+    {
+        "value": 253,
+        "label": "Tecnologia em Design Gráfico"
+    },
+    {
+        "value": 2385,
+        "label": "Tecnologia em Design Gráfico EAD"
+    },
+    {
+        "value": 1186,
+        "label": "Tecnologia em Desing Gráfico"
+    },
+    {
+        "value": 725,
+        "label": "Tecnologia em Edificações"
+    },
+    {
+        "value": 1703,
+        "label": "TECNOLOGIA EM EDUCADOR SOCIAL"
+    },
+    {
+        "value": 764,
+        "label": "Tecnologia em Eletroeletrônica"
+    },
+    {
+        "value": 585,
+        "label": "Tecnologia em Eletromecânica"
+    },
+    {
+        "value": 766,
+        "label": "Tecnologia em Eletrônica"
+    },
+    {
+        "value": 621,
+        "label": "Tecnologia em Eletrônica Automotiva "
+    },
+    {
+        "value": 432,
+        "label": "Tecnologia em Eletrônica Industrial"
+    },
+    {
+        "value": 767,
+        "label": "Tecnologia em Eletrotécnica"
+    },
+    {
+        "value": 711,
+        "label": "Tecnologia em Eletrotécnica Industrial"
+    },
+    {
+        "value": 707,
+        "label": "Tecnologia em Empreendedorismo"
+    },
+    {
+        "value": 1612,
+        "label": "Tecnologia em Empreendedorismo e Novos Negócios"
+    },
+    {
+        "value": 984,
+        "label": "Tecnologia em Energias Renováveis"
+    },
+    {
+        "value": 649,
+        "label": "Tecnologia em Estética e Cosmética"
+    },
+    {
+        "value": 2311,
+        "label": "Tecnologia em Estética e Cosmética Flex"
+    },
+    {
+        "value": 1803,
+        "label": "Tecnologia em Estética e Cosmética Modalidade EAD"
+    },
+    {
+        "value": 230,
+        "label": "Tecnologia em Eventos"
+    },
+    {
+        "value": 2749,
+        "label": "Tecnologia em Eventos - A Distância "
+    },
+    {
+        "value": 2358,
+        "label": "Tecnologia em Eventos EAD"
+    },
+    {
+        "value": 392,
+        "label": "Tecnologia em Fabricação Mecânica"
+    },
+    {
+        "value": 770,
+        "label": "Tecnologia em Finanças"
+    },
+    {
+        "value": 801,
+        "label": "Tecnologia em Florestas"
+    },
+    {
+        "value": 647,
+        "label": "Tecnologia em Fotografia"
+    },
+    {
+        "value": 2324,
+        "label": "Tecnologia em Fotografia EAD"
+    },
+    {
+        "value": 232,
+        "label": "Tecnologia em Gastronomia"
+    },
+    {
+        "value": 2359,
+        "label": "Tecnologia em Gastronomia EAD"
+    },
+    {
+        "value": 1693,
+        "label": "TECNOLOGIA EM GERONTOLOGIA - CUIDADO AO IDOSO"
+    },
+    {
+        "value": 272,
+        "label": "Tecnologia em Gestão Ambiental"
+    },
+    {
+        "value": 233,
+        "label": "Tecnologia em Gestão Comercial"
+    },
+    {
+        "value": 2367,
+        "label": "Tecnologia em Gestão Comercial EAD"
+    },
+    {
+        "value": 2368,
+        "label": "Tecnologia em Gestão Comercial FLEX"
+    },
+    {
+        "value": 1469,
+        "label": "Tecnologia em Gestão da Informação"
+    },
+    {
+        "value": 433,
+        "label": "Tecnologia em Gestão da Produção Industrial"
+    },
+    {
+        "value": 257,
+        "label": "Tecnologia em Gestão da Qualidade"
+    },
+    {
+        "value": 2371,
+        "label": "Tecnologia em Gestão da Qualidade EAD"
+    },
+    {
+        "value": 1686,
+        "label": "TECNOLOGIA EM GESTÃO DA SEGURANÇA E DEFESA CIBERNÉTICA"
+    },
+    {
+        "value": 445,
+        "label": "Tecnologia em Gestão da Segurança Privada"
+    },
+    {
+        "value": 1704,
+        "label": "TECNOLOGIA EM GESTÃO DAS ORGANIZAÇÕES DO TERCEIRO SETOR"
+    },
+    {
+        "value": 266,
+        "label": "Tecnologia em Gestão da Tecnologia da Informação"
+    },
+    {
+        "value": 880,
+        "label": "Tecnologia em Gestão de Agronegócios "
+    },
+    {
+        "value": 1679,
+        "label": "TECNOLOGIA EM GESTÃO DE COOPERATIVAS"
+    },
+    {
+        "value": 674,
+        "label": "Tecnologia em Gestão de Empreendimentos em Saúde"
+    },
+    {
+        "value": 1467,
+        "label": "Tecnologia em Gestão de Logística"
+    },
+    {
+        "value": 507,
+        "label": "Tecnologia em Gestão de Marketing"
+    },
+    {
+        "value": 1633,
+        "label": "TECNOLOGIA EM GESTÃO DE MÍDIAS SOCIAIS"
+    },
+    {
+        "value": 1634,
+        "label": "TECNOLOGIA EM GESTÃO DE PARTIDOS POLÍTICOS"
+    },
+    {
+        "value": 634,
+        "label": "Tecnologia em Gestão de Políticas Públicas"
+    },
+    {
+        "value": 235,
+        "label": "Tecnologia em Gestão de Processos Gerenciais"
+    },
+    {
+        "value": 712,
+        "label": "Tecnologia em Gestão de Produção Industrial"
+    },
+    {
+        "value": 1521,
+        "label": "Tecnologia em Gestão de Qualidade"
+    },
+    {
+        "value": 384,
+        "label": "Tecnologia em Gestão de Recursos Humanos"
+    },
+    {
+        "value": 2097,
+        "label": "Tecnologia em Gestão de Recursos Humanos EAD"
+    },
+    {
+        "value": 2373,
+        "label": "Tecnologia em Gestão de Recursos Humanos FLEX"
+    },
+    {
+        "value": 1694,
+        "label": "TECNOLOGIA EM GESTÃO DE SAÚDE PÚBLICA"
+    },
+    {
+        "value": 1415,
+        "label": "Tecnologia em Gestão de Segurança e Defesa Cibernética"
+    },
+    {
+        "value": 1699,
+        "label": "TECNOLOGIA EM GESTÃO DE SEGURANÇA PRIVADA"
+    },
+    {
+        "value": 696,
+        "label": "Tecnologia em Gestão de Seguros"
+    },
+    {
+        "value": 1644,
+        "label": "TECNOLOGIA EM GESTÃO DE SERVIÇOS JURÍDICOS E NOTARIAIS"
+    },
+    {
+        "value": 395,
+        "label": "Tecnologia em Gestão de Sistemas da Qualidade"
+    },
+    {
+        "value": 374,
+        "label": "Tecnologia em Gestão Desportiva e De Lazer"
+    },
+    {
+        "value": 1797,
+        "label": "Tecnologia em Gestão de Tecnologia da Informação"
+    },
+    {
+        "value": 1700,
+        "label": "TECNOLOGIA EM GESTÃO DE TRÂNSITO E MOBILIDADE URBANA"
+    },
+    {
+        "value": 434,
+        "label": "Tecnologia em Gestão de Turismo"
+    },
+    {
+        "value": 1638,
+        "label": "TECNOLOGIA EM GESTÃO DO AGRONEGÓCIO"
+    },
+    {
+        "value": 1687,
+        "label": "TECNOLOGIA EM GESTÃO DO E-COMMERCE E SISTEMAS LOGÍSTICOS"
+    },
+    {
+        "value": 370,
+        "label": "Tecnologia em Gestão Educacional e Desenvolvimento de Recursos Humanos"
+    },
+    {
+        "value": 625,
+        "label": "Tecnologia em Gestão Empresarial"
+    },
+    {
+        "value": 2100,
+        "label": "Tecnologia em Gestão Empresarial EAD"
+    },
+    {
+        "value": 1695,
+        "label": "TECNOLOGIA EM GESTÃO EM VIGILÂNCIA EM SAÚDE"
+    },
+    {
+        "value": 987,
+        "label": "Tecnologia em Gestão e Negócios"
+    },
+    {
+        "value": 1680,
+        "label": "TECNOLOGIA EM GESTÃO ESTRATÉGICA EMPRESARIAL"
+    },
+    {
+        "value": 238,
+        "label": "Tecnologia em Gestão Financeira"
+    },
+    {
+        "value": 2098,
+        "label": "Tecnologia em Gestão Financeira EAD"
+    },
+    {
+        "value": 2375,
+        "label": "Tecnologia em Gestão Financeira FLEX"
+    },
+    {
+        "value": 2804,
+        "label": "Tecnologia em Gestão Financeira (Tecnólogo)"
+    },
+    {
+        "value": 1681,
+        "label": "TECNOLOGIA EM GESTÃO GLOBAL TRADING: NEGÓCIOS, LOGÍSTICA E FINANÇAS GLOBAIS"
+    },
+    {
+        "value": 714,
+        "label": "Tecnologia em Gestão Hospitalar"
+    },
+    {
+        "value": 2376,
+        "label": "Tecnologia em Gestão Hospitalar EAD"
+    },
+    {
+        "value": 261,
+        "label": "Tecnologia em Gestão Pública"
+    },
+    {
+        "value": 239,
+        "label": "Tecnologia em Hotelaria"
+    },
+    {
+        "value": 913,
+        "label": "Tecnologia em Informática "
+    },
+    {
+        "value": 645,
+        "label": "Tecnologia em Informática em Saúde "
+    },
+    {
+        "value": 794,
+        "label": "Tecnologia em Informática para Internet"
+    },
+    {
+        "value": 509,
+        "label": " Tecnologia em Informática para Negócios"
+    },
+    {
+        "value": 988,
+        "label": "Tecnologia em Infraestrutura"
+    },
+    {
+        "value": 2664,
+        "label": "Tecnologia em Instrumentação Cirúrgica"
+    },
+    {
+        "value": 2796,
+        "label": "Tecnologia em Inteligência Artificial"
+    },
+    {
+        "value": 983,
+        "label": "Tecnologia em Internet das Coisas"
+    },
+    {
+        "value": 2762,
+        "label": "Tecnologia em Investigação Forense e Perícia Criminal"
+    },
+    {
+        "value": 1701,
+        "label": "TECNOLOGIA EM INVESTIGAÇÃO PROFISSIONAL (DETETIVE PARTICULAR)"
+    },
+    {
+        "value": 268,
+        "label": "Tecnologia em Jogos Digitais"
+    },
+    {
+        "value": 424,
+        "label": "Tecnologia em Logística"
+    },
+    {
+        "value": 2099,
+        "label": "Tecnologia em Logística EAD"
+    },
+    {
+        "value": 2377,
+        "label": "Tecnologia em logística Flex"
+    },
+    {
+        "value": 798,
+        "label": "Tecnologia em Luteria "
+    },
+    {
+        "value": 795,
+        "label": "Tecnologia em Manutenção Automotiva"
+    },
+    {
+        "value": 435,
+        "label": "Tecnologia em Manutenção de Aeronaves"
+    },
+    {
+        "value": 796,
+        "label": "Tecnologia em Manutenção de Aeronaves "
+    },
+    {
+        "value": 791,
+        "label": "Tecnologia em Manutenção e Suporte em Informática"
+    },
+    {
+        "value": 586,
+        "label": "Tecnologia em Manutenção Industrial"
+    },
+    {
+        "value": 240,
+        "label": "Tecnologia em Marketing"
+    },
+    {
+        "value": 709,
+        "label": "Tecnologia em Marketing Digital"
+    },
+    {
+        "value": 2792,
+        "label": "tecnologia em Marketing Digital e Data Science"
+    },
+    {
+        "value": 2378,
+        "label": "Tecnologia em Marketing EAD"
+    },
+    {
+        "value": 2379,
+        "label": "Tecnologia em Marketing FLEX"
+    },
+    {
+        "value": 1696,
+        "label": "TECNOLOGIA EM MASSOTERAPIA"
+    },
+    {
+        "value": 630,
+        "label": "Tecnologia em Materiais"
+    },
+    {
+        "value": 727,
+        "label": "Tecnologia em Mecânica"
+    },
+    {
+        "value": 664,
+        "label": "Tecnologia em Mecânica Automobilística "
+    },
+    {
+        "value": 201,
+        "label": "Tecnologia em Mecânica de Precisão"
+    },
+    {
+        "value": 980,
+        "label": "Tecnologia em Mecânica Industrial"
+    },
+    {
+        "value": 789,
+        "label": "Tecnologia em Mecanização Agrícola"
+    },
+    {
+        "value": 666,
+        "label": "Tecnologia em Mecanização em Agricultura de Precisão "
+    },
+    {
+        "value": 548,
+        "label": "Tecnologia em Mecatrônica"
+    },
+    {
+        "value": 1682,
+        "label": "TECNOLOGIA EM MECATRÔNICA AUTOMOTIVA"
+    },
+    {
+        "value": 254,
+        "label": "Tecnologia em Mecatrônica Industrial"
+    },
+    {
+        "value": 1645,
+        "label": "TECNOLOGIA EM MEDIAÇÃO, CONCILIAÇÃO E ARBITRAGEM"
+    },
+    {
+        "value": 605,
+        "label": "Tecnologia em Meio Ambiente"
+    },
+    {
+        "value": 672,
+        "label": "Tecnologia em Meio Ambiente e Recursos Hídricos "
+    },
+    {
+        "value": 788,
+        "label": "Tecnologia em Metalurgia"
+    },
+    {
+        "value": 787,
+        "label": "Tecnologia em Modelagem de Vestuário"
+    },
+    {
+        "value": 786,
+        "label": "Tecnologia em Multimídia"
+    },
+    {
+        "value": 785,
+        "label": "Tecnologia em Museologia"
+    },
+    {
+        "value": 393,
+        "label": "Tecnologia em Negócios Imobiliários"
+    },
+    {
+        "value": 603,
+        "label": "Tecnologia em Nutrição"
+    },
+    {
+        "value": 784,
+        "label": "Tecnologia em Organização Esportiva"
+    },
+    {
+        "value": 783,
+        "label": "Tecnologia em Orientação Comunitária"
+    },
+    {
+        "value": 782,
+        "label": "Tecnologia em Paisagismo"
+    },
+    {
+        "value": 1630,
+        "label": "TECNOLOGIA EM PAISAGISMO E JARDINAGEM"
+    },
+    {
+        "value": 1646,
+        "label": "TECNOLOGIA EM PERÍCIA JUDICIAL E EXTRAJUDICIAL"
+    },
+    {
+        "value": 1697,
+        "label": "TECNOLOGIA EM PODOLOGIA"
+    },
+    {
+        "value": 829,
+        "label": "Tecnologia em Polímero "
+    },
+    {
+        "value": 1698,
+        "label": "TECNOLOGIA EM PRÁTICAS INTEGRATIVAS E COMPLEMENTARES (PICS)"
+    },
+    {
+        "value": 369,
+        "label": "Tecnologia em Processamento de Dados"
+    },
+    {
+        "value": 555,
+        "label": "Tecnologia em Processos"
+    },
+    {
+        "value": 729,
+        "label": "Tecnologia em Processos Escolares"
+    },
+    {
+        "value": 781,
+        "label": "Tecnologia em Processos Fotográficos"
+    },
+    {
+        "value": 890,
+        "label": "Tecnologia em Processos Gerenciais "
+    },
+    {
+        "value": 2380,
+        "label": "Tecnologia em Processos Gerenciais EAD"
+    },
+    {
+        "value": 2381,
+        "label": "Tecnologia em Processos Gerenciais FLEX"
+    },
+    {
+        "value": 828,
+        "label": "Tecnologia em Processos Metalúrgicos "
+    },
+    {
+        "value": 436,
+        "label": "Tecnologia em Processos Químicos"
+    },
+    {
+        "value": 700,
+        "label": "Tecnologia em Produção Audiovisual"
+    },
+    {
+        "value": 2317,
+        "label": "Tecnologia em Produção Audiovisual EAD"
+    },
+    {
+        "value": 799,
+        "label": "Tecnologia em Produção Cênica"
+    },
+    {
+        "value": 29,
+        "label": "Tecnologia em Produção Cultural"
+    },
+    {
+        "value": 2388,
+        "label": "Tecnologia em Produção Cultural EAD"
+    },
+    {
+        "value": 780,
+        "label": "Tecnologia em Produção de Áudio e Vídeo"
+    },
+    {
+        "value": 1816,
+        "label": "TECNOLOGIA EM PRODUÇÃO DE CACAU E CHOCOLATE"
+    },
+    {
+        "value": 1683,
+        "label": "TECNOLOGIA EM PRODUÇÃO DE CERVEJA"
+    },
+    {
+        "value": 699,
+        "label": "Tecnologia em Produção Fonográfica"
+    },
+    {
+        "value": 2223,
+        "label": "Tecnologia em Produção Gráfica"
+    },
+    {
+        "value": 850,
+        "label": "Tecnologia em Produção Gráfica "
+    },
+    {
+        "value": 716,
+        "label": "Tecnologia em Produção Multimídia"
+    },
+    {
+        "value": 2318,
+        "label": "Tecnologia em Produção Multimídia EAD"
+    },
+    {
+        "value": 702,
+        "label": "Tecnologia em Produção Publicitária"
+    },
+    {
+        "value": 2322,
+        "label": "Tecnologia em Produção Publicitária EAD"
+    },
+    {
+        "value": 1261,
+        "label": "Tecnologia em Qualidade de Vida na Contemporaneidade"
+    },
+    {
+        "value": 728,
+        "label": "Tecnologia em Química Processos Químicos"
+    },
+    {
+        "value": 778,
+        "label": "Tecnologia em Radiocomunicação"
+    },
+    {
+        "value": 1470,
+        "label": "• Tecnologia em Radiologia"
+    },
+    {
+        "value": 273,
+        "label": "Tecnologia em Radiologia"
+    },
+    {
+        "value": 947,
+        "label": "Tecnologia em Recursos Humanos "
+    },
+    {
+        "value": 269,
+        "label": "Tecnologia em redes de computadores"
+    },
+    {
+        "value": 776,
+        "label": "Tecnologia em Regência"
+    },
+    {
+        "value": 1632,
+        "label": "TECNOLOGIA EM SANEAMENTO AMBIENTAL"
+    },
+    {
+        "value": 247,
+        "label": "Tecnologia em Secretariado"
+    },
+    {
+        "value": 2794,
+        "label": "Tecnologia em Secretariado e Assessoria Internacional"
+    },
+    {
+        "value": 131,
+        "label": "Tecnologia em Secretariado executivo"
+    },
+    {
+        "value": 271,
+        "label": "Tecnologia em Segurança da Informação"
+    },
+    {
+        "value": 775,
+        "label": "Tecnologia em Segurança do Trabalho"
+    },
+    {
+        "value": 915,
+        "label": "Tecnologia em Segurança Privada"
+    },
+    {
+        "value": 530,
+        "label": "Tecnologia em Segurança Pública "
+    },
+    {
+        "value": 774,
+        "label": "Tecnologia em Serviços Jurídicos"
+    },
+    {
+        "value": 710,
+        "label": "Tecnologia em Serviços Jurídicos, Cartorários e Notariais"
+    },
+    {
+        "value": 773,
+        "label": "Tecnologia em Serviços Públicos"
+    },
+    {
+        "value": 394,
+        "label": "Tecnologia em Sistemas Automotivos"
+    },
+    {
+        "value": 365,
+        "label": "Tecnologia em Sistemas Biomédicos"
+    },
+    {
+        "value": 531,
+        "label": "Tecnologia em Sistemas de Computação "
+    },
+    {
+        "value": 965,
+        "label": "Tecnologia em sistemas de energia"
+    },
+    {
+        "value": 437,
+        "label": "Tecnologia em Sistemas Elétricos"
+    },
+    {
+        "value": 438,
+        "label": "Tecnologia em Sistemas Eletrônicos"
+    },
+    {
+        "value": 270,
+        "label": "Tecnologia em Sistemas para Internet"
+    },
+    {
+        "value": 2044,
+        "label": "Tecnologia em Soldagem"
+    },
+    {
+        "value": 772,
+        "label": "Tecnologia em Teatro"
+    },
+    {
+        "value": 771,
+        "label": "Tecnologia em Telecomunicações"
+    },
+    {
+        "value": 587,
+        "label": "Tecnologia em Telemática"
+    },
+    {
+        "value": 413,
+        "label": "Tecnologia em Transporte Terrestre"
+    },
+    {
+        "value": 439,
+        "label": "Tecnologia em Viticultura e Enologia"
+    },
+    {
+        "value": 505,
+        "label": "Tecnologia Mecânica"
+    },
+    {
+        "value": 646,
+        "label": "Tecnologia Oftálmica "
+    },
+    {
+        "value": 2676,
+        "label": "tecnologia sanitária "
+    },
+    {
+        "value": 2598,
+        "label": "Tecnologias digitais Aplicadas à Educação"
+    },
+    {
+        "value": 2599,
+        "label": "Tecnologias DIgitais da Informação e Comunicação no Contexto Escolar"
+    },
+    {
+        "value": 1412,
+        "label": "Tecnologias Educacionais"
+    },
+    {
+        "value": 1978,
+        "label": "Tecnologias Educacionais EAD"
+    },
+    {
+        "value": 2600,
+        "label": "Tecnologias Educacionais e o Ensino Hibrido "
+    },
+    {
+        "value": 2601,
+        "label": "Tecnologias e Ensino de Matemática"
+    },
+    {
+        "value": 588,
+        "label": "Tecnologia Têxtil e da Indumentária"
+    },
+    {
+        "value": 1542,
+        "label": "Tecnológico em Gestão em Tecnologia da Informação (GTI)"
+    },
+    {
+        "value": 1058,
+        "label": "Tecnólogo Comércio Exterior"
+    },
+    {
+        "value": 2074,
+        "label": "Tecnólogo em Alimentos"
+    },
+    {
+        "value": 1304,
+        "label": "Tecnólogo em Análise e Desenvolvimento de Sistemas"
+    },
+    {
+        "value": 1392,
+        "label": "Técnologo em Computação em Nuvem"
+    },
+    {
+        "value": 2741,
+        "label": "Tecnólogo em gestão ambiental"
+    },
+    {
+        "value": 1517,
+        "label": "Tecnólogo em Gestão da Avaliação"
+    },
+    {
+        "value": 2352,
+        "label": "Tecnólogo em Gestão da Tecnologia da Informação"
+    },
+    {
+        "value": 2353,
+        "label": "Tecnólogo em Gestão da Tecnologia da Informação EAD"
+    },
+    {
+        "value": 2354,
+        "label": "Tecnólogo em Gestão da Tecnologia da Informação FLEX"
+    },
+    {
+        "value": 1518,
+        "label": "Tecnólogo em Gestão de RH"
+    },
+    {
+        "value": 1388,
+        "label": "Tecnólogo em Internet das Coisas e Computação em Nuvem"
+    },
+    {
+        "value": 852,
+        "label": "Tecnólogo em Logística"
+    },
+    {
+        "value": 870,
+        "label": "Tecnólogo em marketing"
+    },
+    {
+        "value": 574,
+        "label": "Tecnólogo em Processos"
+    },
+    {
+        "value": 1479,
+        "label": "Tecnólogo em Processos Gerenciais"
+    },
+    {
+        "value": 2309,
+        "label": "Tecnólogo Em Sistemas de Computação"
+    },
+    {
+        "value": 1998,
+        "label": "Tecnólogo híbrido em automação industrial"
+    },
+    {
+        "value": 1999,
+        "label": "Tecnólogo híbrido em manutenção industrial "
+    },
+    {
+        "value": 589,
+        "label": "Telecomunicações"
+    },
+    {
+        "value": 1052,
+        "label": "Television, Film and New Media Production"
+    },
+    {
+        "value": 320,
+        "label": "Teologia"
+    },
+    {
+        "value": 1799,
+        "label": "Teologia Modalidade EAD"
+    },
+    {
+        "value": 1569,
+        "label": "Teoria, Escrita e Processos Criativos para Roteiristas - Online"
+    },
+    {
+        "value": 2602,
+        "label": "Terapia Cognitiva e Comportamental "
+    },
+    {
+        "value": 162,
+        "label": "Terapia Ocupacional"
+    },
+    {
+        "value": 2209,
+        "label": "Terapia Ocupacional EAD"
+    },
+    {
+        "value": 1789,
+        "label": "terapias integrativas e complementares"
+    },
+    {
+        "value": 2014,
+        "label": "Terapias interativas e complementares EAD"
+    },
+    {
+        "value": 2603,
+        "label": "Terceiro Setor e Projetos Sociais "
+    },
+    {
+        "value": 940,
+        "label": "Termomecânica"
+    },
+    {
+        "value": 107,
+        "label": "Têxtil e Moda"
+    },
+    {
+        "value": 2648,
+        "label": "Tradução"
+    },
+    {
+        "value": 2337,
+        "label": "Tradução e Interpretação (Português / Inglês)"
+    },
+    {
+        "value": 248,
+        "label": "Tradutor e Intérprete"
+    },
+    {
+        "value": 823,
+        "label": "Tradutor - Inglês"
+    },
+    {
+        "value": 2604,
+        "label": "Transformação DIgital e Negócios "
+    },
+    {
+        "value": 458,
+        "label": "Transporte Aéreo"
+    },
+    {
+        "value": 1736,
+        "label": "Transporte de Cargas"
+    },
+    {
+        "value": 659,
+        "label": "Transporte Terrestre "
+    },
+    {
+        "value": 2605,
+        "label": "Treinamento Desportivo"
+    },
+    {
+        "value": 1573,
+        "label": "Trilha Sonora para Cinema e TV - Online"
+    },
+    {
+        "value": 163,
+        "label": "Turismo"
+    },
+    {
+        "value": 1988,
+        "label": "Turismo EAD"
+    },
+    {
+        "value": 2606,
+        "label": "Tutoria em EAD e Educação Especial"
+    },
+    {
+        "value": 2607,
+        "label": "Urgência e Emergência"
+    },
+    {
+        "value": 2647,
+        "label": "Varejo Digital"
+    },
+    {
+        "value": 1995,
+        "label": "Vigilância Sanitária e Qualidade de Alimentos EAD"
+    },
+    {
+        "value": 208,
+        "label": "Visagismo e Terapia Capilar"
+    },
+    {
+        "value": 2287,
+        "label": "Web Design"
+    },
+    {
+        "value": 442,
+        "label": "Zootecnia"
+    }
+]

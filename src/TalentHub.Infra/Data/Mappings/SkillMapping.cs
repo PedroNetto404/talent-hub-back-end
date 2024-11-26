@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Skills;
+using TalentHub.ApplicationCore.Skills.Enums;
+using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;
 
@@ -15,6 +17,7 @@ public sealed class SkillMapping : IEntityTypeConfiguration<Skill>
 
         builder
             .Property(p => p.Type)
+            .HasConversion<EnumStringSnakeCaseConverter<SkillType>>()
             .IsRequired();
 
         builder
@@ -25,11 +28,5 @@ public sealed class SkillMapping : IEntityTypeConfiguration<Skill>
             .Property("_tags")
             .HasColumnType("text[]")
             .HasColumnName("tags");
-
-        builder
-            .Property(p => p.Approved)
-            .IsRequired();
-            
-        builder.Ignore(p => p.IsSuggestion);
     }
 }

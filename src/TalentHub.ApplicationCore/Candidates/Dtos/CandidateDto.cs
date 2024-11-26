@@ -1,26 +1,7 @@
 using Humanizer;
-using TalentHub.ApplicationCore.Candidates.Entities;
-using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
-using TalentHub.ApplicationCore.Skills;
 
 namespace TalentHub.ApplicationCore.Candidates.Dtos;
-
-public sealed record LanguageProficiencyDto(
-    string Language,
-    string WritingLevel,
-    string SpeakingLevel,
-    string ListeningLevel
-)
-{
-    public static LanguageProficiencyDto FromEntity(LanguageProficiency languageProficiency) =>
-        new(
-            languageProficiency.Language.Name,
-            languageProficiency.WritingLevel.ToString().Underscore(),
-            languageProficiency.SpeakingLevel.ToString().Underscore(),
-            languageProficiency.ListeningLevel.ToString().Underscore()
-        );
-}
 
 public sealed record CandidateDto(
     Guid Id,
@@ -31,8 +12,8 @@ public sealed record CandidateDto(
     string Phone,
     Address Address,
     IEnumerable<string> Hobbies,
-    IEnumerable<JobType> DesiredJobTypes,
-    IEnumerable<WorkplaceType> DesiredWorkplaceTypes,
+    IEnumerable<string> DesiredJobTypes,
+    IEnumerable<string> DesiredWorkplaceTypes,
     IEnumerable<ExperienceDto> Experiences,
     IEnumerable<CandidateSkillDto> Skills,
     IEnumerable<CertificateDto> Certificates,
@@ -46,7 +27,7 @@ public sealed record CandidateDto(
     decimal? ExpectedRemuneration
 )
 {
-    public static CandidateDto FromEntity(Candidate candidate, IEnumerable<Skill> skills) =>
+    public static CandidateDto FromEntity(Candidate candidate) =>
         new(
             candidate.Id,
             candidate.Name,
@@ -56,14 +37,10 @@ public sealed record CandidateDto(
             candidate.Phone,
             candidate.Address,
             candidate.Hobbies,
-            candidate.DesiredJobTypes,
-            candidate.DesiredWorkplaceTypes,
+            candidate.DesiredJobTypes.Select(p => p.ToString().Underscore()),
+            candidate.DesiredWorkplaceTypes.Select(p => p.ToString().Underscore()),
             candidate.Experiences.Select(ExperienceDto.FromEntity),
-            candidate.Skills.Select((candidateSkill) =>
-            {
-                var skill = skills.First(s => s.Id == candidateSkill.SkillId);
-                return CandidateSkillDto.FromEntity(candidateSkill, skill);
-            }),
+            candidate.Skills.Select(CandidateSkillDto.FromEntity),
             candidate.Certificates.Select(CertificateDto.FromEntity),
             candidate.LanguageProficiencies.Select(LanguageProficiencyDto.FromEntity),
             candidate.Summary,

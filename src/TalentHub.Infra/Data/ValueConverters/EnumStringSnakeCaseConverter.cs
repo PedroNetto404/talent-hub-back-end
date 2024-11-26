@@ -1,6 +1,5 @@
 using Humanizer;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TalentHub.ApplicationCore.Extensions;
 
 namespace TalentHub.Infra.Data.ValueConverters;
 

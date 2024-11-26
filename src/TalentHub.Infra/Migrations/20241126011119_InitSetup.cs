@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TalentHub.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class DeleteBehaviorCascade : Migration
+    public partial class InitSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,25 +44,29 @@ namespace TalentHub.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "course",
+                name: "courses",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uuid", nullable: false)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    tags = table.Column<List<string>>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_course", x => x.id);
+                    table.PrimaryKey("pk_courses", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "educational_institute",
+                name: "educational_institutes",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uuid", nullable: false)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_educational_institute", x => x.id);
+                    table.PrimaryKey("pk_educational_institutes", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,8 +75,7 @@ namespace TalentHub.Infra.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    type = table.Column<int>(type: "integer", nullable: false),
-                    approved = table.Column<bool>(type: "boolean", nullable: false),
+                    type = table.Column<string>(type: "text", nullable: false),
                     tags = table.Column<List<string>>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
@@ -107,9 +110,9 @@ namespace TalentHub.Infra.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    writing_level = table.Column<string>(type: "text", nullable: false, defaultValue: "Beginner"),
-                    listening_level = table.Column<string>(type: "text", nullable: false, defaultValue: "Beginner"),
-                    speaking_level = table.Column<string>(type: "text", nullable: false, defaultValue: "Beginner"),
+                    writing_level = table.Column<string>(type: "text", nullable: false, defaultValue: "beginner"),
+                    listening_level = table.Column<string>(type: "text", nullable: false, defaultValue: "beginner"),
+                    speaking_level = table.Column<string>(type: "text", nullable: false, defaultValue: "beginner"),
                     language = table.Column<string>(type: "text", nullable: false),
                     candidate_id = table.Column<Guid>(type: "uuid", nullable: true)
                 },
@@ -156,15 +159,15 @@ namespace TalentHub.Infra.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_experiences_course_course_id",
+                        name: "fk_experiences_courses_course_id",
                         column: x => x.course_id,
-                        principalTable: "course",
+                        principalTable: "courses",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_experiences_educational_institute_institution_id",
+                        name: "fk_experiences_educational_institutes_institution_id",
                         column: x => x.institution_id,
-                        principalTable: "educational_institute",
+                        principalTable: "educational_institutes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -189,6 +192,30 @@ namespace TalentHub.Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "fk_candidate_skills_skill_skill_id",
+                        column: x => x.skill_id,
+                        principalTable: "skills",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "related_course_skills",
+                columns: table => new
+                {
+                    course_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    skill_id = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_related_course_skills", x => new { x.course_id, x.skill_id });
+                    table.ForeignKey(
+                        name: "fk_related_course_skills_courses_course_id",
+                        column: x => x.course_id,
+                        principalTable: "courses",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_related_course_skills_skill_skill_id",
                         column: x => x.skill_id,
                         principalTable: "skills",
                         principalColumn: "id",
@@ -241,6 +268,11 @@ namespace TalentHub.Infra.Migrations
                 name: "ix_language_proficiencies_candidate_id",
                 table: "language_proficiencies",
                 column: "candidate_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_related_course_skills_skill_id",
+                table: "related_course_skills",
+                column: "skill_id");
         }
 
         /// <inheritdoc />
@@ -259,16 +291,19 @@ namespace TalentHub.Infra.Migrations
                 name: "language_proficiencies");
 
             migrationBuilder.DropTable(
-                name: "skills");
+                name: "related_course_skills");
 
             migrationBuilder.DropTable(
-                name: "course");
-
-            migrationBuilder.DropTable(
-                name: "educational_institute");
+                name: "educational_institutes");
 
             migrationBuilder.DropTable(
                 name: "candidates");
+
+            migrationBuilder.DropTable(
+                name: "courses");
+
+            migrationBuilder.DropTable(
+                name: "skills");
         }
     }
 }

@@ -97,10 +97,10 @@ public sealed class Candidate : AggregateRoot
         return Result.Ok();
     }
 
-    public Result AddLanguage(LanguageProficiency languageProficiency) 
+    public Result AddLanguage(LanguageProficiency languageProficiency)
     {
         var existing = _languageProficiencies.FirstOrDefault(p => p.Language == languageProficiency.Language);
-        if(existing is not null) return new Error("candidate", "candidate language proficiency already exists");
+        if (existing is not null) return new Error("candidate", "candidate language proficiency already exists");
 
         _languageProficiencies.Add(languageProficiency);
         return Result.Ok();
@@ -108,11 +108,11 @@ public sealed class Candidate : AggregateRoot
 
     public Result UpdateLanguageProficiency(
         Language language,
-        LanguageSkillType type, 
+        LanguageSkillType type,
         Proficiency proficiency)
     {
         var languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
-        if(languageProficiency is null) return new Error("candidate", "language proficiency not added");
+        if (languageProficiency is null) return new Error("candidate", "language proficiency not added");
 
         languageProficiency.UpdateProficiency(type, proficiency);
         return Result.Ok();
@@ -121,7 +121,7 @@ public sealed class Candidate : AggregateRoot
     public Result RemoveLanguage(Language language)
     {
         var languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
-        if(languageProficiency is null) return new Error("candidate", "candidate language proficiency not exists");
+        if (languageProficiency is null) return new Error("candidate", "candidate language proficiency not exists");
 
         _languageProficiencies.Remove(languageProficiency);
         return Result.Ok();
@@ -221,27 +221,6 @@ public sealed class Candidate : AggregateRoot
         }
 
         _experiences.Remove(experience);
-        return Result.Ok();
-    }
-
-    public Result ToggleCurrentExperience(Guid experienceId)
-    {
-        var experience = _experiences.FirstOrDefault(e => e.Id == experienceId);
-        if (experience == null)
-        {
-            return new Error("candidate_experience", "Experience not found.");
-        }
-
-        experience.ToggleCurrent();
-
-        if (experience.IsCurrent)
-        {
-            foreach (var otherExperience in _experiences.Where(e => e.Id != experienceId && e.IsCurrent))
-            {
-                otherExperience.ToggleCurrent();
-            }
-        }
-
         return Result.Ok();
     }
 
@@ -371,6 +350,75 @@ public sealed class Candidate : AggregateRoot
             return new Error("candidate_summary", "candidate summary length must be between 10 and 500");
 
         Summary = summary;
+
+        return Result.Ok();
+    }
+
+    public Result UpdateExperience(
+         Guid experienceId,
+        DatePeriod start,
+        DatePeriod? end,
+        bool isCurrent,
+        IEnumerable<string> activities,
+        ProgressStatus status
+    ) => UpdateExperience<AcademicExperience>(
+        experienceId,
+        start,
+        end,
+        isCurrent,
+        activities,
+        (experience) =>
+        {
+            experience.UpdateStatus(status);
+            return Result.Ok();
+        }
+    );
+
+    public Result UpdateExperience(
+        Guid experienceId,
+         DatePeriod start,
+        DatePeriod? end,
+        bool isCurrent,
+        IEnumerable<string> activities,
+        string description
+    ) => UpdateExperience<ProfessionalExperience>(
+        experienceId,
+        start,
+        end,
+        isCurrent,
+        activities,
+        (experience) => experience.ChangeDescription(description)
+    );
+
+    private Result UpdateExperience<T>(
+        Guid experienceId,
+        DatePeriod start,
+        DatePeriod? end,
+        bool isCurrent,
+        IEnumerable<string> activities,
+        Func<T, Result> complement) where T : Experience
+    {
+        if (_experiences.FirstOrDefault(e => e.Id == experienceId) is not T experience)
+            return new Error("candidate_experience", "Experience not found.");
+
+        experience.ClearActivities();
+        foreach (var activity in activities) experience.AddActivity(activity);
+
+        var result = experience.UpdateDateRange(start, end);
+        if (result.IsFail) return result.Error;
+
+        experience.SetIsCurrent(isCurrent);
+
+        if (isCurrent)
+        {
+            var professionalExperiences = _experiences.OfType<ProfessionalExperience>().Where(e => e.Id != experienceId);
+            foreach (var professionalExperience in professionalExperiences)
+            {
+                professionalExperience.SetIsCurrent(false);
+            }
+        }
+
+        if (complement(experience) is { IsFail: true, Error: var error }) return error;
 
         return Result.Ok();
     }

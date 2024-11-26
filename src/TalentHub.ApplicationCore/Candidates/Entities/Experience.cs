@@ -29,14 +29,20 @@ public abstract class Experience : Entity
     public bool IsCurrent { get; private set; }
     public IReadOnlyCollection<string> Activities => _activities.AsReadOnly();
 
-    public void ToggleCurrent() => IsCurrent = !IsCurrent;
+    public void SetIsCurrent(bool isCurrent) =>
+        IsCurrent = isCurrent;
 
-    public Result SetEndDate(DatePeriod endDate)
+    
+    public Result UpdateDateRange(DatePeriod start, DatePeriod? end)
     {
-        if (endDate < Start)
-            return new Error("experience", $"{endDate} must be greater than {Start}");
+        if (end != null && start > end)
+        {
+            return new Error("experience", "Start date must be less than end date.");
+        }
 
-        End = endDate;
+        Start = start;
+        End = end;
+        
         return Result.Ok();
     }
 
