@@ -16,9 +16,3 @@ public static class ObjectExtensions
     public static T FromJson<T>(this string json) =>
         JsonSerializer.Deserialize<T>(json, _options)!;
 }
-
-public static class StringExtensions
-{
-    public static bool IsValidUrl(this string url) =>
-        Uri.IsWellFormedUriString(url, UriKind.Absolute);
-}

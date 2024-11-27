@@ -42,7 +42,9 @@ public sealed class Candidate : AggregateRoot
 
 #pragma warning disable CS0628 // Novo membro protegido declarado no tipo selado
 #pragma warning disable CS8618 // O campo não anulável precisa conter um valor não nulo ao sair do construtor. Considere adicionar o modificador "obrigatório" ou declarar como anulável.
-    protected Candidate() { }
+    protected Candidate()
+    {
+    }
 #pragma warning restore CS8618 // O campo não anulável precisa conter um valor não nulo ao sair do construtor. Considere adicionar o modificador "obrigatório" ou declarar como anulável.
 #pragma warning restore CS0628 // Novo membro protegido declarado no tipo selado
 
@@ -226,7 +228,8 @@ public sealed class Candidate : AggregateRoot
 
     public Result UpdateAcademicExperienceProgressStatus(Guid academicExperienceId, ProgressStatus newStatus)
     {
-        var academicExperience = _experiences.OfType<AcademicExperience>().FirstOrDefault(ae => ae.Id == academicExperienceId);
+        var academicExperience = _experiences.OfType<AcademicExperience>()
+            .FirstOrDefault(ae => ae.Id == academicExperienceId);
 
         if (academicExperience == null)
         {
@@ -240,7 +243,8 @@ public sealed class Candidate : AggregateRoot
 
     public Result ChangeProfessionalExperienceDescription(Guid professionalExperienceId, string newDescription)
     {
-        var professionalExperience = _experiences.OfType<ProfessionalExperience>().FirstOrDefault(pe => pe.Id == professionalExperienceId);
+        var professionalExperience = _experiences.OfType<ProfessionalExperience>()
+            .FirstOrDefault(pe => pe.Id == professionalExperienceId);
 
         if (professionalExperience == null)
         {
@@ -355,11 +359,13 @@ public sealed class Candidate : AggregateRoot
     }
 
     public Result UpdateExperience(
-         Guid experienceId,
+        Guid experienceId,
         DatePeriod start,
         DatePeriod? end,
+        int currentSemester,
         bool isCurrent,
         IEnumerable<string> activities,
+        IEnumerable<string> academicEntities,
         ProgressStatus status
     ) => UpdateExperience<AcademicExperience>(
         experienceId,
@@ -367,16 +373,30 @@ public sealed class Candidate : AggregateRoot
         end,
         isCurrent,
         activities,
-        (experience) =>
+        experience =>
         {
+            experience.ClearAcademicEntities();
+
+            foreach (var academicEntity in academicEntities)
+            {
+                if (!Enum.TryParse<AcademicEntity>(academicEntity, true, out var entity))
+                    return new Error("candidate_experience", "Invalid academic entity");
+
+                if (experience.AddAcademicEntity(entity) is { IsFail: true, Error: var error })
+                    return error;
+            }
+
             experience.UpdateStatus(status);
-            return Result.Ok();
+
+            return experience.UpdateCurrentSemester(currentSemester) is { IsFail: true, Error: var err }
+                ? err
+                : Result.Ok();
         }
     );
 
     public Result UpdateExperience(
         Guid experienceId,
-         DatePeriod start,
+        DatePeriod start,
         DatePeriod? end,
         bool isCurrent,
         IEnumerable<string> activities,
@@ -411,7 +431,8 @@ public sealed class Candidate : AggregateRoot
 
         if (isCurrent)
         {
-            var professionalExperiences = _experiences.OfType<ProfessionalExperience>().Where(e => e.Id != experienceId);
+            var professionalExperiences =
+                _experiences.OfType<ProfessionalExperience>().Where(e => e.Id != experienceId);
             foreach (var professionalExperience in professionalExperiences)
             {
                 professionalExperience.SetIsCurrent(false);

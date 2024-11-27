@@ -20,4 +20,9 @@
     <ProjectReference Include="..\TalentHub.Infra\TalentHub.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\..\seed\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

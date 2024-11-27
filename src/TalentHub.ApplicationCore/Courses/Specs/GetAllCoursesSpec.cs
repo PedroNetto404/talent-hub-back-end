@@ -6,13 +6,13 @@ namespace TalentHub.ApplicationCore.Courses.Specs;
 public sealed class GetAllCoursesSpec : PagedSpec<Course>
 {
     public GetAllCoursesSpec(
-        IEnumerable<Guid> ids,
         int limit,
         int offset,
-        string? sortBy,
-        bool ascending = true) : base(limit, offset, sortBy, ascending)
+        string? sortBy = null,
+        bool ascending = true,
+        params Guid[] ids) : base(limit, offset, sortBy, ascending)
     {
-        Query.Where(course => ids.Contains(course.Id))
-             .AsNoTracking();
+        if (ids.Length > 0) Query.Where(course => ids.Contains(course.Id));
+        Query.AsNoTracking();
     }
 }

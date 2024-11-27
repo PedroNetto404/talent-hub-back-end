@@ -1,13 +1,11 @@
-using System.Reflection;
 using Humanizer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentHub.ApplicationCore.Candidates.Entities;
 using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Courses;
-using TalentHub.ApplicationCore.EducationalInstitutes;
 using TalentHub.ApplicationCore.Shared.Enums;
+using TalentHub.ApplicationCore.Universities;
 using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;
@@ -35,9 +33,18 @@ public sealed class AcademicExperienceMapping : IEntityTypeConfiguration<Academi
             .IsRequired();
 
         builder
-            .HasOne<EducationalInstitute>()
+            .HasOne<University>()
             .WithMany()
-            .HasForeignKey(p => p.InstitutionId)
+            .HasForeignKey(p => p.UniversityId)
             .IsRequired();
+
+        builder
+            .Property<List<AcademicEntity>>("_academicEntities")
+            .HasConversion(
+                p => p.Select(q => q.ToString().Underscore()),
+                q =>
+                    q.Select(k =>
+                            Enum.Parse<AcademicEntity>(k.Pascalize(), true))
+                        .ToList());
     }
 }

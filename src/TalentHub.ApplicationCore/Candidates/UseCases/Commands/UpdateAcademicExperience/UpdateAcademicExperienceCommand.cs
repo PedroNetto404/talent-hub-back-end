@@ -12,6 +12,8 @@ public sealed record UpdateExperienceCommand(
     int? EndYear,
     bool IsCurrent,
     IEnumerable<string> Activities,
+    IEnumerable<string> AcademicEntities,
+    int? CurrentSemester,
     string? Status,
     string? Description
-)  : ICommand;
+) : ICommand;

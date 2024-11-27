@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.Infra.Data;
-using TalentHub.Infra.File;
+using TalentHub.Infra.Files;
 
 namespace TalentHub.Infra;
 

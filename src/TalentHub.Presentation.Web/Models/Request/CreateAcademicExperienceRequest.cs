@@ -39,6 +39,11 @@ public sealed record CreateExperienceRequest
     )]
     public string? Status { get; init; } = string.Empty;
 
+    [Range(1, int.MaxValue)]
+    public int? CurrentSemester { get; init; }
+    
+    public IEnumerable<string> AcademicEntities { get; init; } = [];
+
     public Guid? CourseId { get; init; }
  
     public Guid? InstitutionId { get; init; }

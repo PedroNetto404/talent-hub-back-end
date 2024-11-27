@@ -11,25 +11,19 @@ public sealed class Course : AggregateRoot
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 #pragma warning restore CS0628 // New protected member declared in sealed type
 
-    private Course(string name, string description)
-    {
-        Name = name;
-        Description = description;
-    }
+    private Course(string name) => Name = name;
 
-    public static Result<Course> Create(string name, string description) 
+    public static Result<Course> Create(string name) 
     {
         if (string.IsNullOrWhiteSpace(name)) return new Error("course", "Name is required");
-        if (string.IsNullOrWhiteSpace(description)) return new Error("course", "Description is required");
 
-        return new Course(name, description);
+        return new Course(name);
     }
 
     private readonly List<string> _tags = [];
     private readonly List<Guid> _RelatedSkills = [];
 
     public string Name { get; private set; }
-    public string Description { get; private set;}
     public IReadOnlyList<string> Tags => _tags.AsReadOnly();
     public IReadOnlyList<Guid> RelatedSkills => _RelatedSkills.AsReadOnly();
 
@@ -68,16 +62,6 @@ public sealed class Course : AggregateRoot
             return new Error("course", "invalid course name");
 
         Name = name;
-
-        return Result.Ok();
-    }
-
-    public Result ChangeDescription(string description)
-    {
-        if(string.IsNullOrWhiteSpace(description))
-            return new Error("course", "invalid course description");
-
-        Description = description;
 
         return Result.Ok();
     }

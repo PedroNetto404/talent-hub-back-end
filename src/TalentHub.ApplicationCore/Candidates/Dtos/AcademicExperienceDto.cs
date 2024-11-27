@@ -38,7 +38,7 @@ public record ExperienceDto(
             academicExperience.Level.ToString().Underscore(),
             academicExperience.Status.ToString().Underscore(),
             academicExperience.CourseId,
-            academicExperience.InstitutionId,
+            academicExperience.UniversityId,
             null,
             null,
             null,

@@ -30,7 +30,11 @@ public abstract record UpdateExperienceRequest
        "completed"
    )]
     public string? Status { get; init; }
-
+    
+    public IEnumerable<string> AcademicEntities { get; init; } = [];
+    
+    [Range(1, int.MaxValue)]
+    public int? CurrentSemester { get; init; }
 
     [Required]
     [StringLength(200, MinimumLength = 3)]

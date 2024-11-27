@@ -13,6 +13,8 @@ using TalentHub.ApplicationCore.Shared.Dtos;
 using System.Net.Mime;
 using TalentHub.ApplicationCore.Courses.Dtos;
 using TalentHub.ApplicationCore.Courses.UseCases.Queries;
+using TalentHub.ApplicationCore.Skills;
+using TalentHub.Presentation.Web.Binders;
 
 namespace TalentHub.Presentation.Web.Controllers;
 
@@ -26,8 +28,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     public Task<IActionResult> GetByIdAsync(
         [FromRoute] Guid id,
         CancellationToken cancellationToken = default
-    ) =>
-        HandleAsync<CandidateDto>(
+    ) => HandleAsync<CandidateDto>(
             new GetCandidateByIdQuery(id),
             cancellationToken: cancellationToken
         );
@@ -37,10 +38,17 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> GetAllAsync(
         PagedRequest request,
+        [FromQuery(Name = "skill_id_in")]
+        [ModelBinder(typeof(SplitQueryStringBinder))]
+        IEnumerable<Guid> skillIds,
+        [FromQuery(Name = "language_id_in")]
+        [ModelBinder(typeof(SplitQueryStringBinder))]
+        IEnumerable<string> languageIds,
         CancellationToken cancellationToken
-    ) =>
-        HandleAsync<PagedResponse<CandidateDto>>(
+    ) => HandleAsync<PagedResponse<CandidateDto>>(
             new GetAllCandidatesQuery(
+                skillIds,
+                languageIds,
                 request.Limit,
                 request.Offset,
                 request.SortBy,

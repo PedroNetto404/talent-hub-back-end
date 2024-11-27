@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Commands.Delete;
+namespace TalentHub.ApplicationCore.Courses.UseCases.Commands.Create.Delete;
 
 public sealed class DeleteCourseCommandHandler(IRepository<Course> courseRepository) : ICommandHandler<DeleteCourseCommand>
 {

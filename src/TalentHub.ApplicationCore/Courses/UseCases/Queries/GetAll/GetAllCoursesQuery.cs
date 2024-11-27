@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Courses.Dtos;
+using TalentHub.ApplicationCore.Shared.Dtos;
 
 namespace TalentHub.ApplicationCore.Courses.UseCases.Queries.GetAll;
 
@@ -9,7 +10,7 @@ public sealed record GetAllCoursesQuery(
     int Offset,
     string? SortBy,
     bool Ascending = true
-) : ICachedQuery<IEnumerable<CourseDto>>
+) : ICachedQuery<PagedResponse<CourseDto>>
 {
     public TimeSpan? Duration => TimeSpan.FromDays(1);
 

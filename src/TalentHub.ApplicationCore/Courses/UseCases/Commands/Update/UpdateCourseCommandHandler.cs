@@ -18,9 +18,6 @@ public sealed class UpdateCourseCommandHandler(
         if(course.ChangeName(request.Name) is { IsFail: true, Error: var nameError })
             return nameError;
 
-        if(course.ChangeDescription(request.Description) is { IsFail: true, Error: var descriptionError})
-            return descriptionError;
-
         course.ClearTags(); 
 
         foreach(var tag in request.Tags)

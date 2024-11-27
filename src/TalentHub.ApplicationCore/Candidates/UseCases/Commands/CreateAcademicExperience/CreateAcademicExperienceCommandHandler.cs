@@ -4,15 +4,15 @@ using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Courses;
-using TalentHub.ApplicationCore.EducationalInstitutes;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
+using TalentHub.ApplicationCore.Universities;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateAcademicExperience;
 
 public sealed class CreateAcademicExperienceCommandHandler(
     IRepository<Candidate> candidateRepository,
-    IRepository<EducationalInstitute> educationalInstituteRepository,
+    IRepository<University> educationalInstituteRepository,
     IRepository<Course> courseRepository
 ) :
     ICommandHandler<CreateExperienceCommand, CandidateDto>
@@ -28,8 +28,8 @@ public sealed class CreateAcademicExperienceCommandHandler(
         if (start.IsFail) return start.Error;
 
         var end = request is { EndMonth: not null, EndYear: not null }
-        ? DatePeriod.Create(request.EndYear!.Value, request.EndMonth!.Value)
-        : Result.Ok<DatePeriod>(null!);
+            ? DatePeriod.Create(request.EndYear!.Value, request.EndMonth!.Value)
+            : Result.Ok<DatePeriod>(null!);
         if (end.IsFail) return end.Error;
 
         var experience = request.Type switch
@@ -70,9 +70,9 @@ public sealed class CreateAcademicExperienceCommandHandler(
             request.Description!,
             level
         );
-        if (experience.IsFail) return experience.Error;
-
-        return Result.Ok<Experience>(experience.Value);
+        return experience.IsFail
+            ? experience.Error
+            : Result.Ok<Experience>(experience.Value);
     }
 
     private async Task<Result<Experience>> CreateAcademicExperience(
@@ -84,7 +84,8 @@ public sealed class CreateAcademicExperienceCommandHandler(
         var course = await courseRepository.GetByIdAsync(request.CourseId!.Value, cancellationToken);
         if (course is null) return NotFoundError.Value;
 
-        var institution = await educationalInstituteRepository.GetByIdAsync(request.InstitutionId!.Value, cancellationToken);
+        var institution =
+            await educationalInstituteRepository.GetByIdAsync(request.InstitutionId!.Value, cancellationToken);
         if (institution is null) return NotFoundError.Value;
 
         if (!Enum.TryParse<EducationLevel>(request.Level, true, out var level))
@@ -93,17 +94,28 @@ public sealed class CreateAcademicExperienceCommandHandler(
         if (!Enum.TryParse<ProgressStatus>(request.Status, true, out var status))
             return Result.Fail<Experience>(new Error("candidate_experience", "Invalid status"));
 
-        var experience = AcademicExperience.Create(
+        var experienceResult = AcademicExperience.Create(
             start,
             end,
+            request.CurrentSemester!.Value,
             request.IsCurrent,
             level,
             status,
             course.Id,
             institution.Id
         );
-        if (experience.IsFail) return experience.Error;
+        if (experienceResult.IsFail) return experienceResult.Error;
+        var experience = experienceResult.Value;
 
-        return Result.Ok<Experience>(experience.Value);
+        foreach (var academicEntity in request.AcademicEntities)
+        {
+            if (!Enum.TryParse<AcademicEntity>(academicEntity, true, out var entity))
+                return new Error("candidate_experience", "Invalid academic entity");
+
+            if (experience.AddAcademicEntity(entity) is { IsFail: true, Error: var error })
+                return error;
+        }
+
+        return experience;
     }
 }

@@ -11,35 +11,27 @@ public sealed class CreateCandidateRequest
     [StringLength(100, MinimumLength = 4)]
     public required string Name { get; init; }
 
-    [Required]
-    [EmailAddress]
-    public required string Email { get; init; }
+    [Required] [EmailAddress] public required string Email { get; init; }
 
     [Required]
     [StringLength(11, MinimumLength = 11)]
     public required string Phone { get; init; }
 
-    [Required]
-    public required DateTime BirthDate { get; init; }
+    [Required] public required DateTime BirthDate { get; init; }
 
-    [Required]
-    public required Address Address { get; init; }
+    [Required] public required Address Address { get; init; }
 
-    public IEnumerable<WorkplaceType> DesiredWorkplaceTypes { get; init; } = [];
+    public IEnumerable<string> DesiredWorkplaceTypes { get; init; } = [];
 
-    public IEnumerable<JobType> DesiredJobTypes { get; init; } = [];
+    public IEnumerable<string> DesiredJobTypes { get; init; } = [];
 
-    [Range(1, double.MaxValue)]
-    public decimal? ExpectedRemuneration { get; init; }
+    [Range(1, double.MaxValue)] public decimal? ExpectedRemuneration { get; init; }
 
-    [Url]
-    public string? InstagramUrl { get; init; }
+    [Url] public string? InstagramUrl { get; init; }
 
-    [Url]
-    public string? LinkedinUrl { get; init; }
+    [Url] public string? LinkedinUrl { get; init; }
 
-    [Url]
-    public string? GithubUrl { get; init; }
+    [Url] public string? GithubUrl { get; init; }
 
     public string? Summary { get; init; }
 
@@ -52,13 +44,13 @@ public sealed class CreateCandidateRequest
             Phone,
             DateOnly.FromDateTime(BirthDate),
             Address,
-            DesiredJobTypes.ToArray(),
-            DesiredWorkplaceTypes.ToArray(),
+            [..DesiredJobTypes],
+            [.. DesiredWorkplaceTypes],
             Summary,
             GithubUrl,
             InstagramUrl,
             LinkedinUrl,
             ExpectedRemuneration,
-            Hobbies.ToArray()
+            [..Hobbies]
         );
 }

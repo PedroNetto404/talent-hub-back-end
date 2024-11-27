@@ -30,8 +30,10 @@ public sealed class UpdateAcademicExperienceCommandHandler(
                     request.ExperienceId,
                     start.Value,
                     end.Value,
+                    request.CurrentSemester!.Value,
                     request.IsCurrent,
                     request.Activities,
+                    request.AcademicEntities,
                     status)
                 : Result.Fail(new Error("candidate_experience", "Invalid status")),
             "professional" => candidate.UpdateExperience(

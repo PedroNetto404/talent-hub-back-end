@@ -22,29 +22,30 @@ public sealed class CandidateExperienceController(
         string type,
         CreateExperienceRequest request,
         CancellationToken cancellationToken
-    ) =>
-        HandleAsync(
-            new CreateExperienceCommand(
-                candidateId,
-                type,
-                request.StartMonth,
-                request.StartYear,
-                request.EndMonth,
-                request.EndYear,
-                request.IsCurrent,
-                [.. request.Activities],
-                request.Level,
-                request.Status,
-                request.CourseId,
-                request.InstitutionId,
-                request.Position,
-                request.Description,
-                request.Company,
-                request.ProfessionalLevel
-            ),
-            (experience) => Created($"api/candidates/{candidateId}", experience),
-            cancellationToken
-        );
+    ) => HandleAsync(
+        new CreateExperienceCommand(
+            candidateId,
+            type,
+            request.StartMonth,
+            request.StartYear,
+            request.EndMonth,
+            request.EndYear,
+            request.IsCurrent,
+            [.. request.Activities],
+            request.Level,
+            request.Status,
+            request.CurrentSemester,
+            [..request.AcademicEntities],
+            request.CourseId,
+            request.InstitutionId,
+            request.Position,
+            request.Description,
+            request.Company,
+            request.ProfessionalLevel
+        ),
+        (experience) => Created($"api/candidates/{candidateId}", experience),
+        cancellationToken
+    );
 
     [HttpPut("{type:alpha}/{experienceId:guid}")]
     [ProducesResponseType(typeof(ExperienceDto), StatusCodes.Status200OK)]
@@ -56,24 +57,25 @@ public sealed class CandidateExperienceController(
         string type,
         UpdateExperienceRequest request,
         CancellationToken cancellationToken
-    ) =>
-        HandleAsync(
-            new UpdateExperienceCommand(
-                candidateId,
-                experienceId,
-                type,
-                request.StartMonth,
-                request.StartYear,
-                request.EndMonth,
-                request.EndYear,
-                request.IsCurrent,
-                [.. request.Activities],
-                request.Status,
-                request.Description
-            ),
-            onSuccess: NoContent,
-            cancellationToken
-        );
+    ) => HandleAsync(
+        new UpdateExperienceCommand(
+            candidateId,
+            experienceId,
+            type,
+            request.StartMonth,
+            request.StartYear,
+            request.EndMonth,
+            request.EndYear,
+            request.IsCurrent,
+            [.. request.Activities],
+            [.. request.AcademicEntities],
+            request.CurrentSemester,
+            request.Status,
+            request.Description
+        ),
+        onSuccess: NoContent,
+        cancellationToken
+    );
 
     [HttpDelete("{experienceId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -83,10 +85,9 @@ public sealed class CandidateExperienceController(
         Guid candidateId,
         Guid experienceId,
         CancellationToken cancellationToken
-    ) =>
-        HandleAsync(
-            new DeleteExperienceCommand(candidateId, experienceId),
-            onSuccess: NoContent,
-            cancellationToken
-        );
+    ) => HandleAsync(
+        new DeleteExperienceCommand(candidateId, experienceId),
+        onSuccess: NoContent,
+        cancellationToken
+    );
 }

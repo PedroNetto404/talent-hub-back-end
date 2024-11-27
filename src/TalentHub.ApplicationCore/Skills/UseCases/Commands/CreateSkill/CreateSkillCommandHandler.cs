@@ -1,9 +1,9 @@
 using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Skills.Dtos;
 using TalentHub.ApplicationCore.Skills.Enums;
 using TalentHub.ApplicationCore.Skills.Specs;
-using TalentHub.ApplicationCore.Skills.UseCases.Dtos;
 
 namespace TalentHub.ApplicationCore.Skills.UseCases.Commands.CreateSkill;
 

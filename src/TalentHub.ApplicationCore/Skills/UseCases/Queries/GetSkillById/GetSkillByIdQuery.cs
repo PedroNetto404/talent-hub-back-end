@@ -1,5 +1,5 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Skills.UseCases.Dtos;
+using TalentHub.ApplicationCore.Skills.Dtos;
 
 namespace TalentHub.ApplicationCore.Skills.UseCases.Queries.GetSkillById;
 

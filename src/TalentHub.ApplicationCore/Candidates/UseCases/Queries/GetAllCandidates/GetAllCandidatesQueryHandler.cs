@@ -14,20 +14,31 @@ public sealed class GetAllCandidatesQueryHandler(
         GetAllCandidatesQuery request,
         CancellationToken cancellationToken)
     {
-        var spec = new GetAllCandidatesSpec(
-            request.Limit,
-            request.Offset,
-            request.SortBy,
-            request.Ascending);
+        var candidates = await candidateRepository.ListAsync(
+            new GetAllCandidatesSpec(
+                request.Limit,
+                request.Offset,
+                request.SortBy,
+                request.Ascending,
+                request.SkillIds,
+                request.Languages),
+            cancellationToken);
 
-        var candidates = await candidateRepository.ListAsync(spec, cancellationToken);
-        var count = await candidateRepository.CountAsync(spec, cancellationToken);
+        var count = await candidateRepository.CountAsync(
+            new GetAllCandidatesSpec(
+                int.MaxValue,
+                0,
+                request.SortBy,
+                request.Ascending,
+                [],
+                []),
+            cancellationToken);
 
-        var candidateDtos = candidates.Select(CandidateDto.FromEntity);
+        var candidateDtos = candidates.Select(CandidateDto.FromEntity).ToArray();
 
         return new PagedResponse<CandidateDto>(
             new(
-                candidateDtos.Count(),
+                candidateDtos.Length,
                 count,
                 request.Offset,
                 request.Limit),
@@ -35,4 +46,3 @@ public sealed class GetAllCandidatesQueryHandler(
         );
     }
 }
-

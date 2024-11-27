@@ -3,7 +3,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using TalentHub.ApplicationCore.Ports;
 
-namespace TalentHub.Infra.File;
+namespace TalentHub.Infra.Files;
 
 public sealed class MinIOFileStorage : IFileStorage
 {

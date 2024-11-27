@@ -5,6 +5,8 @@ using TalentHub.ApplicationCore.Shared.Dtos;
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Queries.GetAllCandidates;
 
 public sealed record GetAllCandidatesQuery(
+    IEnumerable<Guid> SkillIds,
+    IEnumerable<string> Languages,
     int Limit,
     int Offset,
     string? SortBy,

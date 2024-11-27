@@ -1,8 +1,10 @@
+using Humanizer;
 using MediatR;
 using TalentHub.ApplicationCore.Candidates.Dtos;
 using TalentHub.ApplicationCore.Candidates.Specs;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Jobs.Enums;
 
 namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateCandidate;
 
@@ -39,21 +41,33 @@ public sealed class CreateCandidateCommandHandler(
                 {
                     IsFail: true,
                     Error: var error
-                }) return error;
+                })
+                return error;
 
         foreach (var desiredWorkplaceType in input.DesiredWorkplaceTypes)
-            if (candidate.AddDesiredWorkplaceType(desiredWorkplaceType) is
+        {
+            if (!Enum.TryParse<WorkplaceType>(desiredWorkplaceType.Pascalize(), true, out var workplaceType))
+                return new Error("workplace_type", "Invalid workplace type");
+
+            if (candidate.AddDesiredWorkplaceType(workplaceType) is
                 {
                     IsFail: true,
                     Error: var error
                 }) return error;
+        }
 
         foreach (var desiredJobType in input.DesiredJobTypes)
-            if (candidate.AddDesiredJobType(desiredJobType) is
+        {
+            if (!Enum.TryParse<JobType>(desiredJobType.Pascalize(), true, out var jobType))
+                return new Error("job_type", "Invalid job type");
+
+            if (candidate.AddDesiredJobType(jobType) is
                 {
                     IsFail: true,
                     Error: var error
-                }) return error;
+                })
+                return error;
+        }
 
         _ = await repository.AddAsync(candidate, cancellationToken);
         return CandidateDto.FromEntity(candidate);

@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHub.Presentation.Web", "src\TalentHub.Presentation.Web\TalentHub.Presentation.Web.csproj", "{0EBA20FB-4D25-4BF5-85EA-05288A521797}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{D06ECED8-9294-4757-8781-A0B8AEDBCF8A}"
+	ProjectSection(SolutionItems) = preProject
+		seed\universities.json = seed\universities.json
+		seed\courses_seed.json = seed\courses_seed.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{431AC9B0-F404-423B-96F9-01256B2F6F05}"
 	ProjectSection(SolutionItems) = preProject

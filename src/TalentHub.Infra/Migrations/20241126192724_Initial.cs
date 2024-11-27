@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TalentHub.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class InitSetup : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,24 +49,11 @@ namespace TalentHub.Infra.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    description = table.Column<string>(type: "text", nullable: false),
                     tags = table.Column<List<string>>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_courses", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "educational_institutes",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_educational_institutes", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,6 +68,19 @@ namespace TalentHub.Infra.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_skills", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "universities",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    site_url = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_universities", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,51 +123,6 @@ namespace TalentHub.Infra.Migrations
                         name: "fk_language_proficiencies_candidate_candidate_id",
                         column: x => x.candidate_id,
                         principalTable: "candidates",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "experiences",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
-                    start_year = table.Column<int>(type: "integer", nullable: false),
-                    start_month = table.Column<int>(type: "integer", nullable: false),
-                    end_year = table.Column<int>(type: "integer", nullable: true),
-                    end_month = table.Column<int>(type: "integer", nullable: true),
-                    is_current = table.Column<bool>(type: "boolean", nullable: false),
-                    candidate_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    activities = table.Column<List<string>>(type: "text[]", nullable: false),
-                    experience_type = table.Column<string>(type: "character varying(13)", maxLength: 13, nullable: false),
-                    level = table.Column<string>(type: "text", nullable: true),
-                    status = table.Column<string>(type: "text", nullable: true),
-                    course_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    institution_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    position = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    professional_experience_level = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_experiences", x => x.id);
-                    table.ForeignKey(
-                        name: "fk_experiences_candidates_candidate_id",
-                        column: x => x.candidate_id,
-                        principalTable: "candidates",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_experiences_courses_course_id",
-                        column: x => x.course_id,
-                        principalTable: "courses",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_experiences_educational_institutes_institution_id",
-                        column: x => x.institution_id,
-                        principalTable: "educational_institutes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -222,6 +177,53 @@ namespace TalentHub.Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "experiences",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    start_year = table.Column<int>(type: "integer", nullable: false),
+                    start_month = table.Column<int>(type: "integer", nullable: false),
+                    end_year = table.Column<int>(type: "integer", nullable: true),
+                    end_month = table.Column<int>(type: "integer", nullable: true),
+                    is_current = table.Column<bool>(type: "boolean", nullable: false),
+                    candidate_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    activities = table.Column<List<string>>(type: "text[]", nullable: false),
+                    experience_type = table.Column<string>(type: "character varying(13)", maxLength: 13, nullable: false),
+                    level = table.Column<string>(type: "text", nullable: true),
+                    status = table.Column<string>(type: "text", nullable: true),
+                    period = table.Column<int>(type: "integer", nullable: true),
+                    course_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    university_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    _academic_entities = table.Column<string[]>(type: "text[]", nullable: true),
+                    position = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    professional_experience_level = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_experiences", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_experiences_candidates_candidate_id",
+                        column: x => x.candidate_id,
+                        principalTable: "candidates",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_experiences_courses_course_id",
+                        column: x => x.course_id,
+                        principalTable: "courses",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_experiences_universities_university_id",
+                        column: x => x.university_id,
+                        principalTable: "universities",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "ix_candidate_skills_candidate_id",
                 table: "candidate_skills",
@@ -260,9 +262,9 @@ namespace TalentHub.Infra.Migrations
                 column: "course_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_experiences_institution_id",
+                name: "ix_experiences_university_id",
                 table: "experiences",
-                column: "institution_id");
+                column: "university_id");
 
             migrationBuilder.CreateIndex(
                 name: "ix_language_proficiencies_candidate_id",
@@ -294,7 +296,7 @@ namespace TalentHub.Infra.Migrations
                 name: "related_course_skills");
 
             migrationBuilder.DropTable(
-                name: "educational_institutes");
+                name: "universities");
 
             migrationBuilder.DropTable(
                 name: "candidates");
