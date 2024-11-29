@@ -1,8 +1,6 @@
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Humanizer;
-using TalentHub.ApplicationCore.Extensions;
 
 namespace TalentHub.Infra.Json.Converters;
 
@@ -12,10 +10,10 @@ public class SnakeCaseEnumConverter<TEnum> :
 {
     public override TEnum Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var enumValue = reader.GetString()?.Replace("_", "", StringComparison.OrdinalIgnoreCase);
+        string enumValue = reader.GetString().Pascalize();
 
         if (Enum.TryParse(enumValue, true, out TEnum result))
-            return result;
+        { return result; }
 
         throw new JsonException($"Unable to convert \"{enumValue}\" to Enum \"{typeof(TEnum)}\".");
 
@@ -23,8 +21,8 @@ public class SnakeCaseEnumConverter<TEnum> :
 
     public override void Write(Utf8JsonWriter writer, TEnum value, JsonSerializerOptions options)
     {
-        var stringValue = Enum.GetName(typeof(TEnum), value)!;
-        var snakeCaseValue = stringValue.Underscore();
+        string stringValue = Enum.GetName(typeof(TEnum), value)!;
+        string snakeCaseValue = stringValue.Underscore();
         writer.WriteStringValue(snakeCaseValue);
     }
 }

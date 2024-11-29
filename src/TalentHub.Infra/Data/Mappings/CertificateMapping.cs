@@ -5,14 +5,14 @@ using TalentHub.ApplicationCore.Candidates.Entities;
 namespace TalentHub.Infra.Data.Mappings;
 
 public sealed class CertificateMapping :
-IEntityTypeConfiguration<Certificate>
+    EntityMapping<Certificate>
 {
 
-    public void Configure(EntityTypeBuilder<Certificate> builder)
+    public override void Configure(EntityTypeBuilder<Certificate> builder)
     {
+        base.Configure(builder);
+
         builder.ToTable("certificates");
-        builder.HasKey(p => p.Id);
-        builder.Property(P => P.Id);
 
         builder
             .Property(p => p.Name)

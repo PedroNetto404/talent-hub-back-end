@@ -4,27 +4,18 @@ using TalentHub.ApplicationCore.Candidates;
 
 namespace TalentHub.Infra.Data.Mappings;
 
-public sealed class CandidateMapping : IEntityTypeConfiguration<Candidate>
+public sealed class CandidateMapping : AuditableAggregateRootMapping<Candidate>
 {
-    public void Configure(EntityTypeBuilder<Candidate> builder)
+    public override void Configure(EntityTypeBuilder<Candidate> builder)
     {
+        base.Configure(builder);
+        
         builder.ToTable("candidates");
-
-        builder.HasKey(c => c.Id);
 
         builder
             .Property(c => c.Name)
             .IsRequired()
             .HasMaxLength(200);
-
-        builder
-            .Property(c => c.Email)
-            .IsRequired()
-            .HasMaxLength(200);
-
-        builder
-            .HasIndex(p => p.Email)
-            .IsUnique();
 
         builder
             .Property(c => c.Phone)

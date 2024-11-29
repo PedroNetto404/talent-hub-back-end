@@ -1,7 +1,13 @@
 namespace TalentHub.ApplicationCore.Core.Abstractions;
 
-public interface ICachedQuery<TResult> : IQuery<TResult> where TResult : notnull
+public interface ICachedQuery 
 {
     public TimeSpan? Duration { get; }
     public string Key { get; }
 }
+
+public interface ICachedQuery<TResult> : 
+    ICachedQuery,
+    IQuery<TResult> 
+    
+    where TResult : notnull;

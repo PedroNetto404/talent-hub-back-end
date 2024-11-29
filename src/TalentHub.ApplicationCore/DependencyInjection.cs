@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using TalentHub.ApplicationCore.Behaviors;
 
 namespace TalentHub.ApplicationCore;
 
@@ -9,6 +10,7 @@ public static class DependencyInjection
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+            config.AddOpenBehavior(typeof(CacheBehavior<,>));
         });
         
         return services;

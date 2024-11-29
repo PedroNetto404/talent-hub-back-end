@@ -10,16 +10,15 @@ using TalentHub.Infra.Data.ValueConverters;
 namespace TalentHub.Infra.Data.Mappings;
 
 public sealed class CandidateLanguageSkillMapping :
-    IEntityTypeConfiguration<LanguageProficiency>
+    EntityMapping<LanguageProficiency>
 {
-    public void Configure(EntityTypeBuilder<LanguageProficiency> builder)
+    public override void Configure(EntityTypeBuilder<LanguageProficiency> builder)
     {
+        base.Configure(builder);
+
         builder.ToTable("language_proficiencies");
 
-        builder.HasKey(p => p.Id);
-        builder.Property(p => p.Id);
-
-        var defaultValue = Proficiency.Beginner;
+        Proficiency defaultValue = Proficiency.Beginner;
 
         builder
             .Property(p => p.WritingLevel)

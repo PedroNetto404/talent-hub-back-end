@@ -1,50 +1,58 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace TalentHub.Presentation.Web.Binders;
 
-public class SplitQueryStringBinder(char separator = ',') : IModelBinder
+public class SplitQueryStringBinder : IModelBinder
 {
-    private static readonly Dictionary<Type, Func<string, object>> _parsers = new()
-    {  
+    private const char Separator = ',';
+    private static readonly Dictionary<Type, Func<string, object>> Parsers = new()
+    {
         [typeof(Guid)] = value => Guid.Parse(value),
         [typeof(string)] = value => value,
         [typeof(int)] = value => int.Parse(value)
     };
 
-    public static void TryAddParser<K>(Func<string, object> parser) 
-    {
-        _parsers.TryAdd(typeof(K), parser);
-    }
+    public static void TryAddParser<TK>(Func<string, object> parser) =>
+        Parsers.TryAdd(typeof(TK), parser);
 
     public Task BindModelAsync(ModelBindingContext bindingContext)
     {
         ArgumentNullException.ThrowIfNull(bindingContext);
 
-        var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-
+        ValueProviderResult valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
         if (valueProviderResult == ValueProviderResult.None)
         {
             bindingContext.Result = ModelBindingResult.Failed();
             return Task.CompletedTask;
         }
 
-        var value = valueProviderResult.FirstValue;
+        Type collectionType = bindingContext.ModelType.GetGenericArguments().First();
+        Type resultType = typeof(List<>).MakeGenericType(collectionType);
+        object result = Activator.CreateInstance(resultType);
+        MethodInfo addMethod = resultType.GetMethod(nameof(List<object>.Add))!;
 
-        if (string.IsNullOrWhiteSpace(value))
+        string composedParam = valueProviderResult.FirstValue;
+        if (string.IsNullOrWhiteSpace(composedParam))
         {
-            bindingContext.Result = ModelBindingResult.Success(Array.Empty<object>());
+            bindingContext.Result = ModelBindingResult.Success(result);
             return Task.CompletedTask;
         }
 
         try
         {
-            var collectionType = bindingContext.ModelType.GetGenericArguments().First();
+            if (!Parsers.TryGetValue(collectionType, out Func<string, object> parser))
+            { throw new InvalidOperationException($"No parser found for {collectionType.Name}"); }
 
-            var splitValues = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
-                .Select(_parsers[collectionType])
-                .ToArray();
+            IEnumerable<object> items =
+                composedParam
+                    .Split(Separator, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(p => Convert.ChangeType(parser(p), collectionType));
 
-            bindingContext.Result = ModelBindingResult.Success(splitValues);
+            foreach (object item in items)
+            { addMethod.Invoke(result, [item]); }
+
+            bindingContext.Result = ModelBindingResult.Success(result);
         }
         catch (FormatException)
         {

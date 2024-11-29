@@ -1,5 +1,6 @@
 using Humanizer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Candidates.Entities;
 using TalentHub.ApplicationCore.Candidates.Enums;
@@ -38,13 +39,19 @@ public sealed class AcademicExperienceMapping : IEntityTypeConfiguration<Academi
             .HasForeignKey(p => p.UniversityId)
             .IsRequired();
 
+
         builder
             .Property<List<AcademicEntity>>("_academicEntities")
             .HasConversion(
-                p => p.Select(q => q.ToString().Underscore()),
-                q =>
-                    q.Select(k =>
-                            Enum.Parse<AcademicEntity>(k.Pascalize(), true))
-                        .ToList());
+                p => p.Select(q => q.ToString().Underscore()).ToList(),
+                q => q.Select(k => Enum.Parse<AcademicEntity>(k.Pascalize(), true)).ToList(),
+                new ValueComparer<List<AcademicEntity>>(
+                    (c1, c2) => c1!.SequenceEqual(c2!),
+                    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                    c => c.ToList()
+                )
+            )
+            .HasColumnType("text[]")
+            .HasColumnName("academic_entites");
     }
 }

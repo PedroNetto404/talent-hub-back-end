@@ -8,12 +8,13 @@ using TalentHub.ApplicationCore.Skills;
 namespace TalentHub.Infra.Data.Mappings;
 
 public sealed class CandidateSkillMap :
-    IEntityTypeConfiguration<CandidateSkill>
+    EntityMapping<CandidateSkill>
 {
-    public void Configure(EntityTypeBuilder<CandidateSkill> builder)
+    public override void Configure(EntityTypeBuilder<CandidateSkill> builder)
     {
+        base.Configure(builder);
+
         builder.ToTable("candidate_skills");
-        builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Proficiency)
                .HasConversion<EnumToStringConverter<Proficiency>>()

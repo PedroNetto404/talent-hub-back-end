@@ -6,14 +6,13 @@ using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;
 
-public sealed class SkillMapping : IEntityTypeConfiguration<Skill>
+public sealed class SkillMapping : EntityMapping<Skill>
 {
-    public void Configure(EntityTypeBuilder<Skill> builder)
+    public override void Configure(EntityTypeBuilder<Skill> builder)
     {
-        builder.ToTable("skills");
+        base.Configure(builder);
 
-        builder.HasKey(p => p.Id);
-        builder.Property(p => p.Id);
+        builder.ToTable("skills");
 
         builder
             .Property(p => p.Type)

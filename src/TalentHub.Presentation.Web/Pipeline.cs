@@ -11,11 +11,10 @@ public static class Pipeline
         }
 
         app.UseHttpsRedirection();
+        app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.UseRouting();
 
         app.MapControllers();
     }

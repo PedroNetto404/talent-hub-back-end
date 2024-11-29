@@ -19,14 +19,13 @@ public sealed class CoursesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(typeof(IEnumerable<CourseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> GetAllAsync(
-        [FromQuery(Name = "course_id_in")] 
-        [ModelBinder(typeof(SplitQueryStringBinder))]
-        IEnumerable<Guid> ids,
+        [FromQuery(Name = "course_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
+        IEnumerable<Guid>? ids,
         PagedRequest queryString,
         CancellationToken cancellationToken
     ) => HandleAsync<PagedResponse<CourseDto>>(
         new GetAllCoursesQuery(
-            ids,
+            ids ?? [],
             queryString.Limit,
             queryString.Offset,
             queryString.SortBy,
@@ -41,8 +40,8 @@ public sealed class CoursesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public Task<IActionResult> GetByIdAsync(
         Guid courseId, 
-        CancellationToken cancellationToken) =>
-        HandleAsync<CourseDto>(
+        CancellationToken cancellationToken
+        ) => HandleAsync<CourseDto>(
             new GetCourseByIdQuery(courseId),
             cancellationToken: cancellationToken
         );
@@ -53,8 +52,7 @@ public sealed class CoursesController(ISender sender) : ApiController(sender)
     public Task<IActionResult> CreateAsync(
         CreateCourseRequest request,
         CancellationToken token
-    ) =>
-        HandleAsync(
+    ) => HandleAsync(
             new CreateCourseCommand(
                 request.Name,
                 request.Tags,
@@ -72,8 +70,7 @@ public sealed class CoursesController(ISender sender) : ApiController(sender)
         Guid courseId,
         UpdateCourseRequest request,
         CancellationToken cancellationToken
-    ) =>
-        HandleAsync(
+    ) => HandleAsync(
             new UpdateCourseCommand(
                 courseId,
                 request.Name,
@@ -91,8 +88,7 @@ public sealed class CoursesController(ISender sender) : ApiController(sender)
     public Task<IActionResult> DeleteAsync(
         Guid courseId,
         CancellationToken cancellationToken
-    ) =>
-        HandleAsync(
+    ) => HandleAsync(
             new DeleteCourseCommand(
                 courseId
             ),

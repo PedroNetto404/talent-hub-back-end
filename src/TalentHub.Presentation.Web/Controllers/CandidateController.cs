@@ -7,18 +7,18 @@ using TalentHub.Presentation.Web.Models.Request;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Candidates.UseCases.Queries.GetCandidateById;
 using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateProfilePicture;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidate;
+using TalentHub.ApplicationCore.Candidates.UseCases.Commands.Update;
 using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateResume;
 using TalentHub.ApplicationCore.Shared.Dtos;
 using System.Net.Mime;
-using TalentHub.ApplicationCore.Courses.Dtos;
-using TalentHub.ApplicationCore.Courses.UseCases.Queries;
-using TalentHub.ApplicationCore.Skills;
 using TalentHub.Presentation.Web.Binders;
+using TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateCandidate;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/candidates")]
+[Authorize]
 public sealed class CandidatesController(ISender sender) : ApiController(sender)
 {
     [HttpGet("{id:guid}")]
@@ -38,17 +38,15 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> GetAllAsync(
         PagedRequest request,
-        [FromQuery(Name = "skill_id_in")]
-        [ModelBinder(typeof(SplitQueryStringBinder))]
-        IEnumerable<Guid> skillIds,
-        [FromQuery(Name = "language_id_in")]
-        [ModelBinder(typeof(SplitQueryStringBinder))]
-        IEnumerable<string> languageIds,
+        [FromQuery(Name = "skill_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
+        IEnumerable<Guid>? skillIds,
+        [FromQuery(Name = "language_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
+        IEnumerable<string>? languageIds,
         CancellationToken cancellationToken
     ) => HandleAsync<PagedResponse<CandidateDto>>(
             new GetAllCandidatesQuery(
-                skillIds,
-                languageIds,
+                skillIds  ?? [],
+                languageIds ?? [],
                 request.Limit,
                 request.Offset,
                 request.SortBy,
@@ -64,8 +62,21 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         CancellationToken token = default
     ) =>
         HandleAsync(
-            request.ToCommand(),
-            (candidate) => Created($"api/candidates/{candidate.Id}", candidate),
+            new CreateCandidateCommand(
+                request.Name,
+                request.Phone,
+                DateOnly.FromDateTime(request.BirthDate),
+                request.Address,
+                [.. request.DesiredJobTypes],
+                [.. request.DesiredWorkplaceTypes],
+                request.Summary,
+                request.GithubUrl,
+                request.InstagramUrl,
+                request.LinkedinUrl,
+                request.ExpectedRemuneration,
+                [.. request.Hobbies]
+            ),
+            (dto) => Created($"api/candidates/{dto.Id}", dto),
             cancellationToken: token
          );
 
@@ -120,11 +131,11 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         IFormFile file,
         CancellationToken cancellationToken = default)
     {
-        if (file is not { Length: > 0 }) return BadRequest(new Error("bad_request", "No file uploaded."));
-
+        if (file is not { Length: > 0 })
+        { return BadRequest(new Error("bad_request", "No file uploaded.")); }
 
         if (file.ContentType != MediaTypeNames.Image.Jpeg && file.ContentType != MediaTypeNames.Image.Png)
-            return BadRequest(new Error("candidate_profile_picture", "invalid file type"));
+        { return BadRequest(new Error("bad_request", "invalid file type")); }
 
         using var stream = new MemoryStream();
         await file.CopyToAsync(stream, cancellationToken);
@@ -148,9 +159,11 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         IFormFile file,
         CancellationToken cancellationToken)
     {
-        if (file is not { Length: > 0 }) return BadRequest("No file uploaded.");
+        if (file is not { Length: > 0 })
+        { return BadRequest("No file uploaded."); }
+
         if (!Path.GetExtension(file.FileName).Equals(".pdf", StringComparison.CurrentCultureIgnoreCase))
-            return BadRequest("Only PDF files are allowed.");
+        { return BadRequest("Only PDF files are allowed."); }
 
         using var stream = new MemoryStream();
 

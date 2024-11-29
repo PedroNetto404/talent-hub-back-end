@@ -4,14 +4,13 @@ using TalentHub.ApplicationCore.Candidates.Entities;
 
 namespace TalentHub.Infra.Data.Mappings;
 
-public sealed class ExperienceMapping : IEntityTypeConfiguration<Experience>
+public sealed class ExperienceMapping : EntityMapping<Experience>
 {
-
-    public void Configure(EntityTypeBuilder<Experience> builder)
+    public override void Configure(EntityTypeBuilder<Experience> builder)
     {
-        builder.ToTable("experiences");
+        base.Configure(builder);
 
-        builder.HasKey(p => p.Id);
+        builder.ToTable("experiences");
 
         builder.OwnsOne(p => p.Start, q =>
         {

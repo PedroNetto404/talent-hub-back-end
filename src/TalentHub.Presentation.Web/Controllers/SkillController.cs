@@ -21,16 +21,16 @@ public sealed class SkillController(ISender sender) : ApiController(sender)
         Guid skillId,
         CancellationToken cancellationToken = default
     ) => HandleAsync<SkillDto>(
-            new GetSkillByIdQuery(skillId),
-            cancellationToken: cancellationToken
-        );
+        new GetSkillByIdQuery(skillId),
+        cancellationToken: cancellationToken
+    );
 
     [HttpGet]
     [ProducesResponseType(typeof(PagedResponse<SkillDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> GetAllAsync(
         PagedRequest request,
-        [ModelBinder(typeof(SplitQueryStringBinder))] [FromQuery(Name = "skill_id_in")]
+        [ModelBinder(typeof(SplitQueryStringBinder)), FromQuery(Name = "skill_id_in")]
         IEnumerable<Guid> ids,
         CancellationToken cancellationToken
     ) => HandleAsync<PagedResponse<SkillDto>>(
@@ -64,22 +64,22 @@ public sealed class SkillController(ISender sender) : ApiController(sender)
         UpdateSkillRequest request,
         CancellationToken cancellationToken
     ) => HandleAsync(
-            new UpdateSkillCommand(
-                id,
-                request.Name,
-                request.Tags
-            ),
-            onSuccess: NoContent,
-            cancellationToken: cancellationToken
-        );
+        new UpdateSkillCommand(
+            id,
+            request.Name,
+            request.Tags
+        ),
+        onSuccess: NoContent,
+        cancellationToken: cancellationToken
+    );
 
     [HttpDelete("{id:guid}")]
     public Task<IActionResult> DeleteAsync(
         Guid id,
         CancellationToken cancellationToken
     ) => HandleAsync(
-            new DeleteSkillCommand(id),
-            onSuccess: NoContent,
-            cancellationToken: cancellationToken
-        );
+        new DeleteSkillCommand(id),
+        onSuccess: NoContent,
+        cancellationToken: cancellationToken
+    );
 }

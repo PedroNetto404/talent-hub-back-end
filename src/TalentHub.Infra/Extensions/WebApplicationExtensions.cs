@@ -12,10 +12,10 @@ public static class WebApplicationExtensions
 {
     public static async Task SeedDatabaseAsync(this WebApplication app)
     {
-        await using var scope = app.Services.CreateAsyncScope();
-        var context = scope.ServiceProvider.GetRequiredService<TalentHubContext>();
+        await using AsyncServiceScope scope = app.Services.CreateAsyncScope();
+        TalentHubContext context = scope.ServiceProvider.GetRequiredService<TalentHubContext>();
 
-        await SeedEntities<University>(
+        await SeedEntities(
             context,
             "universities_seed.json",
             p => University.Create(p).Value,
@@ -23,7 +23,7 @@ public static class WebApplicationExtensions
             "universities"
         );
 
-        await SeedEntities<Course>(
+        await SeedEntities(
             context,
             "courses_seed.json",
             p => Course.Create(p).Value,
@@ -40,7 +40,7 @@ public static class WebApplicationExtensions
         string entityName
     ) where TEntity : class
     {
-        var seedFilePath = GetSeedFilePath(seedFileName);
+        string seedFilePath = GetSeedFilePath(seedFileName);
 
         Console.WriteLine($"{entityName} Seed Path: {seedFilePath}");
         if (!File.Exists(seedFilePath))
@@ -49,17 +49,16 @@ public static class WebApplicationExtensions
             return;
         }
 
-        var fileContent = await File.ReadAllTextAsync(seedFilePath);
+        string fileContent = await File.ReadAllTextAsync(seedFilePath);
         if (string.IsNullOrWhiteSpace(fileContent))
         {
             Console.WriteLine($"{entityName} seed is empty. Skipping seeding process.");
             return;
         }
 
-        var entitiesToSeed = JsonSerializer
+        TEntity[] entitiesToSeed = [.. JsonSerializer
             .Deserialize<JsonElement[]>(fileContent)!
-            .Select(p => createEntityFunc(p.GetProperty("label").GetString()!))
-            .ToArray();
+            .Select(p => createEntityFunc(p.GetProperty("label").GetString()!))];
 
         if (!entitiesToSeed.Any())
         {
@@ -67,15 +66,13 @@ public static class WebApplicationExtensions
             return;
         }
 
-        var entityKeysInDatabase =
+        IEnumerable<string> entityKeysInDatabase =
             await context
                 .Set<TEntity>()
                 .ToListAsync()
                 .ContinueWith(task => task.Result.Select(getEntityKey));
 
-        var newEntities = entitiesToSeed
-            .Where(e => !entityKeysInDatabase.Contains(getEntityKey(e)))
-            .ToArray();
+        TEntity[] newEntities = [.. entitiesToSeed.Where(e => !entityKeysInDatabase.Contains(getEntityKey(e)))];
 
         if (newEntities.Any())
         {
@@ -91,7 +88,7 @@ public static class WebApplicationExtensions
 
     private static string GetSeedFilePath(string fileName)
     {
-        var basePath = Directory.GetCurrentDirectory();
+        string basePath = Directory.GetCurrentDirectory();
 
 #if DEBUG
         basePath = Path.Combine(

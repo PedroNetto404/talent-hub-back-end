@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateCandidate;
-using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.Presentation.Web.Models.Request;
@@ -10,8 +8,6 @@ public sealed class CreateCandidateRequest
     [Required]
     [StringLength(100, MinimumLength = 4)]
     public required string Name { get; init; }
-
-    [Required] [EmailAddress] public required string Email { get; init; }
 
     [Required]
     [StringLength(11, MinimumLength = 11)]
@@ -36,21 +32,4 @@ public sealed class CreateCandidateRequest
     public string? Summary { get; init; }
 
     public IEnumerable<string> Hobbies { get; init; } = [];
-
-    public CreateCandidateCommand ToCommand() =>
-        new(
-            Name,
-            Email,
-            Phone,
-            DateOnly.FromDateTime(BirthDate),
-            Address,
-            [..DesiredJobTypes],
-            [.. DesiredWorkplaceTypes],
-            Summary,
-            GithubUrl,
-            InstagramUrl,
-            LinkedinUrl,
-            ExpectedRemuneration,
-            [..Hobbies]
-        );
 }

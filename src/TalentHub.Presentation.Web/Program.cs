@@ -3,14 +3,14 @@ using TalentHub.Infra;
 using TalentHub.Infra.Extensions;
 using TalentHub.Presentation.Web;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services
        .AddPresentation()
        .AddApplicationCore()
        .AddInfrastructure(builder.Configuration);
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UsePipeline();
 

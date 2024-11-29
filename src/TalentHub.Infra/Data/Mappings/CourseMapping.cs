@@ -5,14 +5,13 @@ using TalentHub.ApplicationCore.Skills;
 
 namespace TalentHub.Infra.Data.Mappings;
 
-public sealed class CourseMapping : IEntityTypeConfiguration<Course>
+public sealed class CourseMapping : EntityMapping<Course>
 {
-    public void Configure(EntityTypeBuilder<Course> builder)
+    public override void Configure(EntityTypeBuilder<Course> builder)
     {
-        builder.ToTable("courses");
+        base.Configure(builder);
 
-        builder.HasKey(p => p.Id);
-        builder.Property(p => p.Id);
+        builder.ToTable("courses");
 
         builder
             .Property(p => p.Name)

@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TalentHub.ApplicationCore.Core.Abstractions;
@@ -13,12 +14,14 @@ public class ApiController(ISender sender) : ControllerBase
         Func<TResult, IActionResult>? onSuccess = null,
         CancellationToken cancellationToken = default) where TResult : notnull
     {
-        var result = await sender.Send(input, cancellationToken);
+        Result<TResult> result = await sender.Send(input, cancellationToken);
 
         if (result is { IsFail: true, Error: var err })
+        {
             return err is NotFoundError
             ? NotFound(err)
             : BadRequest(err);
+        }
 
         onSuccess ??= (_) => Ok(result.Value);
         return onSuccess(result.Value);
@@ -30,12 +33,14 @@ public class ApiController(ISender sender) : ControllerBase
         CancellationToken cancellationToken = default
     )
     {
-        var result = await sender.Send(input, cancellationToken);
+        Result result = await sender.Send(input, cancellationToken);
 
         if (result is { IsFail: true, Error: var err })
+        {
             return err is NotFoundError
-               ? NotFound(err)
-               : BadRequest(err);
+           ? NotFound(err)
+           : BadRequest(err);
+        }
 
         onSuccess ??= Ok;
         return onSuccess();
