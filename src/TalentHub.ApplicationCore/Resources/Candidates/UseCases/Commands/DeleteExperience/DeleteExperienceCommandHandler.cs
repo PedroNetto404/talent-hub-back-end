@@ -1,8 +1,7 @@
-
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.DeleteExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.DeleteExperience;
 
 public sealed class DeleteExperienceCommandHandler(
     IRepository<Candidate> candidateRepository
@@ -12,13 +11,17 @@ public sealed class DeleteExperienceCommandHandler(
         DeleteExperienceCommand request, 
         CancellationToken cancellationToken)
     {
-        var candiate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candiate is null) return NotFoundError.Value;
+        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null)
+        {
+            return Error.NotFound("candidate");
+        }
 
-        var result = candiate.RemoveExperience(request.ExperienceId);
-        if (result.IsFail) return result.Error;
+        Result<Result> result = candidate.RemoveExperience(request.ExperienceId);
+        if (result.IsFail)
+        {}
 
-        await candidateRepository.UpdateAsync(candiate, cancellationToken);
+        await candidateRepository.UpdateAsync(candidate, cancellationToken);
 
         return Result.Ok();
     }

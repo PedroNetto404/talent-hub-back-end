@@ -1,6 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Universities.Dtos;
+using TalentHub.ApplicationCore.Resources.Universities.Dtos;
 
-namespace TalentHub.ApplicationCore.Universities.UseCases.Queries.GetById;
+namespace TalentHub.ApplicationCore.Resources.Universities.UseCases.Queries.GetById;
 
 public sealed record GetUniversityByIdQuery(Guid Id) : IQuery<UniversityDto>;

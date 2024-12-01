@@ -1,9 +1,9 @@
-using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates.Entities;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 public sealed class AcademicExperience : Experience
 {
@@ -34,9 +34,25 @@ public sealed class AcademicExperience : Experience
         Guid courseId,
         Guid institutionId)
     {
-        if (end != null && start > end) return new Error("experience", "Start date must be less than end date.");
-        if (Guid.Empty == courseId) return new Error("experience", "CourseId must be provided.");
-        if (Guid.Empty == institutionId) return new Error("experience", "InstitutionId must be provided.");
+        if (end != null && start > end)
+        {
+            return Error.BadRequest("start date must be less than end date");
+        }
+
+        if (Guid.Empty == courseId)
+        {
+            return Error.BadRequest($"invalid course id");
+        }
+
+        if (Guid.Empty == institutionId)
+        {
+            return Error.BadRequest("invalid university id");
+        }
+
+        if (currentSemester < 0)
+        {
+            return Error.BadRequest("current semester must be greater than 0");
+        }
 
         return Result.Ok(
             new AcademicExperience(
@@ -73,7 +89,9 @@ public sealed class AcademicExperience : Experience
     public Result AddAcademicEntity(AcademicEntity academicEntity)
     {
         if (_academicEntities.Contains(academicEntity))
-            return new Error("academic_experience", "academic entity already added");
+        {
+            return Error.BadRequest("academic entity already added");
+        }
 
         _academicEntities.Add(academicEntity);
         return Result.Ok();
@@ -85,7 +103,7 @@ public sealed class AcademicExperience : Experience
     {
         if (currentSemester < 1)
         {
-            return new Error("academic_experience", "Current semester must be greater than 0");
+            return Error.BadRequest("current semester must be greater than 0");
         }
         
         CurrentSemester = currentSemester;

@@ -1,7 +1,7 @@
 using Humanizer;
-using TalentHub.ApplicationCore.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
-namespace TalentHub.ApplicationCore.Candidates.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
 public record ExperienceDto(
     Guid Id,

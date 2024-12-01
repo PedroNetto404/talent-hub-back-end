@@ -1,8 +1,8 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Courses.Dtos;
+using TalentHub.ApplicationCore.Resources.Courses.Dtos;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Queries.GetById;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Queries.GetById;
 
 public sealed record GetCourseByIdQuery(Guid CourseId) : IQuery<CourseDto>;
 
@@ -13,10 +13,13 @@ public sealed class GetCourseByIdQueryHandler(
         GetCourseByIdQuery request, 
         CancellationToken cancellationToken)
     {
-        var course = await courseRepository.GetByIdAsync(
-            request.CourseId, 
-            cancellationToken);
-        if (course is null) return NotFoundError.Value;
+        request.Deconstruct(out Guid courseId);
+
+        Course? course = await courseRepository.GetByIdAsync(courseId, cancellationToken);
+        if (course is null)
+        {
+            return Error.NotFound("course");
+        }
 
         return CourseDto.FromEntity(course);
     }

@@ -18,9 +18,7 @@ public class ApiController(ISender sender) : ControllerBase
 
         if (result is { IsFail: true, Error: var err })
         {
-            return err is NotFoundError
-            ? NotFound(err)
-            : BadRequest(err);
+            return MatchError(err);
         }
 
         onSuccess ??= (_) => Ok(result.Value);
@@ -37,12 +35,24 @@ public class ApiController(ISender sender) : ControllerBase
 
         if (result is { IsFail: true, Error: var err })
         {
-            return err is NotFoundError
-           ? NotFound(err)
-           : BadRequest(err);
+            return MatchError(err);
         }
 
         onSuccess ??= Ok;
         return onSuccess();
     }
+
+    private ObjectResult MatchError(Error err) => err.Code switch
+    {
+        "not_found" => NotFound(err),
+        "bad_request" => BadRequest(err),
+        _ => StatusCode(
+                StatusCodes.Status500InternalServerError, 
+                new
+                {
+                    code = "internal_server_error",
+                    message = "unexpected error occured"
+                }
+            )
+    };
 }

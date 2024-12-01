@@ -6,13 +6,13 @@ public static class ResultExtensions
         this Task<Result<TIn>> resultTask,
         Func<TIn, TOut> onSuccess,
         Func<Error, TOut> onError
-    ) 
-        where TIn : notnull 
+    )
+        where TIn : notnull
         where TOut : notnull
     {
-        var result = await resultTask;
+        Result<TIn> result = await resultTask;
 
-        return result.IsOk 
+        return result.IsOk
         ? onSuccess(result.Value)
         : onError(result.Error);
     }
@@ -21,11 +21,11 @@ public static class ResultExtensions
         this Task<Result> resultTask,
         Func<TOut> onSuccess,
         Func<Error, TOut> onError
-    ) 
+    )
     {
-        var result = await resultTask;
+        Result result = await resultTask;
 
-        return result.IsOk 
+        return result.IsOk
         ? onSuccess()
         : onError(result.Error);
     }

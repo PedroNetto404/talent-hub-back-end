@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TalentHub.ApplicationCore.Candidates;
+using TalentHub.ApplicationCore.Resources.Candidates;
+using TalentHub.ApplicationCore.Resources.Users;
 
 namespace TalentHub.Infra.Data.Mappings;
 
@@ -105,5 +106,10 @@ public sealed class CandidateMapping : AuditableAggregateRootMapping<Candidate>
             .HasColumnType("text[]")
             .HasColumnName("desired_workplace_types")
             .UsePropertyAccessMode(PropertyAccessMode.Field);
+
+        builder
+            .HasOne<User>()
+            .WithOne()
+            .HasForeignKey<Candidate>(p => p.UserId);
     }
 }

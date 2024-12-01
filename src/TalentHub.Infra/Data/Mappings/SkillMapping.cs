@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TalentHub.ApplicationCore.Skills;
-using TalentHub.ApplicationCore.Skills.Enums;
+using TalentHub.ApplicationCore.Resources.Skills;
+using TalentHub.ApplicationCore.Resources.Skills.Enums;
 using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;

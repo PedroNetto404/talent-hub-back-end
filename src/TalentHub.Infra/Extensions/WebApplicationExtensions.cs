@@ -2,8 +2,8 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TalentHub.ApplicationCore.Courses;
-using TalentHub.ApplicationCore.Universities;
+using TalentHub.ApplicationCore.Resources.Courses;
+using TalentHub.ApplicationCore.Resources.Universities;
 using TalentHub.Infra.Data;
 
 namespace TalentHub.Infra.Extensions;

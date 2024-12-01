@@ -1,13 +1,13 @@
-
+using Ardalis.Specification;
 using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users.Dtos;
-using TalentHub.ApplicationCore.Users.Enums;
-using TalentHub.ApplicationCore.Users.Specs;
+using TalentHub.ApplicationCore.Resources.Users.Dtos;
+using TalentHub.ApplicationCore.Resources.Users.Enums;
 
-namespace TalentHub.ApplicationCore.Users.UseCases.Commands.Create;
+namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Create;
 
 public sealed class CreateUserCommandHandler(
     IRepository<User> userRepository,
@@ -15,22 +15,22 @@ public sealed class CreateUserCommandHandler(
 ) : ICommandHandler<CreateUserCommand, UserDto>
 {
     public async Task<Result<UserDto>> Handle(
-        CreateUserCommand request, 
+        CreateUserCommand request,
         CancellationToken cancellationToken)
     {
         User? existing = await userRepository.FirstOrDefaultAsync(
-            new GetUserByEmailOrUsernameSpec(
-                request.Email,
-                request.Username
-            ), 
+            query => query.Where(u => 
+                u.Email == request.Email 
+                || u.Username == request.Username
+            ),
             cancellationToken
         );
-        if(existing is not null)
+        if (existing is not null)
         {
-            return new Error("user", "invalid user credentials");
+            return Error.BadRequest("invalid user credentials");
         }
 
-        if(!Enum.TryParse(request.Role.Pascalize(), true, out Role role))
+        if (!Enum.TryParse(request.Role.Pascalize(), true, out Role role))
         {
             return new Error("user", "invalid role");
         }
@@ -42,7 +42,7 @@ public sealed class CreateUserCommandHandler(
             request.Password,
             passwordHasher
         );
-        if(userResult.IsFail)
+        if (userResult.IsFail)
         {
             return userResult.Error;
         }

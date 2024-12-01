@@ -1,8 +1,7 @@
-using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Skills.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
-namespace TalentHub.ApplicationCore.Candidates.Entities;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 public sealed class LanguageProficiency : Entity
 {

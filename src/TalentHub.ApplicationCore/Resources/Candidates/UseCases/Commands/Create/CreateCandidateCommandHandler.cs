@@ -1,13 +1,13 @@
 using Humanizer;
 using MediatR;
-using TalentHub.ApplicationCore.Candidates.Dtos;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Jobs.Enums;
+using TalentHub.ApplicationCore.Resources.Users;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateCandidate;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
 
 public sealed class CreateCandidateCommandHandler(
     IRepository<Candidate> repository,
@@ -21,7 +21,9 @@ public sealed class CreateCandidateCommandHandler(
     {
         Result<User> userResult = await userContext.GetCurrentAsync();
         if (userResult.IsFail)
-        { return userResult.Error; }
+        {
+            return userResult.Error;
+        }
 
         var candidate = new Candidate(
             input.Name,
@@ -43,27 +45,33 @@ public sealed class CreateCandidateCommandHandler(
                     IsFail: true,
                     Error: var error
                 })
-            { return error; }
+            {
+                return error;
+            }
         }
 
         foreach (string desiredWorkplaceType in input.DesiredWorkplaceTypes)
         {
             if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
-            { return new Error("workplace_type", "Invalid workplace type"); }
+            { 
+                return Error.BadRequest($"{desiredWorkplaceType} is not valid workplace type");
+            }
 
             if (candidate.AddDesiredWorkplaceType(workplaceType) is
                 {
                     IsFail: true,
                     Error: var error
                 })
-            { return error; }
+            { 
+                return error; 
+            }
         }
 
         foreach (string desiredJobType in input.DesiredJobTypes)
         {
             if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
             {
-                return new Error("job_type", "Invalid job type");
+                return Error.BadRequest($"{desiredJobType} is not valid job type");
             }
 
             if (candidate.AddDesiredJobType(jobType) is
@@ -71,7 +79,9 @@ public sealed class CreateCandidateCommandHandler(
                     IsFail: true,
                     Error: var error
                 })
-            { return error; }
+            { 
+                return error; 
+            }
         }
 
         _ = await repository.AddAsync(candidate, cancellationToken);

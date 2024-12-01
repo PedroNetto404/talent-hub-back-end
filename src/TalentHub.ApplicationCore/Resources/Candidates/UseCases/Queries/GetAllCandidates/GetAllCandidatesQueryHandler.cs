@@ -1,10 +1,11 @@
-using TalentHub.ApplicationCore.Candidates.Dtos;
-using TalentHub.ApplicationCore.Candidates.Specs;
+using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Queries.GetAllCandidates;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAllCandidates;
 
 public sealed class GetAllCandidatesQueryHandler(
     IRepository<Candidate> candidateRepository
@@ -15,26 +16,21 @@ public sealed class GetAllCandidatesQueryHandler(
         CancellationToken cancellationToken
     )
     {
-        List<Candidate> candidates = await candidateRepository.ListAsync(
-            new GetAllCandidatesSpec(
-                request.Limit,
-                request.Offset,
-                request.SortBy,
-                request.Ascending,
-                request.SkillIds,
-                request.Languages),
+        void AdditionalSpec(ISpecificationBuilder<Candidate> query)
+        {
+            query.Where(p => p.Skills.Any(s => request.SkillIds.Contains(s.Id)));
+            query.Where(p => p.LanguageProficiencies.Any(c => request.Languages.Contains(c.Language.Name)));
+        }
+
+        List<Candidate> candidates = await candidateRepository.GetPageAsync(
+            request.Limit,
+            request.Offset,
+            request.SortBy,
+            request.Ascending,
+            additionalSpec: AdditionalSpec,
             cancellationToken
         );
-
-        int count = await candidateRepository.CountAsync(
-            new GetAllCandidatesSpec(
-                int.MaxValue,
-                0,
-                request.SortBy,
-                request.Ascending,
-                [],
-                []),
-            cancellationToken);
+        int count = await candidateRepository.CountAsync(AdditionalSpec, cancellationToken);
 
         CandidateDto[] dtos = [.. candidates.Select(CandidateDto.FromEntity)];
 

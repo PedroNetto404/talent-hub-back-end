@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using TalentHub.ApplicationCore.Jobs.Enums;
+using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.Presentation.Web.Models.Request;
@@ -17,9 +17,22 @@ public sealed record UpdateCandidateRequest
     [Required]
     public required Address Address { get; init; }
 
-    public IEnumerable<WorkplaceType> DesiredWorkplaceTypes { get; init; } = [];
+    [AllowedValues(
+        "remote",
+        "on_site",
+        "hybrid"
+    )]
+    public IEnumerable<string> DesiredWorkplaceTypes { get; init; } = [];
 
-    public IEnumerable<JobType> DesiredJobTypes { get; init; } = [];
+    [AllowedValues(
+        "full_time",
+        "part_time",
+        "contract",
+        "freelance",
+        "intership",
+        "temporary"
+    )]
+    public IEnumerable<string> DesiredJobTypes { get; init; } = [];
 
     [Range(1, double.MaxValue)]
     public decimal? ExpectedRemuneration { get; init; }

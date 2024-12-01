@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 
-namespace TalentHub.ApplicationCore.Courses;
+namespace TalentHub.ApplicationCore.Resources.Courses;
 
 public sealed class Course : AggregateRoot
 {

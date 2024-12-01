@@ -1,5 +1,5 @@
-using TalentHub.ApplicationCore.Users;
-using TalentHub.ApplicationCore.Users.ValueObjects;
+using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Ports;
 

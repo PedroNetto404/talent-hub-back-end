@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TalentHub.ApplicationCore.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 namespace TalentHub.Infra.Data.Mappings;
 

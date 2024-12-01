@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 
-namespace TalentHub.ApplicationCore.Universities.UseCases.Commands.Delete;
+namespace TalentHub.ApplicationCore.Resources.Universities.UseCases.Commands.Delete;
 
 public sealed class DeleteUniversityCommandHandler(
     IRepository<University> universityRepository
@@ -11,7 +11,9 @@ public sealed class DeleteUniversityCommandHandler(
     {
         University? university = await universityRepository.GetByIdAsync(request.Id, cancellationToken);
         if (university is null)
-        { return NotFoundError.Value; }
+        {
+            return Error.NotFound("university");
+        }
 
         await universityRepository.DeleteAsync(university, cancellationToken);
 

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TalentHub.ApplicationCore.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 namespace TalentHub.Infra.Data.Mappings;
 
@@ -20,7 +20,7 @@ public sealed class CertificateMapping :
             .IsRequired();
 
         builder
-            .Property(p => p.Institution)
+            .Property(p => p.Issuer)
             .HasMaxLength(100)
             .IsRequired();
 

@@ -2,7 +2,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates.Entities;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 public abstract class Experience : Entity
 {

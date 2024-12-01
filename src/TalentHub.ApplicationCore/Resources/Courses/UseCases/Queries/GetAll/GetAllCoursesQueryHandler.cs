@@ -1,10 +1,11 @@
+using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Courses.Dtos;
-using TalentHub.ApplicationCore.Courses.Specs;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Courses.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Queries.GetAll;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Queries.GetAll;
 
 public sealed class GetAllCoursesQueryHandler(
     IRepository<Course> repository
@@ -14,31 +15,27 @@ public sealed class GetAllCoursesQueryHandler(
         GetAllCoursesQuery request,
         CancellationToken cancellationToken)
     {
-        List<Course> courses = await repository.ListAsync(new GetAllCoursesSpec(
+        void containsSpec(ISpecificationBuilder<Course> query) => 
+            query.Where(p => request.Ids.Contains(p.Id));
+
+        List<Course> courses = await repository.GetPageAsync(
             request.Limit,
             request.Offset,
             request.SortBy,
             request.Ascending,
-            request.Ids.ToArray()
-        ), cancellationToken);
+            additionalSpec: containsSpec,
+            cancellationToken);
+        int count = await repository.CountAsync(containsSpec, cancellationToken);
 
-        int count = await repository.CountAsync(
-            new GetAllCoursesSpec(
-                int.MaxValue,
-                0
-            ), 
-            cancellationToken
-        );
-        
         CourseDto[] dtos = [
             .. courses.Select(CourseDto.FromEntity)
         ];
 
         return new PagedResponse<CourseDto>(
             new(
-                dtos.Length, 
-                count, 
-                request.Offset, 
+                dtos.Length,
+                count,
+                request.Offset,
                 request.Limit
             ),
             dtos

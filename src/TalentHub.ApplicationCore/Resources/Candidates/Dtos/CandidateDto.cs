@@ -1,7 +1,7 @@
 using Humanizer;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
 public sealed record CandidateDto(
     Guid Id,

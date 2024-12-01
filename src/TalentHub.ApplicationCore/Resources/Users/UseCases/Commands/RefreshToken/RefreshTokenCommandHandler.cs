@@ -1,10 +1,10 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users.UseCases.Commands.Authenticate;
-using TalentHub.ApplicationCore.Users.ValueObjects;
+using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
+using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Users.UseCases.Commands.RefreshToken;
+namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.RefreshToken;
 
 public sealed class RefreshTokenCommandHandler(
     IRepository<User> userRepository,
@@ -25,7 +25,7 @@ public sealed class RefreshTokenCommandHandler(
         User? user = await userRepository.GetByIdAsync(userId, cancellationToken);
         if (user is null)
         {
-            return NotFoundError.Value;
+            return Error.NotFound("user");
         }
 
         if(
@@ -37,13 +37,6 @@ public sealed class RefreshTokenCommandHandler(
         }
 
         Token accessToken = tokenProvider.GenerateTokenFor(user);
-
-        return new AuthenticationResult
-        {
-            AccessToken = accessToken.Value,
-            AccessTokenExpiration = accessToken.Expiration,
-            RefreshToken = user.RefreshToken.Value,
-            RefreshTokenExpiration = user.RefreshToken.Expiration
-        };  
+        return new AuthenticationResult(accessToken, user.RefreshToken);
     }
 }

@@ -2,11 +2,11 @@ using Humanizer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TalentHub.ApplicationCore.Candidates.Entities;
-using TalentHub.ApplicationCore.Candidates.Enums;
-using TalentHub.ApplicationCore.Courses;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Courses;
+using TalentHub.ApplicationCore.Resources.Universities;
 using TalentHub.ApplicationCore.Shared.Enums;
-using TalentHub.ApplicationCore.Universities;
 using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;

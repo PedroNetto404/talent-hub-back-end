@@ -1,8 +1,8 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Skills.Enums;
+using TalentHub.ApplicationCore.Resources.Skills.Enums;
 
-namespace TalentHub.ApplicationCore.Skills;
+namespace TalentHub.ApplicationCore.Resources.Skills;
 
 public sealed class Skill : AggregateRoot
 {

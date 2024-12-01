@@ -1,7 +1,7 @@
-using TalentHub.ApplicationCore.Candidates.Entities;
-using TalentHub.ApplicationCore.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
-namespace TalentHub.ApplicationCore.Candidates.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
 public sealed record CandidateSkillDto(
     Guid Id,

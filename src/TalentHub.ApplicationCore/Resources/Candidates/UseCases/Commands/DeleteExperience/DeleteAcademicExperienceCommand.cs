@@ -1,7 +1,7 @@
 
 using TalentHub.ApplicationCore.Core.Abstractions;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.DeleteExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.DeleteExperience;
 
 public sealed record DeleteExperienceCommand(
     Guid CandidateId,

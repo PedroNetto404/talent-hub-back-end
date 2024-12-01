@@ -1,8 +1,8 @@
-using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
-namespace TalentHub.ApplicationCore.Candidates.Entities;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 public sealed class CandidateSkill : Entity
 {
@@ -14,7 +14,11 @@ public sealed class CandidateSkill : Entity
 
     public static Result<CandidateSkill> Create(Guid skillId, Proficiency proficiency)
     {
-        if(Guid.Empty == skillId) return new Error("candidate_skill", "candidate skill identifier is empty");
+        if (Guid.Empty == skillId)
+        {
+            return Error.BadRequest("candidate skill identifier is empty");
+        }
+        
         return new CandidateSkill(skillId, proficiency);
     }
 

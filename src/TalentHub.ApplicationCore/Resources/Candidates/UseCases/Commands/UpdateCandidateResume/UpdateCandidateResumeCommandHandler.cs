@@ -1,10 +1,10 @@
-using TalentHub.ApplicationCore.Candidates.Dtos;
 using TalentHub.ApplicationCore.Constants;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateResume;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCandidateResume;
 
 public sealed class UpdateCandidateResumeCommandHandler(
     IRepository<Candidate> candidateRepository,
@@ -15,25 +15,36 @@ public sealed class UpdateCandidateResumeCommandHandler(
         UpdateCandidateResumeCommand request,
         CancellationToken cancellationToken)
     {
-        var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        (
+            Guid candidateId,
+            Stream resumeFile
+        ) = request;
+
+        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
         if (candidate is null)
-            return NotFoundError.Value;
+        {
+            return Error.NotFound("candidate");
+        }
 
         if (candidate.ResumeUrl is not null)
+        {
             await fileStorage.DeleteAsync(
                 FileBucketNames.CandidateResumes,
                 candidate.ResumeFileName,
                 cancellationToken);
+        }
 
-        var url = await fileStorage.SaveAsync(
+        string url = await fileStorage.SaveAsync(
             FileBucketNames.CandidateResumes,
-            request.File,
+            resumeFile,
             candidate.ResumeFileName,
             "application/pdf",
             cancellationToken);
 
-        var result = candidate.SetResumeUrl(url);
-        if (result.IsFail) return result.Error;
+        if(candidate.SetResumeUrl(url) is { IsFail: true, Error: var setResumeUrlError})
+        {
+            return setResumeUrlError;
+        }
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);
         return CandidateDto.FromEntity(candidate);

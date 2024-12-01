@@ -1,4 +1,4 @@
-namespace TalentHub.ApplicationCore.Jobs.Enums;
+namespace TalentHub.ApplicationCore.Resources.Jobs.Enums;
 
 public enum WorkplaceType
 {

@@ -1,14 +1,15 @@
-using TalentHub.ApplicationCore.Candidates.Dtos;
-using TalentHub.ApplicationCore.Candidates.Entities;
-using TalentHub.ApplicationCore.Candidates.Enums;
+using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Courses;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Courses;
+using TalentHub.ApplicationCore.Resources.Universities;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
-using TalentHub.ApplicationCore.Universities;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateAcademicExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
 
 public sealed class CreateAcademicExperienceCommandHandler(
     IRepository<Candidate> candidateRepository,
@@ -21,32 +22,50 @@ public sealed class CreateAcademicExperienceCommandHandler(
         CreateExperienceCommand request,
         CancellationToken cancellationToken)
     {
-        var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candidate is null) return NotFoundError.Value;
+        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null)
+        {
+            return Error.NotFound("candidate");
+        }
 
-        var start = DatePeriod.Create(request.StartYear, request.StartMonth);
-        if (start.IsFail) return start.Error;
+        Result<DatePeriod> startResult = DatePeriod.Create(request.StartYear, request.StartMonth);
+        if (startResult is { IsFail: true, Error: var startResultError})
+        {
+            return startResultError;
+        }
 
-        var end = request is { EndMonth: not null, EndYear: not null }
+        Result<DatePeriod> end = request is { EndMonth: not null, EndYear: not null }
             ? DatePeriod.Create(request.EndYear!.Value, request.EndMonth!.Value)
             : Result.Ok<DatePeriod>(null!);
-        if (end.IsFail) return end.Error;
-
-        var experience = request.Type switch
+        if (end.IsFail)
         {
-            "academic" => await CreateAcademicExperience(request, start.Value, end.Value, cancellationToken),
-            "professional" => CreateProfessionalExperience(request, start.Value, end.Value),
-            _ => Result.Fail<Experience>(new Error("candidate_experience", "Invalid experience type"))
+            return end.Error;
+        }
+
+        Result<Experience> experience = request.Type switch
+        {
+            "academic" => await CreateAcademicExperience(request, startResult.Value, end.Value, cancellationToken),
+            "professional" => CreateProfessionalExperience(request, startResult.Value, end.Value),
+            _ => Error.BadRequest("invalid experience type")
         };
-        if (experience.IsFail) return experience.Error;
-
-        var result = candidate.AddExperience(experience.Value);
-        if (result.IsFail) return result.Error;
-
-        foreach (var activity in request.Activities)
+        if (experience.IsFail)
         {
-            var activityResult = experience.Value.AddActivity(activity);
-            if (activityResult.IsFail) return activityResult.Error;
+            return experience.Error;
+        }
+
+        Result result = candidate.AddExperience(experience.Value);
+        if (result.IsFail)
+        {
+            return result.Error;
+        }
+
+        foreach (string activity in request.Activities)
+        {
+            Result activityResult = experience.Value.AddActivity(activity);
+            if (activityResult.IsFail)
+            {
+                return activityResult.Error;
+            }
         }
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);
@@ -58,10 +77,12 @@ public sealed class CreateAcademicExperienceCommandHandler(
         DatePeriod start,
         DatePeriod? end)
     {
-        if (!Enum.TryParse<ProfessionalLevel>(request.ProfessionalLevel, true, out var level))
-            return Result.Fail<Experience>(new Error("candidate_experience", "Invalid professional level"));
+        if (!Enum.TryParse(request.ProfessionalLevel, true, out ProfessionalLevel level))
+        {
+            return Error.BadRequest($"{request.ProfessionalLevel} is not valid professional level");
+        }
 
-        var experience = ProfessionalExperience.Create(
+        Result<ProfessionalExperience> experience = ProfessionalExperience.Create(
             start,
             end,
             request.IsCurrent,
@@ -81,20 +102,32 @@ public sealed class CreateAcademicExperienceCommandHandler(
         DatePeriod? end,
         CancellationToken cancellationToken)
     {
-        var course = await courseRepository.GetByIdAsync(request.CourseId!.Value, cancellationToken);
-        if (course is null) return NotFoundError.Value;
+        Course? course = await courseRepository.GetByIdAsync(request.CourseId!.Value, cancellationToken);
+        if (course is null)
+        {
+            return Error.NotFound("course");
+        }
 
-        var institution =
-            await educationalInstituteRepository.GetByIdAsync(request.InstitutionId!.Value, cancellationToken);
-        if (institution is null) return NotFoundError.Value;
+        University? university =
+            await educationalInstituteRepository.GetByIdAsync(
+                request.UniversityId!.Value, 
+                cancellationToken);
+        if (university is null)
+        {
+            return Error.NotFound("univesity");
+        }
 
-        if (!Enum.TryParse<EducationLevel>(request.Level, true, out var level))
-            return Result.Fail<Experience>(new Error("candidate_experience", "Invalid professional level"));
+        if (!Enum.TryParse(request.Level.Pascalize(), true, out EducationLevel level))
+        {
+            return Error.BadRequest($"{request.Level} is not valid educational level");
+        }
 
-        if (!Enum.TryParse<ProgressStatus>(request.Status, true, out var status))
-            return Result.Fail<Experience>(new Error("candidate_experience", "Invalid status"));
-
-        var experienceResult = AcademicExperience.Create(
+        if (!Enum.TryParse(request.Status.Pascalize(), true, out ProgressStatus status))
+        {
+            return Error.BadRequest($"{request.Status} is not valid progress status");
+        }
+        
+        Result<AcademicExperience> experienceResult = AcademicExperience.Create(
             start,
             end,
             request.CurrentSemester!.Value,
@@ -102,18 +135,26 @@ public sealed class CreateAcademicExperienceCommandHandler(
             level,
             status,
             course.Id,
-            institution.Id
+            university.Id
         );
-        if (experienceResult.IsFail) return experienceResult.Error;
-        var experience = experienceResult.Value;
-
-        foreach (var academicEntity in request.AcademicEntities)
+        if (experienceResult.IsFail)
         {
-            if (!Enum.TryParse<AcademicEntity>(academicEntity, true, out var entity))
-                return new Error("candidate_experience", "Invalid academic entity");
+            return experienceResult.Error;
+        }
+        
+        AcademicExperience experience = experienceResult.Value;
+
+        foreach (string academicEntity in request.AcademicEntities)
+        {
+            if (!Enum.TryParse(academicEntity, true, out AcademicEntity entity))
+            {
+                return Error.BadRequest($"{academicEntity} is not valid academic entity");
+            }
 
             if (experience.AddAcademicEntity(entity) is { IsFail: true, Error: var error })
+            {
                 return error;
+            }
         }
 
         return experience;

@@ -3,7 +3,7 @@ using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateAcademicExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateAcademicExperience;
 
 public sealed class UpdateAcademicExperienceCommandHandler(
     IRepository<Candidate> candidateRepository
@@ -11,25 +11,34 @@ public sealed class UpdateAcademicExperienceCommandHandler(
 {
     public async Task<Result> Handle(UpdateExperienceCommand request, CancellationToken cancellationToken)
     {
-        var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candidate is null) return NotFoundError.Value;
+        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null)
+        {
+            return Error.NotFound("candidate");
+        }
 
-        var start = DatePeriod.Create(request.StartYear, request.StartMonth);
-        if (start.IsFail) return start.Error;
+        Result<DatePeriod> start = DatePeriod.Create(request.StartYear, request.StartMonth);
+        if (start.IsFail)
+        {
+            return start.Error;
+        }
 
-        var end = request is { EndMonth: not null, EndYear: not null }
+        Result<DatePeriod> endResult = request is { EndMonth: not null, EndYear: not null }
         ? DatePeriod.Create(request.EndYear!.Value, request.EndMonth!.Value)
         : Result.Ok<DatePeriod>(null!);
-        if (end.IsFail) return end.Error;
+        if (endResult.IsFail)
+        {
+            return endResult.Error;
+        }
 
-        var result = request.Type switch
+        Result result = request.Type switch
         {
             "academic" =>
             Enum.TryParse<ProgressStatus>(request.Status, true, out var status)
                 ? candidate.UpdateExperience(
                     request.ExperienceId,
                     start.Value,
-                    end.Value,
+                    endResult.Value,
                     request.CurrentSemester!.Value,
                     request.IsCurrent,
                     request.Activities,
@@ -39,13 +48,14 @@ public sealed class UpdateAcademicExperienceCommandHandler(
             "professional" => candidate.UpdateExperience(
                 request.ExperienceId,
                 start.Value,
-                end.Value,
+                endResult.Value,
                 request.IsCurrent,
                 request.Activities,
                 request.Description!),
             _ => Result.Fail(new Error("candidate_experience", "Invalid experience type"))
         };
-        if (result.IsFail) return result.Error;
+        if (result.IsFail) 
+        {}
 
         await candidateRepository.UpdateAsync(candidate, cancellationToken);
         return Result.Ok();

@@ -5,8 +5,8 @@ using Humanizer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users;
-using TalentHub.ApplicationCore.Users.ValueObjects;
+using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
 namespace TalentHub.Infra.Security.Services;
 

@@ -1,10 +1,11 @@
-using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
+
 #pragma warning disable CS0628 // New protected member declared in sealed type
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-namespace TalentHub.ApplicationCore.Candidates.Entities;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Entities;
 
 public sealed class ProfessionalExperience : Experience
 {
@@ -35,18 +36,31 @@ public sealed class ProfessionalExperience : Experience
         ProfessionalLevel level)
     {
         if (end != null && start > end)
-            return new Error("experience", "Start date must be less than end date.");
+        {
+            return Error.BadRequest("start date must be less than end date");
+        }
 
         if (string.IsNullOrWhiteSpace(position))
-            return new Error("experience", "Position must be provided.");
+        {
+            return Error.BadRequest("position must be provided.");
+        }
 
         if (string.IsNullOrWhiteSpace(company))
-            return new Error("experience", "Company must be provided.");
+        {
+            return Error.BadRequest("company must be provided.");
+        }
 
-        if (string.IsNullOrWhiteSpace(description))
-            return new Error("experience", "Description must be provided.");
-
-        return Result.Ok(new ProfessionalExperience(start, end, isCurrent, position, company, description, level));
+        return !string.IsNullOrWhiteSpace(description)
+            ? Result.Ok(new ProfessionalExperience(
+                start,
+                end,
+                isCurrent,
+                position,
+                company,
+                description,
+                level
+            ))
+            : Error.BadRequest("Description must be provided.");
     }
 
     public string Position { get; private set; }
@@ -54,14 +68,16 @@ public sealed class ProfessionalExperience : Experience
     public string Company { get; private set; }
     public ProfessionalLevel Level { get; private set; }
 
-    public Result ChangeDescription(string newDescription)
+    public Result ChangeDescription(string description)
     {
-        newDescription = newDescription.Trim();
+        description = description.Trim();
 
-        if (string.IsNullOrWhiteSpace(newDescription))
-            return new Error("professional_experience", "Invalid description");
+        if (string.IsNullOrWhiteSpace(description))
+        {
+            return Error.BadRequest("description is required");
+        }
 
-        Description = newDescription;
+        Description = description;
 
         return Result.Ok();
     }

@@ -26,6 +26,7 @@ public sealed class ControllerOptionsSetup :
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         options.JsonSerializerOptions.Converters.Add(new SnakeCaseEnumConverterFactory());
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; 
     }
 
     public void Configure(RouteOptions options)

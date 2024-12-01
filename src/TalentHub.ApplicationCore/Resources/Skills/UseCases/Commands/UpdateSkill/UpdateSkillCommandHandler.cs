@@ -1,21 +1,42 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 
-namespace TalentHub.ApplicationCore.Skills.UseCases.Commands.UpdateSkill;
+namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.UpdateSkill;
 
 public sealed class UpdateSkillCommandHandler(
     IRepository<Skill> skillRepository
 ) : ICommandHandler<UpdateSkillCommand>
 {
-    public async Task<Result> Handle(UpdateSkillCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(
+        UpdateSkillCommand request, 
+        CancellationToken cancellationToken
+    )
     {
-        var skill = await skillRepository.GetByIdAsync(request.Id, cancellationToken);
-        if(skill is null) return NotFoundError.Value;
+        (
+            Guid id,
+            string name,
+            IEnumerable<string> tags
+        ) = request;
+        
+        Skill? skill = await skillRepository.GetByIdAsync(id, cancellationToken);
+        if(skill is null) 
+        {
+            return Error.NotFound("skill");
+        }
 
-        skill.UpdateName(request.Name);
+        if(skill.UpdateName(name) is { IsFail: true, Error: var updateNameError})
+        {
+            return updateNameError;
+        }
 
         skill.ClearTags();
-        foreach(var tag in request.Tags) skill.AddTag(tag);
+        foreach(string tag in tags) 
+        {
+            if(skill.AddTag(tag) is { IsFail: true, Error: var addTagError})
+            {
+                return addTagError;
+            }
+        }
 
         await skillRepository.UpdateAsync(skill, cancellationToken);
         return Result.Ok();

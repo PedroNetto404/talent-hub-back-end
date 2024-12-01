@@ -1,10 +1,10 @@
 namespace TalentHub.ApplicationCore.Core.Results;
 
-public record Error(string Code, string Message);
-
-public record NotFoundError : Error
+public record Error(string Code, string Message)
 {
-    private NotFoundError() : base("not_found", "resource not found") { }
+    public static Error NotFound(string resource) =>
+        new("not_found", $"{resource} not found");
 
-    public static readonly Error Value = new NotFoundError(); 
+    public static Error BadRequest(string message) =>
+        new("bad_request", message);
 }

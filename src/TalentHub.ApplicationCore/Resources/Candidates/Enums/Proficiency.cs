@@ -1,4 +1,4 @@
-namespace TalentHub.ApplicationCore.Candidates.Enums;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
 public enum Proficiency
 {

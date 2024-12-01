@@ -1,8 +1,8 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Skills;
+using TalentHub.ApplicationCore.Resources.Skills;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateSkill;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCandidateSkill;
 
 public sealed class UpdateCandidateSkillCommandHandler(
     IRepository<Candidate> candidateRepository,
@@ -14,11 +14,17 @@ public sealed class UpdateCandidateSkillCommandHandler(
         UpdateCandidateSkillCommand request,
         CancellationToken cancellationToken)
     {
-        var candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candidate is null) return NotFoundError.Value;
+        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null)
+        {
+            return Error.NotFound("candidate");
+        }
 
-        var skill = await skillRepository.GetByIdAsync(request.CandidateSkillId, cancellationToken);
-        if (skill is null) return new Error("not_found", "candidate skill not found");
+        Skill? skill = await skillRepository.GetByIdAsync(request.CandidateSkillId, cancellationToken);
+        if (skill is null) 
+        {
+            return Error.NotFound("skill");
+        }
 
         candidate.UpdateSkillProficiency(skill.Id, request.Proficiency!.Value);
 

@@ -1,5 +1,5 @@
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Users;
+using TalentHub.ApplicationCore.Resources.Users;
 
 namespace TalentHub.ApplicationCore.Ports;
 

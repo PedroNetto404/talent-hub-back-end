@@ -1,13 +1,14 @@
-using TalentHub.ApplicationCore.Candidates.Entities;
-using TalentHub.ApplicationCore.Candidates.Enums;
-using TalentHub.ApplicationCore.Candidates.Events;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Jobs.Enums;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Events;
+using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates;
+namespace TalentHub.ApplicationCore.Resources.Candidates;
 
 public sealed class Candidate : AuditableAggregateRoot
 {
@@ -89,7 +90,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result SetResumeUrl(string resumeUrl)
     {
         if (string.IsNullOrWhiteSpace(resumeUrl))
-        { return new Error("candidate", "invalid resume url"); }
+        {
+            return new Error("candidate", "invalid resume url");
+        }
 
         ResumeUrl = resumeUrl;
 
@@ -98,9 +101,12 @@ public sealed class Candidate : AuditableAggregateRoot
 
     public Result AddLanguage(LanguageProficiency languageProficiency)
     {
-        LanguageProficiency? existing = _languageProficiencies.FirstOrDefault(p => p.Language == languageProficiency.Language);
+        LanguageProficiency? existing =
+            _languageProficiencies.FirstOrDefault(p => p.Language == languageProficiency.Language);
         if (existing is not null)
-        { return new Error("candidate", "candidate language proficiency already exists"); }
+        {
+            return new Error("candidate", "candidate language proficiency already exists");
+        }
 
         _languageProficiencies.Add(languageProficiency);
         return Result.Ok();
@@ -113,7 +119,9 @@ public sealed class Candidate : AuditableAggregateRoot
     {
         LanguageProficiency? languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
         if (languageProficiency is null)
-        { return new Error("candidate", "language proficiency not added"); }
+        {
+            return new Error("candidate", "language proficiency not added");
+        }
 
         languageProficiency.UpdateProficiency(type, proficiency);
         return Result.Ok();
@@ -123,7 +131,9 @@ public sealed class Candidate : AuditableAggregateRoot
     {
         LanguageProficiency? languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
         if (languageProficiency is null)
-        { return new Error("candidate", "candidate language proficiency not exists"); }
+        {
+            return new Error("candidate", "candidate language proficiency not exists");
+        }
 
         _languageProficiencies.Remove(languageProficiency);
         return Result.Ok();
@@ -132,7 +142,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result AddCertificate(Certificate certificate)
     {
         if (_certificates.Any(c => c.Name == certificate.Name))
-        { return new Error("candidate_certificate", $"Certificate '{certificate.Name}' already exists."); }
+        {
+            return new Error("candidate_certificate", $"Certificate '{certificate.Name}' already exists.");
+        }
 
         _certificates.Add(certificate);
         return Result.Ok();
@@ -142,7 +154,9 @@ public sealed class Candidate : AuditableAggregateRoot
     {
         Certificate? existingCertificate = _certificates.FirstOrDefault(c => c.Name == certificateName);
         if (existingCertificate is null)
-        { return new Error("candidate_certificate", $"Certificate '{certificateName}' not found."); }
+        {
+            return new Error("candidate_certificate", $"Certificate '{certificateName}' not found.");
+        }
 
         _certificates.Remove(existingCertificate);
         return Result.Ok();
@@ -151,7 +165,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result AddHobbie(string hobbie)
     {
         if (_hobbies.Contains(hobbie))
-        { return new Error("candidate_hobbie", $"Hobbie '{hobbie}' already exists."); }
+        {
+            return new Error("candidate_hobbie", $"Hobbie '{hobbie}' already exists.");
+        }
 
         _hobbies.Add(hobbie);
         return Result.Ok();
@@ -162,7 +178,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result AddSkill(CandidateSkill skill)
     {
         if (_skills.Any(s => s.SkillId == skill.SkillId))
-        { return new Error("candidate_skill", "skill already exists"); }
+        {
+            return new Error("candidate_skill", "skill already exists");
+        }
 
         _skills.Add(skill);
 
@@ -173,7 +191,9 @@ public sealed class Candidate : AuditableAggregateRoot
     {
         CandidateSkill? existingSkill = _skills.FirstOrDefault(s => s.Id == candidateSkillId);
         if (existingSkill is null)
-        { return new Error("candidate_skill", "candidate not have skill"); }
+        {
+            return new Error("candidate_skill", "candidate not have skill");
+        }
 
         _skills.Remove(existingSkill);
 
@@ -184,7 +204,9 @@ public sealed class Candidate : AuditableAggregateRoot
     {
         CandidateSkill? existingSkill = _skills.FirstOrDefault(s => s.SkillId == skillId);
         if (existingSkill is null)
-        { return new Error("candidate_skill", "Skill not added"); }
+        {
+            return new Error("candidate_skill", "Skill not added");
+        }
 
         existingSkill.UpdateProficiency(proficiency);
 
@@ -206,7 +228,9 @@ public sealed class Candidate : AuditableAggregateRoot
     {
         Experience? experience = _experiences.FirstOrDefault(e => e.Id == experienceId);
         if (experience == null)
-        { return new Error("candidate_experience", "Experience not found."); }
+        {
+            return new Error("candidate_experience", "Experience not found.");
+        }
 
         _experiences.Remove(experience);
         return Result.Ok();
@@ -247,7 +271,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result AddDesiredJobType(JobType jobType)
     {
         if (_desiredJobTypes.Contains(jobType))
-        { return new Error("candidate_desired_job_type", "job type already added"); }
+        {
+            return new Error("candidate_desired_job_type", "job type already added");
+        }
 
         _desiredJobTypes.Add(jobType);
 
@@ -259,7 +285,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result AddDesiredWorkplaceType(WorkplaceType workplaceType)
     {
         if (_desiredWorkplaceTypes.Contains(workplaceType))
-        { return new Error("candidate_desired_workplace_type", "workplace type already added"); }
+        {
+            return new Error("candidate_desired_workplace_type", "workplace type already added");
+        }
 
         _desiredWorkplaceTypes.Add(workplaceType);
         return Result.Ok();
@@ -270,25 +298,31 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result UpdateProfilePicture(string profilePictureUrl)
     {
         if (!Uri.IsWellFormedUriString(profilePictureUrl, UriKind.Absolute))
-        { return new Error("candidate_profile_picture", "invalid profile picture url"); }
+        {
+            return new Error("candidate_profile_picture", "invalid profile picture url");
+        }
 
         ProfilePictureUrl = profilePictureUrl;
         return Result.Ok();
     }
 
-    public Result UpdateName(string name)
+    public Result ChangeName(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
-        { return new Error("candidate_name", "invalid name"); }
+        {
+            return new Error("candidate_name", "invalid name");
+        }
 
         Name = name;
         return Result.Ok();
     }
 
-    public Result UpdatePhone(string phone)
+    public Result ChangePhone(string phone)
     {
         if (string.IsNullOrWhiteSpace(phone) || phone.Length != 11)
-        { return new Error("candidate_phone", "invalid candidate phone"); }
+        {
+            return new Error("candidate_phone", "invalid candidate phone");
+        }
 
         Phone = phone;
         RaiseEvent(new CandidatePhoneUpdatedEvent(Id));
@@ -296,14 +330,16 @@ public sealed class Candidate : AuditableAggregateRoot
         return Result.Ok();
     }
 
-    public Result UpdateAddress(Address address)
+    public Result ChangeAddress(Address address)
     {
         if (
             typeof(Address)
             .GetProperties()
             .Any(p => string.IsNullOrWhiteSpace((string)p.GetValue(address)!))
-         )
-        { return new Error("candidate_address", "invalid address"); }
+        )
+        {
+            return new Error("candidate_address", "invalid address");
+        }
 
 
         Address = address;
@@ -313,7 +349,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result UpdateInstagramUrl(string instagramUrl)
     {
         if (!Uri.IsWellFormedUriString(instagramUrl, UriKind.Absolute))
-        { return new Error("candidate_instagram_url", "invalid url"); }
+        {
+            return new Error("candidate_instagram_url", "invalid url");
+        }
 
         InstagramUrl = instagramUrl;
         return Result.Ok();
@@ -322,7 +360,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result UpdateLinkedinUrl(string linkedinUrl)
     {
         if (!Uri.IsWellFormedUriString(linkedinUrl, UriKind.Absolute))
-        { return new Error("candidate_linkedin_url", "invalid url"); }
+        {
+            return new Error("candidate_linkedin_url", "invalid url");
+        }
 
         InstagramUrl = linkedinUrl;
         return Result.Ok();
@@ -331,7 +371,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result UpdateGithubUrl(string githubUrl)
     {
         if (!Uri.IsWellFormedUriString(githubUrl, UriKind.Absolute))
-        { return new Error("candidate_Github_url", "invalid url"); }
+        {
+            return new Error("candidate_Github_url", "invalid url");
+        }
 
         InstagramUrl = githubUrl;
         return Result.Ok();
@@ -340,7 +382,9 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result UpdateSummary(string summary)
     {
         if (string.IsNullOrWhiteSpace(summary))
-        { return new Error("candidate_summary", "invalid summary"); }
+        {
+            return new Error("candidate_summary", "invalid summary");
+        }
 
         if (summary.Length is < 10 or > 500)
         {
@@ -374,10 +418,14 @@ public sealed class Candidate : AuditableAggregateRoot
             foreach (string academicEntity in academicEntities)
             {
                 if (!Enum.TryParse(academicEntity, true, out AcademicEntity entity))
-                { return new Error("candidate_experience", "Invalid academic entity"); }
+                {
+                    return new Error("candidate_experience", "Invalid academic entity");
+                }
 
                 if (experience.AddAcademicEntity(entity) is { IsFail: true, Error: var error })
-                { return error; }
+                {
+                    return error;
+                }
             }
 
             experience.UpdateStatus(status);
@@ -413,15 +461,21 @@ public sealed class Candidate : AuditableAggregateRoot
         Func<T, Result> complement) where T : Experience
     {
         if (_experiences.FirstOrDefault(e => e.Id == experienceId) is not T experience)
-        { return new Error("candidate_experience", "Experience not found."); }
+        {
+            return Error.NotFound("candidate_experience");
+        }
 
         experience.ClearActivities();
         foreach (string activity in activities)
-        { experience.AddActivity(activity); }
+        {
+            experience.AddActivity(activity);
+        }
 
         Result result = experience.UpdateDateRange(start, end);
         if (result.IsFail)
-        { return result.Error; }
+        {
+            return result.Error;
+        }
 
         experience.SetIsCurrent(isCurrent);
 
@@ -433,12 +487,123 @@ public sealed class Candidate : AuditableAggregateRoot
                     .Where(e => e.Id != experienceId);
 
             foreach (ProfessionalExperience professionalExperience in professionalExperiences)
-            { professionalExperience.SetIsCurrent(false); }
+            {
+                professionalExperience.SetIsCurrent(false);
+            }
         }
 
-        if (complement(experience) is { IsFail: true, Error: var error })
-        { return error; }
+        return complement(experience) is not { IsFail: true, Error: var error }
+            ? Result.Ok()
+            : error;
+    }
+
+    public Result ChangeExpectedRemuneration(decimal? expectedRemuniration)
+    {
+        if (expectedRemuniration is null)
+        {
+            ExpectedRemuneration = null;
+            return Result.Ok();
+        }
+
+        if (expectedRemuniration <= 0)
+        {
+            return Error.BadRequest("expected remuneration must greater than 0");
+        }
+
+        ExpectedRemuneration = expectedRemuniration;
 
         return Result.Ok();
+    }
+
+    public Result ChangeInstagramUrl(string? instagramUrl) =>
+        ChangeUrl(instagramUrl, (url) => InstagramUrl = url);
+
+    public Result ChangeLinkedinUrl(string? linkedinUrl) =>
+        ChangeUrl(linkedinUrl, (url) => LinkedinUrl = url);
+
+    public Result ChangeGithubUrl(string? githubUrl) =>
+        ChangeUrl(githubUrl, (url) => GithubUrl = url);
+
+    private Result ChangeUrl(string? url, Action<string?> setter)
+    {
+        if (url is null)
+        {
+            setter(null);
+            return Result.Ok();
+        }
+
+        if (url == string.Empty)
+        {
+            return Error.BadRequest("url cannot be blank");
+        }
+
+        if (!url.IsValidUrl())
+        {
+            return Error.BadRequest($"{url} is not valid url");
+        }
+
+        setter(url);
+
+        return Result.Ok();
+    }
+
+    public Result ChangeSummary(string? summary)
+    {
+        if (summary is null)
+        {
+            Summary = null;
+            return Result.Ok();
+        }
+
+        if (summary == string.Empty)
+        {
+            return Error.BadRequest("invalid summary");
+        }
+
+        Summary = summary;
+
+        return Result.Ok();
+    }
+
+    public Result UpdateCertificate(
+        Guid certificateId,
+        string name,
+        string issuer,
+        double workload,
+        string? url,
+        IEnumerable<Guid> relatedSkills
+    )
+    {
+        Certificate? certificate = _certificates.FirstOrDefault(
+            p => p.Id == certificateId
+        );
+        if (certificate is null)
+        {
+            return Error.NotFound("certificate");
+        }
+
+        return Result.FailEarly(
+            () => certificate.ChangeName(name),
+            () => certificate.ChangeIssuer(issuer),
+            () => certificate.ChangeWorkload(workload),
+            () => certificate.ChangeUrl(url),
+            () =>
+            {
+                certificate.ClearRelatedSkills();
+                foreach (Guid skillId in relatedSkills)
+                {
+                    if (certificate.AddRelatedSkill(skillId) is
+                        {
+                            IsFail: true,
+                            Error: var err
+                        })
+                    {
+                        return err;
+                    }
+                }
+
+                return Result.Ok();
+            }
+        );
     }
 }

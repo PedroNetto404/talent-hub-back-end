@@ -1,8 +1,8 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Courses.Dtos;
+using TalentHub.ApplicationCore.Resources.Courses.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Queries.GetAll;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Queries.GetAll;
 
 public sealed record GetAllCoursesQuery(
     IEnumerable<Guid> Ids,

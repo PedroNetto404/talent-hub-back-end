@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace TalentHub.Presentation.Web.Models.Request;
@@ -30,6 +31,7 @@ public sealed record CreateExperienceRequest
         "technical_education",
         "higher_degree"
     )]
+    [DefaultValue(null)]
     public string? Level { get; init; } = string.Empty;
 
     [AllowedValues(
@@ -37,16 +39,17 @@ public sealed record CreateExperienceRequest
         "in_progress",
         "completed"
     )]
+    [DefaultValue(null)]
     public string? Status { get; init; } = string.Empty;
 
     [Range(1, int.MaxValue)]
     public int? CurrentSemester { get; init; }
-    
+
     public IEnumerable<string> AcademicEntities { get; init; } = [];
 
     public Guid? CourseId { get; init; }
- 
-    public Guid? InstitutionId { get; init; }
+
+    public Guid? UniversityId { get; init; }
 
     public string? Position { get; init; }
 
@@ -61,7 +64,9 @@ public sealed record CreateExperienceRequest
         "mid_level",
         "senior",
         "analyst",
-        "other"
+        "other",
+        null
     )]
+    [DefaultValue(null)]
     public string? ProfessionalLevel { get; init; }
 }

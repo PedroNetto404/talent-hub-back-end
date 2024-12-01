@@ -1,4 +1,4 @@
-namespace TalentHub.ApplicationCore.Users.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Users.Dtos;
 
 public sealed record UserDto(
     Guid Id,

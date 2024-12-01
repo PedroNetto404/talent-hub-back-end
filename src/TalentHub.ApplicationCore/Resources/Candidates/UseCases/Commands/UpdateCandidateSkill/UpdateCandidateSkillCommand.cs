@@ -1,7 +1,7 @@
-using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateSkill;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCandidateSkill;
 
 public sealed record UpdateCandidateSkillCommand(
     Guid CandidateId,

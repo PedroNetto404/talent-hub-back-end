@@ -1,11 +1,11 @@
+using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Courses.Dtos;
-using TalentHub.ApplicationCore.Courses.Specs;
-using TalentHub.ApplicationCore.Skills;
-using TalentHub.ApplicationCore.Skills.Specs;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Courses.Dtos;
+using TalentHub.ApplicationCore.Resources.Skills;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Commands.Create;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Create;
 
 public sealed class CreateCourseCommandHandler(
     IRepository<Course> courseRepository,
@@ -14,25 +14,42 @@ public sealed class CreateCourseCommandHandler(
 {
     public async Task<Result<CourseDto>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
     {
-        var existingCourse = await courseRepository.FirstOrDefaultAsync(new GetCourseByNameSpec(request.Name), cancellationToken);
-        if (existingCourse is not null) return new Error("course", "Course with this name already exists");
-
-        var skills = await skillRepository.ListAsync(new GetSkillsByIdsSpec([.. request.RelatedSkills]), cancellationToken);
-        if (skills.Count != request.RelatedSkills.Count()) return new Error("course", "Invalid skill ids");
-
-        var courseResult = Course.Create(request.Name);
-        if (courseResult.IsFail) return courseResult.Error;
-
-        foreach (var tag in request.Tags)
+        Course? existingCourse = await courseRepository.FirstOrDefaultAsync(
+            (query) => query.Where(c => c.Name == request.Name),
+            cancellationToken);
+        if (existingCourse is not null)
         {
-            var result = courseResult.Value.AddTag(tag);
-            if (result.IsFail) return result.Error;
+            return Error.BadRequest("course with this name already exists");
         }
 
-        foreach (var skill in skills)
+        List<Skill> skills = await skillRepository.ListAsync(
+            (query) => query.Where(s => request.RelatedSkills.Contains(s.Id)), 
+            cancellationToken);
+        if (skills.Count != request.RelatedSkills.Count())
         {
-            var result = courseResult.Value.AddRelatedSkill(skill.Id);
-            if (result.IsFail) return result.Error;
+            return Error.BadRequest("invalid skills");
+        }
+
+        Result<Course> courseResult = Course.Create(request.Name);
+        if (courseResult.IsFail) 
+        {
+            return courseResult.Error;
+        }
+
+        foreach (string tag in request.Tags)
+        {
+            if(courseResult.Value.AddTag(tag) is { IsFail: true, Error: var err})
+            {
+                return err;
+            }
+        }
+
+        foreach (Skill skill in skills)
+        {
+            if(courseResult.Value.AddRelatedSkill(skill.Id) is { IsFail: true, Error: var skillError})
+            {
+                return skillError;
+            }
         }
 
         await courseRepository.AddAsync(courseResult.Value, cancellationToken);

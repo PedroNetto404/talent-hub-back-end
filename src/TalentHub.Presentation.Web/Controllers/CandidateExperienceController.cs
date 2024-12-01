@@ -1,9 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TalentHub.ApplicationCore.Candidates.Dtos;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateAcademicExperience;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.DeleteExperience;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateAcademicExperience;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.DeleteExperience;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateAcademicExperience;
 using TalentHub.Presentation.Web.Models.Request;
 
 namespace TalentHub.Presentation.Web.Controllers;
@@ -37,7 +37,7 @@ public sealed class CandidateExperienceController(
             request.CurrentSemester,
             [..request.AcademicEntities],
             request.CourseId,
-            request.InstitutionId,
+            request.UniversityId,
             request.Position,
             request.Description,
             request.Company,

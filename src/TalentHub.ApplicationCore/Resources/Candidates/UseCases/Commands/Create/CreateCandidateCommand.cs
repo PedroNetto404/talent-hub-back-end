@@ -1,8 +1,8 @@
-using TalentHub.ApplicationCore.Candidates.Dtos;
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateCandidate;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
 
 public sealed record CreateCandidateCommand(
     string Name,

@@ -1,6 +1,6 @@
 using Humanizer;
 
-namespace TalentHub.ApplicationCore.Skills.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Skills.Dtos;
 
 public sealed record SkillDto(
     Guid Id,

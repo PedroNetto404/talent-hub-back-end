@@ -1,19 +1,19 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TalentHub.ApplicationCore.Candidates.Dtos;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.DeleteCandidate;
-using TalentHub.ApplicationCore.Candidates.UseCases.Queries.GetAllCandidates;
 using TalentHub.Presentation.Web.Models.Request;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Candidates.UseCases.Queries.GetCandidateById;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateProfilePicture;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.Update;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.UpdateCandidateResume;
 using TalentHub.ApplicationCore.Shared.Dtos;
 using System.Net.Mime;
 using TalentHub.Presentation.Web.Binders;
-using TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateCandidate;
 using Microsoft.AspNetCore.Authorization;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Delete;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Update;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCandidateProfilePicture;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCandidateResume;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAllCandidates;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetCandidateById;
 
 namespace TalentHub.Presentation.Web.Controllers;
 
@@ -29,9 +29,9 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         [FromRoute] Guid id,
         CancellationToken cancellationToken = default
     ) => HandleAsync<CandidateDto>(
-            new GetCandidateByIdQuery(id),
-            cancellationToken: cancellationToken
-        );
+        new GetCandidateByIdQuery(id),
+        cancellationToken: cancellationToken
+    );
 
     [HttpGet]
     [ProducesResponseType(typeof(PagedResponse<CandidateDto>), StatusCodes.Status200OK)]
@@ -44,15 +44,15 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         IEnumerable<string>? languageIds,
         CancellationToken cancellationToken
     ) => HandleAsync<PagedResponse<CandidateDto>>(
-            new GetAllCandidatesQuery(
-                skillIds  ?? [],
-                languageIds ?? [],
-                request.Limit,
-                request.Offset,
-                request.SortBy,
-                request.Ascending),
-            cancellationToken: cancellationToken
-        );
+        new GetAllCandidatesQuery(
+            skillIds ?? [],
+            languageIds ?? [],
+            request.Limit,
+            request.Offset,
+            request.SortBy,
+            request.Ascending),
+        cancellationToken: cancellationToken
+    );
 
     [HttpPost]
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status201Created)]
@@ -78,7 +78,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
             ),
             (dto) => Created($"api/candidates/{dto.Id}", dto),
             cancellationToken: token
-         );
+        );
 
     [HttpPut("{id:guid}")]
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
@@ -132,10 +132,14 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         CancellationToken cancellationToken = default)
     {
         if (file is not { Length: > 0 })
-        { return BadRequest(new Error("bad_request", "No file uploaded.")); }
+        {
+            return BadRequest(new Error("bad_request", "No file uploaded."));
+        }
 
         if (file.ContentType != MediaTypeNames.Image.Jpeg && file.ContentType != MediaTypeNames.Image.Png)
-        { return BadRequest(new Error("bad_request", "invalid file type")); }
+        {
+            return BadRequest(new Error("bad_request", "invalid file type"));
+        }
 
         using var stream = new MemoryStream();
         await file.CopyToAsync(stream, cancellationToken);
@@ -145,7 +149,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
                 id,
                 stream,
                 file.ContentType),
-                cancellationToken: cancellationToken
+            cancellationToken: cancellationToken
         );
     }
 
@@ -160,10 +164,14 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         CancellationToken cancellationToken)
     {
         if (file is not { Length: > 0 })
-        { return BadRequest("No file uploaded."); }
+        {
+            return BadRequest("No file uploaded.");
+        }
 
         if (!Path.GetExtension(file.FileName).Equals(".pdf", StringComparison.CurrentCultureIgnoreCase))
-        { return BadRequest("Only PDF files are allowed."); }
+        {
+            return BadRequest("Only PDF files are allowed.");
+        }
 
         using var stream = new MemoryStream();
 

@@ -1,16 +1,15 @@
-using TalentHub.ApplicationCore.Shared.ValueObjects;
-using TalentHub.ApplicationCore.Jobs.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.Update;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Update;
 
 public sealed record UpdateCandidateCommand(
     Guid CandidateId,
     string Name,
     string Phone,
     Address Address,
-    IEnumerable<WorkplaceType> DesiredWorkplaceTypes,
-    IEnumerable<JobType> DesiredJobTypes,
+    IEnumerable<string> DesiredWorkplaceTypes,
+    IEnumerable<string> DesiredJobTypes,
     decimal? ExpectedRemuneration,
     string? InstagramUrl,
     string? LinkedinUrl,

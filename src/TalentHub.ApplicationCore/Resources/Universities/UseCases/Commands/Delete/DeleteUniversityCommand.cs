@@ -1,7 +1,6 @@
-using MediatR;
 using TalentHub.ApplicationCore.Core.Abstractions;
 
-namespace TalentHub.ApplicationCore.Universities.UseCases.Commands.Delete;
+namespace TalentHub.ApplicationCore.Resources.Universities.UseCases.Commands.Delete;
 
 public sealed record DeleteUniversityCommand(
     Guid Id

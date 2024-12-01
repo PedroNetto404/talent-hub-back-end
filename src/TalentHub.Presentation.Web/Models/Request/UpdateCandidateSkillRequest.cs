@@ -1,4 +1,4 @@
-using TalentHub.ApplicationCore.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
 namespace TalentHub.Presentation.Web.Models.Request;
 

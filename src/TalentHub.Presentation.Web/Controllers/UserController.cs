@@ -1,8 +1,9 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TalentHub.ApplicationCore.Users.UseCases.Commands.Authenticate;
-using TalentHub.ApplicationCore.Users.UseCases.Commands.Create;
-using TalentHub.ApplicationCore.Users.UseCases.Commands.RefreshToken;
+using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
+using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Create;
+using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.RefreshToken;
 using TalentHub.Presentation.Web.Models.Request;
 
 namespace TalentHub.Presentation.Web.Controllers;
@@ -11,6 +12,7 @@ namespace TalentHub.Presentation.Web.Controllers;
 public sealed class UserController(ISender sender) : ApiController(sender)
 {
     [HttpPost]
+    [Authorize]
     public Task<IActionResult> CreateAsync(
         CreateUserRequest request,
         CancellationToken cancellationToken

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users;
+using TalentHub.ApplicationCore.Resources.Users;
 
 namespace TalentHub.Infra.Security.Services;
 
@@ -36,7 +36,7 @@ public sealed class HttpUserContext(
         User? user = await userRepository.GetByIdAsync(userId);
         if (user is null)
         {
-            return NotFoundError.Value;
+            return Error.NotFound("user");
         }
 
         return user;

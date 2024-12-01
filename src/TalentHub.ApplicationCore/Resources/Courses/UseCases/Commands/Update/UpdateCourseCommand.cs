@@ -1,6 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Commands.Update;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Update;
 
 public sealed record UpdateCourseCommand(
     Guid Id,

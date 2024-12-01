@@ -1,11 +1,10 @@
-using System.Security.Claims;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users.Enums;
-using TalentHub.ApplicationCore.Users.ValueObjects;
+using TalentHub.ApplicationCore.Resources.Users.Enums;
+using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Users;
+namespace TalentHub.ApplicationCore.Resources.Users;
 
 public sealed class User : AuditableAggregateRoot
 {

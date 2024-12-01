@@ -1,4 +1,4 @@
-namespace TalentHub.ApplicationCore.Courses.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Courses.Dtos;
 
 public sealed record CourseDto(
     Guid Id,

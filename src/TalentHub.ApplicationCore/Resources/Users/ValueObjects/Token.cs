@@ -1,6 +1,6 @@
 using TalentHub.ApplicationCore.Ports;
 
-namespace TalentHub.ApplicationCore.Users.ValueObjects;
+namespace TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
 public sealed record Token(
     string Value,

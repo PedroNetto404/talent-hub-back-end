@@ -1,12 +1,13 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TalentHub.ApplicationCore.Resources.Skills.Dtos;
+using TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.CreateSkill;
+using TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.DeleteSkill;
+using TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.UpdateSkill;
+using TalentHub.ApplicationCore.Resources.Skills.UseCases.Queries.GetAllSkills;
+using TalentHub.ApplicationCore.Resources.Skills.UseCases.Queries.GetSkillById;
 using TalentHub.ApplicationCore.Shared.Dtos;
-using TalentHub.ApplicationCore.Skills.Dtos;
-using TalentHub.ApplicationCore.Skills.UseCases.Commands.CreateSkill;
-using TalentHub.ApplicationCore.Skills.UseCases.Commands.DeleteSkill;
-using TalentHub.ApplicationCore.Skills.UseCases.Commands.UpdateSkill;
-using TalentHub.ApplicationCore.Skills.UseCases.Queries.GetAllSkills;
-using TalentHub.ApplicationCore.Skills.UseCases.Queries.GetSkillById;
 using TalentHub.Presentation.Web.Binders;
 using TalentHub.Presentation.Web.Models.Request;
 
@@ -14,6 +15,7 @@ namespace TalentHub.Presentation.Web.Controllers;
 
 [ApiController]
 [Route("api/skills")]
+[Authorize(Roles = "admin")]
 public sealed class SkillController(ISender sender) : ApiController(sender)
 {
     [HttpGet("{skillId:guid}")]

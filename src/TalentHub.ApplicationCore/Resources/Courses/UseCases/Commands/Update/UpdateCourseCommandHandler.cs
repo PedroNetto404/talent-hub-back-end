@@ -1,40 +1,66 @@
+using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Skills;
-using TalentHub.ApplicationCore.Skills.Specs;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Skills;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Commands.Update;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Update;
 
 public sealed class UpdateCourseCommandHandler(
     IRepository<Course> courseRepository,
     IRepository<Skill> skillRepository
 ) : ICommandHandler<UpdateCourseCommand>
 {
-    public async Task<Result> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(
+        UpdateCourseCommand request, 
+        CancellationToken cancellationToken
+    )
     {
-        var course = await courseRepository.GetByIdAsync(request.Id, cancellationToken);
-        if(course is null) return NotFoundError.Value;
+        (
+            Guid id,
+            string name,
+            IEnumerable<string> tags,
+            IEnumerable<Guid> relatedSkills
+        ) = request;
 
-        if(course.ChangeName(request.Name) is { IsFail: true, Error: var nameError })
+        Course? course = await courseRepository.GetByIdAsync(id, cancellationToken);
+        if (course is null)
+        {
+            return Error.NotFound("course");
+        }
+
+        if (course.ChangeName(name) is { IsFail: true, Error: var nameError })
+        {
             return nameError;
+        }
 
-        course.ClearTags(); 
+        course.ClearTags();
 
-        foreach(var tag in request.Tags)
-            if(course.AddTag(tag) is {IsFail: true, Error: var tagError})
+        foreach (string tag in tags)
+        {
+            if (course.AddTag(tag) is { IsFail: true, Error: var tagError })
+            {
                 return tagError;
+            }
+        }
 
-        var skills = await skillRepository.ListAsync(
-            new GetSkillsByIdsSpec([.. request.RelatedSkills]),
+        List<Skill> skills = await skillRepository.ListAsync(
+            (query) => query.Where(s => request.RelatedSkills.Contains(s.Id)),
             cancellationToken
         );
 
-        if(skills.Count != request.RelatedSkills.Count())
-            return new Error("course", "invalid relared skills");
+        if (skills.Count != relatedSkills.Count())
+        {
+            return Error.BadRequest("some skills not found");
+        }
 
-        foreach(var skill in skills)
-            if(course.AddRelatedSkill(skill.Id) is { IsFail: true, Error: var skillError})
+        foreach (Skill skill in skills)
+        {
+            if (course.AddRelatedSkill(skill.Id) is { IsFail: true, Error: var skillError })
+            {
                 return skillError;
+            }
+        }
 
         await courseRepository.UpdateAsync(course, cancellationToken);
         return Result.Ok();

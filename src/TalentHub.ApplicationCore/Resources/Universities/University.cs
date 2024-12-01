@@ -2,7 +2,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 
-namespace TalentHub.ApplicationCore.Universities;
+namespace TalentHub.ApplicationCore.Resources.Universities;
 
 public sealed class University : AggregateRoot
 {

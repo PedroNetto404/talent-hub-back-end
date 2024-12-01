@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Users.UseCases.Commands.Authenticate;
+namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
 
 public sealed record AuthenticateUserCommand(
     string? Email,
@@ -11,19 +12,28 @@ public sealed record AuthenticateUserCommand(
 
 public sealed record AuthenticationResult
 {
+    public AuthenticationResult(
+        Token accessToken,
+        Token refreshToken
+    )
+    {
+        (AccessToken, AccessTokenExpiration) = accessToken;
+        (RefreshToken, RefreshTokenExpiration) = refreshToken;
+    }
+
     [JsonPropertyName("access_token")]
-    public required string AccessToken { get; init; }
+    public string AccessToken { get; }
 
     [JsonPropertyName("access_token_expiration")]
-    public required long AccessTokenExpiration { get; init; }
+    public long AccessTokenExpiration { get; }
 
     [JsonPropertyName("refresh_token")]
-    public required string RefreshToken { get; init; }
+    public string RefreshToken { get; }
 
     [JsonPropertyName("refresh_token_expiration")]
-    public required long RefreshTokenExpiration { get; init; }
+    public long RefreshTokenExpiration { get; }
 
     [JsonPropertyName("token_type")]
     public string TokenType => "Bearer";
 }
-    
+

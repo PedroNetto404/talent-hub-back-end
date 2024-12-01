@@ -1,4 +1,4 @@
-namespace TalentHub.ApplicationCore.Users.Enums;
+namespace TalentHub.ApplicationCore.Resources.Users.Enums;
 
 public enum Role
 {

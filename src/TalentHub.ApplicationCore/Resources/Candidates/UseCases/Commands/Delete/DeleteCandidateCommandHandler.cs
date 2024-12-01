@@ -1,10 +1,9 @@
-
 using TalentHub.ApplicationCore.Constants;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.DeleteCandidate;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Delete;
 
 public sealed class DeleteCandidateCommandHandler(
     IRepository<Candidate> repository,
@@ -15,8 +14,11 @@ public sealed class DeleteCandidateCommandHandler(
         DeleteCandidateCommand request,
         CancellationToken cancellationToken)
     {
-        var candidate = await repository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candidate is null) return NotFoundError.Value;
+        Candidate? candidate = await repository.GetByIdAsync(request.CandidateId, cancellationToken);
+        if (candidate is null) 
+        {
+            return Error.NotFound("candidate");
+        }
 
         await Task.WhenAll(
             candidate.ResumeUrl is not null

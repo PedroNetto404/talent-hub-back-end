@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TalentHub.ApplicationCore.Candidates;
-using TalentHub.ApplicationCore.Users;
-using TalentHub.ApplicationCore.Users.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates;
+using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.ApplicationCore.Resources.Users.Enums;
 using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;
@@ -37,10 +37,5 @@ public sealed class UserMapping : AuditableAggregateRootMapping<User>
             .Property(p => p.Role)
             .HasConversion<EnumStringSnakeCaseConverter<Role>>()
             .IsRequired();
-
-        builder
-            .HasOne<Candidate>()
-            .WithOne()
-            .HasForeignKey<Candidate>(c => c.Id);
     }
 }

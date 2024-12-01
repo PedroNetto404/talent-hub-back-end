@@ -1,11 +1,12 @@
+using Ardalis.Specification;
 using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Skills.Dtos;
-using TalentHub.ApplicationCore.Skills.Enums;
-using TalentHub.ApplicationCore.Skills.Specs;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Skills.Dtos;
+using TalentHub.ApplicationCore.Resources.Skills.Enums;
 
-namespace TalentHub.ApplicationCore.Skills.UseCases.Commands.CreateSkill;
+namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.CreateSkill;
 
 public sealed class CreateSkillCommandHandler(
     IRepository<Skill> skillRepository
@@ -14,22 +15,34 @@ public sealed class CreateSkillCommandHandler(
     public async Task<Result<SkillDto>> Handle(
         CreateSkillCommand request, CancellationToken cancellationToken)
     {
-        var existingSkill = await skillRepository.FirstOrDefaultAsync(
-            new GetSkillByNameSpec(request.Name), 
+        Skill? existingSkill = await skillRepository.FirstOrDefaultAsync(
+            query => query.Where(p => p.Name == request.Name),
             cancellationToken);
-        if (existingSkill is not null) return new Error("skill", "Skill already exists");
+        if (existingSkill is not null) 
+        {
+            return Error.BadRequest("skill alredy exists");
+        }
 
-        if (!Enum.TryParse<SkillType>(request.Type.Pascalize(), true, out var skillType))
+        if (!Enum.TryParse(request.Type.Pascalize(), true, out SkillType skillType))
+        {
             return new Error("skill", "invalid skill type");
+        }
 
-        var skillResult = Skill.Create(request.Name, skillType);
-        if (skillResult.IsFail) return skillResult.Error;
+        Result<Skill> skillResult = Skill.Create(request.Name, skillType);
+        if (skillResult.IsFail)
+        {
+            return skillResult.Error;
+        }
 
-        var skill = skillResult.Value;
+        Skill skill = skillResult.Value;
 
-        foreach (var tag in request.Tags)
+        foreach (string tag in request.Tags)
+        {
             if (skill.AddTag(tag) is { IsFail: true, Error: var tagError })
+            {
                 return tagError;
+            }
+        }
 
         await skillRepository.AddAsync(skill, cancellationToken);
         return SkillDto.FromEntity(skill);

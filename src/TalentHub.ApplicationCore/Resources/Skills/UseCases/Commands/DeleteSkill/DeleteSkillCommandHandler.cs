@@ -1,7 +1,7 @@
-namespace TalentHub.ApplicationCore.Skills.UseCases.Commands.DeleteSkill;
-
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+
+namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.DeleteSkill;
 
 public sealed class DeleteSkillCommandHandler(
     IRepository<Skill> skillRepository
@@ -9,8 +9,11 @@ public sealed class DeleteSkillCommandHandler(
 {
     public async Task<Result> Handle(DeleteSkillCommand request, CancellationToken cancellationToken)
     {
-        var skill = await skillRepository.GetByIdAsync(request.Id, cancellationToken);
-        if (skill is null) return NotFoundError.Value;
+        Skill? skill = await skillRepository.GetByIdAsync(request.Id, cancellationToken);
+        if (skill is null)
+        {
+            return Error.NotFound("skill");
+        }
 
         await skillRepository.DeleteAsync(skill, cancellationToken);
 

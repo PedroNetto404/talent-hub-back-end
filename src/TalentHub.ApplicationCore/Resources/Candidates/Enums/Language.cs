@@ -1,6 +1,6 @@
 using Ardalis.SmartEnum;
 
-namespace TalentHub.ApplicationCore.Candidates.Enums;
+namespace TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
 public class Language(string name, int value) : SmartEnum<Language>(name, value)
 {

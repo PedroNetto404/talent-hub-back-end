@@ -1,10 +1,11 @@
+using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
-using TalentHub.ApplicationCore.Users.Specs;
-using TalentHub.ApplicationCore.Users.ValueObjects;
+using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Users.UseCases.Commands.Authenticate;
+namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
 
 public sealed class AuthenticateUserCommandHandler(
     ITokenProvider tokenProvider,
@@ -15,43 +16,28 @@ public sealed class AuthenticateUserCommandHandler(
     ICommandHandler<AuthenticateUserCommand, AuthenticationResult>
 {
     public async Task<Result<AuthenticationResult>> Handle(
-        AuthenticateUserCommand request, 
+        AuthenticateUserCommand request,
         CancellationToken cancellationToken
     )
     {
-        User? user;
-        if(request.Email is not null) 
-        {
-            user = await userRepository.FirstOrDefaultAsync(
-                new GetUserByEmailSpec(
-                    request.Email
-                ),
-                cancellationToken
-            );
-        } else if(request.Username is not null)
-        {
-            user = await userRepository.FirstOrDefaultAsync(
-                new GetUserByUsernameSpec(
-                    request.Username
-                ),
-                cancellationToken
-            );
-        } else 
-        {
-            return new Error("user", "invalid user name or email");
-        }
-
+        User? user = await userRepository.FirstOrDefaultAsync(
+            (query) => query.Where(u => 
+                u.Email == request.Email || 
+                u.Username == request.Username
+            ),
+            cancellationToken
+        );
         if(user is null)
         {
-            return NotFoundError.Value;
+            return Error.NotFound("user");
         }
 
-        if(!passwordHasher.Match(request.Password, user.HashedPassword))
+        if (!passwordHasher.Match(request.Password, user.HashedPassword))
         {
             return new Error("user", "invalid user credentiais");
         }
 
-        if(user.CanRefreshToken(dateTimeProvider)) 
+        if (user.CanRefreshToken(dateTimeProvider))
         {
             return new Error("user", "user can refresh token");
         }
@@ -63,13 +49,7 @@ public sealed class AuthenticateUserCommandHandler(
 
         Token accessToken = tokenProvider.GenerateTokenFor(user);
 
-        return new AuthenticationResult
-        {
-            AccessToken = accessToken.Value,
-            AccessTokenExpiration = accessToken.Expiration,
-            RefreshToken = refreshToken.Value,
-            RefreshTokenExpiration = refreshToken.Expiration
-        };
+        return new AuthenticationResult(accessToken, refreshToken);
     }
 }
-    
+

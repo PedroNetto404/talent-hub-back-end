@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Courses.Dtos;
+using TalentHub.ApplicationCore.Resources.Courses.Dtos;
 
-namespace TalentHub.ApplicationCore.Courses.UseCases.Commands.Create;
+namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Create;
 
 public sealed record CreateCourseCommand(
     string Name,

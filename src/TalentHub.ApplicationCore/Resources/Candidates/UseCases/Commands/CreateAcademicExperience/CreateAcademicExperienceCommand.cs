@@ -1,8 +1,7 @@
-using TalentHub.ApplicationCore.Candidates.Dtos;
-using TalentHub.ApplicationCore.Candidates.Enums;
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
-namespace TalentHub.ApplicationCore.Candidates.UseCases.Commands.CreateAcademicExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
 
 public sealed record CreateExperienceCommand(
     Guid CandidateId,
@@ -18,7 +17,7 @@ public sealed record CreateExperienceCommand(
     int? CurrentSemester,
     IEnumerable<string> AcademicEntities,
     Guid? CourseId,
-    Guid? InstitutionId,
+    Guid? UniversityId,
     string? Position,
     string? Description,
     string? Company,

@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Users.Dtos;
+using TalentHub.ApplicationCore.Resources.Users.Dtos;
 
-namespace TalentHub.ApplicationCore.Users.UseCases.Commands.Create;
+namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Create;
 
 public sealed record CreateUserCommand(
     string Email,

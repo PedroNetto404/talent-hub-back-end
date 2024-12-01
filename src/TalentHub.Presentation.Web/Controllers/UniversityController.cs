@@ -1,18 +1,20 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TalentHub.ApplicationCore.Resources.Universities.Dtos;
+using TalentHub.ApplicationCore.Resources.Universities.UseCases.Commands.Create;
+using TalentHub.ApplicationCore.Resources.Universities.UseCases.Commands.Delete;
+using TalentHub.ApplicationCore.Resources.Universities.UseCases.Commands.Update;
+using TalentHub.ApplicationCore.Resources.Universities.UseCases.Queries.GetAll;
+using TalentHub.ApplicationCore.Resources.Universities.UseCases.Queries.GetById;
 using TalentHub.ApplicationCore.Shared.Dtos;
-using TalentHub.ApplicationCore.Universities.Dtos;
-using TalentHub.ApplicationCore.Universities.UseCases.Commands.Create;
-using TalentHub.ApplicationCore.Universities.UseCases.Commands.Delete;
-using TalentHub.ApplicationCore.Universities.UseCases.Commands.Update;
-using TalentHub.ApplicationCore.Universities.UseCases.Queries.GetAll;
-using TalentHub.ApplicationCore.Universities.UseCases.Queries.GetById;
 using TalentHub.Presentation.Web.Binders;
 using TalentHub.Presentation.Web.Models.Request;
 
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/universities")]
+[Authorize(Roles = "admin")]
 public class UniversityController(ISender sender) : ApiController(sender)
 {
     [HttpGet("{id:guid}")]

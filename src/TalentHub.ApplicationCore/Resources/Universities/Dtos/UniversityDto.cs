@@ -1,6 +1,4 @@
-using TalentHub.ApplicationCore.Core.Results;
-
-namespace TalentHub.ApplicationCore.Universities.Dtos;
+namespace TalentHub.ApplicationCore.Resources.Universities.Dtos;
 
 public record UniversityDto(
     Guid Id,
