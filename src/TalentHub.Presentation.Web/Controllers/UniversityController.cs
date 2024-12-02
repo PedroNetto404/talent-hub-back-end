@@ -30,14 +30,14 @@ public class UniversityController(ISender sender) : ApiController(sender)
     );
 
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResponse<UniversityDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> GetAllAsync(
         [FromQuery(Name = "university_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
         IEnumerable<Guid> ids,
         PagedRequest request,
         CancellationToken cancellationToken
-    ) => HandleAsync<PagedResponse<UniversityDto>>(
+    ) => HandleAsync<PagedResponse>(
         new GetAllUniversitiesQuery(
             ids,
             request.Limit,

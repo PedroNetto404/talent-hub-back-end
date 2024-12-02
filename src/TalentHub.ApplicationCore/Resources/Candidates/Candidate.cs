@@ -150,12 +150,12 @@ public sealed class Candidate : AuditableAggregateRoot
         return Result.Ok();
     }
 
-    public Result RemoveCertificate(string certificateName)
+    public Result RemoveCertificate(Guid certificateId)
     {
-        Certificate? existingCertificate = _certificates.FirstOrDefault(c => c.Name == certificateName);
-        if (existingCertificate is null)
+        Certificate? existingCertificate = _certificates.FirstOrDefault(c => c.Id == certificateId);
+        if(existingCertificate is null)
         {
-            return new Error("candidate_certificate", $"Certificate '{certificateName}' not found.");
+            return Error.BadRequest("invalid certificate id");
         }
 
         _certificates.Remove(existingCertificate);

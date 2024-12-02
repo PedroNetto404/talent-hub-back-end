@@ -28,14 +28,14 @@ public sealed class SkillController(ISender sender) : ApiController(sender)
     );
 
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResponse<SkillDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> GetAllAsync(
         PagedRequest request,
         [ModelBinder(typeof(SplitQueryStringBinder)), FromQuery(Name = "skill_id_in")]
         IEnumerable<Guid> ids,
         CancellationToken cancellationToken
-    ) => HandleAsync<PagedResponse<SkillDto>>(
+    ) => HandleAsync<PagedResponse>(
         new GetAllSkillsQuery(
             [.. ids],
             request.Limit,

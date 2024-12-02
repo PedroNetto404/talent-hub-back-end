@@ -2,6 +2,7 @@ using MediatR;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
+using TalentHub.ApplicationCore.Shared.Dtos;
 
 namespace TalentHub.ApplicationCore.Behaviors;
 
@@ -22,20 +23,28 @@ public sealed class CacheBehavior<TQuery, TResult>(
             cancellationToken
         );
 
-        if (cached is not null)
-        { return cached; }
-
-        TResult result = await next();
-        if (result.IsOk)
+        if (cached is null)
         {
-            await cacheProvider.SetAsync(
-                request.Key, 
-                result, 
-                request.Duration, 
-                cancellationToken
-            );
+            TResult result = await next();
+            if (result.IsOk)
+            {
+                await cacheProvider.SetAsync(
+                    request.Key,
+                    result,
+                    request.Duration,
+                    cancellationToken
+                );
+            }
+
+            return result;
+        }
+        
+        if(cached is Result<PagedResponse> { IsOk: true, Value: var cachedPage})
+        {
+
+            return Result.Ok(cachedPage.FromCache()) as TResult;
         }
 
-        return result;
+        return cached;
     }
 }

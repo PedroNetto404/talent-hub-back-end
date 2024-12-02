@@ -15,16 +15,19 @@ using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCan
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAllCandidates;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetCandidateById;
 
+
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/candidates")]
 [Authorize]
+
 public sealed class CandidatesController(ISender sender) : ApiController(sender)
 {
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    
     public Task<IActionResult> GetByIdAsync(
         [FromRoute] Guid id,
         CancellationToken cancellationToken = default
@@ -34,8 +37,9 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     );
 
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResponse<CandidateDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    
     public Task<IActionResult> GetAllAsync(
         PagedRequest request,
         [FromQuery(Name = "skill_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
@@ -43,7 +47,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         [FromQuery(Name = "language_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
         IEnumerable<string>? languageIds,
         CancellationToken cancellationToken
-    ) => HandleAsync<PagedResponse<CandidateDto>>(
+    ) => HandleAsync<PagedResponse>(
         new GetAllCandidatesQuery(
             skillIds ?? [],
             languageIds ?? [],
@@ -57,6 +61,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [HttpPost]
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    
     public Task<IActionResult> CreateAsync(
         CreateCandidateRequest request,
         CancellationToken token = default
@@ -84,6 +89,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    
     public Task<IActionResult> UpdateAsync(
         [FromRoute] Guid id,
         [FromBody] UpdateCandidateRequest request,
@@ -111,6 +117,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    
     public Task<IActionResult> DeleteAsync(
         Guid id,
         CancellationToken cancellationToken = default
@@ -126,6 +133,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    
     public async Task<IActionResult> UpdateProfilePictureAsync(
         Guid id,
         IFormFile file,
@@ -158,6 +166,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    
     public async Task<IActionResult> UpdateResumeAsync(
         [FromRoute] Guid id,
         IFormFile file,

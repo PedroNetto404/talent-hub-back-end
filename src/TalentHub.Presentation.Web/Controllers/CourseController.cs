@@ -23,7 +23,7 @@ public sealed class CoursesController(ISender sender) : ApiController(sender)
         IEnumerable<Guid>? ids,
         PagedRequest queryString,
         CancellationToken cancellationToken
-    ) => HandleAsync<PagedResponse<CourseDto>>(
+    ) => HandleAsync<PagedResponse>(
         new GetAllCoursesQuery(
             ids ?? [],
             queryString.Limit,

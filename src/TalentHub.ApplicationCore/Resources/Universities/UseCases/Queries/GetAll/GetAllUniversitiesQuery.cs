@@ -1,5 +1,4 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Resources.Universities.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 
 namespace TalentHub.ApplicationCore.Resources.Universities.UseCases.Queries.GetAll;
@@ -10,7 +9,7 @@ public sealed record GetAllUniversitiesQuery(
     int Offset,
     string? SortBy = null,
     bool Ascending = true
-    ) : ICachedQuery<PagedResponse<UniversityDto>>
+    ) : ICachedQuery<PagedResponse>
 {
     public TimeSpan? Duration => TimeSpan.FromHours(12);
     public string Key => nameof(GetAllUniversitiesQuery);

@@ -9,17 +9,35 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAll
 
 public sealed class GetAllCandidatesQueryHandler(
     IRepository<Candidate> candidateRepository
-) : IQueryHandler<GetAllCandidatesQuery, PagedResponse<CandidateDto>>
+) : IQueryHandler<GetAllCandidatesQuery, PagedResponse>
 {
-    public async Task<Result<PagedResponse<CandidateDto>>> Handle(
+    public async Task<Result<PagedResponse>> Handle(
         GetAllCandidatesQuery request,
         CancellationToken cancellationToken
     )
     {
+        (
+            IEnumerable<Guid> skillIds,
+            IEnumerable<string> languages,
+            int limit,
+            int offset,
+            string? sortBy,
+            bool ascending
+        ) = request;
+
         void AdditionalSpec(ISpecificationBuilder<Candidate> query)
         {
-            query.Where(p => p.Skills.Any(s => request.SkillIds.Contains(s.Id)));
-            query.Where(p => p.LanguageProficiencies.Any(c => request.Languages.Contains(c.Language.Name)));
+            if (skillIds.Any())
+            {
+                query.Where(p => p.Skills.Any(s => request.SkillIds.Contains(s.Id)));
+            }
+
+            if (languages.Any())
+            {
+                query.Where(c => c.LanguageProficiencies.Any(
+                    l => languages.Contains(l.Language.Name)
+                ));
+            }
         }
 
         List<Candidate> candidates = await candidateRepository.GetPageAsync(
@@ -34,7 +52,7 @@ public sealed class GetAllCandidatesQueryHandler(
 
         CandidateDto[] dtos = [.. candidates.Select(CandidateDto.FromEntity)];
 
-        return new PagedResponse<CandidateDto>(
+        return new PagedResponse(
             new(
                 dtos.Length,
                 count,

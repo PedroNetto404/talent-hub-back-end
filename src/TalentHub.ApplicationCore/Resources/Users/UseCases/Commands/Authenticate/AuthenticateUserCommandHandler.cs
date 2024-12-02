@@ -39,7 +39,7 @@ public sealed class AuthenticateUserCommandHandler(
 
         if (user.CanRefreshToken(dateTimeProvider))
         {
-            return new Error("user", "user can refresh token");
+            return Error.BadRequest("user can refresh token");
         }
 
         Token refreshToken = tokenProvider.GenerateRefreshToken(user);

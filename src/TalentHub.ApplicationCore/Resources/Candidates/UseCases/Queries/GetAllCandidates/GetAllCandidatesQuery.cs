@@ -1,5 +1,4 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAllCandidates;
@@ -11,8 +10,4 @@ public sealed record GetAllCandidatesQuery(
     int Offset,
     string? SortBy,
     bool Ascending = true
-) : ICachedQuery<PagedResponse<CandidateDto>>
-{
-    public TimeSpan? Duration => TimeSpan.FromMinutes(5);
-    public string Key => nameof(GetAllCandidatesQuery);
-}
+) : IQuery<PagedResponse>;

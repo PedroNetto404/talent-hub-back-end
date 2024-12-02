@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
@@ -9,6 +10,8 @@ using TalentHub.Presentation.Web.Models.Request;
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/candidates/{candidateId:guid}/experiences")]
+
+[Authorize]
 public sealed class CandidateExperienceController(
     ISender sender
 ) : ApiController(sender)
@@ -35,7 +38,7 @@ public sealed class CandidateExperienceController(
             request.Level,
             request.Status,
             request.CurrentSemester,
-            [..request.AcademicEntities],
+            [.. request.AcademicEntities],
             request.CourseId,
             request.UniversityId,
             request.Position,

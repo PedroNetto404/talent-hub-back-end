@@ -1,0 +1,742 @@
+[
+    {
+        "value": 245,
+        "label": "Startup"
+    },
+    {
+        "value": 246,
+        "label": "Alimentação"
+    },
+    {
+        "value": 248,
+        "label": "Construção e Habitação"
+    },
+    {
+        "value": 331,
+        "label": "Comércio e desenvolvimento internacional"
+    },
+    {
+        "value": 332,
+        "label": "Composição e revisão de textos"
+    },
+    {
+        "value": 253,
+        "label": "Saúde"
+    },
+    {
+        "value": 258,
+        "label": "Centro Acadêmico"
+    },
+    {
+        "value": 260,
+        "label": "Empresa Junior"
+    },
+    {
+        "value": 261,
+        "label": "Bens de Consumo"
+    },
+    {
+        "value": 264,
+        "label": "Construção e Habitação "
+    },
+    {
+        "value": 275,
+        "label": "Serviços"
+    },
+    {
+        "value": 276,
+        "label": "Indústria Automotiva"
+    },
+    {
+        "value": 277,
+        "label": "Serviços Públicos"
+    },
+    {
+        "value": 278,
+        "label": "Serviços de Transporte"
+    },
+    {
+        "value": 279,
+        "label": "Siderurgia e Metalurgia"
+    },
+    {
+        "value": 280,
+        "label": "Tecnologia e Computação"
+    },
+    {
+        "value": 281,
+        "label": "Telecomunicações"
+    },
+    {
+        "value": 282,
+        "label": "Outros"
+    },
+    {
+        "value": 284,
+        "label": "Bebidas"
+    },
+    {
+        "value": 285,
+        "label": "Comércio Varejista"
+    },
+    {
+        "value": 286,
+        "label": "Confecções e Téxteis"
+    },
+    {
+        "value": 287,
+        "label": "Eletroeletrônico"
+    },
+    {
+        "value": 333,
+        "label": "Construção"
+    },
+    {
+        "value": 290,
+        "label": "Mecânica"
+    },
+    {
+        "value": 291,
+        "label": "Mineração"
+    },
+    {
+        "value": 293,
+        "label": "Papel e Celulose"
+    },
+    {
+        "value": 294,
+        "label": "Plásticos e Borrachas"
+    },
+    {
+        "value": 295,
+        "label": "Química e Petroquímica"
+    },
+    {
+        "value": 334,
+        "label": "Construção de ferrovia"
+    },
+    {
+        "value": 335,
+        "label": "Construção naval"
+    },
+    {
+        "value": 336,
+        "label": "Consultoria de gerenciamento"
+    },
+    {
+        "value": 337,
+        "label": "Contabilidade"
+    },
+    {
+        "value": 297,
+        "label": "Odontologia"
+    },
+    {
+        "value": 298,
+        "label": "Seguros"
+    },
+    {
+        "value": 283,
+        "label": "Comércio Exterior e negócios internacionais"
+    },
+    {
+        "value": 254,
+        "label": "Educação"
+    },
+    {
+        "value": 300,
+        "label": "Setor Financeiro"
+    },
+    {
+        "value": 296,
+        "label": "ECONOMIA CRIATIVA (Publicidade e Propaganda; Moda; Design; Arquitetura; Cinema e Vídeo; Artes Digitais)."
+    },
+    {
+        "value": 301,
+        "label": "Direito"
+    },
+    {
+        "value": 302,
+        "label": "Cosméticos"
+    },
+    {
+        "value": 304,
+        "label": "Agro-industrial"
+    },
+    {
+        "value": 305,
+        "label": "Consultoria"
+    },
+    {
+        "value": 288,
+        "label": "Farmacêutico"
+    },
+    {
+        "value": 306,
+        "label": "Administração agrícola"
+    },
+    {
+        "value": 307,
+        "label": "Administração de serviços"
+    },
+    {
+        "value": 308,
+        "label": "Administração governamental"
+    },
+    {
+        "value": 309,
+        "label": "Agricultura"
+    },
+    {
+        "value": 310,
+        "label": "Alimentos e bebidas"
+    },
+    {
+        "value": 311,
+        "label": "Animação"
+    },
+    {
+        "value": 312,
+        "label": "Armazenagem"
+    },
+    {
+        "value": 313,
+        "label": "Arquitetura e planejamento"
+    },
+    {
+        "value": 314,
+        "label": "Arrecadação de recursos"
+    },
+    {
+        "value": 315,
+        "label": "Artes cênicas"
+    },
+    {
+        "value": 316,
+        "label": "Artes e artesanato"
+    },
+    {
+        "value": 317,
+        "label": "Atacado"
+    },
+    {
+        "value": 318,
+        "label": "Atendimento ao consumidor"
+    },
+    {
+        "value": 319,
+        "label": "Atendimento médico e psiquiátrico"
+    },
+    {
+        "value": 320,
+        "label": "Atividades parlamentares"
+    },
+    {
+        "value": 321,
+        "label": "Automação industrial"
+    },
+    {
+        "value": 322,
+        "label": "Aviação e aeroespacial"
+    },
+    {
+        "value": 323,
+        "label": "Bancos"
+    },
+    {
+        "value": 324,
+        "label": "Bancos de investimento"
+    },
+    {
+        "value": 325,
+        "label": "Belas-artes"
+    },
+    {
+        "value": 326,
+        "label": "Bens de consumo"
+    },
+    {
+        "value": 327,
+        "label": "Bibliotecas"
+    },
+    {
+        "value": 328,
+        "label": "Biotecnologia"
+    },
+    {
+        "value": 329,
+        "label": "Capital de risco e participações privadas"
+    },
+    {
+        "value": 330,
+        "label": "Cinema e filmes"
+    },
+    {
+        "value": 338,
+        "label": "Cosmética"
+    },
+    {
+        "value": 339,
+        "label": "Defesa e espaço"
+    },
+    {
+        "value": 340,
+        "label": "Desenvolvimento de programas"
+    },
+    {
+        "value": 341,
+        "label": "Design"
+    },
+    {
+        "value": 342,
+        "label": "Design gráfico"
+    },
+    {
+        "value": 343,
+        "label": "Dispositivos médicos"
+    },
+    {
+        "value": 344,
+        "label": "Editoração"
+    },
+    {
+        "value": 345,
+        "label": "Educação à distância"
+    },
+    {
+        "value": 346,
+        "label": "Embalagens e recipientes"
+    },
+    {
+        "value": 347,
+        "label": "Engenharia civil"
+    },
+    {
+        "value": 348,
+        "label": "Engenharia mecânica ou industrial"
+    },
+    {
+        "value": 349,
+        "label": "Ensino fundamental/médio"
+    },
+    {
+        "value": 350,
+        "label": "Ensino superior"
+    },
+    {
+        "value": 351,
+        "label": "Entrega de encomendas e fretes"
+    },
+    {
+        "value": 352,
+        "label": "Entretenimento"
+    },
+    {
+        "value": 353,
+        "label": "Esportes"
+    },
+    {
+        "value": 354,
+        "label": "Execução da lei"
+    },
+    {
+        "value": 355,
+        "label": "Filantropia"
+    },
+    {
+        "value": 356,
+        "label": "Fotografia"
+    },
+    {
+        "value": 357,
+        "label": "Gabinete presidencial"
+    },
+    {
+        "value": 358,
+        "label": "Gestão de investimentos"
+    },
+    {
+        "value": 359,
+        "label": "Gestão de organização sem fins lucrativos"
+    },
+    {
+        "value": 360,
+        "label": "Gestão educacional"
+    },
+    {
+        "value": 361,
+        "label": "Hardware"
+    },
+    {
+        "value": 362,
+        "label": "Hotelaria"
+    },
+    {
+        "value": 363,
+        "label": "Imobiliária"
+    },
+    {
+        "value": 364,
+        "label": "Imóveis comerciais"
+    },
+    {
+        "value": 365,
+        "label": "Importação e exportação"
+    },
+    {
+        "value": 366,
+        "label": "Impressão"
+    },
+    {
+        "value": 367,
+        "label": "Indústria automativa"
+    },
+    {
+        "value": 368,
+        "label": "Indústria farmacêutica"
+    },
+    {
+        "value": 369,
+        "label": "Indústria química"
+    },
+    {
+        "value": 370,
+        "label": "Indústria têxtil"
+    },
+    {
+        "value": 371,
+        "label": "Instalações e serviços de recreação"
+    },
+    {
+        "value": 372,
+        "label": "Instituições religiosas"
+    },
+    {
+        "value": 373,
+        "label": "Internet"
+    },
+    {
+        "value": 374,
+        "label": "Jogos de azar"
+    },
+    {
+        "value": 375,
+        "label": "Jogos de computador"
+    },
+    {
+        "value": 376,
+        "label": "Jornais"
+    },
+    {
+        "value": 377,
+        "label": "Judiciário"
+    },
+    {
+        "value": 378,
+        "label": "Laticínios"
+    },
+    {
+        "value": 379,
+        "label": "Lazer, viagens e turismo"
+    },
+    {
+        "value": 380,
+        "label": "Linhas aéreas/Aviação"
+    },
+    {
+        "value": 381,
+        "label": "Logística e cadeia de suprimentos"
+    },
+    {
+        "value": 382,
+        "label": "Manufatura de eletrônicos"
+    },
+    {
+        "value": 387,
+        "label": "Medicina alternativa"
+    },
+    {
+        "value": 388,
+        "label": "Mercados de capital"
+    },
+    {
+        "value": 392,
+        "label": "Mineração e metais"
+    },
+    {
+        "value": 393,
+        "label": "Móveis"
+    },
+    {
+        "value": 400,
+        "label": "Papel e produtos florestais"
+    },
+    {
+        "value": 402,
+        "label": "Pesquisa"
+    },
+    {
+        "value": 403,
+        "label": "Pesquisa de mercado"
+    },
+    {
+        "value": 404,
+        "label": "Petróleo e energia"
+    },
+    {
+        "value": 405,
+        "label": "Plástico"
+    },
+    {
+        "value": 410,
+        "label": "Produtos alimentícios"
+    },
+    {
+        "value": 411,
+        "label": "Produtos de luxo e jóias"
+    },
+    {
+        "value": 413,
+        "label": "Recrutamento e seleção"
+    },
+    {
+        "value": 414,
+        "label": "Recursos humanos"
+    },
+    {
+        "value": 415,
+        "label": "Recursos renováveis e meio ambiente"
+    },
+    {
+        "value": 419,
+        "label": "Relações internacionais"
+    },
+    {
+        "value": 420,
+        "label": "Relações públicas e comunicações"
+    },
+    {
+        "value": 383,
+        "label": "Maquinário"
+    },
+    {
+        "value": 384,
+        "label": "Marketing e publicidade"
+    },
+    {
+        "value": 390,
+        "label": "Mídia online"
+    },
+    {
+        "value": 394,
+        "label": "Museus e instituições"
+    },
+    {
+        "value": 395,
+        "label": "Música"
+    },
+    {
+        "value": 396,
+        "label": "Nanotecnologia"
+    },
+    {
+        "value": 397,
+        "label": "Organização cívica e social"
+    },
+    {
+        "value": 399,
+        "label": "Organizações de pesquisa e orientação"
+    },
+    {
+        "value": 409,
+        "label": "Produção de mídia"
+    },
+    {
+        "value": 412,
+        "label": "Produtos eletrônicos"
+    },
+    {
+        "value": 385,
+        "label": "Materiais de construção"
+    },
+    {
+        "value": 386,
+        "label": "Materiais esportivos"
+    },
+    {
+        "value": 389,
+        "label": "Mídia de difusão"
+    },
+    {
+        "value": 391,
+        "label": "Militar"
+    },
+    {
+        "value": 398,
+        "label": "Organização política"
+    },
+    {
+        "value": 401,
+        "label": "Pesca"
+    },
+    {
+        "value": 406,
+        "label": "Política pública"
+    },
+    {
+        "value": 407,
+        "label": "Prática jurídica"
+    },
+    {
+        "value": 408,
+        "label": "Prática médica"
+    },
+    {
+        "value": 416,
+        "label": "Redes"
+    },
+    {
+        "value": 417,
+        "label": "Redes sem fio"
+    },
+    {
+        "value": 418,
+        "label": "Relações governamentais"
+    },
+    {
+        "value": 421,
+        "label": "Resolução alternativa de litígios"
+    },
+    {
+        "value": 422,
+        "label": "Restaurantes"
+    },
+    {
+        "value": 423,
+        "label": "Roupas e moda"
+    },
+    {
+        "value": 424,
+        "label": "Saúde, bem-estar e educação física"
+    },
+    {
+        "value": 425,
+        "label": "Segurança de redes e computadores"
+    },
+    {
+        "value": 426,
+        "label": "Segurança e investigações"
+    },
+    {
+        "value": 427,
+        "label": "Segurança pública"
+    },
+    {
+        "value": 428,
+        "label": "Seguros"
+    },
+    {
+        "value": 429,
+        "label": "Semicondutores"
+    },
+    {
+        "value": 430,
+        "label": "Serviços ambientais"
+    },
+    {
+        "value": 431,
+        "label": "Serviços da informação"
+    },
+    {
+        "value": 432,
+        "label": "Serviços financeiros"
+    },
+    {
+        "value": 433,
+        "label": "Serviços individuais e familiares"
+    },
+    {
+        "value": 434,
+        "label": "Serviços jurídicos"
+    },
+    {
+        "value": 435,
+        "label": "Serviços para eventos"
+    },
+    {
+        "value": 436,
+        "label": "Serviços públicos"
+    },
+    {
+        "value": 437,
+        "label": "Software"
+    },
+    {
+        "value": 438,
+        "label": "Supermercados"
+    },
+    {
+        "value": 439,
+        "label": "Suprimentos e equipamentos comerciais"
+    },
+    {
+        "value": 440,
+        "label": "Tabaco"
+    },
+    {
+        "value": 441,
+        "label": "Tecnologia da informação e serviços"
+    },
+    {
+        "value": 442,
+        "label": "Telecomunicações"
+    },
+    {
+        "value": 443,
+        "label": "Terceirização e offshoring"
+    },
+    {
+        "value": 444,
+        "label": "Tradução e localização"
+    },
+    {
+        "value": 445,
+        "label": "Transporte/caminhões/trens"
+    },
+    {
+        "value": 446,
+        "label": "Transporte marítimo"
+    },
+    {
+        "value": 447,
+        "label": "Treinamento e orientação profissional"
+    },
+    {
+        "value": 448,
+        "label": "Varejo"
+    },
+    {
+        "value": 449,
+        "label": "Veterinária"
+    },
+    {
+        "value": 450,
+        "label": "Vidro, cerâmica e concreto"
+    },
+    {
+        "value": 451,
+        "label": "Vinhos e destilados"
+    },
+    {
+        "value": 452,
+        "label": "Venture Capital \u0026 Private Equity"
+    },
+    {
+        "value": 485,
+        "label": "Energia Solar"
+    },
+    {
+        "value": 303,
+        "label": "Academia de Ginástica/Esporte"
+    }
+]
