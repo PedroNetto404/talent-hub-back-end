@@ -5,5 +5,6 @@ namespace TalentHub.ApplicationCore.Ports;
 
 public interface IUserContext 
 {
-    Task<Result<User>> GetCurrentAsync();
+    Guid UserId { get; }
+    Task<Result<User>> GetCurrentAsync(CancellationToken cancellationToken);
 }

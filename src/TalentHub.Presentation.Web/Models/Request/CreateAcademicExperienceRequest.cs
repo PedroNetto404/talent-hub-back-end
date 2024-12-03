@@ -20,6 +20,12 @@ public sealed record CreateExperienceRequest
     [Range(1900, 2100)]
     public int? EndYear { get; init; }
 
+    [Range(1, 12)]
+    public int? ExpectedGraduationStartMonth { get; init; }
+
+    [Range(1900, 2100)]
+    public int? ExpectedGraduationStartYear { get; init; }
+
     [Required]
     public bool IsCurrent { get; init; }
 

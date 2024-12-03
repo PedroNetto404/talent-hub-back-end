@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -29,19 +30,20 @@ public sealed class TokenProvider(
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.ToString().Underscore())
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             ]),
             Expires = tokenExpiration,
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
                     Encoding.ASCII.GetBytes(configuration["Jwt:SecretKey"]!)
                 ),
-                SecurityAlgorithms.HmacSha256Signature),
+                SecurityAlgorithms.HmacSha256Signature
+            ),
             Issuer = configuration["Jwt:Issuer"],
             Audience = configuration["Jwt:Audience"]
         };
 
-        var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+        var tokenHandler = new JwtSecurityTokenHandler();
         SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
         return new Token(

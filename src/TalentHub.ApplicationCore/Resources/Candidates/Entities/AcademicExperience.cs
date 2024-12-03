@@ -34,38 +34,28 @@ public sealed class AcademicExperience : Experience
         Guid courseId,
         Guid institutionId)
     {
-        if (end != null && start > end)
+        var result = Result.FailEarly(
+            () => Result.FailIf(end != null && start > end, "start date must be less than end date"),
+            () => Result.FailIf(Guid.Empty == courseId, "invalid course id"),
+            () => Result.FailIf(Guid.Empty == institutionId, "invalid university id"),
+            () => Result.FailIf(currentSemester < 0, "current semester must be greater than 0")
+        );
+
+        if(result.IsFail)
         {
-            return Error.BadRequest("start date must be less than end date");
+            return result.Error;
         }
 
-        if (Guid.Empty == courseId)
-        {
-            return Error.BadRequest($"invalid course id");
-        }
-
-        if (Guid.Empty == institutionId)
-        {
-            return Error.BadRequest("invalid university id");
-        }
-
-        if (currentSemester < 0)
-        {
-            return Error.BadRequest("current semester must be greater than 0");
-        }
-
-        return Result.Ok(
-            new AcademicExperience(
-                start, 
-                end, 
-                currentSemester, 
-                isCurrent, 
-                level, 
-                status, 
-                courseId,
-                institutionId));
+        return new AcademicExperience(
+            start, 
+            end,
+            currentSemester,
+            isCurrent,
+            level,
+            status,
+            courseId,
+            institutionId);
     }
-
 
 #pragma warning disable CS0628 // New protected member declared in sealed type
     protected AcademicExperience()
@@ -76,6 +66,7 @@ public sealed class AcademicExperience : Experience
     private readonly List<AcademicEntity> _academicEntities = [];
 
     public int CurrentSemester { get; private set; }
+    public DatePeriod ExpectedGraduation { get; private set; }
     public EducationLevel Level { get; private set; }
     public ProgressStatus Status { get; private set; }
     public StudyPeriod Period { get; private set; }
@@ -105,8 +96,11 @@ public sealed class AcademicExperience : Experience
         {
             return Error.BadRequest("current semester must be greater than 0");
         }
-        
+
         CurrentSemester = currentSemester;
         return Result.Ok();
     }
+
+    public void UpdateExpectedGraduation(DatePeriod expectedGraduation) =>
+        ExpectedGraduation = expectedGraduation;
 }

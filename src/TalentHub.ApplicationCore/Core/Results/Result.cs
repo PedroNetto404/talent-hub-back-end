@@ -34,7 +34,15 @@ public class Result
 
         return Ok();
     }
-}
+
+    public static Result FailIf(bool condition, string erroMessage) =>
+        condition 
+        ? Fail(Error.BadRequest(erroMessage)) 
+        : Ok();
+
+    public static Result FailIf(Func<bool> predicate, string erroMessage) =>
+        FailIf(predicate(), erroMessage);
+    }
 
 public class Result<T> : Result where T : notnull
 {

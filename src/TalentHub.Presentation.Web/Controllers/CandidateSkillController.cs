@@ -10,10 +10,9 @@ using TalentHub.Presentation.Web.Models.Request;
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/candidates/{candidateId:guid}/skills")]
-
 [Authorize]
 public sealed class CandidateSkillController(ISender sender) : ApiController(sender)
-{
+{ 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

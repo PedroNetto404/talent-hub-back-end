@@ -10,6 +10,8 @@ public sealed record CreateExperienceCommand(
     int StartYear,
     int? EndMonth,
     int? EndYear,
+    int? ExpectedGraduationStartMonth,
+    int? ExpectedGraduationStartYear,
     bool IsCurrent,
     IEnumerable<string> Activities,
     string? Level,

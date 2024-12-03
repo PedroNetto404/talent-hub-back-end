@@ -1,9 +1,29 @@
 version: '3.7'
 
 services:
-  database:
+  talent-hub_api:
+    container_name: talent-hub_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+     - "5000:5000"
+     - "5001:5001" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000;https://+:5001
+      - Kestrel__Certificates__Default__Path=/app/certificates/aspnetcore.pfx
+      - Kestrel__Certificates__Default__Password=S3cur3P@ssw0rd!
+    volumes:
+      - data_protection_keys:/root/.aspnet/DataProtection-Keys
+    depends_on:
+      - talent-hub_pgdatabase
+      - talent-hub_bucket
+    networks:
+      - backend
+
+  talent-hub_pgdatabase:
     image: postgres:latest
-    container_name: talent-hub_pgdatabase
     environment:
       POSTGRES_USER: talent-hub_admin
       POSTGRES_PASSWORD: talent-hub_admin_11231233
@@ -12,10 +32,11 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgressql/data
+    networks:
+      - backend
 
-  minio:
+  talent-hub_bucket:
     image: minio/minio
-    container_name: minio
     environment:
       MINIO_ROOT_USER: talent-hub_admin
       MINIO_ROOT_PASSWORD: talent-hub_admin_11231233
@@ -26,14 +47,16 @@ services:
       - "9001:9001"
     command: server /data --console-address ":9001"
     networks:
-      - minio_network
+      - backend
 
 volumes:
   minio-data:
     driver: local
   postgres_data:
     driver: local
+  data_protection_keys:
+    driver: local
 
 networks:
-  minio_network:
+  backend:
     driver: bridge

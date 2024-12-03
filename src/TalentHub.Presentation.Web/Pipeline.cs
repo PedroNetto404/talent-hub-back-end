@@ -16,6 +16,22 @@ public static class Pipeline
         app.UseAuthentication();
         app.UseAuthorization();
 
+        app.MapHealthChecks("/health");
+
         app.MapControllers();
+    }
+
+    public static void ListEndpoints(this WebApplication app)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Endpoints:");
+        Console.ResetColor();
+
+        app.Services
+            .GetRequiredService<EndpointDataSource>()
+            .Endpoints
+            .Select(e => e.DisplayName)
+            .ToList()
+            .ForEach(Console.WriteLine);
     }
 }

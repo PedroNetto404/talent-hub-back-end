@@ -1,5 +1,5 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.Presentation.Web.Models.Request;
@@ -9,6 +9,10 @@ public sealed record UpdateCandidateRequest
     [Required]
     [StringLength(100, MinimumLength = 4)]
     public required string Name { get; init; }
+
+    [DefaultValue(true)]
+    [Required]
+    public required bool AutoMatchEnabled { get; init; }
 
     [Required]
     [StringLength(11, MinimumLength = 11)]

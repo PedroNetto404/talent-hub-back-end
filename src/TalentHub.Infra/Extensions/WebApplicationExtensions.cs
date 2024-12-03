@@ -22,7 +22,6 @@ public static class WebApplicationExtensions
             u => u.Name,
             "universities"
         );
-
         await SeedEntities(
             context,
             "courses_seed.json",
@@ -30,6 +29,8 @@ public static class WebApplicationExtensions
             c => c.Name,
             "courses"
         );
+
+        Console.WriteLine("Database seeding process completed.");
     }
 
     private static async Task SeedEntities<TEntity>(

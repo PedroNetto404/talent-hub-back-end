@@ -8,6 +8,8 @@ public static class DependencyInjection
         this IServiceCollection services
     )
     {
+        services.AddHealthChecks();
+
         services.ConfigureOptions<ControllerOptionsSetup>();
         services.AddControllers();
         services.AddRouting();

@@ -15,19 +15,17 @@ using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCan
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAllCandidates;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetCandidateById;
 
-
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/candidates")]
 [Authorize]
-
 public sealed class CandidatesController(ISender sender) : ApiController(sender)
 {
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    
+
     public Task<IActionResult> GetByIdAsync(
         [FromRoute] Guid id,
         CancellationToken cancellationToken = default
@@ -39,7 +37,6 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [HttpGet]
     [ProducesResponseType(typeof(PagedResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    
     public Task<IActionResult> GetAllAsync(
         PagedRequest request,
         [FromQuery(Name = "skill_id_in"), ModelBinder(typeof(SplitQueryStringBinder))]
@@ -61,7 +58,6 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [HttpPost]
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    
     public Task<IActionResult> CreateAsync(
         CreateCandidateRequest request,
         CancellationToken token = default
@@ -69,6 +65,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
         HandleAsync(
             new CreateCandidateCommand(
                 request.Name,
+                request.AutoMatchEnabled,
                 request.Phone,
                 DateOnly.FromDateTime(request.BirthDate),
                 request.Address,
@@ -89,7 +86,6 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    
     public Task<IActionResult> UpdateAsync(
         [FromRoute] Guid id,
         [FromBody] UpdateCandidateRequest request,
@@ -99,6 +95,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
             new UpdateCandidateCommand(
                 id,
                 request.Name,
+                request.AutoMatchEnabled,
                 request.Phone,
                 request.Address,
                 [.. request.DesiredWorkplaceTypes],
@@ -117,7 +114,6 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    
     public Task<IActionResult> DeleteAsync(
         Guid id,
         CancellationToken cancellationToken = default
@@ -133,7 +129,6 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(typeof(CandidateDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    
     public async Task<IActionResult> UpdateProfilePictureAsync(
         Guid id,
         IFormFile file,
@@ -144,7 +139,7 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
             return BadRequest(new Error("bad_request", "No file uploaded."));
         }
 
-        if (file.ContentType != MediaTypeNames.Image.Jpeg && file.ContentType != MediaTypeNames.Image.Png)
+        if (file.ContentType is MediaTypeNames.Image.Jpeg or MediaTypeNames.Image.Png)
         {
             return BadRequest(new Error("bad_request", "invalid file type"));
         }
@@ -166,11 +161,11 @@ public sealed class CandidatesController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    
     public async Task<IActionResult> UpdateResumeAsync(
         [FromRoute] Guid id,
         IFormFile file,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
         if (file is not { Length: > 0 })
         {

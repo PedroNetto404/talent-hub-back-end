@@ -12,28 +12,14 @@ public sealed class HttpUserContext(
     IRepository<User> userRepository
 ) : IUserContext
 {
-    public async Task<Result<User>> GetCurrentAsync()
+    public Guid UserId => httpContextAccessor.HttpContext!.User.Claims
+        .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value is string userId
+        ? Guid.Parse(userId)
+        : throw new InvalidOperationException("user not authenticated");
+        
+    public async Task<Result<User>> GetCurrentAsync(CancellationToken cancellationToken = default)
     {
-        HttpContext context = httpContextAccessor.HttpContext!;
-
-        if (!context.User.Identity!.IsAuthenticated)
-        {
-            return new Error("user", "user not authenticated");
-        }
-
-        Claim? userIdClaim = context.User.Claims.FirstOrDefault(
-            c => c.Type == ClaimTypes.NameIdentifier
-        );
-        if (
-            userIdClaim is null
-            || string.IsNullOrWhiteSpace(userIdClaim.Value)
-            || !Guid.TryParse(userIdClaim.Value, out Guid userId)
-        )
-        {
-            return new Error("user", "invalid user id");
-        }
-
-        User? user = await userRepository.GetByIdAsync(userId);
+        User? user = await userRepository.GetByIdAsync(UserId, cancellationToken);
         if (user is null)
         {
             return Error.NotFound("user");

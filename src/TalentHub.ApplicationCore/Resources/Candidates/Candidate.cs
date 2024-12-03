@@ -12,9 +12,10 @@ namespace TalentHub.ApplicationCore.Resources.Candidates;
 
 public sealed class Candidate : AuditableAggregateRoot
 {
-    public Candidate
+    private Candidate
     (
         string name,
+        bool autoMatchEnabled,
         Guid userId,
         string phone,
         DateOnly birthDate,
@@ -27,6 +28,7 @@ public sealed class Candidate : AuditableAggregateRoot
     )
     {
         Name = name;
+        AutoMatchEnabled = autoMatchEnabled;
         UserId = userId;
         Phone = phone;
         BirthDate = birthDate;
@@ -36,8 +38,54 @@ public sealed class Candidate : AuditableAggregateRoot
         GithubUrl = githubUrl;
         ExpectedRemuneration = expectedRemuneration;
         Summary = summary;
+    }
 
-        RaiseEvent(new CandidateCreatedEvent(Id));
+    public static Result<Candidate> Create(
+        string name,
+        bool autoMatchEnabled,
+        Guid userId,
+        string phone,
+        DateOnly birthDate,
+        Address address,
+        string? instagramUrl,
+        string? linkedinUrl,
+        string? githubUrl,
+        decimal? expectedRemuneration,
+        string? summary
+    )
+    {
+
+        if (
+            Result.FailEarly(
+                () => Result.FailIf(string.IsNullOrWhiteSpace(name), "invalid name"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(phone) || phone.Length != 11, "invalid phone"),
+                () => Result.FailIf(birthDate == default, "invalid birth date"),
+                () => Result.FailIf(address is null, "invalid address"),
+                () => Result.FailIf(expectedRemuneration is not null && expectedRemuneration <= 0, "expected remuneration must greater than 0"),
+                () => Result.FailIf(summary is not null && summary.Length is < 10 or > 500, "summary length must be between 10 and 500")
+            ) is { IsFail: true, Error: var result }
+        )
+        {
+            return result;
+        }
+
+        var candidate = new Candidate(
+            name,
+            autoMatchEnabled,
+            userId, 
+            phone,
+            birthDate,
+            address,
+            instagramUrl,
+            linkedinUrl,
+            githubUrl,
+            expectedRemuneration,
+            summary
+        );
+
+        candidate.RaiseEvent(new CandidateCreatedEvent(candidate.Id));
+
+        return Result.Ok(candidate);
     }
 
 #pragma warning disable CS0628 // Novo membro protegido declarado no tipo selado
@@ -55,6 +103,7 @@ public sealed class Candidate : AuditableAggregateRoot
     private readonly List<JobType> _desiredJobTypes = [];
 
     public string Name { get; private set; }
+    public bool AutoMatchEnabled { get; private set; } = true;
     public Guid UserId { get; private set; }
     public string? Summary { get; private set; }
     public string? ProfilePictureUrl { get; private set; }
@@ -153,7 +202,7 @@ public sealed class Candidate : AuditableAggregateRoot
     public Result RemoveCertificate(Guid certificateId)
     {
         Certificate? existingCertificate = _certificates.FirstOrDefault(c => c.Id == certificateId);
-        if(existingCertificate is null)
+        if (existingCertificate is null)
         {
             return Error.BadRequest("invalid certificate id");
         }
@@ -606,4 +655,6 @@ public sealed class Candidate : AuditableAggregateRoot
             }
         );
     }
+
+    public void SetAutoMatchEnabled(bool autoMatchEnabled) => AutoMatchEnabled = autoMatchEnabled;
 }

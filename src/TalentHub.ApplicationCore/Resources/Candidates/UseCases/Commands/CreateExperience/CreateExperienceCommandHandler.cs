@@ -11,7 +11,7 @@ using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
 
-public sealed class CreateAcademicExperienceCommandHandler(
+public sealed class CreateExperienceCommandHandler(
     IRepository<Candidate> candidateRepository,
     IRepository<University> educationalInstituteRepository,
     IRepository<Course> courseRepository
@@ -22,7 +22,30 @@ public sealed class CreateAcademicExperienceCommandHandler(
         CreateExperienceCommand request,
         CancellationToken cancellationToken)
     {
-        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        (
+            Guid candidateId,
+            string type,
+            int startMonth,
+            int startYear,
+            int? endYear,
+            int? endMonth,
+            int? expectedGraduationMonth,
+            int? expectedGraduationYear,
+            bool isCurrent,
+            IEnumerable<string> activities,
+            string? level,
+            string? status,
+            int? currentSemester,
+            IEnumerable<string> academicEntities,
+            Guid? courseId,
+            Guid? universityId,
+            string? position,
+            string? description,
+            string? company,
+            string? professionalLevel
+        ) = request;
+
+        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");

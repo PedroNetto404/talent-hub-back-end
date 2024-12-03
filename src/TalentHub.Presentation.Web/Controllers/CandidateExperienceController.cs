@@ -10,7 +10,6 @@ using TalentHub.Presentation.Web.Models.Request;
 namespace TalentHub.Presentation.Web.Controllers;
 
 [Route("api/candidates/{candidateId:guid}/experiences")]
-
 [Authorize]
 public sealed class CandidateExperienceController(
     ISender sender
@@ -33,6 +32,8 @@ public sealed class CandidateExperienceController(
             request.StartYear,
             request.EndMonth,
             request.EndYear,
+            request.ExpectedGraduationStartMonth,
+            request.ExpectedGraduationStartYear,
             request.IsCurrent,
             [.. request.Activities],
             request.Level,
@@ -92,5 +93,6 @@ public sealed class CandidateExperienceController(
         new DeleteExperienceCommand(candidateId, experienceId),
         onSuccess: NoContent,
         cancellationToken
-    );
+    ); 
 }
+ 

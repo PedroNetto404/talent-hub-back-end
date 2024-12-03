@@ -11,8 +11,11 @@ builder.Services
        .AddInfrastructure(builder.Configuration);
 
 WebApplication app = builder.Build();
-
 app.UsePipeline();
 
-await app.SeedDatabaseAsync();
-app.Run(); 
+app.ListEndpoints();
+
+await Task.WhenAll(
+    app.SeedDatabaseAsync(), 
+    app.RunAsync()
+);

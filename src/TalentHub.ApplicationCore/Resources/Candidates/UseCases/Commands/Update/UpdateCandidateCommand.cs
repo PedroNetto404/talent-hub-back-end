@@ -6,6 +6,7 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Updat
 public sealed record UpdateCandidateCommand(
     Guid CandidateId,
     string Name,
+    bool AutoMatchEnabled,
     string Phone,
     Address Address,
     IEnumerable<string> DesiredWorkplaceTypes,

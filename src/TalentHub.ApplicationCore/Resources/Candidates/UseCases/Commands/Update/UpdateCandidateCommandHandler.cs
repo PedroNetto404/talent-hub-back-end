@@ -17,6 +17,7 @@ public sealed class UpdateCandidateCommandHandler(
         (
             Guid candidateId,
             string name,
+            bool autoMatchEnabled,
             string phone,
             Address address,
             IEnumerable<string> desiredWorkplaceTypes,
@@ -34,6 +35,8 @@ public sealed class UpdateCandidateCommandHandler(
         {
             return Error.NotFound("candidate");
         }
+
+        candidate.SetAutoMatchEnabled(autoMatchEnabled);
 
         var result = Result.FailEarly(
             () => candidate.ChangeName(name),

@@ -6,6 +6,7 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Creat
 
 public sealed record CreateCandidateCommand(
     string Name,
+    bool AutoMatchEnabled,
     string Phone,
     DateOnly BirthDate,
     Address Address,

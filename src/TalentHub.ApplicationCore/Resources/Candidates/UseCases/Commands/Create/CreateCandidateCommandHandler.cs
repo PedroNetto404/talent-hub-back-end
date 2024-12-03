@@ -6,6 +6,7 @@ using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
 
@@ -17,74 +18,76 @@ public sealed class CreateCandidateCommandHandler(
 {
     public async Task<Result<CandidateDto>> Handle(
         CreateCandidateCommand input,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-        Result<User> userResult = await userContext.GetCurrentAsync();
-        if (userResult.IsFail)
+        (
+            string name,
+            bool autoMatchEnabled,
+            string phone,
+            DateOnly birthDate,
+            Address address,
+            IEnumerable<string> desiredJobTypes,
+            IEnumerable<string> desiredWorkplaceTypes,
+            string? summary,
+            string? githubUrl,
+            string? instagramUrl,
+            string? linkedinUrl,
+            decimal? expectedRemuneration,
+            IEnumerable<string> hobbies
+        ) = input;
+
+        Result<User> maybeUser = await userContext.GetCurrentAsync(cancellationToken);
+        if (maybeUser.IsFail)
         {
-            return userResult.Error;
+            return maybeUser.Error;
         }
 
-        var candidate = new Candidate(
-            input.Name,
-            userResult.Value.Id,
-            input.Phone,
-            input.BirthDate,
-            input.Address,
-            input.InstagramUrl,
-            input.LinkedinUrl,
-            input.GithubUrl,
-            input.ExpectedRemuneration,
-            input.Summary
+        Result<Candidate> maybeCandidate = Candidate.Create(
+            name,
+            autoMatchEnabled,
+            maybeUser.Value.Id,
+            phone,
+            birthDate,
+            address,
+            instagramUrl,
+            linkedinUrl,
+            githubUrl,
+            expectedRemuneration,
+            summary
         );
-
-        foreach (string hobbie in input.Hobbies)
+        if (maybeCandidate is not { IsOk: true, Value: Candidate candidate })
         {
-            if (candidate.AddHobbie(hobbie) is
-                {
-                    IsFail: true,
-                    Error: var error
-                })
+            return maybeCandidate.Error;
+        }
+
+        var result = Result.FailEarly([
+            .. hobbies.Select<string, Func<Result>>((hobbie) => () => candidate.AddHobbie(hobbie)),
+            .. desiredWorkplaceTypes.Select<string, Func<Result>>((desiredWorkplaceType) => () =>
             {
-                return error;
-            }
-        }
-
-        foreach (string desiredWorkplaceType in input.DesiredWorkplaceTypes)
-        {
-            if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
-            { 
-                return Error.BadRequest($"{desiredWorkplaceType} is not valid workplace type");
-            }
-
-            if (candidate.AddDesiredWorkplaceType(workplaceType) is
+                if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
                 {
-                    IsFail: true,
-                    Error: var error
-                })
-            { 
-                return error; 
-            }
-        }
+                    return Error.BadRequest($"{desiredWorkplaceType} is not valid workplace type");
+                }
 
-        foreach (string desiredJobType in input.DesiredJobTypes)
-        {
-            if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
+                return candidate.AddDesiredWorkplaceType(workplaceType);
+            }),
+            .. desiredJobTypes.Select<string, Func<Result>>((desiredJobType) => () =>
             {
-                return Error.BadRequest($"{desiredJobType} is not valid job type");
-            }
-
-            if (candidate.AddDesiredJobType(jobType) is
+                if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
                 {
-                    IsFail: true,
-                    Error: var error
-                })
-            { 
-                return error; 
-            }
+                    return Error.BadRequest($"{desiredJobType} is not valid job type");
+                }
+
+                return candidate.AddDesiredJobType(jobType);
+            })
+        ]);
+        if (result.IsFail)
+        {
+            return result.Error;
         }
 
-        _ = await repository.AddAsync(candidate, cancellationToken);
-        return CandidateDto.FromEntity(candidate);
+        _ = await repository.AddAsync(maybeCandidate, cancellationToken);
+        return CandidateDto.FromEntity(maybeCandidate);
     }
 }
