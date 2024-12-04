@@ -1,10 +1,5 @@
 namespace TalentHub.ApplicationCore.Core.Abstractions;
 
-public interface IEntity 
-{
-    Guid Id { get; }
-}
-
 public abstract class Entity :
     IEntity,
     IEquatable<Entity>

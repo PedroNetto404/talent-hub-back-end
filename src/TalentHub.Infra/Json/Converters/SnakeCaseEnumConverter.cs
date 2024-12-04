@@ -26,14 +26,3 @@ public class SnakeCaseEnumConverter<TEnum> :
         writer.WriteStringValue(snakeCaseValue);
     }
 }
-
-public class SnakeCaseEnumConverterFactory : JsonConverterFactory
-{
-    public override bool CanConvert(Type typeToConvert) =>
-        typeToConvert.IsEnum;
-
-    public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options) =>
-        (JsonConverter)Activator.CreateInstance(
-            typeof(SnakeCaseEnumConverter<>).MakeGenericType(typeToConvert)
-        )!;
-}

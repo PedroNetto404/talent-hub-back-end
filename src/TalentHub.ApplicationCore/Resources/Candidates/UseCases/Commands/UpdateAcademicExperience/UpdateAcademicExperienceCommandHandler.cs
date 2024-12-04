@@ -27,10 +27,11 @@ public sealed class UpdateAcademicExperienceCommandHandler(
             string? description
         ) = request;
 
-        Result<Candidate> candidate =
-            await candidateRepository
-                .GetByIdAsync(candidateId, cancellationToken)
-                .FailIfNullAsync(() => Error.NotFound("candidate"));
+        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        if (candidate is null)
+        {
+            return Error.NotFound("candidate");
+        }
 
         Result<DatePeriod> start = DatePeriod.Create(request.StartYear, request.StartMonth);
         if (start.IsFail)
@@ -46,28 +47,28 @@ public sealed class UpdateAcademicExperienceCommandHandler(
             return endResult.Error;
         }
 
-        Result result = request.Type switch
+        Result result = type switch
         {
             "academic" =>
-                Enum.TryParse(request.Status, true, out ProgressStatus status)
+                Enum.TryParse(request.Status, true, out ProgressStatus progressStatus)
                     ? candidate.UpdateExperience(
-                        request.ExperienceId,
+                        experienceId,
                         start.Value,
                         endResult.Value,
-                        request.CurrentSemester!.Value,
-                        request.IsCurrent,
-                        request.Activities,
-                        request.AcademicEntities,
-                        status)
+                        currentSemester!.Value,
+                        isCurrent,
+                        activities,
+                        academicEntities,
+                        progressStatus)
                     : Error.BadRequest($"{status} is not valid progress status"),
             "professional" => candidate.UpdateExperience(
-                request.ExperienceId,
+                experienceId,
                 start.Value,
                 endResult.Value,
-                request.IsCurrent,
-                request.Activities,
-                request.Description!),
-            _ => Result.Fail(new Error("candidate_experience", "Invalid experience type"))
+                isCurrent,
+                activities,
+                description!),
+            _ => Error.BadRequest($"{type} must be either academic or professional")
         };
         if (result.IsFail)
         {

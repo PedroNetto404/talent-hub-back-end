@@ -32,7 +32,7 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<ICacheProvider, InMemoryCacheProvider>();
-        services.AddScoped<IFileStorage, MinIOFileStorage>();
+        services.AddScoped<IFileStorage, MinIoFileStorage>();
         services.AddScoped<IUserContext, HttpUserContext>();
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<ITokenProvider, TokenProvider>();

@@ -5,12 +5,12 @@ using TalentHub.ApplicationCore.Ports;
 
 namespace TalentHub.Infra.Files;
 
-public sealed class MinIOFileStorage : IFileStorage
+public sealed class MinIoFileStorage : IFileStorage
 {
     private readonly IAmazonS3 _amazonS3;
     private readonly string _serviceUrl;
 
-    public MinIOFileStorage()
+    public MinIoFileStorage()
     {
         var config = new AmazonS3Config
         {
@@ -31,7 +31,10 @@ public sealed class MinIOFileStorage : IFileStorage
         string fileName,
         CancellationToken cancellationToken = default)
     {
-        if (!await BucketExistsAsync(bucket, cancellationToken)) return;
+        if (!await BucketExistsAsync(bucket, cancellationToken))
+        {
+            return;
+        }
 
         await _amazonS3.DeleteObjectAsync(new DeleteObjectRequest
         {
@@ -46,9 +49,11 @@ public sealed class MinIOFileStorage : IFileStorage
         CancellationToken cancellationToken = default)
     {
         if (!await BucketExistsAsync(bucket, cancellationToken))
+        {
             throw new FileNotFoundException($"Bucket '{bucket}' not found.");
+        }
 
-        var obj = await _amazonS3.GetObjectAsync(new GetObjectRequest
+        GetObjectResponse? obj = await _amazonS3.GetObjectAsync(new GetObjectRequest
         {
             BucketName = bucket,
             Key = fileName
@@ -65,7 +70,9 @@ public sealed class MinIOFileStorage : IFileStorage
         CancellationToken cancellationToken = default)
     {
         if (!await BucketExistsAsync(bucket, cancellationToken))
+        {
             await CreateBucketAsync(bucket, cancellationToken);
+        }
 
         var putObjectRequest = new PutObjectRequest
         {
@@ -77,17 +84,19 @@ public sealed class MinIOFileStorage : IFileStorage
             CannedACL = S3CannedACL.PublicRead
         };
 
-        var response = await _amazonS3.PutObjectAsync(putObjectRequest, cancellationToken);
+        PutObjectResponse? response = await _amazonS3.PutObjectAsync(putObjectRequest, cancellationToken);
 
         if (response.HttpStatusCode != HttpStatusCode.OK)
+        {
             throw new Exception($"Failed to save file '{fileName}' to bucket '{bucket}'.");
+        }
 
         return $"{_serviceUrl}/{bucket}/{fileName}";
     }
 
     private async Task<bool> BucketExistsAsync(string bucketName, CancellationToken cancellationToken)
     {
-        var response = await _amazonS3.ListBucketsAsync(cancellationToken);
+        ListBucketsResponse? response = await _amazonS3.ListBucketsAsync(cancellationToken);
         return response.Buckets.Any(bucket => bucket.BucketName == bucketName);
     }
 
@@ -96,20 +105,22 @@ public sealed class MinIOFileStorage : IFileStorage
         await _amazonS3.PutBucketAsync(new PutBucketRequest
         {
             BucketName = bucketName,
-            CannedACL = S3CannedACL.PublicRead 
+            CannedACL = S3CannedACL.PublicRead
         }, cancellationToken);
 
-        var bucketPolicy = @$"{{
-            ""Version"": ""2012-10-17"",
-            ""Statement"": [
-                {{
-                    ""Effect"": ""Allow"",
-                    ""Principal"": ""*"",
-                    ""Action"": ""s3:GetObject"",
-                    ""Resource"": ""arn:aws:s3:::{bucketName}/*""
-                }}
-            ]
-        }}";
+        string bucketPolicy = $$"""
+                                {
+                                            "Version": "2012-10-17",
+                                            "Statement": [
+                                                {
+                                                    "Effect": "Allow",
+                                                    "Principal": "*",
+                                                    "Action": "s3:GetObject",
+                                                    "Resource": "arn:aws:s3:::{{bucketName}}/*"
+                                                }
+                                            ]
+                                        }
+                                """;
 
         await _amazonS3.PutBucketPolicyAsync(new PutBucketPolicyRequest
         {

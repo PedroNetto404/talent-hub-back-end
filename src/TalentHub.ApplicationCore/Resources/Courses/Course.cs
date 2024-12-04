@@ -13,53 +13,65 @@ public sealed class Course : AggregateRoot
 
     private Course(string name) => Name = name;
 
-    public static Result<Course> Create(string name) 
+    public static Result<Course> Create(string name)
     {
-        if (string.IsNullOrWhiteSpace(name)) return new Error("course", "Name is required");
+        if (Result.FailIfIsNullOrWhiteSpace(name, "name is required") is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
 
         return new Course(name);
     }
 
     private readonly List<string> _tags = [];
-    private readonly List<Guid> _RelatedSkills = [];
+    private readonly List<Guid> _relatedSkills = [];
 
     public string Name { get; private set; }
     public IReadOnlyList<string> Tags => _tags.AsReadOnly();
-    public IReadOnlyList<Guid> RelatedSkills => _RelatedSkills.AsReadOnly();
+    public IReadOnlyList<Guid> RelatedSkills => _relatedSkills.AsReadOnly();
 
     public void ClearTags() => _tags.Clear();
 
     public Result AddTag(string tag)
     {
-        if (string.IsNullOrWhiteSpace(tag))
-            return new Error("tag", "Tag is required");
-
-        if(_tags.Contains(tag))
-            return new Error("tag", "Tag already exists");
+        if (
+            Result.FailEarly(
+                () => Result.FailIfIsNullOrWhiteSpace(tag, "tag is required"),
+                () => Result.FailIf(_tags.Contains(tag), "tag already exists")
+            )
+            is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
 
         _tags.Add(tag);
         return Result.Ok();
     }
 
-    public void ClearRelatedSkills() => _RelatedSkills.Clear();
+    public void ClearRelatedSkills() => _relatedSkills.Clear();
 
-    public Result AddRelatedSkill(Guid skillId) 
+    public Result AddRelatedSkill(Guid skillId)
     {
-        if (skillId == Guid.Empty)
-            return new Error("course", "Skill id is required");
+        if (
+            Result.FailEarly(
+                () => Result.FailIfEquals(skillId, Guid.Empty, "Skill id is required"),
+                () => Result.FailIf(_relatedSkills.Contains(skillId), "Skill already exists"))
+            is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
 
-        if(_RelatedSkills.Contains(skillId))
-            return new Error("course", "Skill already exists");
-
-        _RelatedSkills.Add(skillId);
+        _relatedSkills.Add(skillId);
 
         return Result.Ok();
     }
 
     public Result ChangeName(string name)
     {
-        if(string.IsNullOrWhiteSpace(name))
-            return new Error("course", "invalid course name");
+        if (Result.FailIfIsNullOrWhiteSpace(name, "name is required") is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
 
         Name = name;
 

@@ -17,24 +17,40 @@ public sealed class University : AggregateRoot
 
     public static Result<University> Create(string name, string? siteUrl = null)
     {
-        if(string.IsNullOrWhiteSpace(name)) return new Error("university", "Name must be provided.");
-        if(siteUrl is not null && !siteUrl.IsValidUrl()) return new Error("university", "Invalid site url.");
-        
+        if (Result.FailIfIsNullOrWhiteSpace(name, "Name must be provided.") is { IsFail: true, Error: var nameError })
+        {
+            return nameError;
+        }
+
+        if (siteUrl is not null && !siteUrl.IsValidUrl())
+        {
+            return new Error("university", "Invalid site url.");
+        }
+
         return Result.Ok(new University(name, siteUrl));
     }
+
     public string Name { get; private set; }
     public string? SiteUrl { get; private set; }
 
     public Result ChangeName(string name)
     {
-        if(string.IsNullOrWhiteSpace(name)) return new Error("university", "Name must be provided.");
+        if (Result.FailIfIsNullOrWhiteSpace(name, "Name must be provided.") is { IsFail: true, Error: var nameError })
+        {
+            return nameError;
+        }
+
         Name = name;
         return Result.Ok();
     }
 
     public Result ChangeSiteUrl(string siteUrl)
     {
-        if(!siteUrl.IsValidUrl()) return new Error("university", "Invalid site url.");
+        if (Result.FailIf(!siteUrl.IsValidUrl(), "Invalid site url.") is { IsFail: true, Error: var siteUrlError })
+        {
+            return siteUrlError;
+        }
+
         SiteUrl = siteUrl;
         return Result.Ok();
     }

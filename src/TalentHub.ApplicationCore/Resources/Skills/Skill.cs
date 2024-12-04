@@ -16,29 +16,31 @@ public sealed class Skill : AggregateRoot
 
     public static Result<Skill> Create(string name, SkillType type)
     {
-        if (string.IsNullOrWhiteSpace(name))
-            return new Error("skill", "skill name cannot be blank.");
+        if (Result.FailIfIsNullOrWhiteSpace(name, "skill name is required") is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
 
         return new Skill(name, type);
     }
 
     private readonly List<string> _tags = [];
-    public string Name { get; private set; } 
-    public SkillType Type { get; private set; } 
+    public string Name { get; private set; }
+    public SkillType Type { get; private set; }
     public IReadOnlyCollection<string> Tags => _tags.AsReadOnly();
 
     public Result AddTag(string tag)
     {
         tag = tag.Trim();
 
-        if (string.IsNullOrWhiteSpace(tag))
+        if (Result.FailIfIsNullOrWhiteSpace(tag, "tag is required") is { IsFail: true, Error: var emptyError })
         {
-            return new Error("skill", "skill tag cannot be empty");
+            return emptyError;
         }
 
-        if (_tags.Contains(tag))
+        if (Result.FailIf(_tags.Contains(tag), "tag already exists") is { IsFail: true, Error: var containsError })
         {
-            return new Error("skill", $"skill tag already contains {tag}");
+            return containsError;
         }
 
         _tags.Add(tag);
@@ -50,8 +52,11 @@ public sealed class Skill : AggregateRoot
 
     public Result UpdateName(string name)
     {
-        if(string.IsNullOrWhiteSpace(name)) return new Error("skill", "skill name cannot be blank"); 
-
+        if (Result.FailIfIsNullOrWhiteSpace(name, "name is required") is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
+        
         Name = name;
 
         return Result.Ok();
