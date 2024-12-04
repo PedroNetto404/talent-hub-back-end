@@ -12,10 +12,6 @@ builder.Services
 
 WebApplication app = builder.Build();
 app.UsePipeline();
-
-app.ListEndpoints();
-
-await Task.WhenAll(
-    app.SeedDatabaseAsync(), 
-    app.RunAsync()
-);
+app.PrintEndpoints();
+await app.SeedDatabaseAsync();
+await app.RunAsync();

@@ -1,7 +1,9 @@
 using System.Text.Json;
+using Amazon.Runtime.Internal.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using TalentHub.ApplicationCore.Resources.Courses;
 using TalentHub.ApplicationCore.Resources.Universities;
 using TalentHub.Infra.Data;
@@ -10,27 +12,33 @@ namespace TalentHub.Infra.Extensions;
 
 public static class WebApplicationExtensions
 {
-    public static async Task SeedDatabaseAsync(this WebApplication app)
+    public async static Task SeedDatabaseAsync(this WebApplication app)
     {
         await using AsyncServiceScope scope = app.Services.CreateAsyncScope();
         TalentHubContext context = scope.ServiceProvider.GetRequiredService<TalentHubContext>();
+        ILogger<WebApplication> logger = scope.ServiceProvider.GetRequiredService<ILogger<WebApplication>>();
+
+        logger.LogInformation("starting database seed");
 
         await SeedEntities(
             context,
             "universities_seed.json",
             p => University.Create(p).Value,
             u => u.Name,
-            "universities"
+            "universities",
+            logger
         );
+
         await SeedEntities(
             context,
             "courses_seed.json",
             p => Course.Create(p).Value,
             c => c.Name,
-            "courses"
+            "courses",
+            logger
         );
 
-        Console.WriteLine("Database seeding process completed.");
+        Console.WriteLine("Database seeding process completed.\n");
     }
 
     private static async Task SeedEntities<TEntity>(
@@ -38,52 +46,57 @@ public static class WebApplicationExtensions
         string seedFileName,
         Func<string, TEntity> createEntityFunc,
         Func<TEntity, string> getEntityKey,
-        string entityName
+        string entityName,
+        ILogger<WebApplication> logger
     ) where TEntity : class
     {
-        string seedFilePath = GetSeedFilePath(seedFileName);
-
-        Console.WriteLine($"{entityName} Seed Path: {seedFilePath}");
-        if (!File.Exists(seedFilePath))
+        try
         {
-            Console.WriteLine($"{entityName} seed file not found. Skipping seeding process.");
-            return;
-        }
+            string seedFilePath = GetSeedFilePath(seedFileName);
 
-        string fileContent = await File.ReadAllTextAsync(seedFilePath);
-        if (string.IsNullOrWhiteSpace(fileContent))
-        {
-            Console.WriteLine($"{entityName} seed is empty. Skipping seeding process.");
-            return;
-        }
+            logger.LogInformation("Seeding {entityName} from {seedFilePath}", entityName, seedFilePath);
+            if (!File.Exists(seedFilePath))
+            {
+                logger.LogError("{entityName} seed file not found. Skipping seeding process", entityName);
+                return;
+            }
 
-        TEntity[] entitiesToSeed = [.. JsonSerializer
-            .Deserialize<JsonElement[]>(fileContent)!
-            .Select(p => createEntityFunc(p.GetProperty("label").GetString()!))];
+            string fileContent = await File.ReadAllTextAsync(seedFilePath);
+            if (string.IsNullOrWhiteSpace(fileContent))
+            {
+                logger.LogInformation("{entityName} seed is empty. Skipping seeding process.", entityName);
+                return;
+            }
 
-        if (!entitiesToSeed.Any())
-        {
-            Console.WriteLine($"No {entityName} to seed. Skipping seeding process.");
-            return;
-        }
+            JsonElement[] entitiesToSeed = JsonSerializer.Deserialize<JsonElement[]>(fileContent)!;
+            if (!entitiesToSeed.Any())
+            {
+                logger.LogInformation("No {entityName} to seed. Skipping seeding process.", entityName);
+                return;
+            }
 
-        IEnumerable<string> entityKeysInDatabase =
-            await context
-                .Set<TEntity>()
-                .ToListAsync()
-                .ContinueWith(task => task.Result.Select(getEntityKey));
+            IEnumerable<string> entityKeysInDatabase =
+                await context
+                    .Set<TEntity>()
+                    .ToListAsync()
+                    .ContinueWith(task => task.Result.Select(getEntityKey));
 
-        TEntity[] newEntities = [.. entitiesToSeed.Where(e => !entityKeysInDatabase.Contains(getEntityKey(e)))];
+            foreach (JsonElement entity in entitiesToSeed)
+            {
+                TEntity newEntity = createEntityFunc(entity.GetProperty("label").GetString()!);
+                if (!entityKeysInDatabase.Contains(getEntityKey(newEntity)))
+                {
+                    await context.Set<TEntity>().AddAsync(newEntity);
+                }
+            }
 
-        if (newEntities.Any())
-        {
-            await context.Set<TEntity>().AddRangeAsync(newEntities);
             await context.SaveChangesAsync();
-            Console.WriteLine($"{newEntities.Length} {entityName} seeded successfully.");
+
+            logger.LogInformation("{entitiesToSeed.Length} {entityName} seeded successfully.", entitiesToSeed.Length, entityName);
         }
-        else
+        catch (Exception e)
         {
-            Console.WriteLine($"All {entityName} are already in the database. No new {entityName} were added.");
+            logger.LogError(e, "Error seeding {entityName}", entityName);
         }
     }
 
@@ -98,7 +111,6 @@ public static class WebApplicationExtensions
             "Debug",
             $"net{Environment.Version.Major}.{Environment.Version.Minor}");
 #endif
-
         return Path.Combine(basePath, fileName);
     }
 }

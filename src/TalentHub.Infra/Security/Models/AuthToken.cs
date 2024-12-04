@@ -1,1 +1,1 @@
-namespace x;
+namespace TalentHub.Infra.Security.Models;

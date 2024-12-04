@@ -40,9 +40,39 @@ public class Result
         ? Fail(Error.BadRequest(erroMessage)) 
         : Ok();
 
+    public static Result FailIfNull(object? value, string errorMessage) =>
+        FailIf(value is null, errorMessage);
+
+    public static Result FailIfIsInPast(DateTime value, string errorMessage) =>
+        FailIf(value < DateTime.Now, errorMessage);
+
+    public static Result FailIfIsInPast(DateOnly value, string errorMessage) =>
+        FailIf(value < DateOnly.FromDateTime(DateTime.Now), errorMessage);
+
     public static Result FailIf(Func<bool> predicate, string erroMessage) =>
         FailIf(predicate(), erroMessage);
-    }
+
+    public static Result FailIfIsNullOrWhiteSpace(string value, string errorMessage) =>
+        FailIf(string.IsNullOrWhiteSpace(value), errorMessage);
+
+    public static Result IsGreaterThan(decimal value, decimal limit, string errorMessage) =>
+        FailIf(value <= limit, errorMessage);
+
+    public static Result IsGreaterOrEqualThan(decimal value, decimal limit, string errorMessage) =>
+        FailIf(value < limit, errorMessage);
+    
+    public static Result IsLessThan(decimal value, decimal limit, string errorMessage) =>
+        FailIf(value >= limit, errorMessage);
+
+    public static Result IsLessOrEqualThan(decimal value, decimal limit, string errorMessage) =>
+        FailIf(value > limit, errorMessage);
+
+    public static Result IsBetween(decimal value, decimal min, decimal max, string errorMessage) =>
+        FailIf(value < min || value > max, errorMessage);
+
+    public static Result IsBetweenOrEqual(decimal value, decimal min, decimal max, string errorMessage) =>
+        FailIf(value <= min || value >= max, errorMessage);
+}
 
 public class Result<T> : Result where T : notnull
 {

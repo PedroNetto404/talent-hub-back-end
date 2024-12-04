@@ -1,0 +1,54 @@
+[
+  {
+    "value": 1,
+    "label": "Trabalho Voluntário"
+  },
+  {
+    "value": 2,
+    "label": "Programa de Estágio"
+  },
+  {
+    "value": 3,
+    "label": "Estágio"
+  },
+  {
+    "value": 4,
+    "label": "Programa de Trainee"
+  },
+  {
+    "value": 5,
+    "label": "Trabalho no Exterior"
+  },
+  {
+    "value": 6,
+    "label": "Freelance"
+  },
+  {
+    "value": 7,
+    "label": "Efetivo"
+  },
+  {
+    "value": 8,
+    "label": "Estágio de Férias"
+  },
+  {
+    "value": 9,
+    "label": "Técnico"
+  },
+  {
+    "value": 10,
+    "label": "Consultor independente"
+  },
+  {
+    "value": 12,
+    "label": "Desafio"
+  },
+  {
+    "value": 11,
+    "label": "Evento"
+  },
+  {
+    "value": 13,
+    "label": "Jovem Aprendiz"
+  }
+]

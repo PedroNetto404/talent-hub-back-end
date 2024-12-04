@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
-namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateExperience;
 
 public sealed record CreateExperienceCommand(
     Guid CandidateId,

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TalentHub.Infra.Data;
@@ -12,9 +13,11 @@ using TalentHub.Infra.Data;
 namespace TalentHub.Infra.Migrations
 {
     [DbContext(typeof(TalentHubContext))]
-    partial class TalentHubContextModelSnapshot : ModelSnapshot
+    [Migration("20241203222427_AddAcademicExperienceFields")]
+    partial class AddAcademicExperienceFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
-using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateExperience;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.DeleteExperience;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateAcademicExperience;
 using TalentHub.Presentation.Web.Models.Request;

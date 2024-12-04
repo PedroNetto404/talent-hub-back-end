@@ -9,7 +9,7 @@ using TalentHub.ApplicationCore.Resources.Universities;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
-namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateAcademicExperience;
+namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateExperience;
 
 public sealed class CreateExperienceCommandHandler(
     IRepository<Candidate> candidateRepository,

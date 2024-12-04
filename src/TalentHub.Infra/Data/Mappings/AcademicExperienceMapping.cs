@@ -39,7 +39,6 @@ public sealed class AcademicExperienceMapping : IEntityTypeConfiguration<Academi
             .HasForeignKey(p => p.UniversityId)
             .IsRequired();
 
-
         builder
             .Property<List<AcademicEntity>>("_academicEntities")
             .HasConversion(
@@ -53,5 +52,20 @@ public sealed class AcademicExperienceMapping : IEntityTypeConfiguration<Academi
             )
             .HasColumnType("text[]")
             .HasColumnName("academic_entites");
+
+        builder.OwnsOne(p => p.ExpectedGraduation, b => 
+        {
+            b.Property(q => q.Year)
+                .HasColumnName("expected_graduation_year")
+                .IsRequired();
+
+            b.Property(q => q.Month)
+                .HasColumnName("expected_graduation_month")
+                .IsRequired();
+        });
+
+        builder.Property(p => p.CurrentSemester)
+            .HasColumnName("current_semester")
+            .IsRequired();
     }
 }

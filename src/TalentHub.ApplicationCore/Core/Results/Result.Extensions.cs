@@ -2,7 +2,7 @@ namespace TalentHub.ApplicationCore.Core.Results;
 
 public static class ResultExtensions
 {
-    public static async Task<TOut> MatchAsync<TIn, TOut>(
+    public static async Task<TOut> FailIfNullAsync<TIn, TOut>(
         this Task<Result<TIn>> resultTask,
         Func<TIn, TOut> onSuccess,
         Func<Error, TOut> onError
@@ -13,11 +13,11 @@ public static class ResultExtensions
         Result<TIn> result = await resultTask;
 
         return result.IsOk
-        ? onSuccess(result.Value)
-        : onError(result.Error);
+            ? onSuccess(result.Value)
+            : onError(result.Error);
     }
 
-    public static async Task<TOut> MatchAsync<TOut>(
+    public static async Task<TOut> FailIfNullAsync<TOut>(
         this Task<Result> resultTask,
         Func<TOut> onSuccess,
         Func<Error, TOut> onError
@@ -26,7 +26,14 @@ public static class ResultExtensions
         Result result = await resultTask;
 
         return result.IsOk
-        ? onSuccess()
-        : onError(result.Error);
+            ? onSuccess()
+            : onError(result.Error);
     }
+
+    public static async Task<Result<T>> FailIfNullAsync<T>(
+        this Task<T?> maybeTTask,
+        Func<Error> errFactory) where T : notnull =>
+        await maybeTTask is { } value
+            ? Result.Ok<T>(value)
+            : errFactory();
 }
