@@ -80,6 +80,7 @@ public static class WebApplicationExtensions
                     .Set<TEntity>()
                     .ToListAsync()
                     .ContinueWith(task => task.Result.Select(getEntityKey));
+            entityKeysInDatabase = entityKeysInDatabase.ToList();
 
             foreach (JsonElement entity in entitiesToSeed)
             {

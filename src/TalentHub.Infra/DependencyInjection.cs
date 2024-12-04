@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.Infra.Cache;
@@ -40,6 +41,12 @@ public static class DependencyInjection
         services.ConfigureOptions<AuthOptionsSetup>();
         services.AddAuthentication().AddJwtBearer();
         services.AddAuthorization();
+
+        services.AddLogging(builder =>
+        {
+            builder.AddConsole();
+            builder.AddDebug();
+        });
         return services;
     }
 }
