@@ -7,7 +7,10 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Updat
 public sealed class UpdateCandidateSkillProficiencyCommandHandler(IRepository<Candidate> candidateRepository) :
     ICommandHandler<UpdateCandidateSkillProficiencyCommand>
 {
-    public async Task<Result> Handle(UpdateCandidateSkillProficiencyCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(
+        UpdateCandidateSkillProficiencyCommand request,
+        CancellationToken cancellationToken
+    )
     {
         (Guid candidateId, Guid candidateSkillId, string proficiency) = request;
 
@@ -17,16 +20,16 @@ public sealed class UpdateCandidateSkillProficiencyCommandHandler(IRepository<Ca
             return Error.NotFound("candidate");
         }
 
-        if(!Enum.TryParse(proficiency, true, out Proficiency proficiencyEnum))
+        if (!Enum.TryParse(proficiency, true, out Proficiency proficiencyEnum))
         {
             return Error.BadRequest($"{proficiency} is not valid proficiency");
         }
 
-        if(candidate.UpdateSkillProficiency(candidateSkillId, proficiencyEnum) is 
-        {
-            IsFail: true,
-            Error: var err
-        })
+        if (candidate.UpdateSkillProficiency(candidateSkillId, proficiencyEnum) is
+            {
+                IsFail: true,
+                Error: var err
+            })
         {
             return err;
         }

@@ -49,7 +49,7 @@ public sealed record CompanyDto(
             entity.Mission,
             entity.Vision,
             entity.Values,
-            entity.FoundantionYear,
-            entity.Gelery
+            entity.FoundationYear,
+            entity.Galery
         );
 }

@@ -12,7 +12,6 @@ namespace TalentHub.Presentation.Web.Controllers;
 public sealed class UserController(ISender sender) : ApiController(sender)
 {
     [HttpPost]
-    [Authorize]
     public Task<IActionResult> CreateAsync(
         CreateUserRequest request,
         CancellationToken cancellationToken

@@ -91,7 +91,7 @@ public sealed class MinIoFileStorage : IFileStorage
             throw new Exception($"Failed to save file '{fileName}' to bucket '{bucket}'.");
         }
 
-        return $"{_serviceUrl}/{bucket}/{fileName}";
+        return $"{_serviceUrl}{bucket}/{fileName}";
     }
 
     private async Task<bool> BucketExistsAsync(string bucketName, CancellationToken cancellationToken)

@@ -1,5 +1,6 @@
 using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Core.Results;
 
 namespace TalentHub.ApplicationCore.Extensions;
 

@@ -19,7 +19,7 @@ public sealed record UpdateCandidateRequest
     public required string Phone { get; init; }
 
     [Required]
-    public required Address Address { get; init; }
+    public required AddressRequest Address { get; init; }
 
     [AllowedValues(
         "remote",

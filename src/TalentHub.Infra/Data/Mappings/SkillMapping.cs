@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TalentHub.ApplicationCore.Resources.CompanySectors;
 using TalentHub.ApplicationCore.Resources.Skills;
 using TalentHub.ApplicationCore.Resources.Skills.Enums;
 using TalentHub.Infra.Data.ValueConverters;
@@ -27,5 +28,20 @@ public sealed class SkillMapping : EntityMapping<Skill>
             .Property("_tags")
             .HasColumnType("text[]")
             .HasColumnName("tags");
+    }
+}
+
+public sealed class CompanySectorMapping : EntityMapping<CompanySector>
+{
+    public override void Configure(EntityTypeBuilder<CompanySector> builder)
+    {
+        base.Configure(builder);
+
+        builder.ToTable("company_sectors");
+
+        builder
+            .Property(p => p.Name)
+            .HasMaxLength(300)
+            .IsRequired();
     }
 }

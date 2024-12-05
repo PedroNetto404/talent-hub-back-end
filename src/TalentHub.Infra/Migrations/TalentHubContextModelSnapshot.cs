@@ -41,7 +41,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 4, 13, 36, 8, 223, DateTimeKind.Utc).AddTicks(1156))
+                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 296, DateTimeKind.Utc).AddTicks(2148))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -93,7 +93,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 4, 13, 36, 8, 223, DateTimeKind.Utc).AddTicks(1719))
+                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 296, DateTimeKind.Utc).AddTicks(2439))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<Guid>("UserId")
@@ -317,7 +317,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 4, 13, 36, 8, 239, DateTimeKind.Utc).AddTicks(7043))
+                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 304, DateTimeKind.Utc).AddTicks(1203))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -332,9 +332,9 @@ namespace TalentHub.Infra.Migrations
                         .HasColumnType("text")
                         .HasColumnName("facebook_url");
 
-                    b.Property<int>("FoundantionYear")
+                    b.Property<int>("FoundationYear")
                         .HasColumnType("integer")
-                        .HasColumnName("foundantion_year");
+                        .HasColumnName("foundation_year");
 
                     b.Property<string>("InstagramUrl")
                         .HasColumnType("text")
@@ -391,7 +391,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 4, 13, 36, 8, 239, DateTimeKind.Utc).AddTicks(7599))
+                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 304, DateTimeKind.Utc).AddTicks(1462))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<string>("Values")
@@ -422,7 +422,29 @@ namespace TalentHub.Infra.Migrations
                         .IsUnique()
                         .HasDatabaseName("ix_companies_recruitment_email");
 
+                    b.HasIndex("SectorId")
+                        .HasDatabaseName("ix_companies_sector_id");
+
                     b.ToTable("companies", (string)null);
+                });
+
+            modelBuilder.Entity("TalentHub.ApplicationCore.Resources.CompanySectors.CompanySector", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_company_sectors");
+
+                    b.ToTable("company_sectors", (string)null);
                 });
 
             modelBuilder.Entity("TalentHub.ApplicationCore.Resources.Courses.Course", b =>
@@ -509,7 +531,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 4, 13, 36, 8, 278, DateTimeKind.Utc).AddTicks(9428))
+                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 323, DateTimeKind.Utc).AddTicks(6445))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -536,7 +558,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 4, 13, 36, 8, 279, DateTimeKind.Utc).AddTicks(149))
+                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 323, DateTimeKind.Utc).AddTicks(6814))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<string>("Username")
@@ -820,6 +842,13 @@ namespace TalentHub.Infra.Migrations
 
             modelBuilder.Entity("TalentHub.ApplicationCore.Resources.Companies.Company", b =>
                 {
+                    b.HasOne("TalentHub.ApplicationCore.Resources.CompanySectors.CompanySector", null)
+                        .WithMany()
+                        .HasForeignKey("SectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_companies_company_sector_sector_id");
+
                     b.OwnsOne("TalentHub.ApplicationCore.Shared.ValueObjects.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("CompanyId")

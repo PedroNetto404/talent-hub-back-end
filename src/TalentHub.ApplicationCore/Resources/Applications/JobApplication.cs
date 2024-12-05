@@ -5,7 +5,9 @@ namespace TalentHub.ApplicationCore.Resources.Applications;
 
 public sealed class JobApplication : AuditableAggregateRoot
 {
-    public Guid JobOpportunityId { get; private set; }      
+    public Guid JobOpportunityId { get; private set; }
     public Guid CandidateId { get; private set; }
     public ApplicationStatus Status { get; private set; }
+    public string? RejectionReason { get; private set; }
+    public string? RejectionDetails { get; private set; }
 }

@@ -35,7 +35,8 @@ public sealed record CreateExperienceRequest
         "elementary_school",
         "high_school",
         "technical_education",
-        "higher_degree"
+        "higher_degree",
+        null
     )]
     [DefaultValue(null)]
     public string? Level { get; init; } = string.Empty;

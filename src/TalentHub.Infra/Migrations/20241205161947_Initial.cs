@@ -13,45 +13,15 @@ namespace TalentHub.Infra.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "companies",
+                name: "company_sectors",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    legal_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    trade_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
-                    sector_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    recruitment_email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    phone = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
-                    auto_match_enabled = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    employee_count = table.Column<int>(type: "integer", nullable: false),
-                    logo_url = table.Column<string>(type: "text", nullable: true),
-                    site_url = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    address_street = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    address_number = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    address_neighborhood = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    address_city = table.Column<string>(type: "text", nullable: false),
-                    address_state = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    address_country = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    address_zip_code = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
-                    about = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    instagram_url = table.Column<string>(type: "text", nullable: true),
-                    facebook_url = table.Column<string>(type: "text", nullable: true),
-                    linkedin_url = table.Column<string>(type: "text", nullable: true),
-                    career_page_url = table.Column<string>(type: "text", nullable: true),
-                    presentation_video_url = table.Column<string>(type: "text", nullable: true),
-                    mission = table.Column<string>(type: "text", nullable: true),
-                    vision = table.Column<string>(type: "text", nullable: true),
-                    values = table.Column<string>(type: "text", nullable: true),
-                    foundantion_year = table.Column<int>(type: "integer", nullable: false),
-                    galery = table.Column<List<string>>(type: "text[]", nullable: false),
-                    created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 4, 13, 36, 8, 239, DateTimeKind.Utc).AddTicks(7043)),
-                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 4, 13, 36, 8, 239, DateTimeKind.Utc).AddTicks(7599)),
-                    deleted_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    name = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_companies", x => x.id);
+                    table.PrimaryKey("pk_company_sectors", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,13 +75,61 @@ namespace TalentHub.Infra.Migrations
                     hashed_password = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     refresh_token_value = table.Column<string>(type: "text", nullable: true),
                     refresh_token_expiration = table.Column<long>(type: "bigint", nullable: true),
-                    created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 4, 13, 36, 8, 278, DateTimeKind.Utc).AddTicks(9428)),
-                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 4, 13, 36, 8, 279, DateTimeKind.Utc).AddTicks(149)),
+                    created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 5, 16, 19, 46, 323, DateTimeKind.Utc).AddTicks(6445)),
+                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 5, 16, 19, 46, 323, DateTimeKind.Utc).AddTicks(6814)),
                     deleted_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_users", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "companies",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    legal_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    trade_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
+                    about = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    sector_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    recruitment_email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    phone = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
+                    auto_match_enabled = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    employee_count = table.Column<int>(type: "integer", nullable: false),
+                    logo_url = table.Column<string>(type: "text", nullable: true),
+                    site_url = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    address_street = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    address_number = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    address_neighborhood = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    address_city = table.Column<string>(type: "text", nullable: false),
+                    address_state = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    address_country = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    address_zip_code = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
+                    instagram_url = table.Column<string>(type: "text", nullable: true),
+                    facebook_url = table.Column<string>(type: "text", nullable: true),
+                    linkedin_url = table.Column<string>(type: "text", nullable: true),
+                    career_page_url = table.Column<string>(type: "text", nullable: true),
+                    presentation_video_url = table.Column<string>(type: "text", nullable: true),
+                    mission = table.Column<string>(type: "text", nullable: true),
+                    vision = table.Column<string>(type: "text", nullable: true),
+                    values = table.Column<string>(type: "text", nullable: true),
+                    foundation_year = table.Column<int>(type: "integer", nullable: false),
+                    galery = table.Column<List<string>>(type: "text[]", nullable: false),
+                    created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 5, 16, 19, 46, 304, DateTimeKind.Utc).AddTicks(1203)),
+                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 5, 16, 19, 46, 304, DateTimeKind.Utc).AddTicks(1462)),
+                    deleted_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_companies", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_companies_company_sector_sector_id",
+                        column: x => x.sector_id,
+                        principalTable: "company_sectors",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -165,8 +183,8 @@ namespace TalentHub.Infra.Migrations
                     desired_job_types = table.Column<string[]>(type: "text[]", nullable: false),
                     desired_workplace_types = table.Column<string[]>(type: "text[]", nullable: false),
                     hobbies = table.Column<List<string>>(type: "text[]", nullable: false),
-                    created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 4, 13, 36, 8, 223, DateTimeKind.Utc).AddTicks(1156)),
-                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 4, 13, 36, 8, 223, DateTimeKind.Utc).AddTicks(1719)),
+                    created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 5, 16, 19, 46, 296, DateTimeKind.Utc).AddTicks(2148)),
+                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 12, 5, 16, 19, 46, 296, DateTimeKind.Utc).AddTicks(2439)),
                     deleted_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -346,6 +364,11 @@ namespace TalentHub.Infra.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "ix_companies_sector_id",
+                table: "companies",
+                column: "sector_id");
+
+            migrationBuilder.CreateIndex(
                 name: "ix_experiences_candidate_id",
                 table: "experiences",
                 column: "candidate_id");
@@ -397,6 +420,9 @@ namespace TalentHub.Infra.Migrations
 
             migrationBuilder.DropTable(
                 name: "related_course_skills");
+
+            migrationBuilder.DropTable(
+                name: "company_sectors");
 
             migrationBuilder.DropTable(
                 name: "universities");

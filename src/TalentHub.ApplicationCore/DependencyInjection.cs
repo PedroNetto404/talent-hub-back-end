@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using TalentHub.ApplicationCore.Behaviors;
 
@@ -12,7 +13,11 @@ public static class DependencyInjection
             config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
             config.AddOpenBehavior(typeof(CacheBehavior<,>));
         });
-        
+
+        services.AddValidatorsFromAssembly(
+            typeof(DependencyInjection).Assembly
+        );
+
         return services;
     }
 }

@@ -2,7 +2,7 @@ using TalentHub.ApplicationCore.Core.Results;
 
 namespace TalentHub.ApplicationCore.Shared.ValueObjects;
 
-public record Address
+public sealed record Address
 {
     public string Street { get; init; }
     public string Number { get; init; }
@@ -19,7 +19,8 @@ public record Address
         string city,
         string state,
         string country,
-        string zipCode)
+        string zipCode
+    )
     {
         Street = street;
         Number = number;
@@ -59,7 +60,8 @@ public record Address
             city,
             state,
             country,
-            zipCode);
+            zipCode
+        );
     }
 }
 

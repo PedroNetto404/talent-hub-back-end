@@ -2,21 +2,23 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
+using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Jobs;
 
 public sealed class Job : AuditableAggregateRoot
 {
-    private readonly List<Guid> _requiredSkillIds = [];
-    private readonly List<Guid> _benefitIds = [];
+    private readonly List<Guid> _requiredSkills = [];
+    private readonly List<Guid> _benefits = [];
     private readonly List<string> _responsibilities = [];
     private readonly List<string> _requirements = [];
     private readonly List<string> _additionalInformation = [];
-    
+
     public string Title { get; private set; }
-    public Guid? HiredCandidateId { get; private set; }
     public string Description { get; private set; }
+    public Guid? HiredCandidateId { get; private set; }
     public ProfessionalLevel Level { get; private set; }
+    public Address? Location { get; private set; }
     public Guid RequiredCourseId { get; private set; }
     public bool ExclusiveForPeopleWithDisabilities { get; private set; }
     public bool AlsoAvailableForPeopleWithDisabilities { get; private set; }
@@ -27,8 +29,8 @@ public sealed class Job : AuditableAggregateRoot
     public JobType JobType { get; private set; }
     public WorkplaceType WorkplaceType { get; private set; }
     public DateOnly? Deadline { get; private set; }
-    public IReadOnlyList<Guid> RequiredSkillIds => _requiredSkillIds.AsReadOnly();
-    public IReadOnlyList<Guid> BenefitIds => _benefitIds.AsReadOnly();
+    public IReadOnlyList<Guid> RequiredSkills => _requiredSkills.AsReadOnly();
+    public IReadOnlyList<Guid> Benefits => _benefits.AsReadOnly();
     public IReadOnlyList<string> Responsibilities => _responsibilities.AsReadOnly();
     public IReadOnlyList<string> Requirements => _requirements.AsReadOnly();
     public IReadOnlyList<string> AdditionalInformation => _additionalInformation.AsReadOnly();
@@ -42,7 +44,7 @@ public sealed class Job : AuditableAggregateRoot
         WorkplaceType workplaceType,
         decimal? minimumSalary,
         DateOnly? deadline,
-        bool exclusiveForPeopleWithDisabilities, 
+        bool exclusiveForPeopleWithDisabilities,
         bool alsoAvailableForPeopleWithDisabilities
         )
     {
@@ -167,18 +169,18 @@ public sealed class Job : AuditableAggregateRoot
 
     public Result AddBenefit(Guid benefitId)
     {
-        if (_benefitIds.Contains(benefitId))
+        if (_benefits.Contains(benefitId))
         {
             return new Error("job_benefit", $"Benefit with ID '{benefitId}' already exists.");
         }
 
-        _benefitIds.Add(benefitId);
+        _benefits.Add(benefitId);
         return Result.Ok();
     }
 
     public Result RemoveBenefit(Guid benefitId)
     {
-        if (!_benefitIds.Remove(benefitId))
+        if (!_benefits.Remove(benefitId))
         {
             return new Error("job_benefit", $"Benefit with ID '{benefitId}' not found.");
         }
@@ -188,18 +190,18 @@ public sealed class Job : AuditableAggregateRoot
 
     public Result AddRequiredSkill(Guid skillId)
     {
-        if (_requiredSkillIds.Contains(skillId))
+        if (_requiredSkills.Contains(skillId))
         {
             return new Error("job_required_skill", $"Skill with ID '{skillId}' is already required.");
         }
 
-        _requiredSkillIds.Add(skillId);
+        _requiredSkills.Add(skillId);
         return Result.Ok();
     }
 
     public Result RemoveRequiredSkill(Guid skillId)
     {
-        if (!_requiredSkillIds.Remove(skillId))
+        if (!_requiredSkills.Remove(skillId))
         {
             return new Error("job_required_skill", $"Skill with ID '{skillId}' not found.");
         }

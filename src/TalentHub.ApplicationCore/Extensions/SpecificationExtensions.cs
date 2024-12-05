@@ -19,6 +19,6 @@ public static class SpecificationExtensions
         query.OrderByDescending(orderByExpression);
     }
 
-    public static void Paginate<T>(this ISpecificationBuilder<T> query, int limit, int offset) =>
+    public static ISpecificationBuilder<T> Paginate<T>(this ISpecificationBuilder<T> query, int limit, int offset) =>
         query.Skip(offset).Take(limit);
 }

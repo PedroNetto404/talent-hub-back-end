@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TalentHub.ApplicationCore.Resources.CompanySectors;
 using TalentHub.ApplicationCore.Resources.Courses;
 using TalentHub.ApplicationCore.Resources.Universities;
 using TalentHub.Infra.Data;
@@ -35,6 +36,15 @@ public static class WebApplicationExtensions
             p => Course.Create(p).Value,
             c => c.Name,
             "courses",
+            logger
+        );
+
+        await SeedEntities(
+            context,
+            "company_sectors_seed.json",
+            p => CompanySector.Create(p).Value,
+            cs => cs.Name,
+            "company sectors",
             logger
         );
 
@@ -75,12 +85,12 @@ public static class WebApplicationExtensions
                 return;
             }
 
-            IEnumerable<string> entityKeysInDatabase =
+            IEnumerable<string> entityKeysInDatabase = [.. 
                 await context
                     .Set<TEntity>()
                     .ToListAsync()
-                    .ContinueWith(task => task.Result.Select(getEntityKey));
-            entityKeysInDatabase = entityKeysInDatabase.ToList();
+                    .ContinueWith(task => task.Result.Select(getEntityKey))
+            ];
 
             foreach (JsonElement entity in entitiesToSeed)
             {

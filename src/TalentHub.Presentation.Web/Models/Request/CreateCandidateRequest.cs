@@ -19,7 +19,7 @@ public sealed record CreateCandidateRequest
 
     [Required] public required DateTime BirthDate { get; init; }
 
-    [Required] public required Address Address { get; init; }
+    [Required] public required AddressRequest Address { get; init; }
 
     public IEnumerable<string> DesiredWorkplaceTypes { get; init; } = [];
 

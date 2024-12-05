@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Resources.Companies;
+using TalentHub.ApplicationCore.Resources.CompanySectors;
 
 namespace TalentHub.Infra.Data.Mappings;
 
@@ -100,10 +101,14 @@ public sealed class CompanyMapping : AuditableAggregateRootMapping<Company>
 
         builder.Property(p => p.Values);
 
-        builder.Property(p => p.FoundantionYear);
+        builder.Property(p => p.FoundationYear);
 
         builder.Property("_galery")
             .HasColumnType("text[]")
             .HasColumnName("galery");
+
+        builder.HasOne<CompanySector>()
+            .WithMany()
+            .HasForeignKey(p => p.SectorId);
     }
 }
