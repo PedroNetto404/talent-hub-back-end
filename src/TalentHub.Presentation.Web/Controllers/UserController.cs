@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Users.Dtos;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Create;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.RefreshToken;
@@ -12,6 +14,9 @@ namespace TalentHub.Presentation.Web.Controllers;
 public sealed class UserController(ISender sender) : ApiController(sender)
 {
     [HttpPost]
+    [AllowAnonymous]
+    [ProducesResponseType(typeof(UserDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public Task<IActionResult> CreateAsync(
         CreateUserRequest request,
         CancellationToken cancellationToken
@@ -25,27 +30,34 @@ public sealed class UserController(ISender sender) : ApiController(sender)
         cancellationToken: cancellationToken
     );
 
-    [HttpPost("authentication/token")]
-    public Task<IActionResult> AuthenticateAsync(
-        AuthenticateUserRequest request,
-        CancellationToken cancellationToken
-    ) => HandleAsync(
-        new AuthenticateUserCommand(
-            request.Email,
-            request.Username,
-            request.Password
-        ),
-        cancellationToken: cancellationToken
-    );
+    [HttpPost("auth")]
+    [AllowAnonymous]
+    [ProducesResponseType(typeof(AuthenticationResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> AuthenticateAsync(
+      AuthenticateRequest request,
+      CancellationToken cancellationToken)
+    {
+        if (request is { GrantType: "refresh_token", RefreshToken: not null })
+        {
+            return await HandleAsync(
+                new RefreshTokenCommand(request.RefreshToken), 
+                cancellationToken: cancellationToken
+            );
+        }
 
-    [HttpPost("authentication/refresh_token")]
-    public Task<IActionResult> RefreshTokenAsync(
-        [FromHeader(Name = "Authorization")] string refreshToken,
-        CancellationToken cancellationToken
-    ) => HandleAsync(
-        new RefreshTokenCommand(
-            refreshToken
-        ),
-        cancellationToken: cancellationToken
-    );
+        if (request.GrantType == "client_credentials" &&
+            !string.IsNullOrWhiteSpace(request.Password) &&
+            (!string.IsNullOrWhiteSpace(request.Username) || !string.IsNullOrWhiteSpace(request.Email)))
+        {
+            return await HandleAsync(
+                new AuthenticateUserCommand(
+                    request.Username,
+                    request.Email,
+                    request.Password), 
+                cancellationToken: cancellationToken);
+        }
+
+        return BadRequest(Error.BadRequest("Invalid authentication options"));
+    }
 }

@@ -2,13 +2,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TalentHub.Presentation.Web.Models.Request;
 
-public sealed record AuthenticateUserRequest
+public sealed record AuthenticateRequest
 {
     [EmailAddress]
     public string? Email { get; init; }
 
     public string? Username { get; init; }
 
+    public string? Password { get; init; }
+
     [Required]
-    public required string Password { get; init; }
+    [AllowedValues("refresh_token", "client_credentials")]
+    public required string GrantType { get; init; }
+
+    public string? RefreshToken { get; init; }
 }
