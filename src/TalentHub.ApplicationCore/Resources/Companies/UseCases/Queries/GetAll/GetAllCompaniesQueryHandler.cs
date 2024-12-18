@@ -8,9 +8,9 @@ namespace TalentHub.ApplicationCore.Resources.Companies.UseCases.Queries.GetAll;
 public sealed class GetAllCompaniesQueryHandler(
     IRepository<Company> companyRepository,
     IRepository<Job> jobOpeningRepository
-) : IQueryHandler<GetAllCompaniesQuery, PagedResponse>
+) : IQueryHandler<GetAllCompaniesQuery, PageResponse>
 {
-    public async Task<Result<PagedResponse>> Handle(
+    public async Task<Result<PageResponse>> Handle(
         GetAllCompaniesQuery request, 
         CancellationToken cancellationToken
     )

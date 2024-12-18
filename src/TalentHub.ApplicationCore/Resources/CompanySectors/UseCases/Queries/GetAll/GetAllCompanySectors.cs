@@ -8,7 +8,7 @@ public sealed record GetAllCompanySectorsQuery(
     int Offset,
     string? SortBy,
     bool Ascending
-) : ICachedQuery<PagedResponse>
+) : ICachedQuery<PageResponse>
 {
     public TimeSpan? Duration => TimeSpan.FromHours(12);
 

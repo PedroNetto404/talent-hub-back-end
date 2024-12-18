@@ -12,4 +12,4 @@ public sealed record GetAllCompaniesQuery(
     int Offset,
     string? SortBy,
     bool Ascending
-) : IQuery<PagedResponse>;
+) : IQuery<PageResponse>;

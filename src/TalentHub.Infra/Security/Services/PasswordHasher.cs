@@ -10,25 +10,27 @@ public sealed class PasswordHasher : IPasswordHasher
     public string Hash(string password)
     {
         if (string.IsNullOrWhiteSpace(password))
-        { throw new ArgumentException("Password cannot be null or empty.", nameof(password)); }
-
-        byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(password));
-
-        var stringBuilder = new StringBuilder();
-        foreach (byte b in bytes)
         {
-            stringBuilder.Append(b.ToString("x2"));
+            throw new ArgumentException("Password cannot be null or empty.", nameof(password));
         }
+        
+        byte[] hashBytes = SHA256.HashData(Encoding.UTF8.GetBytes(password));
 
-        return stringBuilder.ToString();
+        return Convert.ToHexString(hashBytes).ToLowerInvariant();
     }
 
     public bool Match(string password, string storedHash)
     {
         if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(storedHash))
-        { return false; }
+        {
+            return false;
+        }
 
         string hashedPassword = Hash(password);
-        return hashedPassword.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
+
+        return CryptographicOperations.FixedTimeEquals(
+            Encoding.UTF8.GetBytes(hashedPassword),
+            Encoding.UTF8.GetBytes(storedHash)
+        );
     }
 }

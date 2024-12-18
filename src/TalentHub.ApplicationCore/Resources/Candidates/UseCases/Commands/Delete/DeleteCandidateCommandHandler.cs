@@ -25,7 +25,7 @@ public sealed class DeleteCandidateCommandHandler(
             ? fileStorage.DeleteAsync(FileBucketNames.CandidateResumes, candidate.ResumeFileName, cancellationToken)
             : Task.CompletedTask,
             candidate.ProfilePictureUrl is not null
-            ? fileStorage.DeleteAsync(FileBucketNames.CandidateProfilePicture, candidate.ProfilePictureFileName, cancellationToken)
+            ? fileStorage.DeleteAsync(FileBucketNames.UserProfilePicture, candidate.ProfilePictureFileName, cancellationToken)
             : Task.CompletedTask
         );
 

@@ -3,6 +3,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Skills;
+using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Update;
 
@@ -16,27 +17,20 @@ public sealed class UpdateCourseCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        (
-            Guid id,
-            string name,
-            IEnumerable<string> tags,
-            IEnumerable<Guid> relatedSkills
-        ) = request;
-
-        Course? course = await courseRepository.GetByIdAsync(id, cancellationToken);
+        Course? course = await courseRepository.GetByIdAsync(request.Id, cancellationToken);
         if (course is null)
         {
             return Error.NotFound("course");
         }
 
-        if (course.ChangeName(name) is { IsFail: true, Error: var nameError })
+        if (course.ChangeName(request.Name) is { IsFail: true, Error: var nameError })
         {
             return nameError;
         }
 
         course.ClearTags();
 
-        foreach (string tag in tags)
+        foreach (string tag in request.Tags)
         {
             if (course.AddTag(tag) is { IsFail: true, Error: var tagError })
             {
@@ -45,11 +39,11 @@ public sealed class UpdateCourseCommandHandler(
         }
 
         List<Skill> skills = await skillRepository.ListAsync(
-            (query) => query.Where(s => request.RelatedSkills.Contains(s.Id)),
+            new GetSkillsSpec(request.RelatedSkills),
             cancellationToken
         );
 
-        if (skills.Count != relatedSkills.Count())
+        if (skills.Count != request.RelatedSkills.Count())
         {
             return Error.BadRequest("some skills not found");
         }

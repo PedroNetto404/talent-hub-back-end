@@ -6,5 +6,5 @@ namespace TalentHub.ApplicationCore.Ports;
 public interface ITokenProvider
 {
     Token GenerateTokenFor(User user);
-    Token GenerateRefreshToken(User user);
+    Token GenerateRefreshToken();
 }

@@ -1,7 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Skills;
+using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateCandidateCertificate;
 
@@ -16,30 +16,21 @@ public sealed class UpdateCandidateCertificateCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        (
-            Guid candidateId,
-            Guid certificateId,
-            string name,
-            string issuer,
-            double workload,
-            string url,
-            IEnumerable<Guid> relatedSkills
-        ) = request;
-
-        if(relatedSkills.Any())
+        if(request.RelatedSkills.Any())
         {
-            IEnumerable<Skill> skills = await skillRepository.GetManyByIdsAsync(
-                relatedSkills,
+            IEnumerable<Skill> skills = await skillRepository.ListAsync(
+                new GetSkillsSpec(request.RelatedSkills, int.MaxValue, 0),
                 cancellationToken
             );
-            if(skills.Count() != relatedSkills.Count())
+
+            if(skills.Count() != request.RelatedSkills.Count())
             {
                 return Error.NotFound("skill");
             }
         }
 
         Candidate? candidate = await candidateRepository.GetByIdAsync(
-            candidateId,
+            request.CandidateId,
             cancellationToken
         );
         if(candidate is null)
@@ -48,12 +39,12 @@ public sealed class UpdateCandidateCertificateCommandHandler(
         }
 
         Result updateResult = candidate.UpdateCertificate(
-            certificateId,
-            name,
-            issuer,
-            workload,
-            url,
-            relatedSkills
+            request.CertificateId,
+            request.Name,
+            request.Issuer,
+            request.Workload,
+            request.Url,
+            request.RelatedSkills
         );
         if(updateResult.IsFail)
         {

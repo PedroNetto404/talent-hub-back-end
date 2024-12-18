@@ -10,4 +10,4 @@ public sealed record GetAllCandidatesQuery(
     int Offset,
     string? SortBy,
     bool Ascending = true
-) : IQuery<PagedResponse>;
+) : IQuery<PageResponse>;

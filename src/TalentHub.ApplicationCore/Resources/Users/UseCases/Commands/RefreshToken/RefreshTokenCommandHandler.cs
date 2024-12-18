@@ -9,7 +9,8 @@ namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.RefreshTok
 public sealed class RefreshTokenCommandHandler(
     IRepository<User> userRepository,
     IDateTimeProvider dateTimeProvider,
-    ITokenProvider tokenProvider
+    ITokenProvider tokenProvider,
+    IUserContext userContext
 ) : ICommandHandler<RefreshTokenCommand, AuthenticationResult>
 {
     public async Task<Result<AuthenticationResult>> Handle(
@@ -17,12 +18,12 @@ public sealed class RefreshTokenCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        if (!Guid.TryParse(request.RefreshToken[..36], out Guid userId))
+        if(userContext.UserId is not null) 
         {
-            return new Error("user", "invalid refresh token");
+            return Error.BadRequest("user is already authenticated");
         }
 
-        User? user = await userRepository.GetByIdAsync(userId, cancellationToken);
+        User? user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
         if (user is null)
         {
             return Error.NotFound("user");

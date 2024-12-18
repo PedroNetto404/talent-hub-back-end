@@ -9,7 +9,7 @@ public sealed record GetAllUniversitiesQuery(
     int Offset,
     string? SortBy = null,
     bool Ascending = true
-    ) : ICachedQuery<PagedResponse>
+    ) : ICachedQuery<PageResponse>
 {
     public TimeSpan? Duration => TimeSpan.FromHours(12);
     public string Key => nameof(GetAllUniversitiesQuery);

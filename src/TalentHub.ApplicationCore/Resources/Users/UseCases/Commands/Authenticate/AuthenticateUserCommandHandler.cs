@@ -3,6 +3,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
+using TalentHub.ApplicationCore.Resources.Users.Specs;
 using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
@@ -21,15 +22,12 @@ public sealed class AuthenticateUserCommandHandler(
     )
     {
         User? user = await userRepository.FirstOrDefaultAsync(
-            (query) => query.Where(u => 
-                u.Email == request.Email || 
-                u.Username == request.Username
-            ),
+            new GetUserByEmailOrUsernameSpec(request.Email, request.Username),
             cancellationToken
         );
         if(user is null)
         {
-            return Error.NotFound("user");
+            return Error.NotFound("user", expose: false);
         }
 
         if (!passwordHasher.Match(request.Password, user.HashedPassword))
@@ -42,7 +40,7 @@ public sealed class AuthenticateUserCommandHandler(
             return Error.BadRequest("user can refresh token");
         }
 
-        Token refreshToken = tokenProvider.GenerateRefreshToken(user);
+        Token refreshToken = tokenProvider.GenerateRefreshToken();
         user.SetRefreshToken(refreshToken, dateTimeProvider);
 
         await userRepository.UpdateAsync(user, cancellationToken);

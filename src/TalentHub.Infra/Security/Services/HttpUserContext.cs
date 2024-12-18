@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using TalentHub.ApplicationCore.Core.Abstractions;
-using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Users;
 
@@ -12,19 +11,28 @@ public sealed class HttpUserContext(
     IRepository<User> userRepository
 ) : IUserContext
 {
-    public Guid UserId => httpContextAccessor.HttpContext!.User.Claims
-        .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value is string userId
-        ? Guid.Parse(userId)
-        : throw new InvalidOperationException("user not authenticated");
-        
-    public async Task<Result<User>> GetCurrentAsync(CancellationToken cancellationToken = default)
+    public Guid? UserId
     {
-        User? user = await userRepository.GetByIdAsync(UserId, cancellationToken);
-        if (user is null)
+        get
         {
-            return Error.NotFound("user");
-        }
+            ClaimsPrincipal? user = httpContextAccessor.HttpContext?.User;
+            if (user is null)
+            {
+                return null;
+            }
 
-        return user;
+            string? userId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId is null)
+            {
+                return null;
+            }
+
+            return Guid.Parse(userId);
+        }
     }
+
+    public Task<User?> GetCurrentAsync(CancellationToken cancellationToken = default) =>
+        UserId is null
+        ? Task.FromResult<User?>(null)
+        : userRepository.GetByIdAsync(UserId!.Value, cancellationToken);
 }

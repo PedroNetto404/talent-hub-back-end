@@ -4,6 +4,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.CompanySectors.Dtos;
+using TalentHub.ApplicationCore.Resources.CompanySectors.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.CompanySectors.UseCases.Commands.Create;
 
@@ -17,7 +18,7 @@ public sealed class CreateCompanySectorCommandHandler(
     )
     {
         CompanySector? existing = await repository.FirstOrDefaultAsync(
-            additionalSpec: (query) => query.Where(x => x.Name == request.Name),
+            new GetCompanySectorByName(request.Name),
             cancellationToken
         );
         if (existing is not null)

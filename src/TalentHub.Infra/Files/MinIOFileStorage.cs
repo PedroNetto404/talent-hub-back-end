@@ -43,6 +43,12 @@ public sealed class MinIoFileStorage : IFileStorage
         }, cancellationToken);
     }
 
+    public void DeleteAsync(string userProfilePicture, object profilePictureFileName)
+    {
+        throw new NotImplementedException();
+    }
+
+
     public async Task<Stream> GetAsync(
         string bucket,
         string fileName,

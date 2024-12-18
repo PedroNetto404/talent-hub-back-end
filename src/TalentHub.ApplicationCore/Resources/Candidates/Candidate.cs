@@ -34,7 +34,7 @@ public sealed class Candidate : AuditableAggregateRoot
         BirthDate = birthDate;
         Address = address;
         InstagramUrl = instagramUrl;
-        LinkedinUrl = linkedinUrl;
+        LinkedInUrl = linkedinUrl;
         GithubUrl = githubUrl;
         ExpectedRemuneration = expectedRemuneration;
         Summary = summary;
@@ -111,7 +111,7 @@ public sealed class Candidate : AuditableAggregateRoot
     public string? ResumeUrl { get; private set; }
     public string ResumeFileName => $"candidate_resume-{Id}";
     public string? InstagramUrl { get; private set; }
-    public string? LinkedinUrl { get; private set; }
+    public string? LinkedInUrl { get; private set; }
     public string? GithubUrl { get; private set; }
     public DateOnly BirthDate { get; private set; }
     public string Phone { get; private set; }
@@ -568,7 +568,7 @@ public sealed class Candidate : AuditableAggregateRoot
         ChangeUrl(instagramUrl, (url) => InstagramUrl = url);
 
     public Result ChangeLinkedinUrl(string? linkedinUrl) =>
-        ChangeUrl(linkedinUrl, (url) => LinkedinUrl = url);
+        ChangeUrl(linkedinUrl, (url) => LinkedInUrl = url);
 
     public Result ChangeGithubUrl(string? githubUrl) =>
         ChangeUrl(githubUrl, (url) => GithubUrl = url);

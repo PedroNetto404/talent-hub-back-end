@@ -30,7 +30,7 @@ public sealed class TokenProvider(
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role.ToString().Underscore())
             ]),
             Expires = tokenExpiration,
             SigningCredentials = new SigningCredentials(
@@ -52,19 +52,22 @@ public sealed class TokenProvider(
         );
     }
 
-    public Token GenerateRefreshToken(User user)
+    public Token GenerateRefreshToken()
     {
         byte[] randomNumber = new byte[32];
         using var rng = RandomNumberGenerator.Create();
 
-        int refreshTokenExpirationInMinutes =
-            int.Parse(configuration["Jwt:RefreshTokenExpirationInMinutes"]!);
-
         rng.GetBytes(randomNumber);
         return new Token(
-            $"{user.Id}{Convert.ToBase64String(randomNumber)}",
+            Convert.ToBase64String(randomNumber),
             new DateTimeOffset(
-                dateTimeProvider.UtcNow.AddMinutes(refreshTokenExpirationInMinutes)
+                dateTimeProvider
+                    .UtcNow
+                    .AddMinutes(
+                        int.Parse(
+                            configuration["Jwt:RefreshTokenExpirationInMinutes"]!
+                        )
+                    )
             ).ToUnixTimeSeconds()
         );
     }

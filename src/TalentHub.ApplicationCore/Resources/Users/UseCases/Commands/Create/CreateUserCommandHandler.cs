@@ -6,6 +6,7 @@ using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Users.Dtos;
 using TalentHub.ApplicationCore.Resources.Users.Enums;
+using TalentHub.ApplicationCore.Resources.Users.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Create;
 
@@ -19,10 +20,7 @@ public sealed class CreateUserCommandHandler(
         CancellationToken cancellationToken)
     {
         User? existing = await userRepository.FirstOrDefaultAsync(
-            query => query.Where(u => 
-                u.Email == request.Email 
-                || u.Username == request.Username
-            ),
+            new GetUserByEmailOrUsernameSpec(request.Email, request.Username),
             cancellationToken
         );
         if (existing is not null)

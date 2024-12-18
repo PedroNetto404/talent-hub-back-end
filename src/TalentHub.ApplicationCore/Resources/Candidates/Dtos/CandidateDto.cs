@@ -47,7 +47,7 @@ public sealed record CandidateDto(
             candidate.ResumeUrl,
             candidate.ProfilePictureUrl,
             candidate.InstagramUrl,
-            candidate.LinkedinUrl,
+            candidate.LinkedInUrl,
             candidate.GithubUrl,
             candidate.ExpectedRemuneration
         );

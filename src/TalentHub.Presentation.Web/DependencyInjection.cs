@@ -1,3 +1,5 @@
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using TalentHub.Presentation.Web.Options;
 
 namespace TalentHub.Presentation.Web;
@@ -8,6 +10,17 @@ public static class DependencyInjection
         this IServiceCollection services
     )
     {
+        services.AddFastEndpoints().SwaggerDocument(static options =>
+            {
+                options.MaxEndpointVersion = 1;
+                options.DocumentSettings = s => 
+                {
+                    s.DocumentName = "TalentHub V1";
+                    s.Title = "TalentHub";
+                    s.Version = "v1";
+                };
+            });
+
         services.AddHealthChecks();
 
         services.ConfigureOptions<ControllerOptionsSetup>();

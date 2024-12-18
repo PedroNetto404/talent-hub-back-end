@@ -1,8 +1,8 @@
 using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Universities.Dtos;
+using TalentHub.ApplicationCore.Resources.Universities.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Universities.UseCases.Commands.Create;
 
@@ -13,7 +13,7 @@ public sealed class CreateUniversityCommandHandler(IRepository<University> unive
         CancellationToken cancellationToken)
     {
         University? existing = await universityRepository.FirstOrDefaultAsync(
-            (query) => query.Where(u => u.Name == request.Name),
+            new GetUniversityByNameSpec(request.Name),
             cancellationToken);
         if (existing is not null)
         {

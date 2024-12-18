@@ -41,7 +41,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 296, DateTimeKind.Utc).AddTicks(2148))
+                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 596, DateTimeKind.Utc).AddTicks(1423))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -93,7 +93,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 296, DateTimeKind.Utc).AddTicks(2439))
+                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 596, DateTimeKind.Utc).AddTicks(1997))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<Guid>("UserId")
@@ -317,7 +317,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 304, DateTimeKind.Utc).AddTicks(1203))
+                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 613, DateTimeKind.Utc).AddTicks(5856))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -391,7 +391,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 304, DateTimeKind.Utc).AddTicks(1462))
+                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 613, DateTimeKind.Utc).AddTicks(6517))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<string>("Values")
@@ -531,7 +531,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 323, DateTimeKind.Utc).AddTicks(6445))
+                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 669, DateTimeKind.Utc).AddTicks(2202))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -550,6 +550,10 @@ namespace TalentHub.Infra.Migrations
                         .HasColumnType("character varying(500)")
                         .HasColumnName("hashed_password");
 
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("profile_picture_url");
+
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text")
@@ -558,7 +562,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 5, 16, 19, 46, 323, DateTimeKind.Utc).AddTicks(6814))
+                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 669, DateTimeKind.Utc).AddTicks(3102))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<string>("Username")

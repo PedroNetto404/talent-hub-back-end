@@ -5,6 +5,7 @@ using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Skills.Dtos;
 using TalentHub.ApplicationCore.Resources.Skills.Enums;
+using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.CreateSkill;
 
@@ -15,9 +16,7 @@ public sealed class CreateSkillCommandHandler(
     public async Task<Result<SkillDto>> Handle(
         CreateSkillCommand request, CancellationToken cancellationToken)
     {
-        Skill? existingSkill = await skillRepository.FirstOrDefaultAsync(
-            query => query.Where(p => p.Name == request.Name),
-            cancellationToken);
+        Skill? existingSkill = await skillRepository.FirstOrDefaultAsync(new GetSkillByNameSpec(request.Name), cancellationToken);
         if (existingSkill is not null) 
         {
             return Error.BadRequest("skill alredy exists");

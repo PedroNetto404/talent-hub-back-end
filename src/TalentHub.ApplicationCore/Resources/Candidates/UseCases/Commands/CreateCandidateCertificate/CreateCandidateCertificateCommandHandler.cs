@@ -5,6 +5,7 @@ using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 using TalentHub.ApplicationCore.Resources.Skills;
+using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.CreateCandidateCertificate;
 
@@ -18,7 +19,11 @@ public sealed class CreateCandidateCertificateCommandHandler(
         CancellationToken cancellationToken)
     {
         List<Skill> skills = await skillRepository.ListAsync(
-            additionalSpec: (query) => query.Where(p => request.RelatedSkills.Contains(p.Id)),
+            new GetSkillsSpec(
+                request.RelatedSkills,
+                int.MaxValue,
+                0
+            ),
             cancellationToken
         );
         if (skills.Count != request.RelatedSkills.Count())

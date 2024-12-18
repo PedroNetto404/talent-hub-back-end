@@ -39,7 +39,7 @@ public sealed class CacheBehavior<TQuery, TResult>(
             return result;
         }
         
-        if(cached is Result<PagedResponse> { IsOk: true, Value: var cachedPage})
+        if(cached is Result<PageResponse> { IsOk: true, Value: var cachedPage})
         {
 
             return Result.Ok(cachedPage.FromCache()) as TResult;

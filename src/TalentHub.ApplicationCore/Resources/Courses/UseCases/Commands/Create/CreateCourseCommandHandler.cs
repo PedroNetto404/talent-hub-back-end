@@ -3,7 +3,9 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Courses.Dtos;
+using TalentHub.ApplicationCore.Resources.Courses.Specs;
 using TalentHub.ApplicationCore.Resources.Skills;
+using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Create;
 
@@ -14,17 +16,13 @@ public sealed class CreateCourseCommandHandler(
 {
     public async Task<Result<CourseDto>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
     {
-        Course? existingCourse = await courseRepository.FirstOrDefaultAsync(
-            (query) => query.Where(c => c.Name == request.Name),
-            cancellationToken);
+        Course? existingCourse = await courseRepository.FirstOrDefaultAsync(new GetCourseByNameSpec(request.Name), cancellationToken);
         if (existingCourse is not null)
         {
             return Error.BadRequest("course with this name already exists");
         }
 
-        List<Skill> skills = await skillRepository.ListAsync(
-            (query) => query.Where(s => request.RelatedSkills.Contains(s.Id)), 
-            cancellationToken);
+        List<Skill> skills = await skillRepository.ListAsync(new GetSkillsSpec(request.RelatedSkills), cancellationToken);
         if (skills.Count != request.RelatedSkills.Count())
         {
             return Error.BadRequest("invalid skills");

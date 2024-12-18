@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Users.Enums;
 using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
@@ -8,10 +9,6 @@ namespace TalentHub.ApplicationCore.Resources.Users;
 
 public sealed class User : AuditableAggregateRoot
 {
-#pragma warning disable CS0628 // New protected member declared in sealed type
-    protected User() { }
-#pragma warning restore CS0628 // New protected member declared in sealed type
-
     private User(
         string email,
         string username,
@@ -61,10 +58,16 @@ public sealed class User : AuditableAggregateRoot
     public string Email { get; private set; }
     public string Username { get; set; }
     public Role Role { get; private set; }
+    public string? ProfilePictureUrl { get; private set; }
     public string HashedPassword { get; private set; }
     public Token? RefreshToken { get; private set; }
- 
-    public Result SetRefreshToken(Token refreshToken, IDateTimeProvider dateTimeProvider)
+
+    public string ProfilePictureFileName => $"user-profile-picture-{Id}";
+
+    public Result SetRefreshToken(
+        Token refreshToken, 
+        IDateTimeProvider dateTimeProvider
+    )
     {
         if (refreshToken.IsExpired(dateTimeProvider))
         {
@@ -102,4 +105,30 @@ public sealed class User : AuditableAggregateRoot
     public bool CanRefreshToken(IDateTimeProvider dateTimeProvider) =>
         RefreshToken is not null &&
         !RefreshToken.IsExpired(dateTimeProvider);
+
+    public Result ChangeProfilePicture(string? profilePictureUrl)
+    {
+        if (profilePictureUrl is null)
+        {
+            ProfilePictureUrl = null;
+            return Result.Ok();
+        }
+
+        if (string.IsNullOrWhiteSpace(profilePictureUrl))
+        {
+            return Error.BadRequest("profile picture url cannot be empty");
+        }
+
+        if (!profilePictureUrl.IsValidUrl())
+        {
+            return Error.BadRequest("profile picture url is not valid url");
+        }
+
+        ProfilePictureUrl = profilePictureUrl;
+        return Result.Ok();
+    }
+
+#pragma warning disable CS0628 // New protected member declared in sealed type
+    protected User() { }
+#pragma warning restore CS0628 // New protected member declared in sealed type
 }

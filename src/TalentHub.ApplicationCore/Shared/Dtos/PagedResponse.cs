@@ -1,13 +1,11 @@
-using TalentHub.ApplicationCore.Core.Results;
-
 namespace TalentHub.ApplicationCore.Shared.Dtos;
 
-public record class PagedResponse(
+public record class PageResponse(
     Meta Meta,
     IEnumerable<object> Records
 )
 {
-    public PagedResponse FromCache() =>
+    public PageResponse FromCache() =>
         new(
             Meta with { Cached = true },
             Records

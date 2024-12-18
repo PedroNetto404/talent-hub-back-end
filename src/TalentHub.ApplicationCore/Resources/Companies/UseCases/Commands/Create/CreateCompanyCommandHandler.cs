@@ -3,6 +3,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Companies.Dtos;
+using TalentHub.ApplicationCore.Resources.Companies.Specs;
 using TalentHub.ApplicationCore.Resources.CompanySectors;
 
 namespace TalentHub.ApplicationCore.Resources.Companies.UseCases.Commands.Create;
@@ -18,11 +19,7 @@ public sealed class CreateCompanyCommandHandler(
     )
     {
         Company? existingCompany = await companyRepository.FirstOrDefaultAsync(
-            additionalSpec: (query) =>
-                query.Where(company =>
-                    company.LegalName == request.LegalName ||
-                    company.Cnpj == request.Cnpj
-                ),
+            new GetCompanyByLegalNameOrCnpj(request.LegalName, request.Cnpj),
             cancellationToken
         );
         if (existingCompany is not null)
@@ -67,6 +64,5 @@ public sealed class CreateCompanyCommandHandler(
 
         await companyRepository.AddAsync(maybeCompany.Value, cancellationToken);
         return CompanyDto.FromEntity(maybeCompany.Value);
-
     }
 }

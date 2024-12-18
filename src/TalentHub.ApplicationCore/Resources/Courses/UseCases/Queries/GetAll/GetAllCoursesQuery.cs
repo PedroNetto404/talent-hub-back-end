@@ -10,7 +10,7 @@ public sealed record GetAllCoursesQuery(
     int Offset,
     string? SortBy,
     bool Ascending = true
-) : ICachedQuery<PagedResponse>
+) : ICachedQuery<PageResponse>
 {
     public TimeSpan? Duration => TimeSpan.FromDays(1);
 

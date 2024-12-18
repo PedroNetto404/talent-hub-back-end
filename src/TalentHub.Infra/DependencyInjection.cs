@@ -29,6 +29,7 @@ public static class DependencyInjection
             config.EnableSensitiveDataLogging();
             config.EnableDetailedErrors();
         });
+        
         services.AddMemoryCache();
         services.AddHttpContextAccessor();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -38,6 +39,7 @@ public static class DependencyInjection
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<ITokenProvider, TokenProvider>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
         services.ConfigureOptions<AuthOptionsSetup>();
         services.AddAuthentication().AddJwtBearer();
         services.AddAuthorization();
@@ -47,6 +49,7 @@ public static class DependencyInjection
             builder.AddConsole();
             builder.AddDebug();
         });
+        
         return services;
     }
 }
