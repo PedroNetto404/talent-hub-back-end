@@ -13,6 +13,17 @@ public class UpdateCandidateCertificateAttachmentEndpoint :
     public override void Configure()
     {
         Patch("{certificateId:guid}/attachment");
+
+        Description(builder => builder.Accepts<UpdateCandidateCertificateAttachmentRequest>()
+            .Produces<CandidateDto>()
+            .Produces(StatusCodes.Status400BadRequest)
+            .WithDescription("Update a certificate attachment for a candidate.")
+            .WithDisplayName("Update Candidate Certificate Attachment")
+        );
+
+        Validator<UpdateCandidateCertificateAttachmentRequestValidator>();
+
+        Version(1);
     }
 
     public override async Task HandleAsync(UpdateCandidateCertificateAttachmentRequest req, CancellationToken ct)

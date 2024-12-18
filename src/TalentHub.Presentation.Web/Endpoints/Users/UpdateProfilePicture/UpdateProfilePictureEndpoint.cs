@@ -26,6 +26,8 @@ public sealed class UpdateProfilePictureEndpoint :
         Validator<UpdateProfilePictureRequestValidator>();
 
         Group<UsersEndpointsGroup>();
+
+        Version(1);
     }
 
     public override async Task HandleAsync(UpdateProfilePictureRequest req, CancellationToken ct)

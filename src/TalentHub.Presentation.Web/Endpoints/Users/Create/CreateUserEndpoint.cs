@@ -14,14 +14,13 @@ public sealed class CreateUserEndpoint : Ep.Req<CreateUserRequest>.Res<UserDto>
         Post("");
         AllowAnonymous();
 
-        Description(d =>
-        {
-            d.Produces(StatusCodes.Status201Created, typeof(UserDto));
-            d.Produces(StatusCodes.Status400BadRequest);
-            d.Accepts<CreateUserRequest>(MediaTypeNames.Application.Json);
-            d.WithDescription("Create a new user.");
-            d.WithDisplayName("Create User");
-        });
+        Description(d => 
+            d.Produces(StatusCodes.Status201Created, typeof(UserDto))
+             .Produces(StatusCodes.Status400BadRequest)
+             .Accepts<CreateUserRequest>(MediaTypeNames.Application.Json)
+             .WithDescription("Create a new user.")
+             .WithDisplayName("Create User")
+        );
 
         Group<UsersEndpointsGroup>();
         Version(1);

@@ -7,14 +7,23 @@ using TalentHub.Presentation.Web.Utils;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.GetAll;
 
-public sealed class GetAllCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<PageResponse>
+public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<PageResponse>
 {
     public override void Configure()
     {
         Get("");
-        Group<CandidatesEndpointsGroup>();
+
+        Description(builder => builder.Accepts<GetCandidatesRequest>()
+            .Produces<PageResponse>()
+            .Produces(StatusCodes.Status400BadRequest)
+            .WithDescription("Get all candidates.")
+            .WithDisplayName("Get Candidates")
+        );
+
         Validator<GetCandidatesRequestValidator>();
         Version(1);
+    
+        Group<CandidatesEndpointsGroup>();
     }
 
     public override async Task HandleAsync(GetCandidatesRequest req, CancellationToken ct) =>

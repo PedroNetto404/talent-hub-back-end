@@ -11,9 +11,17 @@ public sealed class CreateCandidateEndpoint : Ep.Req<CreateCandidateRequest>.Res
     public override void Configure()
     {
         Post("");
-        Group<CandidatesEndpointsGroup>();
+
+        Description(builder => builder.Accepts<CreateCandidateRequest>()
+            .Produces<CandidateDto>()
+            .Produces(StatusCodes.Status400BadRequest)
+            .WithDescription("Create a new candidate.")
+            .WithDisplayName("Create Candidate")
+        );
+
         Validator<CreateCandidateRequestValidator>();
         Version(1);
+        Group<CandidatesEndpointsGroup>();
     }
 
     public override async Task HandleAsync(CreateCandidateRequest req, CancellationToken ct) => 

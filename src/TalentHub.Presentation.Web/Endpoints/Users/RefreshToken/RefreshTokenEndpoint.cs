@@ -20,7 +20,8 @@ public class RefreshTokenEndpoint :
         Description(ep =>
             ep.Accepts<RefreshTokenRequest>(MediaTypeNames.Application.Json)
               .Produces<AuthenticationResult>()
-              .Produces(StatusCodes.Status400BadRequest));
+              .Produces(StatusCodes.Status400BadRequest)
+        );
 
         Group<UsersEndpointsGroup>();
         Version(1);

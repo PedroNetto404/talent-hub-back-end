@@ -13,6 +13,16 @@ public sealed class UpdateCandidateEndpoint : Ep.Req<UpdateCandidateRequest>.NoR
         Put("{candidateId:guid}");
         Validator<UpdateCandidateRequestValidator>();
         Group<CandidatesEndpointsGroup>();
+
+        Description(d => 
+            d.Accepts<UpdateCandidateRequest>()
+             .Produces(StatusCodes.Status200OK)
+             .Produces(StatusCodes.Status400BadRequest)
+             .WithDescription("Update a candidate.")
+             .WithDisplayName("Update Candidate")
+        );
+
+        Version(1);
     }
 
     public override async Task HandleAsync(UpdateCandidateRequest req, CancellationToken ct)

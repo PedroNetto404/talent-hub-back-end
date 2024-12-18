@@ -20,6 +20,8 @@ public sealed class GetCandidateByIdEndpoint :
             ep.Produces(StatusCodes.Status400BadRequest)
               .Produces(StatusCodes.Status404NotFound)
               .Produces(StatusCodes.Status200OK));
+
+        Version(1);
     }
 
     public override async Task HandleAsync(CancellationToken ct)

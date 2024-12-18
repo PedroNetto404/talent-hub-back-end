@@ -11,7 +11,16 @@ public sealed class CreateCertificateEndpoint : Ep.Req<CreateCertificateRequest>
     public override void Configure()
     {
         Post("");
+
+        Version(1);
         Group<CandidateCertificatesEndpointsGroup>();
+
+        Description(builder => builder.Accepts<CreateCertificateRequest>()
+            .Produces<CandidateDto>()
+            .Produces(StatusCodes.Status400BadRequest)
+            .WithDescription("Create a new certificate for a candidate.")
+            .WithDisplayName("Create Candidate Certificate")
+        );
     }
 
     public override async Task HandleAsync(CreateCertificateRequest req, CancellationToken ct)
