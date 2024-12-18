@@ -89,8 +89,6 @@ public sealed class CompanyMapping : AuditableAggregateRootMapping<Company>
 
         builder.Property(p => p.InstagramUrl);
 
-        builder.Property(p => p.FacebookUrl);
-
         builder.Property(p => p.CareerPageUrl);
 
         builder.Property(p => p.PresentationVideoUrl);

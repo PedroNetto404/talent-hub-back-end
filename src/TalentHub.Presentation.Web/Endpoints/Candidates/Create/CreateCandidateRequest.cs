@@ -7,7 +7,7 @@ public sealed record CreateCandidateRequest
     public bool AutoMatchEnabled { get; init; }
     public string Phone { get; init; }
     public DateOnly BirthDate { get; init; }
-    public decimal ExpectedRemuneration { get; init; }
+    public decimal? ExpectedRemuneration { get; init; }
     public string? InstagramUrl { get; init; }
     public string? LinkedInUrl { get; init; }
     public string? GitHubUrl { get; init; }

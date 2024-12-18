@@ -17,7 +17,7 @@ public sealed class University : AggregateRoot
 
     public static Result<University> Create(string name, string? siteUrl = null)
     {
-        if (Result.FailIfIsNullOrWhiteSpace(name, "Name must be provided.") is { IsFail: true, Error: var nameError })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(name), "Name must be provided.") is { IsFail: true, Error: var nameError })
         {
             return nameError;
         }
@@ -35,7 +35,7 @@ public sealed class University : AggregateRoot
 
     public Result ChangeName(string name)
     {
-        if (Result.FailIfIsNullOrWhiteSpace(name, "Name must be provided.") is { IsFail: true, Error: var nameError })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(name), "Name must be provided.") is { IsFail: true, Error: var nameError })
         {
             return nameError;
         }

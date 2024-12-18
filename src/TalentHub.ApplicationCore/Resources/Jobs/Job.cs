@@ -76,8 +76,8 @@ public sealed class Job : AuditableAggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(title, "Invalid title."),
-                () => Result.FailIfIsNullOrWhiteSpace(description, "Invalid description."),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(title), "Invalid title."),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(description), "Invalid description."),
                 () => Result.FailIf(companyId == Guid.Empty, "Invalid company ID."),
                 () => Result.FailIf(
                     deadline.HasValue && deadline < DateOnly.FromDateTime(DateTime.Now),

@@ -48,9 +48,6 @@ public sealed class UpdateCompanyCommandValidator : AbstractValidator<UpdateComp
         RuleFor(x => x.InstagramUrl)
             .MaximumLength(200);
 
-        RuleFor(x => x.FacebookUrl)
-            .MaximumLength(200);
-
         RuleFor(x => x.LinkedinUrl)
             .MaximumLength(200);
 

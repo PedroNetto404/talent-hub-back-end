@@ -17,7 +17,6 @@ public sealed record UpdateCompanyCommand(
     string? SiteUrl,
     Address Address,
     string? InstagramUrl,
-    string? FacebookUrl,
     string? LinkedinUrl,
     string? CareerPageUrl,
     string? Mission,

@@ -14,7 +14,7 @@ public sealed class CompanySector : AggregateRoot
     public static Result<CompanySector> Create(string name)
     {
         if(
-            Result.FailIfIsNullOrWhiteSpace(name, "invalid company sector name") is
+            Result.FailIf(string.IsNullOrWhiteSpace(name), "invalid company sector name") is
             {
                 IsFail: true,
                 Error: var err
@@ -31,7 +31,7 @@ public sealed class CompanySector : AggregateRoot
 
     public Result ChangeName(string name)
     {
-        if(Result.FailIfIsNullOrWhiteSpace(name, "invalid company sector name") is
+        if(Result.FailIf(string.IsNullOrWhiteSpace(name), "invalid company sector name") is
         {
             IsFail: true,
             Error: var err

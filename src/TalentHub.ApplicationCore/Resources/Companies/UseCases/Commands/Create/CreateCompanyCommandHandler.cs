@@ -49,18 +49,14 @@ public sealed class CreateCompanyCommandHandler(
             request.SiteUrl,
             request.Address,
             request.InstagramUrl,
-            request.FacebookUrl,
             request.LinkedinUrl,
             request.CareerPageUrl,
             request.Mission,
             request.Vision,
             request.Values,
-            request.FoundationYear
-        );
+            request.FoundationYear);
         if (maybeCompany.IsFail)
-        {
-            return maybeCompany.Error;
-        }
+        { return maybeCompany.Error; }
 
         await companyRepository.AddAsync(maybeCompany.Value, cancellationToken);
         return CompanyDto.FromEntity(maybeCompany.Value);

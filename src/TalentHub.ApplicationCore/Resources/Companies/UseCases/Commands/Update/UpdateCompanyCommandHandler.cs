@@ -35,7 +35,6 @@ public sealed class UpdateCompanyCommandHandler(
                 () => company.ChangeEmployeeCount(request.EmployeeCount),
                 () => company.ChangeSiteUrl(request.SiteUrl),
                 () => company.ChangeInstagramUrl(request.InstagramUrl),
-                () => company.ChangeFacebookUrl(request.FacebookUrl),
                 () => company.ChangeLinkedinUrl(request.LinkedinUrl),
                 () => company.ChangeCareerPageUrl(request.CareerPageUrl),
                 () => company.ChangeMission(request.Mission),

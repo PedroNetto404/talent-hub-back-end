@@ -15,7 +15,7 @@ public sealed class Course : AggregateRoot
 
     public static Result<Course> Create(string name)
     {
-        if (Result.FailIfIsNullOrWhiteSpace(name, "name is required") is { IsFail: true, Error: var error })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(name), "name is required") is { IsFail: true, Error: var error })
         {
             return error;
         }
@@ -36,7 +36,7 @@ public sealed class Course : AggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(tag, "tag is required"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(tag), "tag is required"),
                 () => Result.FailIf(_tags.Contains(tag), "tag already exists")
             )
             is { IsFail: true, Error: var error })
@@ -54,7 +54,7 @@ public sealed class Course : AggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfEquals(skillId, Guid.Empty, "Skill id is required"),
+                () => Result.FailIf(skillId == Guid.Empty, "Skill id is required"),
                 () => Result.FailIf(_relatedSkills.Contains(skillId), "Skill already exists"))
             is { IsFail: true, Error: var error })
         {
@@ -68,7 +68,7 @@ public sealed class Course : AggregateRoot
 
     public Result ChangeName(string name)
     {
-        if (Result.FailIfIsNullOrWhiteSpace(name, "name is required") is { IsFail: true, Error: var error })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(name), "name is required") is { IsFail: true, Error: var error })
         {
             return error;
         }

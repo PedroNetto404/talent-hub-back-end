@@ -42,17 +42,18 @@ public sealed record Address
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(street, "invalid street"),
-                () => Result.FailIfIsNullOrWhiteSpace(number, "invalid number"),
-                () => Result.FailIfIsNullOrWhiteSpace(neighborhood, "invalid neighborhood"),
-                () => Result.FailIfIsNullOrWhiteSpace(city, "invalid city"),
-                () => Result.FailIfIsNullOrWhiteSpace(state, "invalid state"),
-                () => Result.FailIfIsNullOrWhiteSpace(country, "invalid country"),
-                () => Result.FailIfIsNullOrWhiteSpace(zipCode, "invalid zip code"
-            )) is { IsFail: true, Error: var err }
-        )
-        { return err; }
-
+                () => Result.FailIf(string.IsNullOrWhiteSpace(street), "invalid street"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(number), "invalid number"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(neighborhood), "invalid neighborhood"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(city), "invalid city"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(state), "invalid state"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(country), "invalid country"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(zipCode), "invalid zipCode")
+            ) is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
+        
         return new Address(
             street,
             number,

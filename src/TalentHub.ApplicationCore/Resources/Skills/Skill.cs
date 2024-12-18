@@ -16,7 +16,7 @@ public sealed class Skill : AggregateRoot
 
     public static Result<Skill> Create(string name, SkillType type)
     {
-        if (Result.FailIfIsNullOrWhiteSpace(name, "skill name is required") is { IsFail: true, Error: var error })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(name), "skill name is required") is { IsFail: true, Error: var error })
         {
             return error;
         }
@@ -33,7 +33,7 @@ public sealed class Skill : AggregateRoot
     {
         tag = tag.Trim();
 
-        if (Result.FailIfIsNullOrWhiteSpace(tag, "tag is required") is { IsFail: true, Error: var emptyError })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(tag), "tag is required") is { IsFail: true, Error: var emptyError })
         {
             return emptyError;
         }
@@ -52,7 +52,7 @@ public sealed class Skill : AggregateRoot
 
     public Result UpdateName(string name)
     {
-        if (Result.FailIfIsNullOrWhiteSpace(name, "name is required") is { IsFail: true, Error: var error })
+        if (Result.FailIf(string.IsNullOrWhiteSpace(name), "name is required") is { IsFail: true, Error: var error })
         {
             return error;
         }

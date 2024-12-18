@@ -6,6 +6,7 @@ using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
 
@@ -26,13 +27,27 @@ public sealed class CreateCandidateCommandHandler(
             return Error.Unauthorized();
         }
 
+        Result<Address> maybeAddress = Address.Create(
+            input.AddressStreet,
+            input.AddressNumber,
+            input.AddressNeighborhood,
+            input.AddressCity,
+            input.AddressState,
+            input.AddressCountry,
+            input.AddressZipCode
+        );
+        if (maybeAddress is { IsFail: true, Error: var error })
+        {
+            return error;
+        }
+
         Result<Candidate> maybeCandidate = Candidate.Create(
             input.Name,
             input.AutoMatchEnabled,
             user.Id,
             input.Phone,
             input.BirthDate,
-            input.Address,
+            maybeAddress.Value,
             input.InstagramUrl,
             input.LinkedinUrl,
             input.GithubUrl,

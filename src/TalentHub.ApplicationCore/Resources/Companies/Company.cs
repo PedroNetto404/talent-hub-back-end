@@ -24,7 +24,6 @@ public sealed class Company : AuditableAggregateRoot
         string? siteUrl,
         Address address,
         string? instagramUrl,
-        string? facebookUrl,
         string? linkedinUrl,
         string? careerPageUrl,
         string? mission,
@@ -45,7 +44,6 @@ public sealed class Company : AuditableAggregateRoot
         SiteUrl = siteUrl;
         Address = address;
         InstagramUrl = instagramUrl;
-        FacebookUrl = facebookUrl;
         LinkedinUrl = linkedinUrl;
         CareerPageUrl = careerPageUrl;
         Mission = mission;
@@ -67,7 +65,6 @@ public sealed class Company : AuditableAggregateRoot
         string? siteUrl,
         Address address,
         string? instagramUrl,
-        string? facebookUrl,
         string? linkedinUrl,
         string? careerPageUrl,
         string? mission,
@@ -78,24 +75,14 @@ public sealed class Company : AuditableAggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(legalName, "invalid legal name"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(legalName), "invalid legal name"),
                 () => Result.FailIf(legalName.Length > MaxLegalNameLength, $"legal name must have up to {MaxLegalNameLength} characters"),
-                () => Result.FailIfIsNullOrWhiteSpace(tradeName, "invalid trade name"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(tradeName), "invalid trade name"),
                 () => Result.FailIf(tradeName.Length > MaxTradeNameLength, $"trade name must have up to {MaxTradeNameLength} characters"),
-                () => Result.FailIfNotCpfj(cnpj),
-                () => Result.FailIfIsNullOrWhiteSpace(recruitmentEmail, "invalid recruitment email"),
-                () => Result.FailIfNotEmail(recruitmentEmail),
-                () => phone is null ? Result.Ok() : Result.FailIfNotPhone(phone),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(cnpj), "invalid cnpj"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(recruitmentEmail), "invalid recruitment email"),
                 () => Result.FailIf(employeeCount < 0, "invalid employee count"),
-                () => siteUrl is null ? Result.Ok() : Result.FailIfNotUrl(siteUrl),
-                () => Result.FailIf(address is null, "invalid address"),
-                () => instagramUrl is null ? Result.Ok() : Result.FailIfNotUrl(instagramUrl),
-                () => facebookUrl is null ? Result.Ok() : Result.FailIfNotUrl(facebookUrl),
-                () => linkedinUrl is null ? Result.Ok() : Result.FailIfNotUrl(linkedinUrl),
-                () => careerPageUrl is null ? Result.Ok() : Result.FailIfNotUrl(careerPageUrl),
-                () => mission is null ? Result.Ok() : Result.FailIf(mission.Length > MaxMissionLength, $"mission must have up to {MaxMissionLength} characters"),
-                () => vision is null ? Result.Ok() : Result.FailIf(vision.Length > MaxVisionLength, $"vision must have up to {MaxVisionLength} characters"),
-                () => values is null ? Result.Ok() : Result.FailIf(values.Length > MaxValuesLength, $"values must have up to {MaxValuesLength} characters")
+                () => Result.FailIf(address is null, "invalid address")
             ) is
             {
                 IsFail: true,
@@ -119,7 +106,6 @@ public sealed class Company : AuditableAggregateRoot
             siteUrl,
             address,
             instagramUrl,
-            facebookUrl,
             linkedinUrl,
             careerPageUrl,
             mission,
@@ -165,7 +151,6 @@ public sealed class Company : AuditableAggregateRoot
     public string? SiteUrl { get; private set; }
     public Address Address { get; private set; }
     public string? InstagramUrl { get; private set; }
-    public string? FacebookUrl { get; private set; }
     public string? LinkedinUrl { get; private set; }
     public string? CareerPageUrl { get; private set; }
     public string? PresentationVideoUrl { get; private set; }
@@ -179,7 +164,7 @@ public sealed class Company : AuditableAggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(legalName, "invalid legal name"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(legalName), "invalid legal name"),
                 () => Result.FailIf(legalName.Length > MaxLegalNameLength, $"legal name must have up to {MaxLegalNameLength} characters")
             ) is
             {
@@ -200,7 +185,7 @@ public sealed class Company : AuditableAggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(tradeName, "invalid trade name"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(tradeName), "invalid trade name"),
                 () => Result.FailIf(tradeName.Length > MaxTradeNameLength, $"trade name must have up to {MaxTradeNameLength} characters")
             ) is
             {
@@ -219,17 +204,7 @@ public sealed class Company : AuditableAggregateRoot
 
     public Result ChangeCnpj(string cnpj)
     {
-        if (
-            Result.FailIfNotCpfj(cnpj) is
-            {
-                IsFail: true,
-                Error: var err
-            }
-        )
-        {
-            return err;
-        }
-
+        //TODO:validate
         Cnpj = cnpj;
 
         return Result.Ok();
@@ -245,7 +220,7 @@ public sealed class Company : AuditableAggregateRoot
 
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(about, "invalid about"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(about), "invalid about"),
                 () => Result.FailIf(about.Length > MaxAboutLength, $"about must have up to {MaxAboutLength} characters")
             ) is
             {
@@ -266,7 +241,7 @@ public sealed class Company : AuditableAggregateRoot
     {
         if (
             Result.FailEarly(
-                () => Result.FailIfIsNullOrWhiteSpace(imageUrl, "invalid image url"),
+                () => Result.FailIf(string.IsNullOrWhiteSpace(imageUrl), "invalid image url"),
                 () => Result.FailIf(!imageUrl.IsValidUrl(), $"{imageUrl} is not a valid url"),
                 () => Result.FailIf(_galery.Count == MaxGaleryItemBytes, "galery supports up to 10 images")
             ) is { IsFail: true, Error: var error }
@@ -283,7 +258,10 @@ public sealed class Company : AuditableAggregateRoot
     public Result RemoveFromGalery(string imageUrl)
     {
         if (
-            Result.FailIfIsNullOrWhiteSpace(imageUrl, "invalid image url") is
+            Result.FailEarly(
+                () => Result.FailIf(string.IsNullOrWhiteSpace(imageUrl), "invalid image url"),
+                () => Result.FailIf(!imageUrl.IsValidUrl(), $"{imageUrl} is not valid url")
+            ) is
             {
                 IsFail: true,
                 Error: var err
@@ -321,17 +299,7 @@ public sealed class Company : AuditableAggregateRoot
 
     public Result ChangeRecruitmentEmail(string recruitmentEmail)
     {
-        if (
-            Result.FailIfNotEmail(recruitmentEmail) is
-            {
-                IsFail: true,
-                Error: var err
-            }
-        )
-        {
-            return err;
-        }
-
+        //TODO:validate
         RecruitmentEmail = recruitmentEmail;
 
         return Result.Ok();
@@ -345,16 +313,7 @@ public sealed class Company : AuditableAggregateRoot
             return Result.Ok();
         }
 
-        if (
-            Result.FailIfNotPhone(phone) is
-            {
-                IsFail: true,
-                Error: var err
-            }
-        )
-        {
-            return err;
-        }
+        //TODO:validate
 
         Phone = phone;
 
@@ -391,7 +350,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIfNotUrl(logoUrl) is
+            Result.FailIf(!logoUrl.IsValidUrl(), $"{logoUrl} is not valid url") is 
             {
                 IsFail: true,
                 Error: var err
@@ -415,7 +374,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIfNotUrl(siteUrl) is
+            Result.FailIf(!siteUrl.IsValidUrl(), $"{siteUrl} is not valid url") is
             {
                 IsFail: true,
                 Error: var err
@@ -442,7 +401,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIfNotUrl(instagramUrl) is
+            Result.FailIf(!instagramUrl.IsValidUrl(), $"{instagramUrl} is not valid url") is
             {
                 IsFail: true,
                 Error: var err
@@ -457,30 +416,6 @@ public sealed class Company : AuditableAggregateRoot
         return Result.Ok();
     }
 
-    public Result ChangeFacebookUrl(string? facebookUrl)
-    {
-        if (facebookUrl is null)
-        {
-            FacebookUrl = null;
-            return Result.Ok();
-        }
-
-        if (
-            Result.FailIfNotUrl(facebookUrl) is
-            {
-                IsFail: true,
-                Error: var err
-            }
-        )
-        {
-            return err;
-        }
-
-        FacebookUrl = facebookUrl;
-
-        return Result.Ok();
-    }
-
     public Result ChangeLinkedinUrl(string? linkedinUrl)
     {
         if (linkedinUrl is null)
@@ -490,7 +425,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIfNotUrl(linkedinUrl) is
+            Result.FailIf(!linkedinUrl.IsValidUrl(), $"{linkedinUrl} is not valid url") is
             {
                 IsFail: true,
                 Error: var err
@@ -514,7 +449,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIfNotUrl(careerPageUrl) is
+            Result.FailIf(!careerPageUrl.IsValidUrl(), $"{careerPageUrl} is not valid url") is
             {
                 IsFail: true,
                 Error: var err
@@ -538,7 +473,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIfNotUrl(presentationVideoUrl) is
+            Result.FailIf(!presentationVideoUrl.IsValidUrl(), $"{presentationVideoUrl} is not valid url") is
             {
                 IsFail: true,
                 Error: var err

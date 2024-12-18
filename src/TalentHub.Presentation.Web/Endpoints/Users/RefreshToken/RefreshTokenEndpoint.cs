@@ -4,6 +4,7 @@ using MediatR;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.RefreshToken;
+using TalentHub.Presentation.Web.Utils;
 
 namespace TalentHub.Presentation.Web.Endpoints.Users.RefreshToken;
 
@@ -29,16 +30,16 @@ public class RefreshTokenEndpoint :
     {
         Guid userId = Route<Guid>("userId");
 
-        Result<AuthenticationResult> result = await Resolve<ISender>().Send(
-            new RefreshTokenCommand(userId, req.RefreshToken),
-            ct
+        await SendResultAsync(
+            ResultUtils.MatchResult(
+                await Resolve<ISender>().Send(
+                    new RefreshTokenCommand(
+                        userId,
+                        req.RefreshToken
+                    ),
+                    ct
+                )
+            )
         );
-
-        if (result is { IsFail: true, Error: var error })
-        {
-            await SendResultAsync(Results.BadRequest(error));
-        }
-
-        await SendOkAsync(result.Value, cancellation: ct);
     }
 }

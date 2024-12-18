@@ -1,7 +1,5 @@
-using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 using TalentHub.ApplicationCore.Resources.Skills;

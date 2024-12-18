@@ -4,6 +4,7 @@ using MediatR;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetCandidateById;
+using TalentHub.Presentation.Web.Utils;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.GetById;
 
@@ -24,16 +25,13 @@ public sealed class GetByIdEndpoint :
     public override async Task HandleAsync(CancellationToken ct)
     {
         Guid candidateId = Route<Guid>("candidateId");
-        Result<CandidateDto> result = await Resolve<ISender>().Send<Result<CandidateDto>>(
-            new GetCandidateByIdQuery(candidateId),
-            ct
+        await SendResultAsync(
+            ResultUtils.MatchResult(
+                await Resolve<ISender>().Send<Result<CandidateDto>>(
+                    new GetCandidateByIdQuery(candidateId),
+                    ct
+                )
+            )
         );
-
-        if(result is { IsFail: true, Error: var error})
-        {
-            await SendResultAsync(Results.BadRequest(error));
-        }
-
-        await SendOkAsync(result.Value, cancellation: ct);
     }
 }

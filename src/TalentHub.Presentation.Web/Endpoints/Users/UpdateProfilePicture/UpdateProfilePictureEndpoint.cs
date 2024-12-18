@@ -4,6 +4,7 @@ using MediatR;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Users.Dtos;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.UpdateProfilePicture;
+using TalentHub.Presentation.Web.Utils;
 
 namespace TalentHub.Presentation.Web.Endpoints.Users.UpdateProfilePicture;
 
@@ -34,9 +35,17 @@ public sealed class UpdateProfilePictureEndpoint :
         using MemoryStream memoryStream = new();
         await req.File.CopyToAsync(memoryStream, ct);
 
-        Result<UserDto> result = await Resolve<ISender>().Send(
-            new UpdateProfilePictureCommand(userId, memoryStream, req.File.ContentType),
-            ct
+        await SendResultAsync(
+            ResultUtils.MatchResult(
+                await Resolve<ISender>().Send(
+                    new UpdateProfilePictureCommand(
+                        userId, 
+                        memoryStream, 
+                        req.File.ContentType
+                    ),
+                    ct
+                )
+            )
         );
     }
 }
