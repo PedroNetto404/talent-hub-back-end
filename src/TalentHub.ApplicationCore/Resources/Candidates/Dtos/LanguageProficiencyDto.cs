@@ -1,5 +1,6 @@
 using Humanizer;
-using TalentHub.ApplicationCore.Resources.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 

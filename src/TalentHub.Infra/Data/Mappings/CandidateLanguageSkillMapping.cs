@@ -2,8 +2,9 @@ using Humanizer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages;
 using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;

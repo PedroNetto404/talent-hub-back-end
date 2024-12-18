@@ -31,7 +31,7 @@ public class RefreshTokenEndpoint :
         Guid userId = Route<Guid>("userId");
 
         await SendResultAsync(
-            ResultUtils.MatchResult(
+            ResultUtils.Map(
                 await Resolve<ISender>().Send(
                     new RefreshTokenCommand(
                         userId,

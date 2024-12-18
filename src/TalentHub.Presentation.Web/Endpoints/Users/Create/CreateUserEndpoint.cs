@@ -27,19 +27,19 @@ public sealed class CreateUserEndpoint : Ep.Req<CreateUserRequest>.Res<UserDto>
         Version(1);
     }
 
-    public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct) => 
+    public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct) =>
         await SendResultAsync(
-            ResultUtils.MatchResult(
+            ResultUtils.Map(
                 await Resolve<ISender>().Send(
                     new CreateUserCommand(
                         req.Email,
                         req.Username,
                         req.Password,
-                        req.Role),
+                        req.Role
+                    ),
                     ct
                 ),
-                (dto) => Results.CreatedAtRoute("api/users/{id}", new { id = dto.Id }, dto)
-            )
-        );
+                (dto) => Results.Created($"/api/v1/users/{dto.Id}", dto)
+        ));
 }
 

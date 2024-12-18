@@ -1,9 +1,13 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
-using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 using TalentHub.ApplicationCore.Resources.Candidates.Events;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
@@ -635,7 +639,7 @@ public sealed class Candidate : AuditableAggregateRoot
             () => certificate.ChangeName(name),
             () => certificate.ChangeIssuer(issuer),
             () => certificate.ChangeWorkload(workload),
-            () => certificate.ChangeUrl(url),
+            () => certificate.ChangeAttachmentUrl(url),
             () =>
             {
                 certificate.ClearRelatedSkills();

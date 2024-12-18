@@ -29,8 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Endpoints/Candidates/Certificates/" />
     <Folder Include="Endpoints/Candidates/Skills/" />
-    <Folder Include="Endpoints/Candidates/Update/" />
   </ItemGroup>
 </Project>

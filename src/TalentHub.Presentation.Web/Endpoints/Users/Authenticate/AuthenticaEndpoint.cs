@@ -29,7 +29,7 @@ public sealed class AuthenticaEndpoint :
 
     public override async Task HandleAsync(AuthenticateRequest req, CancellationToken ct) => 
         await SendResultAsync(
-            ResultUtils.MatchResult(
+            ResultUtils.Map(
                 await Resolve<ISender>().Send(
                     new AuthenticateUserCommand(
                         req.Email,

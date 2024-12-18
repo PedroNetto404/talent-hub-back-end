@@ -5,7 +5,7 @@ namespace TalentHub.Presentation.Web.Utils;
 
 public static class ResultUtils
 {
-    public static IResult MatchResult(Result result, Func<IResult>? onSuccess = null)
+    public static IResult Map(Result result, Func<IResult>? onSuccess = null)
     {
         if (result is { IsFail: true, Error: var error })
         {
@@ -21,8 +21,7 @@ public static class ResultUtils
         onSuccess ??= () => Results.Ok();
         return onSuccess();
     }
-
-    public static IResult MatchResult<TResponse>(
+    public static IResult Map<TResponse>(
         Result<TResponse> result, 
         Func<TResponse, IResult>? onSuccess = null
     ) where TResponse : notnull 
@@ -32,6 +31,6 @@ public static class ResultUtils
             ? () => onSuccess(result.Value) 
             : () => Results.Ok(result.Value);
 
-        return MatchResult(result, callback);
+        return Map(result, callback);
     }    
 }

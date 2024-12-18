@@ -1,5 +1,5 @@
-using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 

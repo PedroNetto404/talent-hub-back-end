@@ -1,1 +1,1 @@
-update users set role = 'admin'
+delete from users;

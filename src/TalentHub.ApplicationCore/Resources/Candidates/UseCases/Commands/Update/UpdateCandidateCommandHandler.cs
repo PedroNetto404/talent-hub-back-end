@@ -14,43 +14,40 @@ public sealed class UpdateCandidateCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        (
-            Guid candidateId,
-            string name,
-            bool autoMatchEnabled,
-            string phone,
-            Address address,
-            IEnumerable<string> desiredWorkplaceTypes,
-            IEnumerable<string> desiredJobTypes,
-            decimal? expectedRemuniration,
-            string? instagramUrl,
-            string? linkedinUrl,
-            string? githubUrl,
-            string? summary,
-            IEnumerable<string> hobbies
-        ) = request;
-
-        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        candidate.SetAutoMatchEnabled(autoMatchEnabled);
+        candidate.SetAutoMatchEnabled(request.AutoMatchEnabled);
+
+        Result<Address> maybeAddress = Address.Create(
+            request.AddressState,
+            request.AddressNumber,
+            request.AddressNeighborhood,
+            request.AddressCity,
+            request.AddressState,
+            request.AddressCountry,
+            request.AddressZipCode);
+        if (maybeAddress.IsFail)
+        {
+            return maybeAddress.Error;
+        }
 
         var result = Result.FailEarly(
-            () => candidate.ChangeName(name),
-            () => candidate.ChangePhone(phone),
-            () => candidate.ChangeAddress(address),
-            () => candidate.ChangeSummary(summary),
-            () => candidate.ChangeExpectedRemuneration(expectedRemuniration),
-            () => candidate.ChangeLinkedinUrl(linkedinUrl),
-            () => candidate.ChangeGithubUrl(githubUrl),
-            () => candidate.ChangeInstagramUrl(instagramUrl),
+            () => candidate.ChangeName(request.Name),
+            () => candidate.ChangePhone(request.Phone),
+            () => candidate.ChangeAddress(maybeAddress.Value),
+            () => candidate.ChangeSummary(request.Summary),
+            () => candidate.ChangeExpectedRemuneration(request.ExpectedRemuneration),
+            () => candidate.ChangeLinkedinUrl(request.LinkedInUrl),
+            () => candidate.ChangeGithubUrl(request.GitHubUrl),
+            () => candidate.ChangeInstagramUrl(request.InstagramUrl),
             () =>
             {
                 candidate.ClearDesiredWorkplaceTypes();
-                foreach (string desiredWorkplaceType in desiredWorkplaceTypes)
+                foreach (string desiredWorkplaceType in request.DesiredWorkplaceTypes)
                 {
                     if (!Enum.TryParse(desiredWorkplaceType, true, out WorkplaceType workplaceType))
                     {
@@ -68,7 +65,7 @@ public sealed class UpdateCandidateCommandHandler(
             () =>
             {
                 candidate.ClearDesiredJobTypes();
-                foreach (string desiredJobType in desiredJobTypes)
+                foreach (string desiredJobType in request.DesiredJobTypes)
                 {
                     if (!Enum.TryParse(desiredJobType, true, out JobType jobType))
                     {
@@ -86,7 +83,7 @@ public sealed class UpdateCandidateCommandHandler(
             () =>
             {
                 candidate.ClearHobbies();
-                foreach (string hobbie in hobbies)
+                foreach (string hobbie in request.Hobbies)
                 {
                     if (candidate.AddHobbie(hobbie) is { IsFail: true, Error: var hobbieError })
                     {

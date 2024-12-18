@@ -36,7 +36,7 @@ public sealed class UpdateProfilePictureEndpoint :
         await req.File.CopyToAsync(memoryStream, ct);
 
         await SendResultAsync(
-            ResultUtils.MatchResult(
+            ResultUtils.Map(
                 await Resolve<ISender>().Send(
                     new UpdateProfilePictureCommand(
                         userId, 

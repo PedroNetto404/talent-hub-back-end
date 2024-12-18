@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TalentHub.ApplicationCore.Resources.Candidates.Entities;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences;
 
 namespace TalentHub.Infra.Data.Mappings;
 

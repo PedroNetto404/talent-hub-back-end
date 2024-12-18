@@ -41,7 +41,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 596, DateTimeKind.Utc).AddTicks(1423))
+                        .HasDefaultValue(new DateTime(2024, 12, 18, 17, 57, 20, 882, DateTimeKind.Utc).AddTicks(4270))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -61,9 +61,9 @@ namespace TalentHub.Infra.Migrations
                         .HasColumnType("text")
                         .HasColumnName("instagram_url");
 
-                    b.Property<string>("LinkedinUrl")
+                    b.Property<string>("LinkedInUrl")
                         .HasColumnType("text")
-                        .HasColumnName("linkedin_url");
+                        .HasColumnName("linked_in_url");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -93,7 +93,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 596, DateTimeKind.Utc).AddTicks(1997))
+                        .HasDefaultValue(new DateTime(2024, 12, 18, 17, 57, 20, 882, DateTimeKind.Utc).AddTicks(4554))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<Guid>("UserId")
@@ -317,7 +317,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 613, DateTimeKind.Utc).AddTicks(5856))
+                        .HasDefaultValue(new DateTime(2024, 12, 18, 17, 57, 20, 889, DateTimeKind.Utc).AddTicks(9593))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -327,10 +327,6 @@ namespace TalentHub.Infra.Migrations
                     b.Property<int>("EmployeeCount")
                         .HasColumnType("integer")
                         .HasColumnName("employee_count");
-
-                    b.Property<string>("FacebookUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("facebook_url");
 
                     b.Property<int>("FoundationYear")
                         .HasColumnType("integer")
@@ -391,7 +387,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 613, DateTimeKind.Utc).AddTicks(6517))
+                        .HasDefaultValue(new DateTime(2024, 12, 18, 17, 57, 20, 889, DateTimeKind.Utc).AddTicks(9831))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<string>("Values")
@@ -531,7 +527,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 669, DateTimeKind.Utc).AddTicks(2202))
+                        .HasDefaultValue(new DateTime(2024, 12, 18, 17, 57, 20, 908, DateTimeKind.Utc).AddTicks(6199))
                         .HasColumnName("created_at_utc");
 
                     b.Property<DateTime?>("DeletedAtUtc")
@@ -562,7 +558,7 @@ namespace TalentHub.Infra.Migrations
                     b.Property<DateTime>("UpdatedAtUtc")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 12, 17, 12, 54, 6, 669, DateTimeKind.Utc).AddTicks(3102))
+                        .HasDefaultValue(new DateTime(2024, 12, 18, 17, 57, 20, 908, DateTimeKind.Utc).AddTicks(6492))
                         .HasColumnName("updated_at_utc");
 
                     b.Property<string>("Username")

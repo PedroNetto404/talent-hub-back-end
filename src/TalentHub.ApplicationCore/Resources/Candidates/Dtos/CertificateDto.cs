@@ -1,4 +1,4 @@
-using TalentHub.ApplicationCore.Resources.Candidates.Entities;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
@@ -14,6 +14,6 @@ public sealed record CertificateDto(
             certificate.Name,
             certificate.Issuer,
             certificate.Workload,
-            certificate.Url
+            certificate.AttachmentUrl
         );
 }

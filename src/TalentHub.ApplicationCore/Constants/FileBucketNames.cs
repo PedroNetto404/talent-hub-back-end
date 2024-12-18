@@ -7,4 +7,5 @@ public static class FileBucketNames
     public const string CompanyLogos = "company-logos";
     public const string CompanyPresentationVideos = "company-presentation-videos";
     public const string CompanyGalery = "company-galery";
+    public const string CandidateCertificateAttchments = "candidate-certificate-attachments";
 }
