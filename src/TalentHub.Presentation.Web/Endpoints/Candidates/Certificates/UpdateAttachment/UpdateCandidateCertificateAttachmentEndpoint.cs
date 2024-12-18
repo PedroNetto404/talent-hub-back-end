@@ -23,6 +23,8 @@ public class UpdateCandidateCertificateAttachmentEndpoint :
 
         Validator<UpdateCandidateCertificateAttachmentRequestValidator>();
 
+        Group<CandidateCertificatesEndpointsGroup>();
+
         Version(1);
     }
 
