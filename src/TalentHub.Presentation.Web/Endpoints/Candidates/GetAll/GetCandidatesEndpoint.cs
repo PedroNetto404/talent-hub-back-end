@@ -12,17 +12,14 @@ public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<Pag
     public override void Configure()
     {
         Get("");
-
         Description(builder => builder.Accepts<GetCandidatesRequest>()
             .Produces<PageResponse>()
             .Produces(StatusCodes.Status400BadRequest)
             .WithDescription("Get all candidates.")
             .WithDisplayName("Get Candidates")
         );
-
         Validator<GetCandidatesRequestValidator>();
         Version(1);
-    
         Group<CandidatesEndpointsGroup>();
     }
 
