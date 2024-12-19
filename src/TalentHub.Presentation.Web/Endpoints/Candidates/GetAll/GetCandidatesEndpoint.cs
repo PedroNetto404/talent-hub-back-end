@@ -28,12 +28,12 @@ public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<Pag
             ResultUtils.Map(
                 await Resolve<ISender>().Send<Result<PageResponse>>(
                     new GetAllCandidatesQuery(
-                        req.SkillIds,
-                        req.Languages,
-                        req.Limit,
-                        req.Offset,
+                        req.SkillIds!,
+                        req.Languages!,
+                        req.Limit!.Value,
+                        req.Offset!.Value,
                         req.SortBy,
-                        req.Ascending
+                        req.Ascending!.Value
                     ),
                     ct
                 )

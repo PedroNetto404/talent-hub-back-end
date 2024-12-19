@@ -8,9 +8,9 @@ public sealed record GetCandidatesRequest : PageRequest
 {
     [ModelBinder(typeof(SplitQueryStringBinder))]
     [FromQuery(Name = "skill_id_in")]
-    public IEnumerable<Guid> SkillIds { get; init; } = [];
+    public IEnumerable<Guid>? SkillIds { get; init; } = [];
 
     [ModelBinder(typeof(SplitQueryStringBinder))]
     [FromQuery(Name = "language_in")]
-    public IEnumerable<string> Languages { get; init; } = [];
+    public IEnumerable<string>? Languages { get; init; } = [];
 }
