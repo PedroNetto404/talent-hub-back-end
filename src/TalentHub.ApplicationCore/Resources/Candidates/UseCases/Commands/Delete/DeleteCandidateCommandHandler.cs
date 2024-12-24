@@ -14,13 +14,17 @@ public sealed class DeleteCandidateCommandHandler(
         DeleteCandidateCommand request,
         CancellationToken cancellationToken)
     {
-        Candidate? candidate = await repository.GetByIdAsync(request.CandidateId, cancellationToken);
-        if (candidate is null) 
+        Candidate? candidate = await repository.GetByIdAsync(
+            request.CandidateId,
+             cancellationToken
+        );
+        if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        if(candidate.ResumeUrl is not null) {
+        if (candidate.ResumeUrl is not null)
+        {
             await fileStorage.DeleteAsync(
                 FileBucketNames.CandidateResumes,
                 candidate.ResumeUrl.Split("/").Last(),
