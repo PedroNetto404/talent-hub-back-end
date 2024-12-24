@@ -3,6 +3,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands;
 using TalentHub.ApplicationCore.Resources.Courses;
 using TalentHub.ApplicationCore.Resources.Universities;
@@ -22,30 +23,7 @@ public sealed class CreateExperienceCommandHandler(
         CreateExperienceCommand request,
         CancellationToken cancellationToken)
     {
-        (
-            Guid candidateId,
-            string type,
-            int startMonth,
-            int startYear,
-            int? endYear,
-            int? endMonth,
-            int? expectedGraduationMonth,
-            int? expectedGraduationYear,
-            bool isCurrent,
-            IEnumerable<string> activities,
-            string? level,
-            string? status,
-            int? currentSemester,
-            IEnumerable<string> academicEntities,
-            Guid? courseId,
-            Guid? universityId,
-            string? position,
-            string? description,
-            string? company,
-            string? professionalLevel
-        ) = request;
-
-        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");

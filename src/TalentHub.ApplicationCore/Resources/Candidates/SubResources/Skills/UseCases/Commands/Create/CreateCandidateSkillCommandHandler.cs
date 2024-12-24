@@ -1,7 +1,10 @@
+using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
+using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetCandidateById;
 using TalentHub.ApplicationCore.Resources.Skills;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills.UseCases.Commands.Create;
@@ -16,26 +19,24 @@ public sealed class CreateCandidateSkillCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        (Guid candidateId, Guid skillId, string proficiency) = request;
-
-        if (!Enum.TryParse(proficiency, true, out Proficiency proficiency1))
+        if (!Enum.TryParse(request.Proficiency.Pascalize(), true, out Proficiency proficiency))
         {
             return Error.BadRequest($"{proficiency} is not valid proficiency");
         }
 
-        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        Skill? skill = await skillRepository.GetByIdAsync(skillId, cancellationToken);
+        Skill? skill = await skillRepository.GetByIdAsync(request.SkillId, cancellationToken);
         if (skill is null)
         {
             return Error.NotFound("skill");
         }
 
-        Result<CandidateSkill> candidateSkillResult = CandidateSkill.Create(skill.Id, proficiency1);
+        Result<CandidateSkill> candidateSkillResult = CandidateSkill.Create(skill.Id, proficiency);
         if(candidateSkillResult.IsFail)
         {
             return candidateSkillResult.Error;

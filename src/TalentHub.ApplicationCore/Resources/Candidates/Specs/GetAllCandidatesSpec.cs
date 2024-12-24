@@ -1,18 +1,26 @@
-using System;
 using Ardalis.Specification;
+using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.Specs;
 
-public sealed class GetCandidatesSpec : GetPageSpec<Candidate>
+public sealed class GetCandidatesSpec : CandidateSpec
 {
     public GetCandidatesSpec(
         int limit,
         int offset,
         string? sortBy = null,
-        bool ascending = true
-    ) : base(limit, offset, sortBy, ascending)
+        SortOrder sortOrder = SortOrder.Ascending
+    ) : base()
     {
+        Query.Paginate(limit, offset);
+
+        if (!string.IsNullOrWhiteSpace(sortBy))
+        {
+            Query.Sort(sortBy, sortOrder);
+        }
     }
 
     public GetCandidatesSpec(
@@ -21,8 +29,8 @@ public sealed class GetCandidatesSpec : GetPageSpec<Candidate>
         int limit,
         int offset,
         string? sortBy = null,
-        bool ascending = true
-    ) : this(limit, offset, sortBy, ascending)
+        SortOrder sortOrder = SortOrder.Ascending
+    ) : this(limit, offset, sortBy, sortOrder)
     {
         if (skills.Any())
         {
@@ -31,9 +39,8 @@ public sealed class GetCandidatesSpec : GetPageSpec<Candidate>
 
         if (languages.Any())
         {
-            Query.Where(cl => cl.LanguageProficiencies.Any(
-                l => languages.Contains(l.Language.Name)
-            ));
+            Language[] langs = [.. languages.Select(l => Language.FromName(l, true))];
+            Query.Where(c => c.LanguageProficiencies.Any(lp => langs.Contains(lp.Language)));
         }
     }
 }

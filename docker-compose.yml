@@ -1,61 +1,53 @@
-version: '3.7'
-
 services:
-  talent-hub_api:
-    container_name: talent-hub_api
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-     - "5000:5000"
-     - "5001:5001" 
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:5000;https://+:5001
-      - Kestrel__Certificates__Default__Path=/app/certificates/aspnetcore.pfx
-      - Kestrel__Certificates__Default__Password=S3cur3P@ssw0rd!
-    volumes:
-      - data_protection_keys:/root/.aspnet/DataProtection-Keys
-    depends_on:
-      - talent-hub_pgdatabase
-      - talent-hub_bucket
-    networks:
-      - backend
-
   talent-hub_pgdatabase:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: talent-hub_admin
-      POSTGRES_PASSWORD: talent-hub_admin_11231233
-      POSTGRES_DB: talent-hub_db
+    container_name: talent-hub_pgdatabase
+    image: postgres
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
-      - postgres_data:/var/lib/postgressql/data
+      - postgres_data:/var/lib/postgresql
     networks:
       - backend
 
   talent-hub_bucket:
+    container_name: talent-hub_bucket
     image: minio/minio
+    ports:
+      - "${BUCKET_PORT}:${BUCKET_PORT}"
+      - "${BUCKET_CONSOLE_PORT}:${BUCKET_CONSOLE_PORT}"
     environment:
-      MINIO_ROOT_USER: talent-hub_admin
-      MINIO_ROOT_PASSWORD: talent-hub_admin_11231233
+      MINIO_ROOT_USER: ${BUCKET_USER}
+      MINIO_ROOT_PASSWORD: ${BUCKET_PASSWORD}
+    command: server /data --console-address ":${BUCKET_CONSOLE_PORT}"
     volumes:
       - minio-data:/data
+    networks:
+      - backend
+
+  talent-hub_cache:
+    container_name: talent-hub_cache
+    image: redis
     ports:
-      - "9000:9000"  
-      - "9001:9001"
-    command: server /data --console-address ":9001"
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./.redis:/usr/local/etc/redis
+      - redis_cache:/data/redis
+    environment:
+      REDIS_USER: ${REDIS_USER}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_PORT: ${REDIS_PORT}
     networks:
       - backend
 
 volumes:
-  minio-data:
-    driver: local
+  redis_cache:
   postgres_data:
-    driver: local
-  data_protection_keys:
-    driver: local
+  minio-data:
 
 networks:
   backend:

@@ -1,12 +1,11 @@
 using FastEndpoints;
 using MediatR;
-using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
 using TalentHub.Presentation.Web.Utils;
 
 namespace TalentHub.Presentation.Web.Endpoints.Users.Authenticate;
 
-public sealed class AuthenticaEndpoint : 
+public sealed class AuthenticateEndpoint : 
     Ep.Req<AuthenticateRequest>
       .Res<AuthenticationResult>
 {
@@ -14,7 +13,6 @@ public sealed class AuthenticaEndpoint :
     {
         Post("auth");
         AllowAnonymous();
-
         Description(d =>
         {
             d.Produces(StatusCodes.Status200OK, typeof(AuthenticationResult));
@@ -22,9 +20,9 @@ public sealed class AuthenticaEndpoint :
             d.WithDescription("Authenticate a user.");
             d.WithDisplayName("Authenticate User");
         });
-
-        Group<UsersEndpointsGroup>();
+        Validator<AuthenticateRequestValidator>();
         Version(1);
+        Group<UsersEndpointsGroup>();
     }
 
     public override async Task HandleAsync(AuthenticateRequest req, CancellationToken ct) => 

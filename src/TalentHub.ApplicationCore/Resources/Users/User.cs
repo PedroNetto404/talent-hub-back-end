@@ -9,6 +9,9 @@ namespace TalentHub.ApplicationCore.Resources.Users;
 
 public sealed class User : AuditableAggregateRoot
 {
+    public const int PasswordMinLength = 8;
+    public const int PasswordMaxLength = 20;
+
     private User(
         string email,
         string username,

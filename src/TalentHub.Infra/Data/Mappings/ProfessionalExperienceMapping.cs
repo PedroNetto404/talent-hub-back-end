@@ -13,6 +13,8 @@ public sealed class ProfessionalExperienceMapping : IEntityTypeConfiguration<Pro
     {
         builder.HasBaseType<Experience>();
 
+        builder.ToTable("professional_experiences");
+
         builder
             .Property(p => p.Position)
             .IsRequired()

@@ -13,7 +13,6 @@ public sealed class CreateUserEndpoint : Ep.Req<CreateUserRequest>.Res<UserDto>
     {
         Post("");
         AllowAnonymous();
-
         Description(d => 
             d.Produces(StatusCodes.Status201Created, typeof(UserDto))
              .Produces(StatusCodes.Status400BadRequest)
@@ -21,7 +20,7 @@ public sealed class CreateUserEndpoint : Ep.Req<CreateUserRequest>.Res<UserDto>
              .WithDescription("Create a new user.")
              .WithDisplayName("Create User")
         );
-
+        Validator<CreateUserRequestValidator>();
         Group<UsersEndpointsGroup>();
         Version(1);
     }

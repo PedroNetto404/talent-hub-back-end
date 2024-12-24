@@ -4,6 +4,7 @@ using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands.UpdateCertificateAttachment;
 
@@ -16,13 +17,13 @@ public sealed class UpdateCandidateCertificateAttachmentCommandHandler(
         UpdateCandidateCertificateAttachmentCommand request, 
         CancellationToken cancellationToken)
     {
-        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        Certificate? certificate = candidate.Certificates.FirstOrDefault(p => p.Id == request.CertificateId, null);
+        Certificate? certificate = candidate.Certificates.FirstOrDefault(p => p.Id == request.CertificateId);
         if (certificate is null)
         {
             return Error.BadRequest($"certificate with id {request.CertificateId} not found");
@@ -41,7 +42,8 @@ public sealed class UpdateCandidateCertificateAttachmentCommandHandler(
             request.AttachmentFile,
             $"{certificate.AttachmentFileName}.{request.ContentType.Split("/").Last()}",
             request.ContentType,
-            cancellationToken);
+            cancellationToken
+        );
         if (!url.IsValidUrl())
         {
             return Error.Unexpected("failed to save attachment");

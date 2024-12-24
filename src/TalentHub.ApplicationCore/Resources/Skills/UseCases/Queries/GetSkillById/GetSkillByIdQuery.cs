@@ -3,9 +3,7 @@ using TalentHub.ApplicationCore.Resources.Skills.Dtos;
 
 namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Queries.GetSkillById;
 
-public sealed record GetSkillByIdQuery(Guid SkillId) : ICachedQuery<SkillDto>
+public sealed record GetSkillByIdQuery(Guid SkillId) : CachedQuery<SkillDto>
 {
-    public TimeSpan? Duration => TimeSpan.FromHours(12);
-
-    public string Key => nameof(GetSkillByIdQuery);
+    public override TimeSpan Duration => TimeSpan.FromHours(12);
 }

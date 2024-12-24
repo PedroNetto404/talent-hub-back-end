@@ -1,6 +1,8 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using TalentHub.Infra.Json.Converters;
 
 namespace TalentHub.Presentation.Web;
 
@@ -11,27 +13,21 @@ public static class WebApplicationExtensions
         if (app.Environment.IsDevelopment())
         {
             app.UseSwaggerGen();
-            app.UseSwagger();
-            app.UseSwaggerUI();
         }
 
         app.UseHttpsRedirection();
         app.UseRouting();
-
-        app.UseAuthentication();
-        app.UseAuthorization();
-
+        app.UseAuthentication().UseAuthorization();
         app.MapHealthChecks("/health");
-
-        app.MapControllers();
-
-        app.UseFastEndpoints(static options =>
+        app.UseFastEndpoints(static opt =>
         {
-            options.Endpoints.RoutePrefix = "api";
-            options.Versioning.Prefix = "v";
-            options.Versioning.PrependToRoute = true;
-            options.Versioning.DefaultVersion = 1;
-            options.Serializer.Options.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+            JsonNamingPolicy policy = HumanizerSnakeCaseJsonPolicy.Instance;
+            opt.Endpoints.RoutePrefix = "api";
+            opt.Versioning.Prefix = "v";
+            opt.Versioning.PrependToRoute = true;
+            opt.Versioning.DefaultVersion = 1;
+            opt.Serializer.Options.Converters.Add(new JsonStringEnumConverter(policy));
+            opt.Serializer.Options.PropertyNamingPolicy = policy;
         });
 
         return app;

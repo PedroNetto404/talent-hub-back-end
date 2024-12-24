@@ -1,6 +1,8 @@
+using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills.UseCases.Commands.Update;
 
@@ -12,20 +14,18 @@ public sealed class UpdateCandidateSkillProficiencyCommandHandler(IRepository<Ca
         CancellationToken cancellationToken
     )
     {
-        (Guid candidateId, Guid candidateSkillId, string proficiency) = request;
-
-        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        if (!Enum.TryParse(proficiency, true, out Proficiency proficiencyEnum))
+        if (!Enum.TryParse(request.Proficiency.Pascalize(), true, out Proficiency proficiencyEnum))
         {
-            return Error.BadRequest($"{proficiency} is not valid proficiency");
+            return Error.BadRequest($"{request.Proficiency} is not valid proficiency");
         }
 
-        if (candidate.UpdateSkillProficiency(candidateSkillId, proficiencyEnum) is
+        if (candidate.UpdateSkillProficiency(request.CandidateSkillId, proficiencyEnum) is
             {
                 IsFail: true,
                 Error: var err

@@ -4,12 +4,8 @@ using TalentHub.ApplicationCore.Extensions;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates;
 
-public sealed class Certificate : Entity
+public sealed class Certificate : VersionedEntity
 {
-#pragma warning disable CS0628 // New protected member declared in sealed type
-    protected Certificate() { }
-#pragma warning restore CS0628 // New protected member declared in sealed type
-
     private Certificate(
         string name,
         string issuer,
@@ -112,4 +108,8 @@ public sealed class Certificate : Entity
 
         return Result.Ok();
     }
+
+#pragma warning disable CS0628 // New protected member declared in sealed type
+    protected Certificate() { }
+#pragma warning restore CS0628 // New protected member declared in sealed type
 }

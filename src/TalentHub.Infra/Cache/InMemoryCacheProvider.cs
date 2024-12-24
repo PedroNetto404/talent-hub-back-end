@@ -21,9 +21,9 @@ public sealed class InMemoryCacheProvider(
         return Task.CompletedTask;
     }
 
-    public Task SetAsync<T>(
+    public Task SetAsync(
         string key, 
-        T value, 
+        object value, 
         TimeSpan? expiration = null, 
         CancellationToken cancellationToken = default
     )

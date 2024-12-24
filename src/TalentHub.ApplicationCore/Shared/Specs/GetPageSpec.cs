@@ -2,6 +2,7 @@ using System;
 using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Shared.Enums;
 
 namespace TalentHub.ApplicationCore.Shared.Specs;
 
@@ -12,7 +13,7 @@ public class GetPageSpec<T> : Specification<T> where T : AggregateRoot
         int limit,
         int offset,
         string? sortBy = null,
-        bool ascending = true
+        SortOrder sortOrder = SortOrder.Ascending
     )
     {
         Query
@@ -21,7 +22,7 @@ public class GetPageSpec<T> : Specification<T> where T : AggregateRoot
 
         if (!string.IsNullOrWhiteSpace(sortBy))
         {
-            Query.Sort(sortBy, ascending);
+            Query.Sort(sortBy, sortOrder);
         }
 
         Query.AsNoTracking();

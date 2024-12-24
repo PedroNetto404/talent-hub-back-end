@@ -14,7 +14,9 @@ public sealed class CreateSkillCommandHandler(
 ) : ICommandHandler<CreateSkillCommand, SkillDto>
 {
     public async Task<Result<SkillDto>> Handle(
-        CreateSkillCommand request, CancellationToken cancellationToken)
+        CreateSkillCommand request, 
+        CancellationToken cancellationToken
+    )
     {
         Skill? existingSkill = await skillRepository.FirstOrDefaultAsync(new GetSkillByNameSpec(request.Name), cancellationToken);
         if (existingSkill is not null) 

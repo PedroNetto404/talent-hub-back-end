@@ -1,6 +1,7 @@
 using FluentValidation;
 using Humanizer;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
+using TalentHub.Presentation.Web.Shared.Validators;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Create;
 
@@ -14,11 +15,10 @@ public sealed class CreateCandidateRequestValidator : AbstractValidator<CreateCa
             .MinimumLength(3)
             .MaximumLength(100);
 
-        When(p => p.Summary != null, () => 
-            RuleFor(p => p.Summary)
-                .MinimumLength(3)
-                .MaximumLength(500)
-        );
+        RuleFor(p => p.Summary)
+            .MinimumLength(3)
+            .MaximumLength(500)
+            .When(p => p.Summary is not null);
 
         RuleFor(p => p.Phone)
             .NotEmpty()
@@ -31,131 +31,81 @@ public sealed class CreateCandidateRequestValidator : AbstractValidator<CreateCa
             .NotNull()
             .GreaterThan(new DateOnly(1900, 1, 1));
 
-        When(p => p.ExpectedRemuneration != null, () =>
-            RuleFor(p => p.ExpectedRemuneration)
-                .GreaterThan(0)
-        );
+        RuleFor(p => p.ExpectedRemuneration)
+            .GreaterThan(0)
+            .When(p => p.ExpectedRemuneration is not null);
 
-        When(p => p.InstagramUrl != null, () =>
-            RuleFor(p => p.InstagramUrl)
-                .Custom((url, context) =>
+        RuleFor(p => p.InstagramUrl)
+            .Custom((url, context) =>
+            {
+                if (Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
                 {
-                    if(Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
-                    {
-                        context.AddFailure("InstagramUrl", "Invalid Instagram URL");
-                    }
-                })
-                .MinimumLength(3)
-                .MaximumLength(100)
-        );
-
-        When(p => p.LinkedInUrl != null, () =>
-            RuleFor(p => p.LinkedInUrl)
-                .Custom((url, context) =>
-                {
-                    if(Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
-                    {
-                        context.AddFailure("LinkedInUrl", "Invalid LinkedIn URL");
-                    }
-                })
-                .MinimumLength(3)
-                .MaximumLength(100)
-        );
-
-        When(p => p.GitHubUrl != null, () =>
-            RuleFor(p => p.GitHubUrl)
-                .Custom((url, context) =>
-                {
-                    if(Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
-                    {
-                        context.AddFailure("GitHubUrl", "Invalid GitHub URL");
-                    }
-                })
-                .MinimumLength(3)
-                .MaximumLength(100)
-        );
-
-        When(p => p.WebsiteUrl != null, () =>
-            RuleFor(p => p.WebsiteUrl)
-                .Custom((url, context) =>
-                {
-                    if(Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
-                    {
-                        context.AddFailure("WebsiteUrl", "Invalid Website URL");
-                    }
-                })
-                .MinimumLength(3)
-                .MaximumLength(100)
-        );
-
-        RuleFor(p => p.AddressStreet)
-            .NotEmpty()
-            .NotNull()
+                    context.AddFailure("InstagramUrl", "Invalid Instagram URL");
+                }
+            })
             .MinimumLength(3)
-            .MaximumLength(100);
+            .MaximumLength(100)
+            .When(p => p.InstagramUrl is not null);
 
-        RuleFor(p => p.AddressNumber)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(1)
-            .MaximumLength(15);
-
-        RuleFor(p => p.AddressNeighborhood)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(3)
-            .MaximumLength(100);
-
-        RuleFor(p => p.AddressCity) 
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(3)
-            .MaximumLength(100);
-
-        RuleFor(p => p.AddressState)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(2)
-            .MaximumLength(30);
-
-        RuleFor(p => p.AddressCountry)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(2)
-            .MaximumLength(30);
-
-        RuleFor(p => p.AddressZipCode)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(8)
-            .MaximumLength(8);
-
-        When(p => p.Hobbies.Any(), () =>
-            RuleForEach(p => p.Hobbies)
-                .MinimumLength(3)
-                .MaximumLength(100)
-        );
-
-        When(p => p.DesiredWorkplaceTypes.Any(), () =>
-            RuleForEach(p => p.DesiredWorkplaceTypes)
-                .Custom((type, context) =>
+        RuleFor(p => p.LinkedInUrl)
+            .Custom((url, context) =>
+            {
+                if (Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
                 {
-                    if(Enum.TryParse<WorkplaceType>(type.Pascalize(), out _) == false)
-                    {
-                        context.AddFailure("DesiredWorkplaceTypes", "Invalid workplace type");
-                    }
-                })
-        );
+                    context.AddFailure("LinkedInUrl", "Invalid LinkedIn URL");
+                }
+            })
+            .MinimumLength(3)
+            .MaximumLength(100)
+            .When(p => p.LinkedInUrl is not null);
 
-        When(p => p.DesiredJobTypes.Any(), () =>
-            RuleForEach(p => p.DesiredJobTypes)
-                .Custom((type, context) =>
+        RuleFor(p => p.GitHubUrl)
+            .Custom((url, context) =>
+            {
+                if (Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
                 {
-                    if(Enum.TryParse<JobType>(type.Pascalize(), out _) == false)
-                    {
-                        context.AddFailure("DesiredJobTypes", "Invalid job type");
-                    }
-                })
-        );
+                    context.AddFailure("GitHubUrl", "Invalid GitHub URL");
+                }
+            })
+            .MinimumLength(3)
+            .MaximumLength(100)
+            .When(p => p.GitHubUrl is not null);
+
+        RuleFor(p => p.WebsiteUrl)
+            .Custom((url, context) =>
+            {
+                if (Uri.TryCreate(url, UriKind.Absolute, out Uri? uri) == false)
+                {
+                    context.AddFailure("WebsiteUrl", "Invalid Website URL");
+                }
+            })
+            .MinimumLength(3)
+            .MaximumLength(100)
+            .When(p => p.WebsiteUrl is not null);
+
+        RuleFor(p => p.Address).SetValidator(new AddressValidator());
+
+        RuleForEach(p => p.Hobbies)
+            .MinimumLength(3)
+            .MaximumLength(100)
+            .When(p => p.Hobbies?.Any() ?? false);
+
+        RuleForEach(p => p.DesiredWorkplaceTypes)
+            .Custom((type, context) =>
+            {
+                if (Enum.TryParse<WorkplaceType>(type.Pascalize(), out _) == false)
+                {
+                    context.AddFailure("DesiredWorkplaceTypes", "Invalid workplace type");
+                }
+            }).When(p => p.DesiredWorkplaceTypes.Any());
+
+        RuleForEach(p => p.DesiredJobTypes)
+            .Custom((type, context) =>
+            {
+                if (Enum.TryParse<JobType>(type.Pascalize(), out _) == false)
+                {
+                    context.AddFailure("DesiredJobTypes", "Invalid job type");
+                }
+            }).When(p => p.DesiredJobTypes?.Any() ?? false);
     }
 }

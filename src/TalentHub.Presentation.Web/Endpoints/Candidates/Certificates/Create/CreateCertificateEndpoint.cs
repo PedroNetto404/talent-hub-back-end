@@ -11,33 +11,30 @@ public sealed class CreateCertificateEndpoint : Ep.Req<CreateCertificateRequest>
     public override void Configure()
     {
         Post("");
-
-        Version(1);
-        Group<CandidateCertificatesEndpointsGroup>();
-
         Description(builder => builder.Accepts<CreateCertificateRequest>()
             .Produces<CandidateDto>()
             .Produces(StatusCodes.Status400BadRequest)
             .WithDescription("Create a new certificate for a candidate.")
             .WithDisplayName("Create Candidate Certificate")
         );
+        Version(1);
+        Group<CandidateCertificatesEndpointsSubGroup>();
+        Validator<CreateCertificateRequestValidator>();
     }
 
-    public override async Task HandleAsync(CreateCertificateRequest req, CancellationToken ct)
-    {
-        Guid candidateId = Route<Guid>("candidateId");
-        
-        CreateCandidateCertificateCommand command = new(
-            candidateId,
-            req.Name,
-            req.Issuer,
-            req.Workload,
-            req.RelatedSkills);
-
+    public override async Task HandleAsync(CreateCertificateRequest req, CancellationToken ct) =>
         await SendResultAsync(
             ResultUtils.Map(
-                await Resolve<ISender>().Send(command, ct)
+                await Resolve<ISender>().Send(
+                    new CreateCandidateCertificateCommand(
+                        req.CandidateId,
+                        req.Name,
+                        req.Issuer,
+                        req.Workload,
+                        req.RelatedSkills
+                    ),
+                    ct
+                )
             )
         );
-    }
 }

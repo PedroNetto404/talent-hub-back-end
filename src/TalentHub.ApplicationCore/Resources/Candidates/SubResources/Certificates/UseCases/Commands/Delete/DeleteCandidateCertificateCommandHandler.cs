@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands.Delete;
 
@@ -12,18 +13,13 @@ public sealed class DeleteCandidateCertificateCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        (Guid candidateId, Guid certificateId) = request;
-
-        Candidate? candidate = await candidateRepository.GetByIdAsync(
-            candidateId,
-            cancellationToken
-        );
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if(candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        if(candidate.RemoveCertificate(certificateId) is { IsFail: true, Error: var removeError})
+        if(candidate.RemoveCertificate(request.CertificateId) is { IsFail: true, Error: var removeError})
         {
             return removeError;
         }

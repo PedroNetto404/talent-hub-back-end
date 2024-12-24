@@ -7,9 +7,9 @@ public interface ICacheProvider
         CancellationToken cancellationToken = default
     );
 
-    Task SetAsync<T>(
+    Task SetAsync(
         string key,
-        T value,    
+        object value,    
         TimeSpan? expiration = null,
         CancellationToken cancellationToken = default
     );

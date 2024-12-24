@@ -5,6 +5,7 @@ using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages;
 namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
 public sealed record LanguageProficiencyDto(
+    Guid Id,
     string Language,
     string WritingLevel,
     string SpeakingLevel,
@@ -13,6 +14,7 @@ public sealed record LanguageProficiencyDto(
 {
     public static LanguageProficiencyDto FromEntity(LanguageProficiency languageProficiency) =>
         new(
+            languageProficiency.Id,
             languageProficiency.Language.Name,
             languageProficiency.WritingLevel.ToString().Underscore(),
             languageProficiency.SpeakingLevel.ToString().Underscore(),

@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
@@ -11,23 +12,7 @@ public sealed class UpdateAcademicExperienceCommandHandler(
 {
     public async Task<Result> Handle(UpdateExperienceCommand request, CancellationToken cancellationToken)
     {
-        (
-            Guid candidateId,
-            Guid experienceId,
-            string type,
-            int startMonth,
-            int startYear,
-            int? endMonth,
-            int? endYear,
-            bool isCurrent,
-            IEnumerable<string> activities,
-            IEnumerable<string> academicEntities,
-            int? currentSemester,
-            string? status,
-            string? description
-        ) = request;
-
-        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
@@ -47,28 +32,28 @@ public sealed class UpdateAcademicExperienceCommandHandler(
             return endResult.Error;
         }
 
-        Result result = type switch
+        Result result = request.Type switch
         {
             "academic" =>
                 Enum.TryParse(request.Status, true, out ProgressStatus progressStatus)
                     ? candidate.UpdateExperience(
-                        experienceId,
+                        request.ExperienceId,
                         start.Value,
                         endResult.Value,
-                        currentSemester!.Value,
-                        isCurrent,
-                        activities,
-                        academicEntities,
+                        request.CurrentSemester!.Value,
+                        request.IsCurrent,
+                        request.Activities,
+                        request.AcademicEntities,
                         progressStatus)
-                    : Error.BadRequest($"{status} is not valid progress status"),
+                    : Error.BadRequest($"{request.Status} is not valid progress status"),
             "professional" => candidate.UpdateExperience(
-                experienceId,
+                request.ExperienceId,
                 start.Value,
                 endResult.Value,
-                isCurrent,
-                activities,
-                description!),
-            _ => Error.BadRequest($"{type} must be either academic or professional")
+                request.IsCurrent,
+                request.Activities,
+                request.Description!),
+            _ => Error.BadRequest($"{request.Type} must be either academic or professional")
         };
         if (result.IsFail)
         {

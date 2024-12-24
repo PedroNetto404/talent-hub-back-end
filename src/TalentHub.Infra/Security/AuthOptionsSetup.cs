@@ -2,19 +2,21 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using TalentHub.Infra.Security.Options;
 
 namespace TalentHub.Infra.Security;
 
 public sealed class AuthOptionsSetup(
-    IConfiguration configuration
+    IOptions<JwtOptions> options
 ) :
     IConfigureNamedOptions<AuthenticationOptions>,
     IConfigureNamedOptions<JwtBearerOptions>,
     IConfigureNamedOptions<AuthorizationOptions>
 {
+    private readonly JwtOptions opt = options.Value;
+
     public void Configure(string? name, AuthenticationOptions options) => 
         Configure(options);
 
@@ -31,19 +33,17 @@ public sealed class AuthOptionsSetup(
     {
         options.TokenValidationParameters = new()
         {
-            ValidIssuer = configuration["Jwt:Issuer"],
+            ValidIssuer = opt.Issuer,
             ValidateIssuer = true,
 
-            ValidAudience = configuration["Jwt:Audience"],
+            ValidAudience = opt.Audience,
             ValidateAudience = true,
 
             ValidateLifetime = true,
 
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(
-                    configuration["Jwt:SecretKey"]!
-                )
+                Encoding.UTF8.GetBytes(opt.SecretKey)
             )
         };
     }

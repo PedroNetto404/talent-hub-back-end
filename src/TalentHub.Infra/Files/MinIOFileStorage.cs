@@ -5,27 +5,8 @@ using TalentHub.ApplicationCore.Ports;
 
 namespace TalentHub.Infra.Files;
 
-public sealed class MinIoFileStorage : IFileStorage
+public sealed class MinIoFileStorage(IAmazonS3 amazonS3) : IFileStorage
 {
-    private readonly IAmazonS3 _amazonS3;
-    private readonly string _serviceUrl;
-
-    public MinIoFileStorage()
-    {
-        var config = new AmazonS3Config
-        {
-            ServiceURL = "http://localhost:9000",
-            ForcePathStyle = true
-        };
-
-        _amazonS3 = new AmazonS3Client(
-            "talent-hub_admin",
-            "talent-hub_admin_11231233",
-            config);
-
-        _serviceUrl = config.ServiceURL;
-    }
-
     public async Task DeleteAsync(
         string bucket,
         string fileName,
@@ -36,18 +17,12 @@ public sealed class MinIoFileStorage : IFileStorage
             return;
         }
 
-        await _amazonS3.DeleteObjectAsync(new DeleteObjectRequest
+        await amazonS3.DeleteObjectAsync(new DeleteObjectRequest
         {
             BucketName = bucket,
             Key = fileName
         }, cancellationToken);
     }
-
-    public void DeleteAsync(string userProfilePicture, object profilePictureFileName)
-    {
-        throw new NotImplementedException();
-    }
-
 
     public async Task<Stream> GetAsync(
         string bucket,
@@ -59,7 +34,7 @@ public sealed class MinIoFileStorage : IFileStorage
             throw new FileNotFoundException($"Bucket '{bucket}' not found.");
         }
 
-        GetObjectResponse? obj = await _amazonS3.GetObjectAsync(new GetObjectRequest
+        GetObjectResponse? obj = await amazonS3.GetObjectAsync(new GetObjectRequest
         {
             BucketName = bucket,
             Key = fileName
@@ -90,25 +65,25 @@ public sealed class MinIoFileStorage : IFileStorage
             CannedACL = S3CannedACL.PublicRead
         };
 
-        PutObjectResponse? response = await _amazonS3.PutObjectAsync(putObjectRequest, cancellationToken);
+        PutObjectResponse? response = await amazonS3.PutObjectAsync(putObjectRequest, cancellationToken);
 
         if (response.HttpStatusCode != HttpStatusCode.OK)
         {
             throw new Exception($"Failed to save file '{fileName}' to bucket '{bucket}'.");
         }
 
-        return $"{_serviceUrl}{bucket}/{fileName}";
+        return $"{amazonS3.Config.ServiceURL}{bucket}/{fileName}";
     }
 
     private async Task<bool> BucketExistsAsync(string bucketName, CancellationToken cancellationToken)
     {
-        ListBucketsResponse? response = await _amazonS3.ListBucketsAsync(cancellationToken);
+        ListBucketsResponse? response = await amazonS3.ListBucketsAsync(cancellationToken);
         return response.Buckets.Any(bucket => bucket.BucketName == bucketName);
     }
 
     private async Task CreateBucketAsync(string bucketName, CancellationToken cancellationToken)
     {
-        await _amazonS3.PutBucketAsync(new PutBucketRequest
+        await amazonS3.PutBucketAsync(new PutBucketRequest
         {
             BucketName = bucketName,
             CannedACL = S3CannedACL.PublicRead
@@ -128,7 +103,7 @@ public sealed class MinIoFileStorage : IFileStorage
                                         }
                                 """;
 
-        await _amazonS3.PutBucketPolicyAsync(new PutBucketPolicyRequest
+        await amazonS3.PutBucketPolicyAsync(new PutBucketPolicyRequest
         {
             BucketName = bucketName,
             Policy = bucketPolicy

@@ -16,7 +16,7 @@ public sealed class UpdateCandidateEndpoint : Ep.Req<UpdateCandidateRequest>.NoR
 
         Description(d => 
             d.Accepts<UpdateCandidateRequest>()
-             .Produces(StatusCodes.Status200OK)
+             .Produces(StatusCodes.Status204NoContent)
              .Produces(StatusCodes.Status400BadRequest)
              .WithDescription("Update a candidate.")
              .WithDisplayName("Update Candidate")
@@ -34,13 +34,7 @@ public sealed class UpdateCandidateEndpoint : Ep.Req<UpdateCandidateRequest>.NoR
             req.Name,
             req.AutoMatchEnabled,
             req.Phone, 
-            req.AddressStreet,
-            req.AddressNumber,
-            req.AddressNeighborhood,
-            req.AddressCity,
-            req.AddressState,
-            req.AddressCountry,
-            req.AddressZipCode,
+            req.Address,
             req.DesiredWorkplaceTypes,
             req.DesiredJobTypes,
             req.ExpectedRemuneration,
@@ -53,7 +47,8 @@ public sealed class UpdateCandidateEndpoint : Ep.Req<UpdateCandidateRequest>.NoR
 
         await SendResultAsync(
             ResultUtils.Map(
-                await Resolve<ISender>().Send(command, ct)
+                await Resolve<ISender>().Send(command, ct),
+                onSuccess: Results.NoContent
             )
         );
     }

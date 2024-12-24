@@ -12,21 +12,9 @@ public sealed class CandidateMapping : AuditableAggregateRootMapping<Candidate>
         base.Configure(builder);
         
         builder.ToTable("candidates");
-
-        builder
-            .Property(c => c.Name)
-            .IsRequired()
-            .HasMaxLength(200);
-
-        builder
-            .Property(c => c.Phone)
-            .IsRequired()
-            .HasMaxLength(11);
-
-        builder
-            .HasIndex(c => c.Phone)
-            .IsUnique();
-
+        builder.Property(c => c.Name).IsRequired().HasMaxLength(200);
+        builder.Property(c => c.Phone).IsRequired().HasMaxLength(11);
+        builder.HasIndex(c => c.Phone).IsUnique();
         builder.OwnsOne(c => c.Address, q =>
         {
             q
@@ -59,57 +47,26 @@ public sealed class CandidateMapping : AuditableAggregateRootMapping<Candidate>
             .IsRequired()
             .HasMaxLength(20);
         });
-
         builder.Ignore(c => c.Age);
+        builder.Property(p => p.BirthDate).HasColumnType("date").IsRequired();
+        builder.Property(c => c.Summary).HasMaxLength(200);
+        builder.Property(c => c.ExpectedRemuneration).HasPrecision(12, 2);
 
-        builder
-            .Property(p => p.BirthDate)
-            .HasColumnType("date")
-            .IsRequired();
+        builder.Metadata.FindNavigation(nameof(Candidate.Skills))!.SetPropertyAccessMode(PropertyAccessMode.Field);
+        builder.HasMany(p => p.Skills).WithOne().HasForeignKey("candidate_id").OnDelete(DeleteBehavior.Cascade);
 
-        builder
-            .Property(c => c.Summary)
-            .HasMaxLength(200);
+        builder.Metadata.FindNavigation(nameof(Candidate.Experiences))!.SetPropertyAccessMode(PropertyAccessMode.Field);
+        builder.HasMany(p => p.Experiences).WithOne().HasForeignKey("candidate_id").OnDelete(DeleteBehavior.Cascade);
 
-        builder
-            .Property(c => c.ExpectedRemuneration)
-            .HasPrecision(12, 2);
+        builder.Metadata.FindNavigation(nameof(Candidate.LanguageProficiencies))!.SetPropertyAccessMode(PropertyAccessMode.Field);
+        builder.HasMany(p => p.LanguageProficiencies).WithOne().HasForeignKey("candidate_id").OnDelete(DeleteBehavior.Cascade);
 
-        builder
-            .Metadata
-            .FindNavigation(nameof(Candidate.Skills))!
-            .SetPropertyAccessMode(PropertyAccessMode.Field);
+        builder.Metadata.FindNavigation(nameof(Candidate.Certificates))!.SetPropertyAccessMode(PropertyAccessMode.Field);
+        builder.HasMany(p => p.Certificates).WithOne().HasForeignKey("candidate_id").OnDelete(DeleteBehavior.Cascade);
 
-        builder
-            .Metadata
-            .FindNavigation(nameof(Candidate.Experiences))!
-            .SetPropertyAccessMode(PropertyAccessMode.Field);
-
-        builder
-            .Metadata
-            .FindNavigation(nameof(Candidate.LanguageProficiencies))!
-            .SetPropertyAccessMode(PropertyAccessMode.Field);
-
-        builder
-            .Property("_hobbies")
-            .HasColumnName("hobbies")
-            .HasColumnType("text[]");
-
-        builder
-            .Property("_desiredJobTypes")
-            .HasColumnType("text[]")
-            .HasColumnName("desired_job_types")
-            .UsePropertyAccessMode(PropertyAccessMode.Field);
-
-        builder
-            .Property("_desiredWorkplaceTypes")
-            .HasColumnType("text[]")
-            .HasColumnName("desired_workplace_types")
-            .UsePropertyAccessMode(PropertyAccessMode.Field);
-
-        builder
-            .HasOne<User>()
-            .WithOne()
-            .HasForeignKey<Candidate>(p => p.UserId);
+        builder.Property("_hobbies").HasColumnName("hobbies").HasColumnType("text[]");
+        builder.Property("_desiredJobTypes").HasColumnType("text[]").HasColumnName("desired_job_types").UsePropertyAccessMode(PropertyAccessMode.Field);
+        builder.Property("_desiredWorkplaceTypes").HasColumnType("text[]").HasColumnName("desired_workplace_types").UsePropertyAccessMode(PropertyAccessMode.Field);
+        builder.HasOne<User>().WithOne().HasForeignKey<Candidate>(p => p.UserId).OnDelete(DeleteBehavior.Cascade);
     }
 }

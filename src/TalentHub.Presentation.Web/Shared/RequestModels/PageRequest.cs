@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using TalentHub.ApplicationCore.Shared.Enums;
 
 namespace TalentHub.Presentation.Web.Shared.RequestModels;
 
@@ -20,7 +21,7 @@ public record PageRequest
     [DefaultValue("id")]
     public string? SortBy { get; init; } = "id";
 
-    [FromQuery(Name = "_sort_ascending")]
+    [FromQuery(Name = "_sort_order")]
     [DefaultValue(true)]
-    public bool? Ascending { get; init; } = true;
+    public SortOrder? SortOrder { get; init; } = ApplicationCore.Shared.Enums.SortOrder.Ascending;
 }

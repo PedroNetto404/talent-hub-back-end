@@ -1,36 +1,24 @@
+using System.Text.Json.Serialization;
 using FastEndpoints;
-using FastEndpoints.Swagger;
-using TalentHub.Presentation.Web.Options;
+using TalentHub.Infra.Json.Converters;
 
 namespace TalentHub.Presentation.Web;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPresentation(
-        this IServiceCollection services
-    )
+    public static IServiceCollection AddPresentation(this IServiceCollection s)
     {
-        services.AddFastEndpoints().SwaggerDocument(static options =>
-            {
-                options.MaxEndpointVersion = 1;
-                options.DocumentSettings = s => 
-                {
-                    s.DocumentName = "TalentHub V1";
-                    s.Title = "TalentHub";
-                    s.Version = "v1";
-                };
-            });
+        s.AddFastEndpoints(static opt => opt.IncludeAbstractValidators = true);
+        s.AddSwaggerDocument(c => c.Title = "Talent Hub Api");
+        s.AddEndpointsApiExplorer();
+        s.AddHealthChecks();
+        s.AddRouting();
+        s.ConfigureHttpJsonOptions(opt =>
+        {
+            opt.SerializerOptions.PropertyNamingPolicy = HumanizerSnakeCaseJsonPolicy.Instance;
+            opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter(HumanizerSnakeCaseJsonPolicy.Instance));
+        });
 
-        services.AddHealthChecks();
-
-        services.ConfigureOptions<ControllerOptionsSetup>();
-        services.AddControllers();
-        services.AddRouting();
-
-        services.ConfigureOptions<SwaggerConfig>();
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-        
-        return services;
+        return s;
     }
-}   
+}

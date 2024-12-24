@@ -7,8 +7,7 @@ public static class ObjectExtensions
 {
     private static readonly JsonSerializerOptions _options = new()
     {
-        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
-        WriteIndented = true,
+        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
     };
 
     public static string ToJson(this object obj) =>

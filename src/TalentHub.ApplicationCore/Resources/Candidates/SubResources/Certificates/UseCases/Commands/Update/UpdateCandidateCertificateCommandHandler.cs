@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Resources.Skills;
 using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
@@ -29,10 +30,7 @@ public sealed class UpdateCandidateCertificateCommandHandler(
             }
         }
 
-        Candidate? candidate = await candidateRepository.GetByIdAsync(
-            request.CandidateId,
-            cancellationToken
-        );
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if(candidate is null)
         {
             return Error.NotFound("candidate");

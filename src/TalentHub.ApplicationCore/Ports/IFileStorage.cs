@@ -19,5 +19,4 @@ public interface IFileStorage
         string bucket,
         string fileName, 
         CancellationToken cancellationToken = default);
-    void DeleteAsync(string userProfilePicture, object profilePictureFileName);
 }

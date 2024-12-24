@@ -9,11 +9,11 @@ public static class ResultUtils
     {
         if (result is { IsFail: true, Error: var error })
         {
-            return error switch
+            return error.Code switch
             {
-                { Code: "bad_request", Expose: true } => Results.BadRequest(error),
-                { Code: "not_found", Expose: true } => Results.NotFound(error),
-                { Code: "unauthorized" } => Results.Unauthorized(),
+                "bad_request" => Results.BadRequest(error),
+                "not_found" => Results.NotFound(error),
+                "unauthorized" => Results.Unauthorized(),
                 _ => Results.Json(error, statusCode: StatusCodes.Status500InternalServerError)
             };
         }

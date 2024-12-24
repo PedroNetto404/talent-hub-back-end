@@ -110,10 +110,7 @@ public sealed class Candidate : AuditableAggregateRoot
     public bool AutoMatchEnabled { get; private set; } = true;
     public Guid UserId { get; private set; }
     public string? Summary { get; private set; }
-    public string? ProfilePictureUrl { get; private set; }
-    public string ProfilePictureFileName => $"candidate_profile_picture-{Id}";
     public string? ResumeUrl { get; private set; }
-    public string ResumeFileName => $"candidate_resume-{Id}";
     public string? InstagramUrl { get; private set; }
     public string? LinkedInUrl { get; private set; }
     public string? GithubUrl { get; private set; }
@@ -158,7 +155,7 @@ public sealed class Candidate : AuditableAggregateRoot
             _languageProficiencies.FirstOrDefault(p => p.Language == languageProficiency.Language);
         if (existing is not null)
         {
-            return new Error("candidate", "candidate language proficiency already exists");
+            return Error.BadRequest("candidate language proficiency already exists");
         }
 
         _languageProficiencies.Add(languageProficiency);
@@ -166,23 +163,28 @@ public sealed class Candidate : AuditableAggregateRoot
     }
 
     public Result UpdateLanguageProficiency(
-        Language language,
-        LanguageSkillType type,
-        Proficiency proficiency)
+        Guid langProficiencyId,
+        Proficiency writingLevel,
+        Proficiency speakingLevel,
+        Proficiency listeningLevel
+    )
     {
-        LanguageProficiency? languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
+        LanguageProficiency? languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Id == langProficiencyId);
         if (languageProficiency is null)
         {
             return new Error("candidate", "language proficiency not added");
         }
 
-        languageProficiency.UpdateProficiency(type, proficiency);
+        languageProficiency.WritingLevel = writingLevel;
+        languageProficiency.SpeakingLevel = speakingLevel;
+        languageProficiency.ListeningLevel = listeningLevel;
+
         return Result.Ok();
     }
 
-    public Result RemoveLanguage(Language language)
+    public Result RemoveLanguage(Guid languageProficiencyId)
     {
-        LanguageProficiency? languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Language == language);
+        LanguageProficiency? languageProficiency = _languageProficiencies.FirstOrDefault(p => p.Id == languageProficiencyId);
         if (languageProficiency is null)
         {
             return new Error("candidate", "candidate language proficiency not exists");
@@ -347,17 +349,6 @@ public sealed class Candidate : AuditableAggregateRoot
     }
 
     public void ClearDesiredWorkplaceTypes() => _desiredWorkplaceTypes.Clear();
-
-    public Result UpdateProfilePicture(string profilePictureUrl)
-    {
-        if (!Uri.IsWellFormedUriString(profilePictureUrl, UriKind.Absolute))
-        {
-            return new Error("candidate_profile_picture", "invalid profile picture url");
-        }
-
-        ProfilePictureUrl = profilePictureUrl;
-        return Result.Ok();
-    }
 
     public Result ChangeName(string name)
     {

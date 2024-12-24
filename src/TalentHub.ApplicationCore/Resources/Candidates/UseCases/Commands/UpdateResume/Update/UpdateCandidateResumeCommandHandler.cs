@@ -3,6 +3,7 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateResume.Update;
 
@@ -15,12 +16,7 @@ public sealed class UpdateCandidateResumeCommandHandler(
         UpdateCandidateResumeCommand request,
         CancellationToken cancellationToken)
     {
-        (
-            Guid candidateId,
-            Stream resumeFile
-        ) = request;
-
-        Candidate? candidate = await candidateRepository.GetByIdAsync(candidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
@@ -30,14 +26,14 @@ public sealed class UpdateCandidateResumeCommandHandler(
         {
             await fileStorage.DeleteAsync(
                 FileBucketNames.CandidateResumes,
-                candidate.ResumeFileName,
+                candidate.ResumeUrl.Split("/").Last(),
                 cancellationToken);
         }
 
         string url = await fileStorage.SaveAsync(
             FileBucketNames.CandidateResumes,
-            resumeFile,
-            candidate.ResumeFileName,
+            request.File,
+            $"{candidate.Id}.pdf",
             "application/pdf",
             cancellationToken);
 

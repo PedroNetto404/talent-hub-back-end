@@ -1,7 +1,8 @@
+using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
-using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Update;
 
@@ -14,7 +15,7 @@ public sealed class UpdateCandidateCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
@@ -22,23 +23,10 @@ public sealed class UpdateCandidateCommandHandler(
 
         candidate.SetAutoMatchEnabled(request.AutoMatchEnabled);
 
-        Result<Address> maybeAddress = Address.Create(
-            request.AddressState,
-            request.AddressNumber,
-            request.AddressNeighborhood,
-            request.AddressCity,
-            request.AddressState,
-            request.AddressCountry,
-            request.AddressZipCode);
-        if (maybeAddress.IsFail)
-        {
-            return maybeAddress.Error;
-        }
-
         var result = Result.FailEarly(
             () => candidate.ChangeName(request.Name),
             () => candidate.ChangePhone(request.Phone),
-            () => candidate.ChangeAddress(maybeAddress.Value),
+            () => candidate.ChangeAddress(request.Address),
             () => candidate.ChangeSummary(request.Summary),
             () => candidate.ChangeExpectedRemuneration(request.ExpectedRemuneration),
             () => candidate.ChangeLinkedinUrl(request.LinkedInUrl),
@@ -49,7 +37,7 @@ public sealed class UpdateCandidateCommandHandler(
                 candidate.ClearDesiredWorkplaceTypes();
                 foreach (string desiredWorkplaceType in request.DesiredWorkplaceTypes)
                 {
-                    if (!Enum.TryParse(desiredWorkplaceType, true, out WorkplaceType workplaceType))
+                    if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
                     {
                         return Error.BadRequest($"{desiredWorkplaceType} is not valid workplace type");
                     }
@@ -67,7 +55,7 @@ public sealed class UpdateCandidateCommandHandler(
                 candidate.ClearDesiredJobTypes();
                 foreach (string desiredJobType in request.DesiredJobTypes)
                 {
-                    if (!Enum.TryParse(desiredJobType, true, out JobType jobType))
+                    if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
                     {
                         return Error.BadRequest($"{desiredJobType} is not valid job type");
                     }

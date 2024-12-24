@@ -21,7 +21,7 @@ public sealed class GetAllCoursesQueryHandler(
                 request.Limit,
                 request.Offset,
                 request.SortBy!,
-                request.Ascending
+                request.SortOrder
             ),
             cancellationToken);
         int count = await repository.CountAsync(new GetCoursesSpec(request.Ids), cancellationToken);

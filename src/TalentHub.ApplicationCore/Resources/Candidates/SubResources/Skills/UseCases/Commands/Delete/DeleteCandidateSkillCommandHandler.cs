@@ -1,29 +1,33 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills.UseCases.Commands.Delete;
 
 public sealed class DeleteCandidateSkillCommandHandler(
     IRepository<Candidate> repository
 ) :
-    ICommandHandler<DeleteCandidateSkillCommand>
+    ICommandHandler<DeleteCandidateSkillCommand, CandidateDto>
 {
-    public async Task<Result> Handle(DeleteCandidateSkillCommand request, CancellationToken cancellationToken)
+    public async Task<Result<CandidateDto>> Handle(DeleteCandidateSkillCommand request, CancellationToken cancellationToken)
     {
-        Candidate? candidate = await repository.GetByIdAsync(request.CandidateId, cancellationToken);
+        Candidate? candidate = await repository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
-        if(candidate.RemoveSkill(request.CandidateSkillId) is
-           {
-               IsFail: true,
-               Error: var error
-           })
-        {}
+        if (candidate.RemoveSkill(request.CandidateSkillId) is
+            {
+                IsFail: true,
+                Error: var error
+            })
+        {
+            return error;
+        }
 
         await repository.UpdateAsync(candidate, cancellationToken);
-        return Result.Ok();
+        return CandidateDto.FromEntity(candidate);
     }
 }

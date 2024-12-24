@@ -1,5 +1,6 @@
 using System;
 using Ardalis.Specification;
+using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Universities.Specs;
@@ -18,16 +19,16 @@ public sealed class GetUniversitiesSpec : GetPageSpec<University>
         int limit,
         int offset,
         string? sortBy = null,
-        bool ascending = true
-    ) : base(limit, offset, sortBy, ascending) { }
+        SortOrder sortOrder = SortOrder.Ascending
+    ) : base(limit, offset, sortBy, sortOrder) { }
 
     public GetUniversitiesSpec(
         IEnumerable<Guid> ids,
         int limit,
         int offset,
         string? sortBy = null,
-        bool ascending = true
-    ) : this(limit, offset, sortBy, ascending)
+        SortOrder sortOrder = SortOrder.Ascending
+    ) : this(limit, offset, sortBy, sortOrder)
     {
         if (ids.Any())
         {

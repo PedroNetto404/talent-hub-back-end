@@ -5,7 +5,7 @@ using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates;
 namespace TalentHub.Infra.Data.Mappings;
 
 public sealed class CertificateMapping :
-    EntityMapping<Certificate>
+    VersionedEntityMapping<Certificate>
 {
 
     public override void Configure(EntityTypeBuilder<Certificate> builder)

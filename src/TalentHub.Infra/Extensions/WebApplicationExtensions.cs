@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Amazon.Runtime.Internal.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +17,8 @@ public static class WebApplicationExtensions
         await using AsyncServiceScope scope = app.Services.CreateAsyncScope();
         TalentHubContext context = scope.ServiceProvider.GetRequiredService<TalentHubContext>();
         ILogger<WebApplication> logger = scope.ServiceProvider.GetRequiredService<ILogger<WebApplication>>();
+
+        await context.Database.EnsureCreatedAsync();
 
         logger.LogInformation("starting database seed");
 
@@ -85,7 +86,7 @@ public static class WebApplicationExtensions
                 return;
             }
 
-            IEnumerable<string> entityKeysInDatabase = [.. 
+            IEnumerable<string> entityKeysInDatabase = [..
                 await context
                     .Set<TEntity>()
                     .ToListAsync()

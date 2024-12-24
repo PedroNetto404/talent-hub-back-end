@@ -20,7 +20,7 @@ public sealed class GetAllSkillsQueryHandler(
                 request.Limit,
                 request.Offset,
                 request.SortBy,
-                request.Ascending
+                request.SortOrder
             ),
             cancellationToken
         );

@@ -1,5 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Shared.Dtos;
+using TalentHub.ApplicationCore.Shared.Enums;
 
 namespace TalentHub.ApplicationCore.Resources.CompanySectors.UseCases.Queries.GetAll;
 
@@ -7,10 +9,8 @@ public sealed record GetAllCompanySectorsQuery(
     int Limit,
     int Offset,
     string? SortBy,
-    bool Ascending
-) : ICachedQuery<PageResponse>
+    SortOrder SortOrder
+) : CachedQuery<PageResponse>
 {
-    public TimeSpan? Duration => TimeSpan.FromHours(12);
-
-    public string Key => $"company_sectors_{Limit}_{Offset}_{SortBy}_{Ascending}";
+    public override TimeSpan Duration => TimeSpan.FromHours(12);
 }

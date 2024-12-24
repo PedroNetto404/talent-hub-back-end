@@ -33,13 +33,7 @@ public sealed class CreateCandidateEndpoint : Ep.Req<CreateCandidateRequest>.Res
                         req.AutoMatchEnabled,
                         req.Phone,
                         req.BirthDate,
-                        req.AddressStreet,
-                        req.AddressNumber,
-                        req.AddressNeighborhood,
-                        req.AddressCity,
-                        req.AddressState,
-                        req.AddressCountry,
-                        req.AddressZipCode,
+                        req.Address,
                         req.DesiredJobTypes,
                         req.DesiredWorkplaceTypes,
                         req.Summary,
@@ -50,7 +44,8 @@ public sealed class CreateCandidateEndpoint : Ep.Req<CreateCandidateRequest>.Res
                         req.Hobbies
                     ),
                     ct
-                )
+                ),
+                onSuccess: (dto) => Results.Created($"/api/v1/candidates/{dto.Id}", dto) 
             )
         );
 }

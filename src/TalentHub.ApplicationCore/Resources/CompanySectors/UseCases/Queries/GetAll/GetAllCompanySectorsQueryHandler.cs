@@ -17,7 +17,7 @@ public sealed class GetAllCompanySectorsQueryHandler(
     )
     {
         List<CompanySector> companySectors = await repository.ListAsync(
-            new GetPageSpec<CompanySector>(request.Limit, request.Offset, request.SortBy, request.Ascending),
+            new GetPageSpec<CompanySector>(request.Limit, request.Offset, request.SortBy, request.SortOrder),
             cancellationToken: cancellationToken
         );
 

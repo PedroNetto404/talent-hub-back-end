@@ -1,8 +1,6 @@
-using Ardalis.Specification;
 using Humanizer;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Extensions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Users.Dtos;
 using TalentHub.ApplicationCore.Resources.Users.Enums;

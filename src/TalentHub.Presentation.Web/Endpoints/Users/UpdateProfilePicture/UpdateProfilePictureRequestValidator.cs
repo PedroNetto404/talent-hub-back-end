@@ -12,7 +12,7 @@ public sealed class UpdateProfilePictureRequestValidator : AbstractValidator<Upd
         .NotNull()
         .Custom((file, context) =>
         {
-            if (file is { Length: > 0 })
+            if (file.Length == 0)
             {
                 context.AddFailure("Image is required");
             }

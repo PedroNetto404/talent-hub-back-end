@@ -4,7 +4,7 @@ using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills;
 
-public sealed class CandidateSkill : Entity
+public sealed class CandidateSkill : VersionedEntity
 {
     private CandidateSkill(Guid skillId, Proficiency proficiency)
     {

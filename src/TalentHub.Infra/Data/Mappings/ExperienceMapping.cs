@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands;
-using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences;
 
 namespace TalentHub.Infra.Data.Mappings;
 
-public sealed class ExperienceMapping : EntityMapping<Experience>
+public sealed class ExperienceMapping : VersionedEntityMapping<Experience>
 {
     public override void Configure(EntityTypeBuilder<Experience> builder)
     {
@@ -47,9 +46,6 @@ public sealed class ExperienceMapping : EntityMapping<Experience>
             .HasColumnType("text[]")
             .HasColumnName("activities");
 
-        builder
-            .HasDiscriminator<string>("experience_type")
-            .HasValue<AcademicExperience>("academic")
-            .HasValue<ProfessionalExperience>("professional");
+        builder.UseTptMappingStrategy();
     }
 }

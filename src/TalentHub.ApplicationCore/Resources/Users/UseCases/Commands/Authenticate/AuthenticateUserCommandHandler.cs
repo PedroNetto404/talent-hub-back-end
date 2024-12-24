@@ -27,7 +27,7 @@ public sealed class AuthenticateUserCommandHandler(
         );
         if(user is null)
         {
-            return Error.NotFound("user", expose: false);
+            return Error.Unauthorized();
         }
 
         if (!passwordHasher.Match(request.Password, user.HashedPassword))

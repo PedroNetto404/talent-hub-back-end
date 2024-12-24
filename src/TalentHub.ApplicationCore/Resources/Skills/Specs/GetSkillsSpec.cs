@@ -1,5 +1,6 @@
 using System;
 using Ardalis.Specification;
+using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.Specs;
 
 namespace TalentHub.ApplicationCore.Resources.Skills.Specs;
@@ -10,12 +11,12 @@ public sealed class GetSkillsSpec : GetPageSpec<Skill>
         int limit = int.MaxValue,
         int offset = 0,
         string? sortBy = null,
-        bool ascending = true
+        SortOrder sortOrder = SortOrder.Ascending
     ) : base(
         limit,
         offset,
         sortBy,
-        ascending
+        sortOrder
     )
     { }
 
@@ -24,12 +25,12 @@ public sealed class GetSkillsSpec : GetPageSpec<Skill>
         int limit = int.MaxValue,
         int offset = 0,
         string? sortBy = null,
-        bool ascending = true
+        SortOrder sortOrder = SortOrder.Ascending
     ) : this(
         limit,
         offset,
         sortBy,
-        ascending
+        sortOrder
     )
     {
         if (ids.Any())

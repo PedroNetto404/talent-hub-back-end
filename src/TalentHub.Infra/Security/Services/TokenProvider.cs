@@ -3,25 +3,25 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Humanizer;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Users;
 using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
+using TalentHub.Infra.Security.Options;
 
 namespace TalentHub.Infra.Security.Services;
 
 public sealed class TokenProvider(
-    IConfiguration configuration,
-    IDateTimeProvider dateTimeProvider
+    IDateTimeProvider dateTimeProvider,
+    IOptions<JwtOptions> jwtOptions 
 ) : ITokenProvider
 {
+    private readonly JwtOptions opt = jwtOptions.Value;
+
     public Token GenerateTokenFor(User user)
     {
-        int tokenExpirationInMinutes =
-            int.Parse(configuration["Jwt:AccessTokenExpirationInMinutes"]!);
-
-        System.DateTime tokenExpiration = dateTimeProvider.UtcNow.AddMinutes(tokenExpirationInMinutes);
+        DateTime tokenExpiration = dateTimeProvider.UtcNow.AddMinutes(opt.AccessTokenExpiration);
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -35,12 +35,12 @@ public sealed class TokenProvider(
             Expires = tokenExpiration,
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
-                    Encoding.ASCII.GetBytes(configuration["Jwt:SecretKey"]!)
+                    Encoding.ASCII.GetBytes(opt.SecretKey)
                 ),
                 SecurityAlgorithms.HmacSha256Signature
             ),
-            Issuer = configuration["Jwt:Issuer"],
-            Audience = configuration["Jwt:Audience"]
+            Issuer = opt.Issuer,
+            Audience = opt.Audience
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -63,11 +63,7 @@ public sealed class TokenProvider(
             new DateTimeOffset(
                 dateTimeProvider
                     .UtcNow
-                    .AddMinutes(
-                        int.Parse(
-                            configuration["Jwt:RefreshTokenExpirationInMinutes"]!
-                        )
-                    )
+                    .AddMinutes(opt.RefreshTokenExpiration)
             ).ToUnixTimeSeconds()
         );
     }

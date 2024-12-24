@@ -3,38 +3,28 @@ using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages;
 
-public sealed class LanguageProficiency : Entity
+public sealed class LanguageProficiency : VersionedEntity
 {
-    public LanguageProficiency(Language language) => Language = language;
-
-#pragma warning disable CS0628 // New protected member declared in sealed type
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    protected LanguageProficiency()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-#pragma warning restore CS0628 // New protected member declared in sealed type
+    public LanguageProficiency(
+        Language language,
+        Proficiency writingLevel,
+        Proficiency listeningLevel,
+        Proficiency speakingLevel
+    )
     {
+        Language = language;
+        WritingLevel = writingLevel;
+        ListeningLevel = listeningLevel;
+        SpeakingLevel = speakingLevel;
     }
 
-    public Proficiency WritingLevel { get; private set; }
-    public Proficiency ListeningLevel { get; private set; }
-    public Proficiency SpeakingLevel { get; private set; }
+    public Proficiency WritingLevel { get; internal set; }
+    public Proficiency ListeningLevel { get; internal set; }
+    public Proficiency SpeakingLevel { get; internal set; }
     public Language Language { get; private set; }
 
-    public void UpdateProficiency(LanguageSkillType type, Proficiency proficiency)
-    {
-        switch (type)
-        {
-            case LanguageSkillType.Writing:
-                WritingLevel = proficiency;
-                break;
-            case LanguageSkillType.Listening:
-                ListeningLevel = proficiency;
-                break;
-            case LanguageSkillType.Speaking:
-                SpeakingLevel = proficiency;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
-        }
-    }
+
+#pragma warning disable CS0628 // New protected member declared in sealed type
+    protected LanguageProficiency() { }
+#pragma warning restore CS0628 // New protected member declared in sealed type
 }

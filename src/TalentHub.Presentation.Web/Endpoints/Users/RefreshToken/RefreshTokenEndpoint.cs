@@ -15,16 +15,15 @@ public class RefreshTokenEndpoint :
     public override void Configure()
     {
         Post("{userId:guid}/refresh-token");
-        Validator<RefreshTokenCommandValidator>();
-
+        Validator<RefreshTokenRequestValidator>();
         Description(ep =>
             ep.Accepts<RefreshTokenRequest>(MediaTypeNames.Application.Json)
               .Produces<AuthenticationResult>()
               .Produces(StatusCodes.Status400BadRequest)
         );
-
-        Group<UsersEndpointsGroup>();
+        AllowAnonymous();
         Version(1);
+        Group<UsersEndpointsGroup>();
     }
 
     public override async Task HandleAsync(RefreshTokenRequest req, CancellationToken ct)

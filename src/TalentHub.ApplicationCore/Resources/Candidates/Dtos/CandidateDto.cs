@@ -5,11 +5,18 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 
 public sealed record CandidateDto(
     Guid Id,
-    string Name,
     Guid UserId,
+    string Name,
     int Age,
-    DateOnly BirthDate,
+    string? Summary,
+    bool AutoMatchEnabled,
     string Phone,
+    string? ResumeUrl,
+    DateOnly BirthDate,
+    decimal? ExpectedRemuneration,
+    string? InstagramUrl,
+    string? LinkedInUrl,
+    string? GitHubUrl,
     Address Address,
     IEnumerable<string> Hobbies,
     IEnumerable<string> DesiredJobTypes,
@@ -17,24 +24,24 @@ public sealed record CandidateDto(
     IEnumerable<ExperienceDto> Experiences,
     IEnumerable<CandidateSkillDto> Skills,
     IEnumerable<CertificateDto> Certificates,
-    IEnumerable<LanguageProficiencyDto> LanguageProficiencies,
-    string? Summary,
-    string? ResumeUrl,
-    string? ProfilePictureUrl,
-    string? InstagramUrl,
-    string? LinkedinUrl,
-    string? GithubUrl,
-    decimal? ExpectedRemuneration
+    IEnumerable<LanguageProficiencyDto> LanguageProficiencies
 )
 {
     public static CandidateDto FromEntity(Candidate candidate) =>
         new(
             candidate.Id,
-            candidate.Name,
             candidate.UserId,
+            candidate.Name,
             candidate.Age,
-            candidate.BirthDate,
+            candidate.Summary,
+            candidate.AutoMatchEnabled,
             candidate.Phone,
+            candidate.ResumeUrl,
+            candidate.BirthDate,
+            candidate.ExpectedRemuneration,
+            candidate.InstagramUrl,
+            candidate.LinkedInUrl,
+            candidate.GithubUrl,
             candidate.Address,
             candidate.Hobbies,
             candidate.DesiredJobTypes.Select(p => p.ToString().Underscore()),
@@ -42,13 +49,6 @@ public sealed record CandidateDto(
             candidate.Experiences.Select(ExperienceDto.FromEntity),
             candidate.Skills.Select(CandidateSkillDto.FromEntity),
             candidate.Certificates.Select(CertificateDto.FromEntity),
-            candidate.LanguageProficiencies.Select(LanguageProficiencyDto.FromEntity),
-            candidate.Summary,
-            candidate.ResumeUrl,
-            candidate.ProfilePictureUrl,
-            candidate.InstagramUrl,
-            candidate.LinkedInUrl,
-            candidate.GithubUrl,
-            candidate.ExpectedRemuneration
+            candidate.LanguageProficiencies.Select(LanguageProficiencyDto.FromEntity)
         );
 }

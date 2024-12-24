@@ -4,14 +4,8 @@ using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands;
 
-public abstract class Experience : Entity
+public abstract class Experience : VersionedEntity
 {
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    protected Experience()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    {
-    }
-
     protected Experience(
         DatePeriod start,
         DatePeriod? end,
@@ -59,4 +53,7 @@ public abstract class Experience : Entity
 
     public void ClearActivities() =>
         _activities.Clear();
+
+    //Required By EF Core
+    protected Experience() { }
 }

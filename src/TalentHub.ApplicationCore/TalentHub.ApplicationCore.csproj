@@ -14,11 +14,4 @@
     <PackageReference Include="Humanizer" Version="2.14.1" />
     <PackageReference Include="Mediatr" Version="12.4.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Candidates\SubResources\Certificates\UseCases\" />
-    <Folder Include="Resources\Candidates\SubResources\Experiences\UseCases\Commands\" />
-    <Folder Include="Resources\Candidates\SubResources\Languages\UseCases\" />
-    <Folder Include="Resources\Candidates\SubResources\Skills\UseCases\Commands\" />
-  </ItemGroup>
 </Project>

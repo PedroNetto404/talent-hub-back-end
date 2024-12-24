@@ -4,14 +4,14 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
 using TalentHub.ApplicationCore.Resources.Users;
-using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
 
 public sealed class CreateCandidateCommandHandler(
-    IRepository<Candidate> repository,
+    IRepository<Candidate> candidateRepository,
     IUserContext userContext
 ) :
     IRequestHandler<CreateCandidateCommand, Result<CandidateDto>>
@@ -24,21 +24,16 @@ public sealed class CreateCandidateCommandHandler(
         User? user = await userContext.GetCurrentAsync(cancellationToken);
         if (user is null)
         {
-            return Error.Unauthorized();
+            return Error.Unauthorized("invalid authentication state");
         }
 
-        Result<Address> maybeAddress = Address.Create(
-            input.AddressStreet,
-            input.AddressNumber,
-            input.AddressNeighborhood,
-            input.AddressCity,
-            input.AddressState,
-            input.AddressCountry,
-            input.AddressZipCode
+        Candidate? existingCandidate = await candidateRepository.FirstOrDefaultAsync(
+            new GetCandidateByUserOrPhoneSpec(user.Id, input.Phone),
+            cancellationToken
         );
-        if (maybeAddress is { IsFail: true, Error: var error })
+        if (existingCandidate is not null)
         {
-            return error;
+            return Error.BadRequest("candidate already exists");
         }
 
         Result<Candidate> maybeCandidate = Candidate.Create(
@@ -47,10 +42,10 @@ public sealed class CreateCandidateCommandHandler(
             user.Id,
             input.Phone,
             input.BirthDate,
-            maybeAddress.Value,
+            input.Address,
             input.InstagramUrl,
-            input.LinkedinUrl,
-            input.GithubUrl,
+            input.LinkedInUrl,
+            input.GitHubUrl,
             input.ExpectedRemuneration,
             input.Summary
         );
@@ -59,33 +54,41 @@ public sealed class CreateCandidateCommandHandler(
             return maybeCandidate.Error;
         }
 
-        var result = Result.FailEarly([
-            .. input.Hobbies.Select<string, Func<Result>>((hobbie) => () => candidate.AddHobbie(hobbie)),
-            .. input.DesiredWorkplaceTypes.Select<string, Func<Result>>((desiredWorkplaceType) => () =>
-            {
-                if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
-                {
-                    return Error.BadRequest($"{desiredWorkplaceType} is not valid workplace type");
-                }
-
-                return candidate.AddDesiredWorkplaceType(workplaceType);
-            }),
-            .. input.DesiredJobTypes.Select<string, Func<Result>>((desiredJobType) => () =>
-            {
-                if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
-                {
-                    return Error.BadRequest($"{desiredJobType} is not valid job type");
-                }
-
-                return candidate.AddDesiredJobType(jobType);
-            })
-        ]);
-        if (result.IsFail)
+        foreach (string hobbie in input.Hobbies)
         {
-            return result.Error;
+            if (candidate.AddHobbie(hobbie) is { IsFail: true, Error: var error })
+            {
+                return error;
+            }
         }
 
-        _ = await repository.AddAsync(maybeCandidate, cancellationToken);
+        foreach (string desiredWorkplaceType in input.DesiredWorkplaceTypes)
+        {
+            if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
+            {
+                return Error.BadRequest($"{desiredWorkplaceType} is not valid WorkplaceType");
+            }
+
+            if (candidate.AddDesiredWorkplaceType(workplaceType) is { IsFail: true, Error: var error })
+            {
+                return error;
+            }
+        }
+
+        foreach (string desiredJobType in input.DesiredJobTypes)
+        {
+            if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
+            {
+                return Error.BadRequest($"{desiredJobType} is not valid WorkplaceType");
+            }
+
+            if (candidate.AddDesiredJobType(jobType) is { IsFail: true, Error: var error })
+            {
+                return error;
+            }
+        }
+
+        _ = await candidateRepository.AddAsync(maybeCandidate, cancellationToken);
         return CandidateDto.FromEntity(maybeCandidate);
     }
 }

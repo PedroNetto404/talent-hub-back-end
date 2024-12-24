@@ -2,6 +2,7 @@ using Humanizer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using TalentHub.ApplicationCore.Resources.Candidates;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages;
@@ -10,13 +11,21 @@ using TalentHub.Infra.Data.ValueConverters;
 namespace TalentHub.Infra.Data.Mappings;
 
 public sealed class CandidateLanguageSkillMapping :
-    EntityMapping<LanguageProficiency>
+    VersionedEntityMapping<LanguageProficiency>
 {
     public override void Configure(EntityTypeBuilder<LanguageProficiency> builder)
     {
         base.Configure(builder);
 
         builder.ToTable("language_proficiencies");
+
+        builder
+            .Property(p => p.Language)
+            .IsRequired()
+            .HasConversion(
+                p => p.Name.Underscore(),
+                q => Language.FromName(q.Pascalize(), true)
+            );
 
         Proficiency defaultValue = Proficiency.Beginner;
 
@@ -37,13 +46,5 @@ public sealed class CandidateLanguageSkillMapping :
             .HasConversion<EnumStringSnakeCaseConverter<Proficiency>>()
             .IsRequired()
             .HasDefaultValue(defaultValue);
-
-        builder
-            .Property(p => p.Language)
-            .IsRequired()
-            .HasConversion(
-                p => p.Name.Underscore(), 
-                q => Language.FromName(q.Pascalize(), true)
-            );
     }
 }

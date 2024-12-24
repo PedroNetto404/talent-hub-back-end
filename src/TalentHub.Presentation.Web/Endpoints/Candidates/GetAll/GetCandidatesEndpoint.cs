@@ -21,6 +21,7 @@ public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<Pag
         Validator<GetCandidatesRequestValidator>();
         Version(1);
         Group<CandidatesEndpointsGroup>();
+        RequestBinder(new GetCandidatesRequestBinder());
     }
 
     public override async Task HandleAsync(GetCandidatesRequest req, CancellationToken ct) =>
@@ -33,7 +34,7 @@ public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<Pag
                         req.Limit!.Value,
                         req.Offset!.Value,
                         req.SortBy,
-                        req.Ascending!.Value
+                        req.SortOrder!.Value
                     ),
                     ct
                 )

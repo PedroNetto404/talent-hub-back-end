@@ -20,14 +20,13 @@ public sealed class DeleteCandidateCommandHandler(
             return Error.NotFound("candidate");
         }
 
-        await Task.WhenAll(
-            candidate.ResumeUrl is not null
-            ? fileStorage.DeleteAsync(FileBucketNames.CandidateResumes, candidate.ResumeFileName, cancellationToken)
-            : Task.CompletedTask,
-            candidate.ProfilePictureUrl is not null
-            ? fileStorage.DeleteAsync(FileBucketNames.UserProfilePicture, candidate.ProfilePictureFileName, cancellationToken)
-            : Task.CompletedTask
-        );
+        if(candidate.ResumeUrl is not null) {
+            await fileStorage.DeleteAsync(
+                FileBucketNames.CandidateResumes,
+                candidate.ResumeUrl.Split("/").Last(),
+                cancellationToken
+            );
+        }
 
         await repository.DeleteAsync(candidate, cancellationToken);
         return Result.Ok();

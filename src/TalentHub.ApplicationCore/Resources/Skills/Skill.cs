@@ -4,7 +4,7 @@ using TalentHub.ApplicationCore.Resources.Skills.Enums;
 
 namespace TalentHub.ApplicationCore.Resources.Skills;
 
-public sealed class Skill : AggregateRoot
+public sealed class     Skill : AggregateRoot
 {
     private Skill(string name, SkillType type) => (Name, Type) = (name, type);
 

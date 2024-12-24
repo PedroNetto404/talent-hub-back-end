@@ -19,7 +19,7 @@ public sealed class GetAllUniversityQueryHandler(
                 request.Limit,
                 request.Offset,
                 request.SortBy,
-                request.Ascending
+                request.SortOrder
             ),
             cancellationToken
         );
@@ -32,7 +32,7 @@ public sealed class GetAllUniversityQueryHandler(
             cancellationToken
         );
 
-        UniversityDto[] dtos = [..universities.Select(UniversityDto.FromEntity)];
+        UniversityDto[] dtos = [.. universities.Select(UniversityDto.FromEntity)];
 
         return new PageResponse(
             new(

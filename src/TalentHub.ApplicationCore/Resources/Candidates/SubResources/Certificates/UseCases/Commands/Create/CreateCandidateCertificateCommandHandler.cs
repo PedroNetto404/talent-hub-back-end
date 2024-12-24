@@ -1,6 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Resources.Skills;
 using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
@@ -13,31 +14,41 @@ public sealed class CreateCandidateCertificateCommandHandler(
 {
     public async Task<Result<CandidateDto>> Handle(
         CreateCandidateCertificateCommand request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-        List<Skill> skills = await skillRepository.ListAsync(
-            new GetSkillsSpec(
-                request.RelatedSkills,
-                int.MaxValue,
-                0
-            ),
-            cancellationToken
-        );
-        if (skills.Count != request.RelatedSkills.Count())
+        if (request.RelatedSkills.Any())
         {
-            return Error.BadRequest("invalid skills");
+            List<Skill> skills = await skillRepository.ListAsync(
+                       new GetSkillsSpec(
+                           request.RelatedSkills,
+                           int.MaxValue,
+                           0
+                       ),
+                       cancellationToken
+                   );
+            if (skills.Count != request.RelatedSkills.Count())
+            {
+                return Error.BadRequest("invalid skills");
+            }
         }
 
-        Candidate? candidate = await candidateRepository.GetByIdAsync(request.CandidateId, cancellationToken);
+        Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
         if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
 
+        if (candidate.Certificates.Any(c => c.Name == request.Name && c.Issuer == request.Issuer))
+        {
+            return Error.BadRequest("certificate already exists");
+        }
+
         Result<Certificate> certificateResult = Certificate.Create(
             request.Name,
             request.Issuer,
-            request.Workload);
+            request.Workload
+        );
         if (certificateResult.IsFail)
         {
             return certificateResult.Error;

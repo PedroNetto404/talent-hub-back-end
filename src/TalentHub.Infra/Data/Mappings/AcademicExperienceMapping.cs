@@ -18,6 +18,8 @@ public sealed class AcademicExperienceMapping : IEntityTypeConfiguration<Academi
     {
         builder.HasBaseType<Experience>();
 
+        builder.ToTable("academic_experiences");
+
         builder
             .Property(p => p.Level)
             .HasConversion<EnumStringSnakeCaseConverter<EducationLevel>>()
@@ -54,7 +56,7 @@ public sealed class AcademicExperienceMapping : IEntityTypeConfiguration<Academi
             .HasColumnType("text[]")
             .HasColumnName("academic_entites");
 
-        builder.OwnsOne(p => p.ExpectedGraduation, b => 
+        builder.OwnsOne(p => p.ExpectedGraduation, b =>
         {
             b.Property(q => q.Year)
                 .HasColumnName("expected_graduation_year")
