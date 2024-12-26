@@ -9,28 +9,34 @@ namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Queries.GetAll;
 
 public sealed class GetAllCoursesQueryHandler(
     IRepository<Course> repository
-) : IQueryHandler<GetAllCoursesQuery, PageResponse>
+) : IQueryHandler<GetAllCoursesQuery, PageResponse<CourseDto>>
 {
-    public async Task<Result<PageResponse>> Handle(
+    public async Task<Result<PageResponse<CourseDto>>> Handle(
         GetAllCoursesQuery request,
         CancellationToken cancellationToken)
     {
         List<Course> courses = await repository.ListAsync(
             new GetCoursesSpec(
-                request.Ids,
+                request.NameLike,
+                request.RelatedSkillIds,
                 request.Limit,
                 request.Offset,
                 request.SortBy!,
                 request.SortOrder
             ),
             cancellationToken);
-        int count = await repository.CountAsync(new GetCoursesSpec(request.Ids), cancellationToken);
+        int count = await repository.CountAsync(new GetCoursesSpec(
+            request.NameLike,
+             request.RelatedSkillIds
+            ),
+             cancellationToken
+            );
 
         CourseDto[] dtos = [
             .. courses.Select(CourseDto.FromEntity)
         ];
 
-        return new PageResponse(
+        return new PageResponse<CourseDto>(
             new(
                 dtos.Length,
                 count,

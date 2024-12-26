@@ -5,5 +5,5 @@ namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Queries.GetSkillBy
 
 public sealed record GetSkillByIdQuery(Guid SkillId) : CachedQuery<SkillDto>
 {
-    public override TimeSpan Duration => TimeSpan.FromHours(12);
+    public override TimeSpan Duration => TimeSpan.FromSeconds(15);
 }

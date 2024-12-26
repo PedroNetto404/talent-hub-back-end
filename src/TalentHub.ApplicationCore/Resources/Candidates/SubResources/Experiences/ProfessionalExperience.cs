@@ -38,17 +38,17 @@ public sealed class ProfessionalExperience : Experience
     {
         if (end != null && start > end)
         {
-            return Error.BadRequest("start date must be less than end date");
+            return Error.InvalidInput("start date must be less than end date");
         }
 
         if (string.IsNullOrWhiteSpace(position))
         {
-            return Error.BadRequest("position must be provided.");
+            return Error.InvalidInput("position must be provided.");
         }
 
         if (string.IsNullOrWhiteSpace(company))
         {
-            return Error.BadRequest("company must be provided.");
+            return Error.InvalidInput("company must be provided.");
         }
 
         return !string.IsNullOrWhiteSpace(description)
@@ -61,7 +61,7 @@ public sealed class ProfessionalExperience : Experience
                 description,
                 level
             ))
-            : Error.BadRequest("Description must be provided.");
+            : Error.InvalidInput("Description must be provided.");
     }
 
     public string Position { get; private set; }
@@ -75,7 +75,7 @@ public sealed class ProfessionalExperience : Experience
 
         if (string.IsNullOrWhiteSpace(description))
         {
-            return Error.BadRequest("description is required");
+            return Error.InvalidInput("description is required");
         }
 
         Description = description;

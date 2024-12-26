@@ -1,8 +1,7 @@
 using FastEndpoints;
-using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.UpdateResume.Update;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.UpdateResume;
 
@@ -18,27 +17,22 @@ public sealed class UpdateResumeEndpoint :
         Validator<UpdateResumeRequestValidator>();
         Description(b =>
             b.Accepts<UpdateResumeRequest>()
-             .Produces<CandidateDto>(StatusCodes.Status200OK)
-             .Produces(StatusCodes.Status400BadRequest)
-             .Produces(StatusCodes.Status404NotFound)
+                .Produces<CandidateDto>(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status400BadRequest)
+                .Produces(StatusCodes.Status404NotFound)
         );
     }
 
-    public override async Task HandleAsync(UpdateResumeRequest req, CancellationToken ct) 
+    public override async Task HandleAsync(UpdateResumeRequest req, CancellationToken ct)
     {
         await using var ms = new MemoryStream();
         await req.File.CopyToAsync(ms, ct);
 
-        await SendResultAsync(
-            ResultUtils.Map(
-                await Resolve<ISender>().Send(
-                    new UpdateCandidateResumeCommand(
-                        req.CandidateId,
-                        ms
-                    ),
-                    ct
-                )
-            )
-        );
-    }   
+        await this.HandleUseCaseAsync(
+            new UpdateCandidateResumeCommand(
+                req.CandidateId,
+                ms
+            ),
+            ct);
+    }
 }

@@ -23,7 +23,7 @@ public sealed class CreateCompanySectorCommandHandler(
         );
         if (existing is not null)
         {
-            return Error.BadRequest("Company sector already exists");
+            return Error.InvalidInput("Company sector already exists");
         }
 
         Result<CompanySector> maybeCompanySector = CompanySector.Create(request.Name);

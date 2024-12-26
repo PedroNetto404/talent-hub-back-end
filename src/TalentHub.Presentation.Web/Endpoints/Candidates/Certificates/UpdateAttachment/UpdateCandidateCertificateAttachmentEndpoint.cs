@@ -1,8 +1,8 @@
 using FastEndpoints;
-using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
-using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands.UpdateCertificateAttachment;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands.
+    UpdateCertificateAttachment;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Certificates.UpdateAttachment;
 
@@ -16,8 +16,6 @@ public class UpdateCandidateCertificateAttachmentEndpoint :
         Description(builder => builder.Accepts<UpdateCandidateCertificateAttachmentRequest>()
             .Produces<CandidateDto>()
             .Produces(StatusCodes.Status400BadRequest)
-            .WithDescription("Update a certificate attachment for a candidate.")
-            .WithDisplayName("Update Candidate Certificate Attachment")
         );
         Validator<UpdateCandidateCertificateAttachmentRequestValidator>();
         Group<CandidateCertificatesEndpointsSubGroup>();
@@ -26,22 +24,16 @@ public class UpdateCandidateCertificateAttachmentEndpoint :
 
     public override async Task HandleAsync(UpdateCandidateCertificateAttachmentRequest req, CancellationToken ct)
     {
-        (Guid candidateId, Guid certificateId) = (Route<Guid>("candidateId"), Route<Guid>("certificateId"));
-
         using MemoryStream ms = new();
         await req.File.CopyToAsync(ms, ct);
 
         UpdateCandidateCertificateAttachmentCommand command = new(
-            candidateId,
-            certificateId,
+            req.CandidateId,
+            req.CertificateId,
             ms,
             req.File.ContentType
         );
 
-        await SendResultAsync(
-           ResultUtils.Map(
-               await Resolve<ISender>().Send(command, ct)
-           )
-       );
+        await this.HandleUseCaseAsync(command, ct);
     }
 }

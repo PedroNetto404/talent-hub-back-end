@@ -1,4 +1,5 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
+using TalentHub.ApplicationCore.Resources.Companies.Dtos;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Companies.UseCases.Commands.Update;
@@ -23,4 +24,4 @@ public sealed record UpdateCompanyCommand(
     string? Vision,
     string? Values,
     int FoundantionYear
-) : ICommand;
+) : ICommand<CompanyDto>;

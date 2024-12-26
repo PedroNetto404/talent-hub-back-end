@@ -1,9 +1,8 @@
 using FastEndpoints;
-using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages.UseCases.Create;
 using TalentHub.Presentation.Web.Endpoints.Candidates.LanguageProficiences.Shared;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.LanguageProficiences.Create;
 
@@ -23,21 +22,16 @@ public sealed class CreateLanguageProficiencesEndpoint :
              .Produces(StatusCodes.Status404NotFound));
     }
 
-    public override async Task HandleAsync(
+    public override Task HandleAsync(
         CreateLanguageProficiencesRequest req,
         CancellationToken ct
-    ) => await SendResultAsync(
-        ResultUtils.Map(
-            await Resolve<ISender>().Send(
-                new CreateLanguageProficiencyCommand(
-                    Route<Guid>("candidateId"),
-                    req.WritingLevel,
-                    req.ListeningLevel,
-                    req.SpeakingLevel,
-                    req.Language
-                ),
-                ct
-            )
-        )
-    );
+    ) => this.HandleUseCaseAsync(
+        new CreateLanguageProficiencyCommand(
+            Route<Guid>("candidateId"),
+            req.WritingLevel,
+            req.ListeningLevel,
+            req.SpeakingLevel,
+            req.Language
+        ),
+        ct);
 }

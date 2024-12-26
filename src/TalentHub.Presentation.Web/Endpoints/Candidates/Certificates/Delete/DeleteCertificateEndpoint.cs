@@ -1,7 +1,7 @@
 using FastEndpoints;
 using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificates.UseCases.Commands.Delete;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Certificates.Delete;
 
@@ -13,23 +13,19 @@ public sealed class DeleteCertificateEndpoint : Ep.Req<DeleteCertificateRequest>
         Group<CandidateCertificatesEndpointsSubGroup>();
         Version(1);
         Validator<DeleteCertificateRequestValidator>();
-        Description(b => 
+        Description(b =>
             b.Accepts<DeleteCertificateRequest>()
-            .Produces(StatusCodes.Status400BadRequest)
-            .Produces(StatusCodes.Status404NotFound)
+                .Produces(StatusCodes.Status400BadRequest)
+                .Produces(StatusCodes.Status404NotFound)
         );
     }
 
-    public override async Task HandleAsync(DeleteCertificateRequest req, CancellationToken ct) =>
-        await SendResultAsync(
-            ResultUtils.Map(
-                await Resolve<ISender>().Send(
-                    new DeleteCandidateCertificateCommand(
-                        req.CandidateId,
-                        req.CertificateId
-                    ),
-                    ct
-                )
-            )
+    public override Task HandleAsync(DeleteCertificateRequest req, CancellationToken ct) =>
+        this.HandleUseCaseAsync(
+            new DeleteCandidateCertificateCommand(
+                req.CandidateId,
+                req.CertificateId
+            ),
+            ct
         );
 }

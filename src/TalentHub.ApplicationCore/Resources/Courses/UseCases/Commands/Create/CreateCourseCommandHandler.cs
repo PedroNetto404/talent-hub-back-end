@@ -19,24 +19,24 @@ public sealed class CreateCourseCommandHandler(
         Course? existingCourse = await courseRepository.FirstOrDefaultAsync(new GetCourseByNameSpec(request.Name), cancellationToken);
         if (existingCourse is not null)
         {
-            return Error.BadRequest("course with this name already exists");
+            return Error.InvalidInput("course with this name already exists");
         }
 
         List<Skill> skills = await skillRepository.ListAsync(new GetSkillsSpec(request.RelatedSkills), cancellationToken);
         if (skills.Count != request.RelatedSkills.Count())
         {
-            return Error.BadRequest("invalid skills");
+            return Error.InvalidInput("invalid skills");
         }
 
         Result<Course> courseResult = Course.Create(request.Name);
-        if (courseResult.IsFail) 
+        if (courseResult.IsFail)
         {
             return courseResult.Error;
         }
 
         foreach (string tag in request.Tags)
         {
-            if(courseResult.Value.AddTag(tag) is { IsFail: true, Error: var err})
+            if (courseResult.Value.AddTag(tag) is { IsFail: true, Error: var err })
             {
                 return err;
             }
@@ -44,7 +44,7 @@ public sealed class CreateCourseCommandHandler(
 
         foreach (Skill skill in skills)
         {
-            if(courseResult.Value.AddRelatedSkill(skill.Id) is { IsFail: true, Error: var skillError})
+            if (courseResult.Value.AddRelatedSkill(skill.Id) is { IsFail: true, Error: var skillError })
             {
                 return skillError;
             }

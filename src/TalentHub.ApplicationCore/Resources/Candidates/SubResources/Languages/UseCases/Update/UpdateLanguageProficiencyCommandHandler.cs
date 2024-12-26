@@ -21,19 +21,19 @@ public sealed class UpdateLanguageProficiencyCommandHandler(
             return Error.NotFound("candidate");
         }
 
-        if(!Enum.TryParse(request.WritingLevel, true, out Proficiency writingLevel))
+        if (!Enum.TryParse(request.WritingLevel, true, out Proficiency writingLevel))
         {
-            return Error.BadRequest($"{request.WritingLevel} is not valid proficiency");
+            return Error.InvalidInput($"{request.WritingLevel} is not valid proficiency");
         }
 
         if (!Enum.TryParse(request.SpeakingLevel, true, out Proficiency speakingLevel))
         {
-            return Error.BadRequest($"{request.SpeakingLevel} is not valid proficiency");
+            return Error.InvalidInput($"{request.SpeakingLevel} is not valid proficiency");
         }
 
         if (!Enum.TryParse(request.ListeningLevel, true, out Proficiency listeningLevel))
         {
-            return Error.BadRequest($"{request.ListeningLevel} is not valid proficiency");
+            return Error.InvalidInput($"{request.ListeningLevel} is not valid proficiency");
         }
 
         Result updateResult = candidate.UpdateLanguageProficiency(
@@ -42,7 +42,7 @@ public sealed class UpdateLanguageProficiencyCommandHandler(
             speakingLevel,
             listeningLevel
         );
-        if(updateResult.IsFail)
+        if (updateResult.IsFail)
         {
             return updateResult.Error;
         }

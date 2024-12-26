@@ -45,7 +45,7 @@ public sealed class UpdateAcademicExperienceCommandHandler(
                         request.Activities,
                         request.AcademicEntities,
                         progressStatus)
-                    : Error.BadRequest($"{request.Status} is not valid progress status"),
+                    : Error.InvalidInput($"{request.Status} is not valid progress status"),
             "professional" => candidate.UpdateExperience(
                 request.ExperienceId,
                 start.Value,
@@ -53,7 +53,7 @@ public sealed class UpdateAcademicExperienceCommandHandler(
                 request.IsCurrent,
                 request.Activities,
                 request.Description!),
-            _ => Error.BadRequest($"{request.Type} must be either academic or professional")
+            _ => Error.InvalidInput($"{request.Type} must be either academic or professional")
         };
         if (result.IsFail)
         {

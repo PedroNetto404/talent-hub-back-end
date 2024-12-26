@@ -1,19 +1,23 @@
-using System.Text.Json.Serialization;
-
 namespace TalentHub.ApplicationCore.Core.Results;
 
 public record Error(string Code, string Message)
 {
-    public static Error NotFound(string resource) =>
-        new("not_found", $"{resource} not found");
+    public const string NotFoundCode = "not_found";
+    public const string InvalidInputCode = "invalid_input";
+    public const string UnexpectedCode = "unexpected";
+    public const string UnauthorizedCode = "unauthorized";
 
-    public static Error BadRequest(string message) =>
-        new("bad_request", message);
+
+    public static Error NotFound(string resource) =>
+        new(NotFoundCode, $"{resource} not found");
+
+    public static Error InvalidInput(string message) =>
+        new(InvalidInputCode, message);
 
     public static Error Unexpected(string message) =>
-        new("unexpected", message);
+        new(UnexpectedCode, message);
 
     public static Error Unauthorized(
         string message = "check your credentials"
-    ) => new("unauthorized", message);
+    ) => new(UnauthorizedCode, message);
 }

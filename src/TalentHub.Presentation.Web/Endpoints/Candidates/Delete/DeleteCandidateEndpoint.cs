@@ -1,7 +1,8 @@
 using FastEndpoints;
-using MediatR;
+using Humanizer;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Delete;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.ApplicationCore.Resources.Users.Enums;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Delete;
 
@@ -14,19 +15,14 @@ public sealed class DeleteCandidateEndpoint
         Version(1);
         Group<CandidatesEndpointsGroup>();
         Validator<DeleteCandidateRequestValidator>();
+        Roles(nameof(Role.Admin).Underscore());
     }
 
-    public override async Task HandleAsync(
+    public override Task HandleAsync(
         DeleteCandidateRequest req,
         CancellationToken ct
-    ) => await SendResultAsync(
-        ResultUtils.Map(
-            await Resolve<ISender>().Send(
-                new DeleteCandidateCommand(
-                    req.CandidateId
-                ),
-                ct
-            )
-        )
+    ) => this.HandleUseCaseAsync(
+        new DeleteCandidateCommand(req.CandidateId),
+        ct
     );
 }

@@ -1,9 +1,8 @@
 using FastEndpoints;
-using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Languages.UseCases.Update;
 using TalentHub.Presentation.Web.Endpoints.Candidates.LanguageProficiences.Shared;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.LanguageProficiences.Update;
 
@@ -25,21 +24,16 @@ public sealed class UpdateLanguageProficiencyEndpoint :
         Group<LanguageProficiencesEndpointSubGroup>();
     }
 
-    public override async Task HandleAsync(
+    public override Task HandleAsync(
         UpdateLanguageProficiencyRequest req,
         CancellationToken ct
-    ) => await SendResultAsync(
-        ResultUtils.Map(
-            await Resolve<ISender>().Send(
-                new UpdateLanguageProficiencyCommand(
-                    Route<Guid>("candidateId"),
-                    Route<Guid>("languageProficiencyId"),
-                    req.WritingLevel,
-                    req.ListeningLevel,
-                    req.SpeakingLevel
-                ), 
-                ct
-            )
-        )
-    );
+    ) => this.HandleUseCaseAsync(
+        new UpdateLanguageProficiencyCommand(
+            Route<Guid>("candidateId"),
+            Route<Guid>("languageProficiencyId"),
+            req.WritingLevel,
+            req.ListeningLevel,
+            req.SpeakingLevel
+        ), 
+        ct);
 }

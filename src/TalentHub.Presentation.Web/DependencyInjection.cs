@@ -9,7 +9,6 @@ public static class DependencyInjection
     public static IServiceCollection AddPresentation(this IServiceCollection s)
     {
         s.AddFastEndpoints(static opt => opt.IncludeAbstractValidators = true);
-        s.AddSwaggerDocument(c => c.Title = "Talent Hub Api");
         s.AddEndpointsApiExplorer();
         s.AddHealthChecks();
         s.AddRouting();
@@ -17,6 +16,7 @@ public static class DependencyInjection
         {
             opt.SerializerOptions.PropertyNamingPolicy = HumanizerSnakeCaseJsonPolicy.Instance;
             opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter(HumanizerSnakeCaseJsonPolicy.Instance));
+            opt.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         });
 
         return s;

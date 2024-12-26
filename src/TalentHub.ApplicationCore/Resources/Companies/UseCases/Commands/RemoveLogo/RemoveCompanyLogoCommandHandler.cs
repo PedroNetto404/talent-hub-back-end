@@ -21,7 +21,7 @@ public sealed class RemoveCompanyLogoCommandHandler(
 
         if (company.LogoUrl is null)
         {
-            return Error.BadRequest("Company does not have a logo");
+            return Error.InvalidInput("Company does not have a logo");
         }
 
         await fileStorage.DeleteAsync(

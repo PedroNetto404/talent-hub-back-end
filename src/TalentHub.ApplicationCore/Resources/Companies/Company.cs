@@ -273,7 +273,7 @@ public sealed class Company : AuditableAggregateRoot
 
         if (!_galery.Remove(imageUrl))
         {
-            return Error.BadRequest("image not found in galery");
+            return Error.InvalidInput("image not found in galery");
         }
 
         return Result.Ok();
@@ -350,7 +350,7 @@ public sealed class Company : AuditableAggregateRoot
         }
 
         if (
-            Result.FailIf(!logoUrl.IsValidUrl(), $"{logoUrl} is not valid url") is 
+            Result.FailIf(!logoUrl.IsValidUrl(), $"{logoUrl} is not valid url") is
             {
                 IsFail: true,
                 Error: var err

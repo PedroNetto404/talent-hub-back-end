@@ -2,6 +2,7 @@ using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Courses.Dtos;
 using TalentHub.ApplicationCore.Resources.Skills;
 using TalentHub.ApplicationCore.Resources.Skills.Specs;
 
@@ -10,10 +11,10 @@ namespace TalentHub.ApplicationCore.Resources.Courses.UseCases.Commands.Update;
 public sealed class UpdateCourseCommandHandler(
     IRepository<Course> courseRepository,
     IRepository<Skill> skillRepository
-) : ICommandHandler<UpdateCourseCommand>
+) : ICommandHandler<UpdateCourseCommand, CourseDto>
 {
-    public async Task<Result> Handle(
-        UpdateCourseCommand request, 
+    public async Task<Result<CourseDto>> Handle(
+        UpdateCourseCommand request,
         CancellationToken cancellationToken
     )
     {
@@ -45,7 +46,7 @@ public sealed class UpdateCourseCommandHandler(
 
         if (skills.Count != request.RelatedSkills.Count())
         {
-            return Error.BadRequest("some skills not found");
+            return Error.InvalidInput("some skills not found");
         }
 
         foreach (Skill skill in skills)
@@ -57,6 +58,6 @@ public sealed class UpdateCourseCommandHandler(
         }
 
         await courseRepository.UpdateAsync(course, cancellationToken);
-        return Result.Ok();
+        return CourseDto.FromEntity(course);
     }
 }

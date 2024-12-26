@@ -1,17 +1,4 @@
 {
-  "sqltools.connections": [
-    {
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "name": "TalentHub",
-      "group": "personal_projects",
-      "database": "talent-hub_db",
-      "username": "talent-hub_admin",
-      "password": "talent-hub_admin_11231233"
-    }
-  ],
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
@@ -68,5 +55,18 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "group": "Study",
+      "name": "TalentHubDB",
+      "username": "talent-hub_admin",
+      "password": "talent-hub_admin_11231233",
+      "database": "talent-hub_db"
+    }
+  ]
 }

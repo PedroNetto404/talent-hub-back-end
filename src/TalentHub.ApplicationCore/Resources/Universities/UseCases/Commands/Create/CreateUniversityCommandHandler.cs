@@ -17,7 +17,7 @@ public sealed class CreateUniversityCommandHandler(IRepository<University> unive
             cancellationToken);
         if (existing is not null)
         {
-            return Error.BadRequest("university with this name already exists");
+            return Error.InvalidInput("university with this name already exists");
         }
 
         Result<University> universityResult = University.Create(request.Name, request.SiteUrl);

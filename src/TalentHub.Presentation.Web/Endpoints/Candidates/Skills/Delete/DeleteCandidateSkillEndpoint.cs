@@ -1,9 +1,7 @@
-using System;
 using FastEndpoints;
-using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills.UseCases.Commands.Delete;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Skills.Delete;
 
@@ -18,18 +16,13 @@ public sealed class DeleteCandidateSkillEndpoint :
         Validator<DeleteCandidateSkillRequestValidator>();
     }
 
-    public override async Task HandleAsync(
+    public override Task HandleAsync(
         DeleteCandidateSkillRequest req,
         CancellationToken ct
-    ) => await SendResultAsync(
-        ResultUtils.Map(
-            await Resolve<ISender>().Send(
-                new DeleteCandidateSkillCommand(
-                    req.CandidateId, 
-                    req.CandidateSkillId
-                ),
-                ct
-            )
-        )
-    );
+    ) => this.HandleUseCaseAsync(
+        new DeleteCandidateSkillCommand(
+            req.CandidateId,
+            req.CandidateSkillId
+        ),
+        ct);
 }

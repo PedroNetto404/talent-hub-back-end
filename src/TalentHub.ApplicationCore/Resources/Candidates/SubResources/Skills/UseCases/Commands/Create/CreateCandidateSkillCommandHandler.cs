@@ -21,7 +21,7 @@ public sealed class CreateCandidateSkillCommandHandler(
     {
         if (!Enum.TryParse(request.Proficiency.Pascalize(), true, out Proficiency proficiency))
         {
-            return Error.BadRequest($"{proficiency} is not valid proficiency");
+            return Error.InvalidInput($"{proficiency} is not valid proficiency");
         }
 
         Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
@@ -37,12 +37,12 @@ public sealed class CreateCandidateSkillCommandHandler(
         }
 
         Result<CandidateSkill> candidateSkillResult = CandidateSkill.Create(skill.Id, proficiency);
-        if(candidateSkillResult.IsFail)
+        if (candidateSkillResult.IsFail)
         {
             return candidateSkillResult.Error;
         }
 
-        if(candidate.AddSkill(candidateSkillResult.Value) is { IsFail: true, Error: var addError})
+        if (candidate.AddSkill(candidateSkillResult.Value) is { IsFail: true, Error: var addError })
         {
             return addError;
         }

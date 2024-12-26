@@ -1,10 +1,8 @@
 using System.Net.Mime;
 using FastEndpoints;
-using MediatR;
-using TalentHub.ApplicationCore.Core.Results;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Authenticate;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.RefreshToken;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Users.RefreshToken;
 
@@ -26,20 +24,6 @@ public class RefreshTokenEndpoint :
         Group<UsersEndpointsGroup>();
     }
 
-    public override async Task HandleAsync(RefreshTokenRequest req, CancellationToken ct)
-    {
-        Guid userId = Route<Guid>("userId");
-
-        await SendResultAsync(
-            ResultUtils.Map(
-                await Resolve<ISender>().Send(
-                    new RefreshTokenCommand(
-                        userId,
-                        req.RefreshToken
-                    ),
-                    ct
-                )
-            )
-        );
-    }
+    public override Task HandleAsync(RefreshTokenRequest req, CancellationToken ct) =>
+        this.HandleUseCaseAsync(new RefreshTokenCommand(req.UserId, req.RefreshToken), ct);
 }

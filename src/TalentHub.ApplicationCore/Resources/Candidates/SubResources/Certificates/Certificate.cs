@@ -34,7 +34,7 @@ public sealed class Certificate : VersionedEntity
     }
 
     public string AttachmentFileName => $"candidate-certificate-attachment-{Id}";
-    
+
     private readonly List<Guid> _relatedSkills = [];
     public string Name { get; private set; }
     public string Issuer { get; private set; }
@@ -48,22 +48,22 @@ public sealed class Certificate : VersionedEntity
     {
         if (_relatedSkills.Contains(relatedSkillId))
         {
-            return new Error("candidate_certificate", $"skill {relatedSkillId} already added"); 
+            return new Error("candidate_certificate", $"skill {relatedSkillId} already added");
         }
-        
+
         _relatedSkills.Add(relatedSkillId);
         return Result.Ok();
     }
 
     public Result ChangeName(string name)
     {
-        if(string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(name))
         {
-            return Error.BadRequest("certificate name is required");
+            return Error.InvalidInput("certificate name is required");
         }
 
         Name = name;
-        
+
         return Result.Ok();
     }
 
@@ -71,19 +71,19 @@ public sealed class Certificate : VersionedEntity
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return Error.BadRequest("invalid certificate name");
+            return Error.InvalidInput("invalid certificate name");
         }
 
         Name = name;
-        
+
         return Result.Ok();
     }
 
     public Result ChangeWorkload(double workload)
     {
-        if(workload < 0)
+        if (workload < 0)
         {
-            return Error.BadRequest("workload must be greater than 0");
+            return Error.InvalidInput("workload must be greater than 0");
         }
 
         Workload = workload;
@@ -93,15 +93,15 @@ public sealed class Certificate : VersionedEntity
 
     public Result ChangeAttachmentUrl(string? url)
     {
-        if(url is null)
+        if (url is null)
         {
             AttachmentUrl = null;
             return Result.Ok();
         }
 
-        if(!url.IsValidUrl())
+        if (!url.IsValidUrl())
         {
-            return Error.BadRequest($"{url} is not valid url");
+            return Error.InvalidInput($"{url} is not valid url");
         }
 
         AttachmentUrl = url;

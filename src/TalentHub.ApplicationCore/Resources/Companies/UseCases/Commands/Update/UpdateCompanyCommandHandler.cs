@@ -1,5 +1,7 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Companies.Dtos;
+using TalentHub.ApplicationCore.Resources.Companies.Specs;
 using TalentHub.ApplicationCore.Resources.CompanySectors;
 
 namespace TalentHub.ApplicationCore.Resources.Companies.UseCases.Commands.Update;
@@ -7,10 +9,19 @@ namespace TalentHub.ApplicationCore.Resources.Companies.UseCases.Commands.Update
 public sealed class UpdateCompanyCommandHandler(
     IRepository<Company> companyRepository,
     IRepository<CompanySector> companySectorRepository
-) : ICommandHandler<UpdateCompanyCommand>
+) : ICommandHandler<UpdateCompanyCommand, CompanyDto>
 {
-    public async Task<Result> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
+    public async Task<Result<CompanyDto>> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
     {
+        Company? existingCompany = await companyRepository.FirstOrDefaultAsync(
+            new GetCompanyByLegalNameOrCnpjSpec(request.LegalName, request.Cnpj),
+            cancellationToken
+        );
+        if(existingCompany is not null && existingCompany.Id != request.CompanyId)
+        {
+            return Error.InvalidInput("legal name or cnpj already in use");
+        }
+
         Company? company = await companyRepository.GetByIdAsync(request.CompanyId, cancellationToken);
         if (company is null)
         {
@@ -52,6 +63,6 @@ public sealed class UpdateCompanyCommandHandler(
 
         await companyRepository.UpdateAsync(company, cancellationToken);
 
-        return Result.Ok();
+        return CompanyDto.FromEntity(company);
     }
 }

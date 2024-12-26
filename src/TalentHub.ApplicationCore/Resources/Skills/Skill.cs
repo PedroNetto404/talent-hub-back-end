@@ -61,4 +61,7 @@ public sealed class     Skill : AggregateRoot
 
         return Result.Ok();
     }
+
+    internal void ChangeType(SkillType skillType) =>
+        Type = skillType;
 }

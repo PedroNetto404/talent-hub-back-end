@@ -9,9 +9,9 @@ namespace TalentHub.ApplicationCore.Resources.CompanySectors.UseCases.Queries.Ge
 
 public sealed class GetAllCompanySectorsQueryHandler(
     IRepository<CompanySector> repository
-) : IQueryHandler<GetAllCompanySectorsQuery, PageResponse>
+) : IQueryHandler<GetAllCompanySectorsQuery, PageResponse<CompanySectorDto>>
 {
-    public async Task<Result<PageResponse>> Handle(
+    public async Task<Result<PageResponse<CompanySectorDto>>> Handle(
         GetAllCompanySectorsQuery request,
         CancellationToken cancellationToken
     )
@@ -23,7 +23,7 @@ public sealed class GetAllCompanySectorsQueryHandler(
 
         int total = await repository.CountAsync(cancellationToken: cancellationToken);
 
-        return new PageResponse(
+        return new PageResponse<CompanySectorDto>(
             new(companySectors.Count, total, request.Offset, request.Limit),
             companySectors.Select(CompanySectorDto.FromEntity)
         );

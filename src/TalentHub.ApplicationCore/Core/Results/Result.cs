@@ -37,7 +37,7 @@ public partial class Result
 
     public static Result FailIf(bool condition, string erroMessage) =>
         condition
-        ? Fail(Error.BadRequest(erroMessage))
+        ? Fail(Error.InvalidInput(erroMessage))
         : Ok();
 }
 

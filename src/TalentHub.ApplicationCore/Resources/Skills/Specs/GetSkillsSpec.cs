@@ -1,5 +1,6 @@
 using System;
 using Ardalis.Specification;
+using TalentHub.ApplicationCore.Resources.Skills.Enums;
 using TalentHub.ApplicationCore.Shared.Enums;
 using TalentHub.ApplicationCore.Shared.Specs;
 
@@ -22,6 +23,7 @@ public sealed class GetSkillsSpec : GetPageSpec<Skill>
 
     public GetSkillsSpec(
         IEnumerable<Guid> ids,
+        SkillType? skillType = null,
         int limit = int.MaxValue,
         int offset = 0,
         string? sortBy = null,
@@ -36,6 +38,11 @@ public sealed class GetSkillsSpec : GetPageSpec<Skill>
         if (ids.Any())
         {
             Query.Where(p => ids.Contains(p.Id));
+        }
+
+        if(skillType is not null)
+        {
+            Query.Where(p => p.Type == skillType);
         }
     }
 }

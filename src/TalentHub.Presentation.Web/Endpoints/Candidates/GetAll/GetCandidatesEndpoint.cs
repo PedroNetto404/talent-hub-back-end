@@ -1,22 +1,21 @@
 using FastEndpoints;
-using MediatR;
-using TalentHub.ApplicationCore.Core.Results;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAllCandidates;
 using TalentHub.ApplicationCore.Shared.Dtos;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.GetAll;
 
-public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<PageResponse>
+public sealed class GetCandidatesEndpoint :
+    Ep.Req<GetCandidatesRequest>
+    .Res<PageResponse<CandidateDto>>
 {
     public override void Configure()
     {
         Get("");
         Description(builder => builder.Accepts<GetCandidatesRequest>()
-            .Produces<PageResponse>()
+            .Produces<PageResponse<CandidateDto>>()
             .Produces(StatusCodes.Status400BadRequest)
-            .WithDescription("Get all candidates.")
-            .WithDisplayName("Get Candidates")
         );
         Validator<GetCandidatesRequestValidator>();
         Version(1);
@@ -24,20 +23,15 @@ public sealed class GetCandidatesEndpoint : Ep.Req<GetCandidatesRequest>.Res<Pag
         RequestBinder(new GetCandidatesRequestBinder());
     }
 
-    public override async Task HandleAsync(GetCandidatesRequest req, CancellationToken ct) =>
-        await SendResultAsync(
-            ResultUtils.Map(
-                await Resolve<ISender>().Send<Result<PageResponse>>(
-                    new GetAllCandidatesQuery(
-                        req.SkillIds!,
-                        req.Languages!,
-                        req.Limit!.Value,
-                        req.Offset!.Value,
-                        req.SortBy,
-                        req.SortOrder!.Value
-                    ),
-                    ct
-                )
-            )
-        );
+    public override Task HandleAsync(GetCandidatesRequest req, CancellationToken ct) =>
+        this.HandleUseCaseAsync(
+            new GetAllCandidatesQuery(
+                req.SkillIds!,
+                req.Languages!,
+                req.Limit!.Value,
+                req.Offset!.Value,
+                req.SortBy,
+                req.SortOrder!.Value
+            ),
+            ct);
 }

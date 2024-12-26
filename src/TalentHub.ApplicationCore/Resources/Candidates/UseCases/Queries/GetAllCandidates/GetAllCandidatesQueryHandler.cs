@@ -9,9 +9,9 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Queries.GetAll
 
 public sealed class GetAllCandidatesQueryHandler(
     IRepository<Candidate> repository
-) : IQueryHandler<GetAllCandidatesQuery, PageResponse>
+) : IQueryHandler<GetAllCandidatesQuery, PageResponse<CandidateDto>>
 {
-    public async Task<Result<PageResponse>> Handle(
+    public async Task<Result<PageResponse<CandidateDto>>> Handle(
         GetAllCandidatesQuery request,
         CancellationToken cancellationToken
     )
@@ -24,7 +24,7 @@ public sealed class GetAllCandidatesQueryHandler(
                 request.Offset,
                 request.SortBy,
                 request.SortOrder
-            ), 
+            ),
             cancellationToken
         );
 
@@ -40,7 +40,7 @@ public sealed class GetAllCandidatesQueryHandler(
 
         CandidateDto[] dtos = [.. candidates.Select(CandidateDto.FromEntity)];
 
-        return new PageResponse(
+        return new PageResponse<CandidateDto>(
             new(
                 dtos.Length,
                 count,

@@ -18,9 +18,9 @@ public sealed class RefreshTokenCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        if(userContext.UserId is not null) 
+        if (userContext.UserId is not null)
         {
-            return Error.BadRequest("user is already authenticated");
+            return Error.InvalidInput("user is already authenticated");
         }
 
         User? user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
@@ -29,8 +29,8 @@ public sealed class RefreshTokenCommandHandler(
             return Error.NotFound("user");
         }
 
-        if(
-            !user.CanRefreshToken(dateTimeProvider) 
+        if (
+            !user.CanRefreshToken(dateTimeProvider)
             || user.RefreshToken!.Value != request.RefreshToken
         )
         {

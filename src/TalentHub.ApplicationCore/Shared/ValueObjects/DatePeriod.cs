@@ -2,7 +2,7 @@ using TalentHub.ApplicationCore.Core.Results;
 
 namespace TalentHub.ApplicationCore.Shared.ValueObjects;
 
-public record DatePeriod
+public sealed record DatePeriod
 {
     public int Year { get; }
     public int Month { get; }
@@ -55,13 +55,7 @@ public record DatePeriod
         return left.Month > right.Month;
     }
 
-    public static bool operator <=(DatePeriod left, DatePeriod right)
-    {
-        return left < right || left == right;
-    }
+    public static bool operator <=(DatePeriod left, DatePeriod right) => left < right || left == right;
 
-    public static bool operator >=(DatePeriod left, DatePeriod right)
-    {
-        return left > right || left == right;
-    }
+    public static bool operator >=(DatePeriod left, DatePeriod right) => left > right || left == right;
 }

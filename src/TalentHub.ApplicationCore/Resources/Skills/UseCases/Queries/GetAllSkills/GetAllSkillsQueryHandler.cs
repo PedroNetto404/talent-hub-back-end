@@ -8,15 +8,17 @@ using TalentHub.ApplicationCore.Shared.Dtos;
 namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Queries.GetAllSkills;
 
 public sealed class GetAllSkillsQueryHandler(
-    IRepository<Skill> skillRepository) : IQueryHandler<GetAllSkillsQuery, PageResponse>
+    IRepository<Skill> skillRepository
+) : IQueryHandler<GetAllSkillsQuery, PageResponse<SkillDto>>
 {
-    public async Task<Result<PageResponse>> Handle(
+    public async Task<Result<PageResponse<SkillDto>>> Handle(
         GetAllSkillsQuery request,
         CancellationToken cancellationToken)
     {
         List<Skill> skills = await skillRepository.ListAsync(
             new GetSkillsSpec(
                 request.Ids,
+                request.Type,
                 request.Limit,
                 request.Offset,
                 request.SortBy,
@@ -24,22 +26,23 @@ public sealed class GetAllSkillsQueryHandler(
             ),
             cancellationToken
         );
-        
+
         int count = await skillRepository.CountAsync(
             new GetSkillsSpec(
                 request.Ids,
+                request.Type,
                 int.MaxValue,
                 0
             ),
             cancellationToken
         );
-        
+
         SkillDto[] dtos = [.. skills.Select(SkillDto.FromEntity)];
-        return new PageResponse(
+        return new PageResponse<SkillDto>(
             new(
-                dtos.Length, 
-                count, 
-                request.Offset, 
+                dtos.Length,
+                count,
+                request.Offset,
                 request.Limit),
             dtos);
     }

@@ -23,7 +23,7 @@ public sealed record CompanyDto(
     string? Vision,
     string? Values,
     int FoundantionYear,
-    IReadOnlyList<string> Gelery
+    IReadOnlyList<string> Galery
 )
 {
     public static CompanyDto FromEntity(Company entity) =>

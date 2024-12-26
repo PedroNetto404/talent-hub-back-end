@@ -10,7 +10,7 @@ namespace TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.Create;
 
 public sealed class CreateUserCommandHandler(
     IRepository<User> userRepository,
-    IPasswordHasher passwordHasher
+    IHasher passwordHasher
 ) : ICommandHandler<CreateUserCommand, UserDto>
 {
     public async Task<Result<UserDto>> Handle(
@@ -23,7 +23,7 @@ public sealed class CreateUserCommandHandler(
         );
         if (existing is not null)
         {
-            return Error.BadRequest("invalid user credentials");
+            return Error.InvalidInput("invalid user credentials");
         }
 
         if (!Enum.TryParse(request.Role.Pascalize(), true, out Role role))

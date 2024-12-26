@@ -10,11 +10,11 @@ namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Certificat
 
 public sealed class UpdateCandidateCertificateAttachmentCommandHandler(
     IRepository<Candidate> candidateRepository,
-    IFileStorage fileStorage) : 
+    IFileStorage fileStorage) :
     ICommandHandler<UpdateCandidateCertificateAttachmentCommand, CandidateDto>
 {
     public async Task<Result<CandidateDto>> Handle(
-        UpdateCandidateCertificateAttachmentCommand request, 
+        UpdateCandidateCertificateAttachmentCommand request,
         CancellationToken cancellationToken)
     {
         Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
@@ -26,7 +26,7 @@ public sealed class UpdateCandidateCertificateAttachmentCommandHandler(
         Certificate? certificate = candidate.Certificates.FirstOrDefault(p => p.Id == request.CertificateId);
         if (certificate is null)
         {
-            return Error.BadRequest($"certificate with id {request.CertificateId} not found");
+            return Error.InvalidInput($"certificate with id {request.CertificateId} not found");
         }
 
         if (certificate.AttachmentUrl is not null)
@@ -36,7 +36,7 @@ public sealed class UpdateCandidateCertificateAttachmentCommandHandler(
                 certificate.AttachmentFileName,
                 cancellationToken);
         }
-        
+
         string url = await fileStorage.SaveAsync(
             FileBucketNames.CandidateCertificateAttchments,
             request.AttachmentFile,
@@ -48,8 +48,8 @@ public sealed class UpdateCandidateCertificateAttachmentCommandHandler(
         {
             return Error.Unexpected("failed to save attachment");
         }
-        
-        if (certificate.ChangeAttachmentUrl(url) is { IsFail: true, Error: var changeError})
+
+        if (certificate.ChangeAttachmentUrl(url) is { IsFail: true, Error: var changeError })
         {
             return changeError;
         }

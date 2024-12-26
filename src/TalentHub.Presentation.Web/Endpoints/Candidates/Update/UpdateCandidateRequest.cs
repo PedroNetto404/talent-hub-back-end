@@ -1,9 +1,11 @@
 
+using Microsoft.AspNetCore.Mvc;
 using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Update;
 
 public sealed record UpdateCandidateRequest(
+    [property: FromRoute(Name = "candidateId")] Guid CandidateId,
     string Name,
     string? Summary,
     bool AutoMatchEnabled,

@@ -83,23 +83,10 @@ dotnet_code_quality_unused_parameters = all:error
 
 #### C# Coding Conventions ####
 
-# Namespace preferences
-csharp_style_namespace_declarations= file_scoped:error
-
 # var preferences
 csharp_style_var_elsewhere = false:error
 csharp_style_var_for_built_in_types = false:error
 csharp_style_var_when_type_is_apparent = true:error
-
-# Expression-bodied members
-csharp_style_expression_bodied_accessors = true:error
-csharp_style_expression_bodied_constructors = false:silent
-csharp_style_expression_bodied_indexers = true:error
-csharp_style_expression_bodied_lambdas = true:error
-csharp_style_expression_bodied_local_functions = true:error
-csharp_style_expression_bodied_methods = false:silent
-csharp_style_expression_bodied_operators = true:error
-csharp_style_expression_bodied_properties = true:error
 
 # Pattern matching preferences
 csharp_style_pattern_matching_over_as_with_null_check = true:error
@@ -136,11 +123,11 @@ csharp_using_directive_placement = outside_namespace:error
 #### C# Formatting Rules ####
 
 # New line preferences
-csharp_new_line_before_catch =true
-csharp_new_line_before_else =true
-csharp_new_line_before_finally =true
-csharp_new_line_before_members_in_anonymous_types = false,
-csharp_new_line_before_members_in_object_initializers = false,
+csharp_new_line_before_catch = true
+csharp_new_line_before_else = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_anonymous_types = false
+csharp_new_line_before_members_in_object_initializers = false
 csharp_new_line_before_open_brace = all
 csharp_new_line_between_query_expression_clauses = true
 
@@ -177,6 +164,19 @@ csharp_space_between_parentheses = false
 csharp_space_between_square_brackets = false
 
 # Wrapping preferences
+csharp_preserve_single_line_blocks = true
+csharp_preserve_single_line_statements = false
+
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
 csharp_preserve_single_line_blocks = true
 csharp_preserve_single_line_statements = false
 

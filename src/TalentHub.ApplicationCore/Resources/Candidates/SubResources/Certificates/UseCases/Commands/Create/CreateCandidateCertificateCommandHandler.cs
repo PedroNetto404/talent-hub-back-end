@@ -22,6 +22,7 @@ public sealed class CreateCandidateCertificateCommandHandler(
             List<Skill> skills = await skillRepository.ListAsync(
                        new GetSkillsSpec(
                            request.RelatedSkills,
+                           null,
                            int.MaxValue,
                            0
                        ),
@@ -29,7 +30,7 @@ public sealed class CreateCandidateCertificateCommandHandler(
                    );
             if (skills.Count != request.RelatedSkills.Count())
             {
-                return Error.BadRequest("invalid skills");
+                return Error.InvalidInput("invalid skills");
             }
         }
 
@@ -41,7 +42,7 @@ public sealed class CreateCandidateCertificateCommandHandler(
 
         if (candidate.Certificates.Any(c => c.Name == request.Name && c.Issuer == request.Issuer))
         {
-            return Error.BadRequest("certificate already exists");
+            return Error.InvalidInput("certificate already exists");
         }
 
         Result<Certificate> certificateResult = Certificate.Create(

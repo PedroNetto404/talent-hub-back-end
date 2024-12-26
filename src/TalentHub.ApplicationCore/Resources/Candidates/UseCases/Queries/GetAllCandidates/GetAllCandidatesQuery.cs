@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 using TalentHub.ApplicationCore.Shared.Enums;
 
@@ -12,4 +13,4 @@ public sealed record GetAllCandidatesQuery(
     int Offset,
     string? SortBy,
     SortOrder SortOrder
-) : CachedQuery<PageResponse>;
+) : CachedQuery<PageResponse<CandidateDto>>;

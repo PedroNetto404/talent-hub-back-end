@@ -2,7 +2,7 @@ using FastEndpoints;
 using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills.UseCases.Commands.Create;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Skills.Create;
 
@@ -17,25 +17,20 @@ public sealed class CreateCandidateSkillEndpoint :
         Version(1);
         Description(b =>
             b.Accepts<CreateCandidateSkillRequest>()
-            .Produces<CandidateDto>(StatusCodes.Status200OK)
-            .Produces(StatusCodes.Status404NotFound)
-            .Produces(StatusCodes.Status400BadRequest)
+                .Produces<CandidateDto>(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status404NotFound)
+                .Produces(StatusCodes.Status400BadRequest)
         );
     }
 
-    public override async Task HandleAsync(
+    public override Task HandleAsync(
         CreateCandidateSkillRequest req,
         CancellationToken ct
-    ) => await SendResultAsync(
-        ResultUtils.Map(
-            await Resolve<ISender>().Send( 
-                new CreateCandidateSkillCommand(
-                    req.CandidateId,
-                    req.SkillId,
-                    req.Proficiency
-                ),
-                ct
-            )
-        )
-    );
+    ) => this.HandleUseCaseAsync(
+        new CreateCandidateSkillCommand(
+            req.CandidateId,
+            req.SkillId,
+            req.Proficiency
+        ),
+        ct);
 }

@@ -19,12 +19,12 @@ public sealed class CreateCompanyCommandHandler(
     )
     {
         Company? existingCompany = await companyRepository.FirstOrDefaultAsync(
-            new GetCompanyByLegalNameOrCnpj(request.LegalName, request.Cnpj),
+            new GetCompanyByLegalNameOrCnpjSpec(request.LegalName, request.Cnpj),
             cancellationToken
         );
         if (existingCompany is not null)
         {
-            return Error.BadRequest("company already exists");
+            return Error.InvalidInput("company already exists");
         }
 
         CompanySector? sector = await companySectorRepository.GetByIdAsync(

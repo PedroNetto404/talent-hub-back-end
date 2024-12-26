@@ -7,6 +7,11 @@ public sealed class UpdateProfilePictureRequestValidator : AbstractValidator<Upd
 {
     public UpdateProfilePictureRequestValidator()
     {
+        RuleFor(p => p.UserId)
+        .NotEmpty()
+        .NotNull()
+        .NotEqual(Guid.Empty);
+
         RuleFor(p => p.File)
         .NotEmpty()
         .NotNull()

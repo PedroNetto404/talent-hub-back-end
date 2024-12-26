@@ -6,5 +6,5 @@ namespace TalentHub.ApplicationCore.Resources.Skills.UseCases.Commands.CreateSki
 public sealed record CreateSkillCommand(
     string Name,
     string Type,
-    string[] Tags
+    IEnumerable<string> Tags
 ) : ICommand<SkillDto>;

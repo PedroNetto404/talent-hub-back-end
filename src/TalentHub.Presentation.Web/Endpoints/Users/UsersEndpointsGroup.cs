@@ -6,8 +6,6 @@ public sealed class UsersEndpointsGroup : Group
 {
     public UsersEndpointsGroup()
     {
-        Configure("users", static ep =>
-            ep.Description(static descriptionBuilder =>
-                descriptionBuilder.WithDisplayName("Users Resource")));
+        Configure("users", static ep => {});
     }
 }

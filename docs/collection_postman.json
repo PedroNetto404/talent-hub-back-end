@@ -1,0 +1,1025 @@
+{
+	"info": {
+		"_postman_id": "73ffac4d-37ba-468f-8886-7993f3a299fe",
+		"name": "Talent Hub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23144549"
+	},
+	"item": [
+		{
+			"name": "Candidates",
+			"item": [
+				{
+					"name": "Experiences",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"start_month\": 1,\n    \"start_year\": 2024,\n    \"is_current\": true,    \n    \"activities\": [\n        \"Something\"\n    ],\n    \"level\": \"elementary_school\",\n    \"status\": \"incomplete\",\n    \"course_id\": \"006a531d-99e7-4ca2-9f58-cfa6e139c6ea\",\n    \"university_id\": \"0029579a-5df6-448c-a067-00aa9dd93a8d\",\n    \"current_semester\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/candidates/{{candidate_id}}/experiences/academic",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"experiences",
+										"academic"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New request",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/candidates/{{candidate_id}}/experiences/academic",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"experiences",
+										"academic"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Certificates",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"C# advanced\",\n    \"issuer\": \"Alura\",\n    \"workload\": 20.40,\n    \"related_skills\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/candidates/{{candidate_id}}/certificates",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"certificates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Update Attachment",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/candidates/{{candidate_id}}/certificates/{{certificate_id}}/attachment",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"certificates",
+										"{{certificate_id}}",
+										"attachment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Skills",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skill_id\": \"5577ff83-2073-4fe8-ba42-c5ece56c4019\",\n    \"proficiency\": \"beginner\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/candidates/{{candidate_id}}/skills",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"skills"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/candidates/{{candidate_id}}/skills/{{candidate_skill_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"skills",
+										"{{candidate_skill_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Language Proficiences",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"writing_level\": \"beginner\",\n    \"listening_level\": \"beginner\",\n    \"speaking_level\": \"beginner\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/candidates/{{candidate_id}}/language-proficiences/{{language_proficiency_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"candidates",
+										"{{candidate_id}}",
+										"language-proficiences",
+										"{{language_proficiency_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set('candidate_id', response.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pedro Netto\",\n    \"summary\": \"Sou o Pedro\",\n    \"auto_match_enabled\": true,\n    \"phone\": \"16981477901\",\n    \"birth_date\": \"2000-08-29\",\n    \"expected_remuneration\": 5000.00,\n    \"instagram_url\": \"https://instagram.com/nettoaoquadrado\",\n    \"linked_in_url\": \"https://linkedin.com.br/nettopedro\",\n    \"git_hub_url\": \"https://github.com/PedroNetto404\",\n    \"address\": {\n        \"city\": \"Ribeirão Preto\",\n        \"street\": \"Rua Bonfim\",\n        \"number\": \"1327\",\n        \"neighborhood\": \"Ipiranga\",\n        \"state\": \"São Paulo\",\n        \"country\": \"Brasil\",\n        \"zip_code\": \"14055060\"\n    },\n    \"hobbies\": [\n        \"Skate\"\n    ],\n    \"desired_workplace_types\": [\n        \"remote\"\n    ],\n    \"desired_job_types\": [\n        \"full_time\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/candidates",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const body = pm.response.json();",
+									"",
+									"if(body.records.length > 0) {",
+									"    pm.collectionVariables.set(\"candidate_id\", body.records[0].id);",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/candidates?_limit=3000&_offset=0&_sort_by=name&_sort_ascending=false",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"candidates"
+							],
+							"query": [
+								{
+									"key": "_limit",
+									"value": "3000"
+								},
+								{
+									"key": "_offset",
+									"value": "0"
+								},
+								{
+									"key": "_sort_by",
+									"value": "name"
+								},
+								{
+									"key": "_sort_ascending",
+									"value": "false"
+								},
+								{
+									"key": "language_in",
+									"value": "portuguese",
+									"disabled": true
+								},
+								{
+									"key": "skill_id_in",
+									"value": "88520869-fdac-460b-920d-1e18a8d761bc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/candidates/{{candidate_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"candidates",
+								"{{candidate_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/candidates/{{candidate_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"candidates",
+								"{{candidate_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Resume",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1efa84dc-fd44-4d40-a0bb-d5357b3347fe"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/candidates/{{candidate_id}}/resume",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"candidates",
+								"{{candidate_id}}",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Administração \",\n    \"tags\": [\n        \"negócios\",\n        \"recursos humanos\",\n        \"administração\"\n    ], \n    \"related_skills\": [\n        \"373218a4-dda3-49ad-8a7c-409010e634d3\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/courses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/courses?_limit=9999999&_sort_by=name&_sort_ascending=true&course_id_in=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "_limit",
+									"value": "9999999"
+								},
+								{
+									"key": "_sort_by",
+									"value": "name"
+								},
+								{
+									"key": "_sort_ascending",
+									"value": "true"
+								},
+								{
+									"key": "course_id_in",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/courses/c775dfc7-1410-4980-8744-ede7b62310c9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"courses",
+								"c775dfc7-1410-4980-8744-ede7b62310c9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skills",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/skills?_sort_by=name&_sort_ascending=true&skill_id_in=&type=hard",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills"
+							],
+							"query": [
+								{
+									"key": "_sort_by",
+									"value": "name"
+								},
+								{
+									"key": "_sort_ascending",
+									"value": "true"
+								},
+								{
+									"key": "skill_id_in",
+									"value": ""
+								},
+								{
+									"key": "type",
+									"value": "hard"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Comunicação\", \n    \"type\": \"soft\", \n    \"tags\": [\n        \"xpto\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/skills/5577ff83-2073-4fe8-ba42-c5ece56c4019",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"5577ff83-2073-4fe8-ba42-c5ece56c4019"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set('user_id', response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pedronetto31415@gmail.com\",\n    \"username\": \"pedronetto31415\", \n    \"password\": \"sada123#$#@13dsaAB\",\n    \"role\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set('auth_token', response.access_token);",
+									"pm.collectionVariables.set(\"refresh_token\", response.refresh_token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"pedronetto31415\",\n    \"password\": \"sada123#$#@13dsaAB\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/auth",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set('auth_token', response.access_token);",
+									"pm.collectionVariables.set(\"refresh_token\", response.refresh_token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh_token\": \"{{refresh_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/{{user_id}}/refresh-token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Picture",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/magalu/Downloads/unnamed.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/{{user_id}}/profile-picture",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}",
+								"profile-picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/37304ac6-c4fb-4711-a2c3-ade5de68e096",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"37304ac6-c4fb-4711-a2c3-ade5de68e096"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "Create Company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"legal_name\": \"BK Bank Instituição de Pagamentos LTDA\",\n  \"trade_name\": \"BK BANK\",\n  \"cnpj\": \"08717029000109\",\n  \"recruitment_email\": \"contato@bkbank.com.br\",\n  \"sector_id\": \"ce63cace-3a1b-4295-b547-44a001bb8043\",\n  \"phone\": \"16981477900\",\n  \"auto_match_enable\": true,\n  \"employee_count\": 500,\n  \"site_url\": \"https://bkbank.com.br\",\n  \"address\": {\n    \"street\": \"Avenida Paulista\",\n    \"number\": \"1234\",\n    \"neighborhood\": \"Bela Vista\",\n    \"city\": \"São Paulo\",\n    \"state\": \"São Paulo\",\n    \"country\": \"Brasil\",\n    \"zip_code\": \"01311000\"\n  },\n  \"about\": \"Banco digital focado em inovação e soluções financeiras eficientes para pessoas e empresas.\",\n  \"instagram_url\": \"https://instagram.com/bkbank\",\n  \"facebook_url\": \"https://facebook.com/bkbank\",\n  \"linkedin_url\": \"https://linkedin.com/company/bkbank\",\n  \"career_page_url\": \"https://bkbank.com.br/carreiras\",\n  \"mission\": \"Oferecer soluções financeiras de forma simples, ágil e acessível.\",\n  \"vision\": \"Ser o banco digital mais confiável e inovador do mercado.\",\n  \"values\": \"Inovação, transparência, acessibilidade e compromisso com o cliente.\",\n  \"foundation_year\": 2015\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/companies/94d0008b-b29c-495a-a4f2-c524f790d5d5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companies",
+								"94d0008b-b29c-495a-a4f2-c524f790d5d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Logo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1efb3216-9525-41f0-82c5-633d8cadf2b1"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/companies/94d0008b-b29c-495a-a4f2-c524f790d5d5/logo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companies",
+								"94d0008b-b29c-495a-a4f2-c524f790d5d5",
+								"logo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Galery",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1efa84df-78ee-4520-989a-0a3a3e44288d"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/companies/94d0008b-b29c-495a-a4f2-c524f790d5d5/galery",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"companies",
+								"94d0008b-b29c-495a-a4f2-c524f790d5d5",
+								"galery"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company Sectors",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/company_sectors?_limit=100&_sort_by=name&_sort_ascending=false",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company_sectors"
+							],
+							"query": [
+								{
+									"key": "_limit",
+									"value": "100"
+								},
+								{
+									"key": "_sort_by",
+									"value": "name"
+								},
+								{
+									"key": "_sort_ascending",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.addHeader({",
+					"    'Content-Type': 'application/json',",
+					"    Accept: 'application/json'",
+					"})"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI2OGZjZDU4ZS1iZWQ4LTRkZDItOWVjOS00MzQ3MWMwYjc0MWEiLCJ1bmlxdWVfbmFtZSI6InBlZHJvbmV0dG8zMTQxNSIsImVtYWlsIjoicGVkcm9uZXR0bzMxNDE1QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5iZiI6MTczNDg0MTYwNCwiZXhwIjoxNzM0ODQyNTA0LCJpYXQiOjE3MzQ4NDE2MDQsImlzcyI6IlBlZHJvIE5ldHRvIGRlIFNvdXNhIExpbWEiLCJhdWQiOiJQZWRybyBOZXR0byJ9.Dlkijim4HUj44dNtzaPfzuRqG5Blf1c8hIXxw9HnqJU",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "https://localhost:7014/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "TNK6SWFLgdmpFtCs0ulPZBxqc1xf23Horn9dDiQW3J8=",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "candidate_id",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": "80a0a1c2-ca19-49cd-a0c6-1ec7bf432e74"
+		},
+		{
+			"key": "language_proficiency_id",
+			"value": ""
+		},
+		{
+			"key": "certificate_id",
+			"value": ""
+		}
+	]
+}

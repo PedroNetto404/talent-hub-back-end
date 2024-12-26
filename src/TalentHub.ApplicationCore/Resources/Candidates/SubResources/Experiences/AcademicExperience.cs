@@ -42,13 +42,13 @@ public sealed class AcademicExperience : Experience
             () => Result.FailIf(currentSemester < 0, "current semester must be greater than 0")
         );
 
-        if(result.IsFail)
+        if (result.IsFail)
         {
             return result.Error;
         }
 
         return new AcademicExperience(
-            start, 
+            start,
             end,
             currentSemester,
             isCurrent,
@@ -82,7 +82,7 @@ public sealed class AcademicExperience : Experience
     {
         if (_academicEntities.Contains(academicEntity))
         {
-            return Error.BadRequest("academic entity already added");
+            return Error.InvalidInput("academic entity already added");
         }
 
         _academicEntities.Add(academicEntity);
@@ -95,7 +95,7 @@ public sealed class AcademicExperience : Experience
     {
         if (currentSemester < 1)
         {
-            return Error.BadRequest("current semester must be greater than 0");
+            return Error.InvalidInput("current semester must be greater than 0");
         }
 
         CurrentSemester = currentSemester;

@@ -1,5 +1,6 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Resources.CompanySectors.Dtos;
 using TalentHub.ApplicationCore.Shared.Dtos;
 using TalentHub.ApplicationCore.Shared.Enums;
 
@@ -10,7 +11,7 @@ public sealed record GetAllCompanySectorsQuery(
     int Offset,
     string? SortBy,
     SortOrder SortOrder
-) : CachedQuery<PageResponse>
+) : CachedQuery<PageResponse<CompanySectorDto>>
 {
     public override TimeSpan Duration => TimeSpan.FromHours(12);
 }

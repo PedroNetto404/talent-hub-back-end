@@ -13,25 +13,30 @@ public sealed class UpdateCandidateCertificateCommandHandler(
     ICommandHandler<UpdateCandidateCertificateCommand>
 {
     public async Task<Result> Handle(
-        UpdateCandidateCertificateCommand request, 
+        UpdateCandidateCertificateCommand request,
         CancellationToken cancellationToken
     )
     {
-        if(request.RelatedSkills.Any())
+        if (request.RelatedSkills.Any())
         {
             IEnumerable<Skill> skills = await skillRepository.ListAsync(
-                new GetSkillsSpec(request.RelatedSkills, int.MaxValue, 0),
+                new GetSkillsSpec(
+                    request.RelatedSkills,
+                     null,
+                      int.MaxValue,
+                       0
+                    ),
                 cancellationToken
             );
 
-            if(skills.Count() != request.RelatedSkills.Count())
+            if (skills.Count() != request.RelatedSkills.Count())
             {
                 return Error.NotFound("skill");
             }
         }
 
         Candidate? candidate = await candidateRepository.FirstOrDefaultAsync(new GetCandidateByIdSpec(request.CandidateId), cancellationToken);
-        if(candidate is null)
+        if (candidate is null)
         {
             return Error.NotFound("candidate");
         }
@@ -44,7 +49,7 @@ public sealed class UpdateCandidateCertificateCommandHandler(
             request.Url,
             request.RelatedSkills
         );
-        if(updateResult.IsFail)
+        if (updateResult.IsFail)
         {
             return updateResult.Error;
         }

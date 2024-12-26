@@ -4,11 +4,11 @@ using TalentHub.Infra.Security.Services;
 namespace TalentHub.Tests.Unit.Infra;
 public class PasswordHasherTests
 {
-    private readonly PasswordHasher _passwordHasher;
+    private readonly Sha256Hasher _passwordHasher;
 
     public PasswordHasherTests()
     {
-        _passwordHasher = new PasswordHasher();
+        _passwordHasher = new Sha256Hasher();
     }
 
     [Fact]

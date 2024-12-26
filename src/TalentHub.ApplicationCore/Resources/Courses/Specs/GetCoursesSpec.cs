@@ -7,16 +7,22 @@ namespace TalentHub.ApplicationCore.Resources.Courses.Specs;
 public sealed class GetCoursesSpec : GetPageSpec<Course>
 {
     public GetCoursesSpec(
-        IEnumerable<Guid> ids,
+        string? nameLike,
+        IEnumerable<Guid> relatedSkillIds,
         int limit = int.MaxValue,
         int offset = 0,
         string? sortBy = null,
         SortOrder sortOrder = SortOrder.Ascending
     ) : base(limit, offset, sortBy, sortOrder)
     {
-        if (ids.Any())
+        if (!string.IsNullOrWhiteSpace(nameLike))
         {
-            Query.Where(c => ids.Contains(c.Id));
+            Query.Where(course => course.Name.Contains(nameLike));
+        }
+
+        if (relatedSkillIds.Any())
+        {
+            Query.Where(course => course.RelatedSkills.Any(relatedSkillIds.Contains));
         }
     }
 }

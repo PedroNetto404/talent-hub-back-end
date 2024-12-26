@@ -2,7 +2,7 @@ using FastEndpoints;
 using MediatR;
 using TalentHub.ApplicationCore.Resources.Users.Dtos;
 using TalentHub.ApplicationCore.Resources.Users.UseCases.Commands.UpdateProfilePicture;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Users.UpdateProfilePicture;
 
@@ -25,22 +25,16 @@ public sealed class UpdateProfilePictureEndpoint :
 
     public override async Task HandleAsync(UpdateProfilePictureRequest req, CancellationToken ct)
     {
-        Guid userId = Route<Guid>("userId");
-
         using MemoryStream memoryStream = new();
         await req.File.CopyToAsync(memoryStream, ct);
 
-        await SendResultAsync(
-            ResultUtils.Map(
-                await Resolve<ISender>().Send(
-                    new UpdateProfilePictureCommand(
-                        userId, 
-                        memoryStream, 
-                        req.File.ContentType
-                    ),
-                    ct
-                )
-            )
+        await this.HandleUseCaseAsync(
+            new UpdateProfilePictureCommand(
+                req.UserId,
+                memoryStream,
+                req.File.ContentType
+            ),
+            ct
         );
     }
 }

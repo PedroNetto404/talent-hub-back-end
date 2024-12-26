@@ -9,7 +9,6 @@ using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.Infra.Cache;
 using TalentHub.Infra.Data;
-using TalentHub.Infra.Data.Interceptors;
 using TalentHub.Infra.Files;
 using TalentHub.Infra.Security;
 using TalentHub.Infra.Security.Options;
@@ -24,6 +23,47 @@ public static class DependencyInjection
         this IServiceCollection s,
         IConfiguration config
     )
+    {
+        s.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        s.AddScoped<IUserContext, HttpUserContext>();
+        s.AddSingleton<IHasher, Sha256Hasher>();
+        s.AddSingleton<ITokenProvider, TokenProvider>();
+        s.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        s.AddMemoryCache();
+        s.AddHttpContextAccessor();
+
+        s.AddLogging(builder =>
+        {
+            builder.AddConsole();
+            builder.AddDebug();
+        });
+
+        AddDatabase(s, config);
+        AddAuth(s, config);
+        AddCache(s, config);
+        AddBucket(s, config);
+
+        return s;
+    }
+
+    private static void AddBucket(IServiceCollection s, IConfiguration config)
+    {
+        s.AddScoped<IFileStorage, MinIoFileStorage>();
+        s.AddSingleton<IAmazonS3>(
+            new AmazonS3Client(
+                config["BUCKET_USER"] ?? throw new Exception("BUCKET_USER is required"),
+                config["BUCKET_PASSWORD"] ?? throw new Exception("BUCKET_PASSWORD is required"),
+                new AmazonS3Config
+                {
+                    ServiceURL = $"http://localhost:{config["BUCKET_PORT"] ?? throw new Exception("BUCKET_PORT is required")}",
+                    ForcePathStyle = true
+                }
+            )
+        );
+    }
+
+    private static void AddDatabase(IServiceCollection s, IConfiguration config)
     {
         s.AddDbContext<TalentHubContext>(opt =>
         {
@@ -44,55 +84,58 @@ public static class DependencyInjection
                 opt.EnableSensitiveDataLogging();
             }
         });
-        s.AddMemoryCache();
-        s.AddHttpContextAccessor();
-        s.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        s.AddScoped<IFileStorage, MinIoFileStorage>();
-        s.AddScoped<IUserContext, HttpUserContext>();
-        s.AddSingleton<IPasswordHasher, PasswordHasher>();
-        s.AddSingleton<ITokenProvider, TokenProvider>();
-        s.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-        s.ConfigureOptions<AuthOptionsSetup>();
-        s.AddAuthentication().AddJwtBearer();
-        s.AddAuthorization();
-        s.AddLogging(builder =>
-        {
-            builder.AddConsole();
-            builder.AddDebug();
-        });
-        s.Configure<JwtOptions>((opt) =>
-        {
-            opt.Issuer = config["JWT_ISSUER"] ?? throw new Exception("JWT_ISSUER is required");
-            opt.Audience = config["JWT_AUDIENCE"] ?? throw new Exception("JWT_AUDIENCE is required");
-            opt.SecretKey = config["JWT_SECRET_KEY"] ?? throw new Exception("JWT_SECRET_KEY is required");
-            opt.AccessTokenExpiration = int.Parse(config["JWT_ACCESS_TOKEN_EXPIRATION"] ?? throw new Exception("JWT_ACCESS_TOKEN_EXPIRATION is required"));
-            opt.RefreshTokenExpiration = int.Parse(config["JWT_REFRESH_TOKEN_EXPIRATION"] ?? throw new Exception("JWT_REFRESH_TOKEN_EXPIRATION is required"));
-        });
+    }
 
-        string redisHost = config["REDIS_HOST"] ?? throw new Exception("REDIS_HOST is required");
-        string redisPort = config["REDIS_PORT"] ?? throw new Exception("REDIS_PORT is required");
-        string redisPass = config["REDIS_PASSWORD"] ?? throw new Exception("REDIS_PASSWORD is required");
+    private static void AddCache(IServiceCollection s, IConfiguration config)
+    {
+        string host = config["REDIS_HOST"] 
+        ?? throw new Exception("REDIS_HOST is required");
+        
+        string port = config["REDIS_PORT"] 
+        ?? throw new Exception("REDIS_PORT is required");
+        
+        string pass = config["REDIS_PASSWORD"] 
+        ?? throw new Exception("REDIS_PASSWORD is required");
+        
         var options = new ConfigurationOptions
         {
-            EndPoints = { $"{redisHost}:{redisPort}" },
-            Password = redisPass,
+            EndPoints = { $"{host}:{port}" },
+            Password = pass,
             DefaultDatabase = 0
         };
 
         s.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(options));
         s.AddSingleton<ICacheProvider, RedisCacheProvider>();
+    }
 
-        s.AddSingleton<IAmazonS3>(
-            new AmazonS3Client(
-                config["BUCKET_USER"] ?? throw new Exception("BUCKET_USER is required"),
-                config["BUCKET_PASSWORD"] ?? throw new Exception("BUCKET_PASSWORD is required"),
-                new AmazonS3Config
-                {
-                    ServiceURL = $"http://localhost:{config["BUCKET_PORT"] ?? throw new Exception("BUCKET_PORT is required")}",
-                    ForcePathStyle = true
-                }
-            )
+    private static void AddAuth(IServiceCollection s, IConfiguration config)
+    {
+        int acessTokenExpiration = int.Parse(
+            config["ASPNETCORE_ENVIRONMENT"] == "Development"
+                ? $"{int.MaxValue}"
+                : config["JWT_ACCESS_TOKEN_EXPIRATION"]
+                ?? throw new Exception("JWT_ACCESS_TOKEN_EXPIRATION is required")
         );
-        return s;
+
+        int refreshTokenExpiration = int.Parse(
+            config["JWT_REFRESH_TOKEN_EXPIRATION"]
+            ?? throw new Exception("JWT_REFRESH_TOKEN_EXPIRATION is required")
+        );
+
+        string issuer = config["JWT_ISSUER"] ?? throw new Exception("JWT_ISSUER is required");
+        string audience = config["JWT_AUDIENCE"] ?? throw new Exception("JWT_AUDIENCE is required");
+        string secretKey = config["JWT_SECRET_KEY"] ?? throw new Exception("JWT_SECRET_KEY is required");
+
+        s.ConfigureOptions<AuthOptionsSetup>();
+        s.AddAuthorization();
+        s.AddAuthentication().AddJwtBearer();
+        s.Configure<JwtOptions>((opt) =>
+        {
+            opt.AccessTokenExpiration = acessTokenExpiration;
+            opt.RefreshTokenExpiration = refreshTokenExpiration;
+            opt.Issuer = issuer;
+            opt.Audience = audience;
+            opt.SecretKey = secretKey;
+        });
     }
 }

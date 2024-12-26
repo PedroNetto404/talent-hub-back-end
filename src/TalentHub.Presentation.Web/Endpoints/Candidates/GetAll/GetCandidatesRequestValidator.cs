@@ -1,16 +1,19 @@
 using FluentValidation;
 using Humanizer;
 using TalentHub.ApplicationCore.Resources.Candidates.Enums;
+using TalentHub.Presentation.Web.Shared.Validators;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.GetAll;
 
-public sealed class GetCandidatesRequestValidator : AbstractValidator<GetCandidatesRequest>
+public sealed class GetCandidatesRequestValidator : PageRequestValidator<GetCandidatesRequest>
 {
     private static readonly string[] AllowedSortingFields = [
         "id",
         "name",
         "phone"
     ];
+
+    protected override string[] SortableFields => AllowedSortingFields;
 
     public GetCandidatesRequestValidator()
     {
@@ -31,19 +34,5 @@ public sealed class GetCandidatesRequestValidator : AbstractValidator<GetCandida
                 }
             })
             .When(p => p.Languages?.Any() ?? false);
-
-        RuleFor(p => p.SortBy)
-            .Custom((sortBy, context) =>
-            {
-                if (!AllowedSortingFields.Contains(sortBy))
-                {
-                    context.AddFailure("_sort_by", $"_sort_by must be one of {string.Join(", ", AllowedSortingFields)}");
-                }
-            })
-            .When(p => !string.IsNullOrWhiteSpace(p.SortBy));
-
-        RuleFor(p => p.SortOrder)
-            .NotNull()
-            .When(p => !string.IsNullOrWhiteSpace(p.SortBy));
     }
 }

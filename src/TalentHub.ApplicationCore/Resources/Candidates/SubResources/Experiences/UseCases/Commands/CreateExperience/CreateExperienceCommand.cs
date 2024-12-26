@@ -1,21 +1,19 @@
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
+using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.SubResources.Experiences.UseCases.Commands.CreateExperience;
 
 public sealed record CreateExperienceCommand(
     Guid CandidateId,
     string Type,
-    int StartMonth,
-    int StartYear,
-    int? EndMonth,
-    int? EndYear,
-    int? ExpectedGraduationStartMonth,
-    int? ExpectedGraduationStartYear,
+    DatePeriod Start,
+    DatePeriod? End,
     bool IsCurrent,
     IEnumerable<string> Activities,
-    string? Level,
-    string? Status,
+    DatePeriod? ExpectedGraduation,
+    string? EducationalLevel,
+    string? ProgressStatus,
     int? CurrentSemester,
     IEnumerable<string> AcademicEntities,
     Guid? CourseId,

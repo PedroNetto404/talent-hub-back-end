@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.ApplicationCore.Resources.Users.Enums;
 using TalentHub.ApplicationCore.Resources.Users.ValueObjects;
 using TalentHub.Infra.Security.Options;
 
@@ -23,6 +24,8 @@ public sealed class TokenProvider(
     {
         DateTime tokenExpiration = dateTimeProvider.UtcNow.AddMinutes(opt.AccessTokenExpiration);
 
+        IEnumerable<Permission> permissions = Permission.FromRole(user.Role);
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(
@@ -30,7 +33,8 @@ public sealed class TokenProvider(
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.ToString().Underscore())
+                new Claim(ClaimTypes.Role, user.Role.ToString().Underscore()),
+                ..permissions.Select(p => new Claim("permission", p.Name.ToString().Underscore()))
             ]),
             Expires = tokenExpiration,
             SigningCredentials = new SigningCredentials(

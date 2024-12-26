@@ -76,7 +76,7 @@ public sealed class Candidate : AuditableAggregateRoot
         var candidate = new Candidate(
             name,
             autoMatchEnabled,
-            userId, 
+            userId,
             phone,
             birthDate,
             address,
@@ -155,7 +155,7 @@ public sealed class Candidate : AuditableAggregateRoot
             _languageProficiencies.FirstOrDefault(p => p.Language == languageProficiency.Language);
         if (existing is not null)
         {
-            return Error.BadRequest("candidate language proficiency already exists");
+            return Error.InvalidInput("candidate language proficiency already exists");
         }
 
         _languageProficiencies.Add(languageProficiency);
@@ -210,7 +210,7 @@ public sealed class Candidate : AuditableAggregateRoot
         Certificate? existingCertificate = _certificates.FirstOrDefault(c => c.Id == certificateId);
         if (existingCertificate is null)
         {
-            return Error.BadRequest("invalid certificate id");
+            return Error.InvalidInput("invalid certificate id");
         }
 
         _certificates.Remove(existingCertificate);
@@ -551,7 +551,7 @@ public sealed class Candidate : AuditableAggregateRoot
 
         if (expectedRemuniration <= 0)
         {
-            return Error.BadRequest("expected remuneration must greater than 0");
+            return Error.InvalidInput("expected remuneration must greater than 0");
         }
 
         ExpectedRemuneration = expectedRemuniration;
@@ -578,12 +578,12 @@ public sealed class Candidate : AuditableAggregateRoot
 
         if (url == string.Empty)
         {
-            return Error.BadRequest("url cannot be blank");
+            return Error.InvalidInput("url cannot be blank");
         }
 
         if (!url.IsValidUrl())
         {
-            return Error.BadRequest($"{url} is not valid url");
+            return Error.InvalidInput($"{url} is not valid url");
         }
 
         setter(url);
@@ -601,7 +601,7 @@ public sealed class Candidate : AuditableAggregateRoot
 
         if (summary == string.Empty)
         {
-            return Error.BadRequest("invalid summary");
+            return Error.InvalidInput("invalid summary");
         }
 
         Summary = summary;

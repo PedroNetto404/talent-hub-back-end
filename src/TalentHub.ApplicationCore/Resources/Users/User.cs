@@ -30,7 +30,7 @@ public sealed class User : AuditableAggregateRoot
         string username,
         Role role,
         string password,
-        IPasswordHasher passwordHasher
+        IHasher passwordHasher
     )
     {
         if (string.IsNullOrWhiteSpace(email))
@@ -68,7 +68,7 @@ public sealed class User : AuditableAggregateRoot
     public string ProfilePictureFileName => $"user-profile-picture-{Id}";
 
     public Result SetRefreshToken(
-        Token refreshToken, 
+        Token refreshToken,
         IDateTimeProvider dateTimeProvider
     )
     {
@@ -119,12 +119,12 @@ public sealed class User : AuditableAggregateRoot
 
         if (string.IsNullOrWhiteSpace(profilePictureUrl))
         {
-            return Error.BadRequest("profile picture url cannot be empty");
+            return Error.InvalidInput("profile picture url cannot be empty");
         }
 
         if (!profilePictureUrl.IsValidUrl())
         {
-            return Error.BadRequest("profile picture url is not valid url");
+            return Error.InvalidInput("profile picture url is not valid url");
         }
 
         ProfilePictureUrl = profilePictureUrl;

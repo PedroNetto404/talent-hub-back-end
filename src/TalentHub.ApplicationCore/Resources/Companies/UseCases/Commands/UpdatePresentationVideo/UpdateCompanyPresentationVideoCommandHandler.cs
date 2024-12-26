@@ -27,7 +27,7 @@ public sealed class UpdateCompanyPresentationVideoCommandHandler(
 
         if (company.PresentationVideoUrl is null)
         {
-            return Error.BadRequest("Company already has a presentation video");
+            return Error.InvalidInput("Company already has a presentation video");
         }
 
         string url = await fileStorage.SaveAsync(

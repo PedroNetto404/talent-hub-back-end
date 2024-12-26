@@ -33,7 +33,7 @@ public sealed class CreateCandidateCommandHandler(
         );
         if (existingCandidate is not null)
         {
-            return Error.BadRequest("candidate already exists");
+            return Error.InvalidInput("candidate already exists");
         }
 
         Result<Candidate> maybeCandidate = Candidate.Create(
@@ -66,7 +66,7 @@ public sealed class CreateCandidateCommandHandler(
         {
             if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
             {
-                return Error.BadRequest($"{desiredWorkplaceType} is not valid WorkplaceType");
+                return Error.InvalidInput($"{desiredWorkplaceType} is not valid WorkplaceType");
             }
 
             if (candidate.AddDesiredWorkplaceType(workplaceType) is { IsFail: true, Error: var error })
@@ -79,7 +79,7 @@ public sealed class CreateCandidateCommandHandler(
         {
             if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
             {
-                return Error.BadRequest($"{desiredJobType} is not valid WorkplaceType");
+                return Error.InvalidInput($"{desiredJobType} is not valid WorkplaceType");
             }
 
             if (candidate.AddDesiredJobType(jobType) is { IsFail: true, Error: var error })

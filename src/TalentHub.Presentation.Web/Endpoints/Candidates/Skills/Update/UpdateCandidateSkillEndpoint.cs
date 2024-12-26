@@ -2,7 +2,7 @@ using FastEndpoints;
 using MediatR;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.SubResources.Skills.UseCases.Commands.Update;
-using TalentHub.Presentation.Web.Utils;
+using TalentHub.Presentation.Web.Extensions;
 
 namespace TalentHub.Presentation.Web.Endpoints.Candidates.Skills.Update;
 
@@ -17,19 +17,14 @@ public sealed class UpdateCandidateSkillEndpoint :
         Validator<UpdateCandidateSkillRequestValidator>();
     }
 
-    public override async Task HandleAsync(
+    public override Task HandleAsync(
         UpdateCandidateSkillRequest req,
         CancellationToken ct
-    ) => await SendResultAsync(
-            ResultUtils.Map(
-                await Resolve<ISender>().Send(
-                    new UpdateCandidateSkillProficiencyCommand(
-                        req.CandidateId,
-                        req.CandidateSkillId,
-                        req.Proficiency
-                    ),
-                    ct
-                )
-            )
-        );
+    ) => this.HandleUseCaseAsync(
+        new UpdateCandidateSkillProficiencyCommand(
+            req.CandidateId,
+            req.CandidateSkillId,
+            req.Proficiency
+        ),
+        ct);
 }

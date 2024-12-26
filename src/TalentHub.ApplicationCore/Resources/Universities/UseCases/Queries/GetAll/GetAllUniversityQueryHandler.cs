@@ -9,13 +9,17 @@ using TalentHub.ApplicationCore.Shared.Dtos;
 namespace TalentHub.ApplicationCore.Resources.Universities.UseCases.Queries.GetAll;
 
 public sealed class GetAllUniversityQueryHandler(
-    IRepository<University> universityRepository) : IQueryHandler<GetAllUniversitiesQuery, PageResponse>
+    IRepository<University> universityRepository
+) : IQueryHandler<GetAllUniversitiesQuery, PageResponse<UniversityDto>>
 {
-    public async Task<Result<PageResponse>> Handle(GetAllUniversitiesQuery request, CancellationToken cancellationToken)
+    public async Task<Result<PageResponse<UniversityDto>>> Handle(
+        GetAllUniversitiesQuery request, 
+        CancellationToken cancellationToken
+    )
     {
         List<University> universities = await universityRepository.ListAsync(
             new GetUniversitiesSpec(
-                request.Ids,
+                request.NameLike,
                 request.Limit,
                 request.Offset,
                 request.SortBy,
@@ -25,7 +29,7 @@ public sealed class GetAllUniversityQueryHandler(
         );
         int count = await universityRepository.CountAsync(
             new GetUniversitiesSpec(
-                request.Ids,
+                request.NameLike,
                 int.MaxValue,
                 0
             ),
@@ -34,7 +38,7 @@ public sealed class GetAllUniversityQueryHandler(
 
         UniversityDto[] dtos = [.. universities.Select(UniversityDto.FromEntity)];
 
-        return new PageResponse(
+        return new PageResponse<UniversityDto>(
             new(
                 dtos.Length,
                 count,

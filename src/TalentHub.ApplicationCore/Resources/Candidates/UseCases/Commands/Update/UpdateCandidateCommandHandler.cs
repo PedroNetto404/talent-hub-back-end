@@ -39,7 +39,7 @@ public sealed class UpdateCandidateCommandHandler(
                 {
                     if (!Enum.TryParse(desiredWorkplaceType.Pascalize(), true, out WorkplaceType workplaceType))
                     {
-                        return Error.BadRequest($"{desiredWorkplaceType} is not valid workplace type");
+                        return Error.InvalidInput($"{desiredWorkplaceType} is not valid workplace type");
                     }
 
                     if (candidate.AddDesiredWorkplaceType(workplaceType) is { IsFail: true } resultWorkplaceType && resultWorkplaceType.Error is var errWorkplace)
@@ -57,7 +57,7 @@ public sealed class UpdateCandidateCommandHandler(
                 {
                     if (!Enum.TryParse(desiredJobType.Pascalize(), true, out JobType jobType))
                     {
-                        return Error.BadRequest($"{desiredJobType} is not valid job type");
+                        return Error.InvalidInput($"{desiredJobType} is not valid job type");
                     }
 
                     if (candidate.AddDesiredJobType(jobType) is { IsFail: true } resultJobType && resultJobType.Error is var errJobType)
@@ -82,7 +82,7 @@ public sealed class UpdateCandidateCommandHandler(
                 return Result.Ok();
             }
         );
-        if(result.IsFail)
+        if (result.IsFail)
         {
             return result;
         }

@@ -12,7 +12,7 @@ public sealed class AuthenticateUserCommandHandler(
     ITokenProvider tokenProvider,
     IRepository<User> userRepository,
     IDateTimeProvider dateTimeProvider,
-    IPasswordHasher passwordHasher
+    IHasher passwordHasher
 ) :
     ICommandHandler<AuthenticateUserCommand, AuthenticationResult>
 {
@@ -25,7 +25,7 @@ public sealed class AuthenticateUserCommandHandler(
             new GetUserByEmailOrUsernameSpec(request.Email, request.Username),
             cancellationToken
         );
-        if(user is null)
+        if (user is null)
         {
             return Error.Unauthorized();
         }
@@ -37,7 +37,7 @@ public sealed class AuthenticateUserCommandHandler(
 
         if (user.CanRefreshToken(dateTimeProvider))
         {
-            return Error.BadRequest("user can refresh token");
+            return Error.InvalidInput("user can refresh token");
         }
 
         Token refreshToken = tokenProvider.GenerateRefreshToken();

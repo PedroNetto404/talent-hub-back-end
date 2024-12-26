@@ -14,14 +14,14 @@ public sealed class CreateSkillCommandHandler(
 ) : ICommandHandler<CreateSkillCommand, SkillDto>
 {
     public async Task<Result<SkillDto>> Handle(
-        CreateSkillCommand request, 
+        CreateSkillCommand request,
         CancellationToken cancellationToken
     )
     {
         Skill? existingSkill = await skillRepository.FirstOrDefaultAsync(new GetSkillByNameSpec(request.Name), cancellationToken);
-        if (existingSkill is not null) 
+        if (existingSkill is not null)
         {
-            return Error.BadRequest("skill alredy exists");
+            return Error.InvalidInput("skill alredy exists");
         }
 
         if (!Enum.TryParse(request.Type.Pascalize(), true, out SkillType skillType))

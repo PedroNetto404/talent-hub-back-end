@@ -16,9 +16,9 @@ public sealed class CandidateSkill : VersionedEntity
     {
         if (Guid.Empty == skillId)
         {
-            return Error.BadRequest("candidate skill identifier is empty");
+            return Error.InvalidInput("candidate skill identifier is empty");
         }
-        
+
         return new CandidateSkill(skillId, proficiency);
     }
 
