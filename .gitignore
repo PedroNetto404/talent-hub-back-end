@@ -3,8 +3,11 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+.vscode/*
+
 # dotenv files
-.env
+.env.production
+.env.stage
 
 # User-specific files
 *.rsuser
