@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using FastEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using TalentHub.ApplicationCore.Shared.Enums;
 

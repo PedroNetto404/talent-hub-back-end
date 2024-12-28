@@ -1,7 +1,6 @@
-using Ardalis.Specification;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Core.Results;
-using TalentHub.ApplicationCore.Extensions;
+using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Companies.Dtos;
 using TalentHub.ApplicationCore.Resources.Companies.Specs;
 using TalentHub.ApplicationCore.Resources.CompanySectors;
@@ -10,7 +9,8 @@ namespace TalentHub.ApplicationCore.Resources.Companies.UseCases.Commands.Create
 
 public sealed class CreateCompanyCommandHandler(
     IRepository<Company> companyRepository,
-    IRepository<CompanySector> companySectorRepository
+    IRepository<CompanySector> companySectorRepository,
+    IUserContext userContext
 ) : ICommandHandler<CreateCompanyCommand, CompanyDto>
 {
     public async Task<Result<CompanyDto>> Handle(
@@ -18,6 +18,11 @@ public sealed class CreateCompanyCommandHandler(
         CancellationToken cancellationToken
     )
     {
+        if (userContext is not { IsCompany: true, UserId: { } userId })
+        {
+            return Error.Forbiden();
+        }
+
         Company? existingCompany = await companyRepository.FirstOrDefaultAsync(
             new GetCompanyByLegalNameOrCnpjSpec(request.LegalName, request.Cnpj),
             cancellationToken
@@ -42,6 +47,7 @@ public sealed class CreateCompanyCommandHandler(
             request.Cnpj,
             request.About,
             sector.Id,
+            userId,
             request.RecruitmentEmail,
             request.Phone,
             request.AutoMatchEnabled,

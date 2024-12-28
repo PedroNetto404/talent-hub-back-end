@@ -6,7 +6,8 @@ namespace TalentHub.Infra.Data;
 
 public sealed class TalentHubContext(DbContextOptions<TalentHubContext> options) : DbContext(options)
 {
-    private static readonly IInterceptor versionInterceptor = new VersionedEntityInterceptor(); 
+    private static readonly IInterceptor VersionInterceptor = new VersionedEntityInterceptor(); 
+    private static readonly IInterceptor AuditableAggregateInterceptor = new AuditableAggregateInterceptor();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -16,8 +17,7 @@ public sealed class TalentHubContext(DbContextOptions<TalentHubContext> options)
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.AddInterceptors(versionInterceptor);
-
+        optionsBuilder.AddInterceptors(VersionInterceptor, AuditableAggregateInterceptor);
         base.OnConfiguring(optionsBuilder);
     }
 }

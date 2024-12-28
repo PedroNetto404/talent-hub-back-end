@@ -14,7 +14,7 @@ using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates;
 
-public sealed class Candidate : AuditableAggregateRoot
+public sealed class Candidate : UserAggregateRoot
 {
     private Candidate
     (
@@ -29,7 +29,7 @@ public sealed class Candidate : AuditableAggregateRoot
         string? githubUrl,
         decimal? expectedRemuneration,
         string? summary
-    )
+    ) 
     {
         Name = name;
         AutoMatchEnabled = autoMatchEnabled;
@@ -108,7 +108,6 @@ public sealed class Candidate : AuditableAggregateRoot
 
     public string Name { get; private set; }
     public bool AutoMatchEnabled { get; private set; } = true;
-    public Guid UserId { get; private set; }
     public string? Summary { get; private set; }
     public string? ResumeUrl { get; private set; }
     public string? InstagramUrl { get; private set; }

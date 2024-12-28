@@ -12,7 +12,7 @@ namespace TalentHub.Infra.Extensions;
 
 public static class WebApplicationExtensions
 {
-    public async static Task SeedDatabaseAsync(this WebApplication app)
+    public static async Task SeedDatabaseAsync(this WebApplication app)
     {
         await using AsyncServiceScope scope = app.Services.CreateAsyncScope();
         TalentHubContext context = scope.ServiceProvider.GetRequiredService<TalentHubContext>();

@@ -26,7 +26,7 @@ public sealed class CreateUserCommandHandler(
             return Error.InvalidInput("invalid user credentials");
         }
 
-        if (!Enum.TryParse(request.Role.Pascalize(), true, out Role role))
+        if (!Role.TryFromName(request.Role, true, out Role role))
         {
             return new Error("user", "invalid role");
         }

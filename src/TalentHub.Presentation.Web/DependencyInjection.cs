@@ -6,9 +6,13 @@ namespace TalentHub.Presentation.Web;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPresentation(this IServiceCollection s)
+    public static IServiceCollection AddPresentation(
+        this IServiceCollection s
+    )
     {
-        s.AddFastEndpoints(static opt => opt.IncludeAbstractValidators = true);
+        s.AddFastEndpoints(static opt => 
+            opt.IncludeAbstractValidators = true);
+            
         s.AddEndpointsApiExplorer();
         s.AddHealthChecks();
         s.AddRouting();
@@ -18,7 +22,7 @@ public static class DependencyInjection
             opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter(HumanizerSnakeCaseJsonPolicy.Instance));
             opt.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         });
-
+    
         return s;
     }
 }

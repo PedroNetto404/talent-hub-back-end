@@ -1,5 +1,6 @@
 using FluentValidation;
-using TalentHub.ApplicationCore.Resources.Skills;
+
+namespace TalentHub.Presentation.Web.Endpoints.Skills.GetById;
 
 public sealed class GetSkillByIdRequestValidator :
     AbstractValidator<GetSkillByIdRequest>

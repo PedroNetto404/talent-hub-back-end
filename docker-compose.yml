@@ -3,7 +3,7 @@ services:
     container_name: talent-hub_pgdatabase
     image: postgres
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "${DB_PORT}:5432"
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -17,12 +17,12 @@ services:
     container_name: talent-hub_bucket
     image: minio/minio
     ports:
-      - "${BUCKET_PORT}:${BUCKET_PORT}"
-      - "${BUCKET_CONSOLE_PORT}:${BUCKET_CONSOLE_PORT}"
+      - "${BUCKET_PORT}:9000"
+      - "${BUCKET_CONSOLE_PORT}:9001"
     environment:
       MINIO_ROOT_USER: ${BUCKET_USER}
       MINIO_ROOT_PASSWORD: ${BUCKET_PASSWORD}
-    command: server /data --console-address ":${BUCKET_CONSOLE_PORT}"
+    command: server /data --console-address ":9001"
     volumes:
       - minio-data:/data
     networks:
@@ -32,15 +32,9 @@ services:
     container_name: talent-hub_cache
     image: redis
     ports:
-      - "${REDIS_PORT}:${REDIS_PORT}"
-    command: redis-server /usr/local/etc/redis/redis.conf
+      - "${REDIS_PORT}:6379"
     volumes:
-      - ./.redis:/usr/local/etc/redis
       - redis_cache:/data/redis
-    environment:
-      REDIS_USER: ${REDIS_USER}
-      REDIS_PASSWORD: ${REDIS_PASSWORD}
-      REDIS_PORT: ${REDIS_PORT}
     networks:
       - backend
 

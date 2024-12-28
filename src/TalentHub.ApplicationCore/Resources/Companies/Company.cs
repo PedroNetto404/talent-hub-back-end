@@ -5,7 +5,7 @@ using TalentHub.ApplicationCore.Shared.ValueObjects;
 
 namespace TalentHub.ApplicationCore.Resources.Companies;
 
-public sealed class Company : AuditableAggregateRoot
+public sealed class Company : UserAggregateRoot
 {
 #pragma warning disable CS0628 // New protected member declared in sealed type
     protected Company() { }
@@ -17,6 +17,7 @@ public sealed class Company : AuditableAggregateRoot
         string cnpj,
         string? about,
         Guid sectorId,
+        Guid userId,
         string recruitmentEmail,
         string? phone,
         bool autoMatchEnabled,
@@ -37,6 +38,7 @@ public sealed class Company : AuditableAggregateRoot
         Cnpj = cnpj;
         About = about;
         SectorId = sectorId;
+        UserId = userId;
         RecruitmentEmail = recruitmentEmail;
         Phone = phone;
         AutoMatchEnabled = autoMatchEnabled;
@@ -58,6 +60,7 @@ public sealed class Company : AuditableAggregateRoot
         string cnpj,
         string? about,
         Guid sectorId,
+        Guid userId,
         string recruitmentEmail,
         string? phone,
         bool autoMatchEnabled,
@@ -99,6 +102,7 @@ public sealed class Company : AuditableAggregateRoot
             cnpj,
             about,
             sectorId,
+            userId,
             recruitmentEmail,
             phone,
             autoMatchEnabled,

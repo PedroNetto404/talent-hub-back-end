@@ -2,6 +2,5 @@ namespace TalentHub.Infra.Security.Polices;
 
 public static class Police
 {
-    public const string CandidateOperations = "CandidateOperations";
-    public const string CompanyOperations = "CompanyOperations";
+    public const string ReadSelfOnly = "ReadSelfOnly";
 }

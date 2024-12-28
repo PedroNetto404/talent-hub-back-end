@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Resources.CompanySectors;
 using TalentHub.ApplicationCore.Resources.Skills;
 using TalentHub.ApplicationCore.Resources.Skills.Enums;
+using TalentHub.Infra.Data.Mappings.Abstractions;
 using TalentHub.Infra.Data.ValueConverters;
 
 namespace TalentHub.Infra.Data.Mappings;

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Resources.Courses;
 using TalentHub.ApplicationCore.Resources.Skills;
+using TalentHub.Infra.Data.Mappings.Abstractions;
 
 namespace TalentHub.Infra.Data.Mappings;
 

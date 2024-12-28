@@ -1,3 +1,4 @@
+
 namespace TalentHub.ApplicationCore.Core.Results;
 
 public record Error(string Code, string Message)
@@ -6,6 +7,7 @@ public record Error(string Code, string Message)
     public const string InvalidInputCode = "invalid_input";
     public const string UnexpectedCode = "unexpected";
     public const string UnauthorizedCode = "unauthorized";
+    public const string ForbidenCode = "forbiden";
 
 
     public static Error NotFound(string resource) =>
@@ -20,4 +22,7 @@ public record Error(string Code, string Message)
     public static Error Unauthorized(
         string message = "check your credentials"
     ) => new(UnauthorizedCode, message);
+
+    public static Error Forbiden(string message = "this user cannot access this resource") =>
+        new(ForbidenCode, message);
 }

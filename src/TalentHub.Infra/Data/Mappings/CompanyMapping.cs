@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentHub.ApplicationCore.Resources.Companies;
 using TalentHub.ApplicationCore.Resources.CompanySectors;
+using TalentHub.ApplicationCore.Resources.Users;
+using TalentHub.Infra.Data.Mappings.Abstractions;
 
 namespace TalentHub.Infra.Data.Mappings;
 
@@ -108,5 +110,10 @@ public sealed class CompanyMapping : AuditableAggregateRootMapping<Company>
         builder.HasOne<CompanySector>()
             .WithMany()
             .HasForeignKey(p => p.SectorId);
+
+        builder.HasOne<User>()
+            .WithOne()
+            .HasForeignKey<Company>(p => p.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

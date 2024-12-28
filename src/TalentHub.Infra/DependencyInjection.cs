@@ -2,11 +2,11 @@ using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Npgsql;
 using StackExchange.Redis;
 using TalentHub.ApplicationCore.Core.Abstractions;
 using TalentHub.ApplicationCore.Ports;
+using TalentHub.Infra.Adapters;
 using TalentHub.Infra.Cache;
 using TalentHub.Infra.Data;
 using TalentHub.Infra.Files;
@@ -25,6 +25,10 @@ public static class DependencyInjection
     )
     {
         s.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        s.AddScoped(
+            typeof(IResourceOwnershipValidator<>), 
+            typeof(ResourceOwnershipValidatorAdapter<>)
+        );
         s.AddScoped<IUserContext, HttpUserContext>();
         s.AddSingleton<IHasher, Sha256Hasher>();
         s.AddSingleton<ITokenProvider, TokenProvider>();
@@ -32,12 +36,6 @@ public static class DependencyInjection
 
         s.AddMemoryCache();
         s.AddHttpContextAccessor();
-
-        s.AddLogging(builder =>
-        {
-            builder.AddConsole();
-            builder.AddDebug();
-        });
 
         AddDatabase(s, config);
         AddAuth(s, config);
@@ -69,14 +67,25 @@ public static class DependencyInjection
         {
             NpgsqlConnectionStringBuilder builder = new()
             {
-                Port = int.Parse(config["DB_PORT"] ?? throw new Exception("DB_PORT is required")),
-                Host = config["DB_HOST"] ?? throw new Exception("DB_HOST is required"),
-                Password = config["DB_PASSWORD"] ?? throw new Exception("DB_PASSWORD is required"),
-                Database = config["DB_NAME"] ?? throw new Exception("DB_NAME is required"),
-                Username = config["DB_USER"] ?? throw new Exception("DB_USER is required")
+                Port = int.Parse(config["DB_PORT"]
+                ?? throw new Exception("DB_PORT is required")),
+
+                Host = config["DB_HOST"]
+                ?? throw new Exception("DB_HOST is required"),
+
+                Password = config["DB_PASSWORD"]
+                ?? throw new Exception("DB_PASSWORD is required"),
+
+                Database = config["DB_NAME"]
+                ?? throw new Exception("DB_NAME is required"),
+
+                Username = config["DB_USER"]
+                ?? throw new Exception("DB_USER is required")
             };
 
-            opt.UseNpgsql(builder.ToString()).UseSnakeCaseNamingConvention();
+            opt
+                .UseNpgsql(builder.ToString())
+                .UseSnakeCaseNamingConvention();
 
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Production")
             {
@@ -86,21 +95,23 @@ public static class DependencyInjection
         });
     }
 
-    private static void AddCache(IServiceCollection s, IConfiguration config)
+    private static void AddCache(
+        IServiceCollection s,
+        IConfiguration config
+    )
     {
-        string host = config["REDIS_HOST"] 
+        string host = config["REDIS_HOST"]
         ?? throw new Exception("REDIS_HOST is required");
-        
-        string port = config["REDIS_PORT"] 
+
+        string port = config["REDIS_PORT"]
         ?? throw new Exception("REDIS_PORT is required");
-        
-        string pass = config["REDIS_PASSWORD"] 
-        ?? throw new Exception("REDIS_PASSWORD is required");
-        
+
         var options = new ConfigurationOptions
         {
-            EndPoints = { $"{host}:{port}" },
-            Password = pass,
+            EndPoints =
+            {
+                $"{host}:{port}"
+            },
             DefaultDatabase = 0
         };
 
@@ -108,7 +119,10 @@ public static class DependencyInjection
         s.AddSingleton<ICacheProvider, RedisCacheProvider>();
     }
 
-    private static void AddAuth(IServiceCollection s, IConfiguration config)
+    private static void AddAuth(
+        IServiceCollection s, 
+        IConfiguration config
+    )
     {
         int acessTokenExpiration = int.Parse(
             config["ASPNETCORE_ENVIRONMENT"] == "Development"
@@ -122,9 +136,12 @@ public static class DependencyInjection
             ?? throw new Exception("JWT_REFRESH_TOKEN_EXPIRATION is required")
         );
 
-        string issuer = config["JWT_ISSUER"] ?? throw new Exception("JWT_ISSUER is required");
-        string audience = config["JWT_AUDIENCE"] ?? throw new Exception("JWT_AUDIENCE is required");
-        string secretKey = config["JWT_SECRET_KEY"] ?? throw new Exception("JWT_SECRET_KEY is required");
+        string issuer = config["JWT_ISSUER"]
+        ?? throw new Exception("JWT_ISSUER is required");
+        string audience = config["JWT_AUDIENCE"]
+        ?? throw new Exception("JWT_AUDIENCE is required");
+        string secretKey = config["JWT_SECRET_KEY"]
+        ?? throw new Exception("JWT_SECRET_KEY is required");
 
         s.ConfigureOptions<AuthOptionsSetup>();
         s.AddAuthorization();

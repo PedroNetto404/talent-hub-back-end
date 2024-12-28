@@ -6,7 +6,6 @@ using TalentHub.ApplicationCore.Ports;
 using TalentHub.ApplicationCore.Resources.Candidates.Dtos;
 using TalentHub.ApplicationCore.Resources.Candidates.Specs;
 using TalentHub.ApplicationCore.Resources.Jobs.Enums;
-using TalentHub.ApplicationCore.Resources.Users;
 
 namespace TalentHub.ApplicationCore.Resources.Candidates.UseCases.Commands.Create;
 
@@ -21,14 +20,13 @@ public sealed class CreateCandidateCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        User? user = await userContext.GetCurrentAsync(cancellationToken);
-        if (user is null)
+        if(userContext is not { IsCandidate: true, UserId: { } userId })
         {
-            return Error.Unauthorized("invalid authentication state");
+            return Error.Forbiden();
         }
 
         Candidate? existingCandidate = await candidateRepository.FirstOrDefaultAsync(
-            new GetCandidateByUserOrPhoneSpec(user.Id, input.Phone),
+            new GetCandidateByUserOrPhoneSpec(userId, input.Phone),
             cancellationToken
         );
         if (existingCandidate is not null)
@@ -39,7 +37,7 @@ public sealed class CreateCandidateCommandHandler(
         Result<Candidate> maybeCandidate = Candidate.Create(
             input.Name,
             input.AutoMatchEnabled,
-            user.Id,
+            userId,
             input.Phone,
             input.BirthDate,
             input.Address,

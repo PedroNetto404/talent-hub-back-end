@@ -28,15 +28,21 @@ public static class QueryCollectionExtensions
         { typeof(IEnumerable<double>), value => value.Split(',').Select(double.Parse).ToList() }
     };
 
-    public static T Get<T>(this IQueryCollection query, string key, T defaultValue)
+    public static T Get<T>(
+        this IQueryCollection query, 
+        string key, 
+        T? defaultValue = default
+    )
     {
-        if (!Converters.TryGetValue(typeof(T), out Func<string, object>? converter))
+        Type type = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+
+        if (!Converters.TryGetValue(type, out Func<string, object>? converter))
         {
             throw new NotSupportedException($"Type {typeof(T).Name} is not supported.");
         }
 
         string? value = query[key].FirstOrDefault();
-        if(value == null)
+        if (value == null)
         {
             return defaultValue;
         }

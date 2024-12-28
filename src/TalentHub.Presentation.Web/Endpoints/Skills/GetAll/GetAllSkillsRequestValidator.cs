@@ -1,5 +1,7 @@
 using FluentValidation;
 
+namespace TalentHub.Presentation.Web.Endpoints.Skills.GetAll;
+
 public sealed class GetAllSkillsRequestValidator : AbstractValidator<GetAllSkillsRequest>
 {
     private static readonly string[] AllowedSortingFields = ["id", "type", "name"];

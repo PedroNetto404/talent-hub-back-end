@@ -3,8 +3,10 @@ using Humanizer;
 using TalentHub.ApplicationCore.Resources.Skills.Enums;
 using TalentHub.ApplicationCore.Shared.Enums;
 
+namespace TalentHub.Presentation.Web.Endpoints.Skills.GetAll;
+
 public sealed class GetAllSkillsRequestBinder :
-IRequestBinder<GetAllSkillsRequest>
+    IRequestBinder<GetAllSkillsRequest>
 {
     public ValueTask<GetAllSkillsRequest> BindAsync(
         BinderContext ctx,
@@ -12,13 +14,13 @@ IRequestBinder<GetAllSkillsRequest>
     ) => ValueTask.FromResult(
         new GetAllSkillsRequest(
             ctx.HttpContext
-                   .Request
-                   .Query["skill_id_in"]
-                   .FirstOrDefault()?
-                   .Split(",")
-                   .Select(Guid.Parse) ?? [],
-                   ctx.HttpContext.Request.Query["type"].FirstOrDefault()
-                   is string type ? Enum.Parse<SkillType>(type.Pascalize()) : null
+                .Request
+                .Query["skill_id_in"]
+                .FirstOrDefault()?
+                .Split(",")
+                .Select(Guid.Parse) ?? [],
+            ctx.HttpContext.Request.Query["type"].FirstOrDefault()
+                is string type ? Enum.Parse<SkillType>(type.Pascalize()) : null
         )
         {
             Limit = int.Parse(ctx.HttpContext.Request.Query["_limit"].FirstOrDefault() ?? "10"),
@@ -27,7 +29,7 @@ IRequestBinder<GetAllSkillsRequest>
             SortOrder = Enum.TryParse(
                 ctx.HttpContext.Request.Query["_sort_order"].FirstOrDefault(),
                 true,
-                 out SortOrder sortOrder
+                out SortOrder sortOrder
             ) ? sortOrder : SortOrder.Ascending
         }
     );
